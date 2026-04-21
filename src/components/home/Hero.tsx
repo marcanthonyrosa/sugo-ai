@@ -1,14 +1,11 @@
 "use client";
 
-import { useState } from "react";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { Fade } from "@/components/ui/Fade";
-import { CalModal } from "@/components/ui/CalModal";
+import { openCal } from "@/components/ui/CalModal";
 import { AskSugo } from "@/components/ask-sugo/AskSugo";
 
 export function Hero() {
-  const [cal, setCal] = useState(false);
-
   return (
     <section className="pt-[92px] pb-16 max-[767px]:pt-[72px] max-[767px]:pb-12">
       <div className="max-w-[1320px] mx-auto px-8 max-[1199px]:px-10 max-[767px]:px-6 relative">
@@ -26,7 +23,7 @@ export function Hero() {
               </p>
             </Fade>
             <div className="flex items-center gap-7 mt-10 flex-wrap">
-              <button className="btn-slide" onClick={() => setCal(true)}>
+              <button className="btn-slide" onClick={openCal}>
                 Start a conversation
               </button>
               <a className="link-grow" href="mailto:marc@sugoai.com">
@@ -35,11 +32,10 @@ export function Hero() {
             </div>
           </div>
           <div className="pt-[66px] max-[1023px]:pt-0">
-            <AskSugo variant="chat" openCal={() => setCal(true)} />
+            <AskSugo variant="chat" openCal={openCal} />
           </div>
         </div>
       </div>
-      <CalModal open={cal} onClose={() => setCal(false)} />
     </section>
   );
 }
