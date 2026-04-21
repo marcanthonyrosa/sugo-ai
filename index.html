@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sugo AI — Where AI strategy becomes working software.</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400..600,30..85;1,9..144,400..600,30..85&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400..600,30..85;1,9..144,400..600,30..85&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+
+  <link rel="stylesheet" href="styles.css?v=12">
+</head>
+<body>
+  <div id="root"></div>
+
+  <script>
+    const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+      "askVariant": "chat"
+    }/*EDITMODE-END*/;
+  </script>
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+  <script type="text/babel" src="shell.jsx"></script>
+  <script type="text/babel" src="ask-sugo.jsx"></script>
+  <script type="text/babel" src="home.jsx"></script>
+  <script type="text/babel" src="pages.jsx"></script>
+
+  <script type="text/babel">
+    const { useState, useEffect } = React;
+    const { useHashRoute } = window.Router;
+    const { Nav, CalModal } = window.UI;
+
+    function Tweaks({ askVariant, setAskVariant, visible, onClose }) {
+      if (!visible) return null;
+      return (
+        <div className="tweaks" role="region" aria-label="Tweaks">
+          <button className="close-x" onClick={onClose} aria-label="Close tweaks">×</button>
+          <div className="tweaks-label">Ask Sugo variant</div>
+          <div className="seg" role="group" aria-label="Ask Sugo variant">
+            <button aria-pressed={askVariant === "paper"} onClick={() => setAskVariant("paper")}>Paper</button>
+            <button aria-pressed={askVariant === "chat"} onClick={() => setAskVariant("chat")}>Chat</button>
+          </div>
+        </div>
+      );
+    }
+
+    function App() {
+      const route = useHashRoute();
+      const [navColor, setNavColor] = useState("paper");
+      const [cal, setCal] = useState(false);
+      const [askVariant, setAskVariantRaw] = useState(TWEAK_DEFAULTS.askVariant || "chat");
+      const [tweaksVisible, setTweaksVisible] = useState(false);
+
+      useEffect(() => { setNavColor("paper"); }, [route]);
+
+      useEffect(() => {
+        const onMsg = (e) => {
+          if (!e.data || typeof e.data !== "object") return;
+          if (e.data.type === "__activate_edit_mode") setTweaksVisible(true);
+          if (e.data.type === "__deactivate_edit_mode") setTweaksVisible(false);
+        };
+        window.addEventListener("message", onMsg);
+        window.parent.postMessage({ type: "__edit_mode_available" }, "*");
+        return () => window.removeEventListener("message", onMsg);
+      }, []);
+
+      const setAskVariant = (v) => {
+        setAskVariantRaw(v);
+        window.parent.postMessage({ type: "__edit_mode_set_keys", edits: { askVariant: v } }, "*");
+      };
+
+      const openCal = () => setCal(true);
+      const closeCal = () => setCal(false);
+
+      let page;
+      if (route === "/" || route === "") {
+        page = <window.Home setNavColor={setNavColor} openCal={openCal} askVariant={askVariant} />;
+      } else if (route === "/about") {
+        page = <window.Pages.About openCal={openCal} />;
+      } else if (route === "/writing") {
+        page = <window.Pages.Writing />;
+      } else if (route.startsWith("/writing/")) {
+        const slug = route.replace("/writing/", "");
+        page = <window.Pages.WritingPost slug={slug} />;
+      } else if (route === "/contact") {
+        page = <window.Pages.Contact openCal={openCal} />;
+      } else {
+        page = <window.Home setNavColor={setNavColor} openCal={openCal} askVariant={askVariant} />;
+      }
+
+      return (
+        <>
+          <Nav route={route} navColor={navColor} />
+          {page}
+          <CalModal open={cal} onClose={closeCal} />
+          <Tweaks askVariant={askVariant} setAskVariant={setAskVariant}
+                  visible={tweaksVisible} onClose={() => setTweaksVisible(false)} />
+        </>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+  </script>
+</body>
+</html>
