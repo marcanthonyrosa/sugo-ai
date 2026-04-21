@@ -10,7 +10,7 @@ const ROWS: [string, string, string][] = [
 
 export function WhySugo() {
   return (
-    <section className="py-[140px] max-[1199px]:py-28 max-[767px]:py-[72px]">
+    <section className="py-[84px] max-[1199px]:py-16 max-[767px]:py-12">
       <div className="max-w-[1320px] mx-auto px-8 max-[1199px]:px-10 max-[767px]:px-6 relative">
         <div className="max-w-[680px]">
           <SectionLabel n="06">Why Sugo</SectionLabel>

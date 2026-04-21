@@ -40,7 +40,7 @@ export function ProofChapter() {
   }
 
   return (
-    <section ref={ref} className="chapter-moss py-40 max-[767px]:py-24 w-full">
+    <section ref={ref} className="chapter-moss py-[100px] max-[767px]:py-[56px] w-full">
       <div className="max-w-[1320px] mx-auto px-8 max-[1199px]:px-10 max-[767px]:px-6 relative">
         <div>
           <SectionLabel n="07">The 5% Side</SectionLabel>
