@@ -1,3 +1,4 @@
+import { notFound } from "next/navigation";
 import Link from "next/link";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { PotMark } from "@/components/ui/PotMark";
@@ -5,6 +6,7 @@ import { Footer } from "@/components/layout/Footer";
 import { getAllArticles } from "@/lib/mdx";
 
 export default function WritingPage() {
+  if (process.env.NODE_ENV !== "development") notFound();
   const articles = getAllArticles();
 
   return (
