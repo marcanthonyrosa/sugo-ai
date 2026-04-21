@@ -1,0 +1,820 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ==========================================================================
+   Theme: shadcn defaults + Sugo AI design tokens
+   ========================================================================== */
+
+@theme inline {
+  /* --- shadcn color plumbing --- */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+
+  /* --- Sugo AI palette --- */
+  --color-paper: #F2EDE4;
+  --color-ink: #1E1B17;
+  --color-cream: #F8F3EA;
+  --color-clay: #C6623C;
+  --color-moss: #4A5D3E;
+  --color-stone: #A89E8C;
+  --color-ink-80: rgba(30, 27, 23, 0.80);
+  --color-ink-85: rgba(30, 27, 23, 0.85);
+  --color-ink-90: rgba(30, 27, 23, 0.90);
+  --color-clay-20: rgba(198, 98, 60, 0.20);
+  --color-rule: rgba(168, 158, 140, 0.40);
+  --color-paper-80: rgba(242, 237, 228, 0.80);
+  --color-paper-70: rgba(242, 237, 228, 0.70);
+  --color-paper-60: rgba(242, 237, 228, 0.60);
+  --color-paper-40: rgba(242, 237, 228, 0.40);
+  --color-paper-15: rgba(242, 237, 228, 0.15);
+
+  /* --- Sugo AI fonts --- */
+  --font-sans: var(--font-inter), system-ui, -apple-system, sans-serif;
+  --font-serif: var(--font-fraunces), Georgia, serif;
+  --font-mono: var(--font-jb-mono), ui-monospace, "SF Mono", monospace;
+
+  /* --- Sugo AI breakpoints (reference: max-width 767/1023/1199) --- */
+  /* Tailwind uses min-width by default; these are custom max-width screens */
+}
+
+/* --- shadcn light/dark vars --- */
+
+:root {
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --radius: 0.625rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* ==========================================================================
+   Sugo AI — Base resets & global styles
+   ========================================================================== */
+
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+  html { background: theme(--color-paper); }
+  body {
+    background: theme(--color-paper);
+    color: theme(--color-ink);
+    font-family: theme(--font-sans);
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: "kern", "liga";
+  }
+  ::selection { background: theme(--color-clay-20); color: theme(--color-ink); }
+  h1, h2, h3, h4 {
+    font-family: theme(--font-serif);
+    font-weight: 400;
+    margin: 0;
+    color: theme(--color-ink);
+    font-feature-settings: "kern", "liga";
+  }
+  p { margin: 0; }
+  a { color: theme(--color-ink); text-decoration: none; }
+  body.no-scroll { overflow: hidden; }
+}
+
+/* ==========================================================================
+   Sugo AI — Typographic roles
+   These use font-variation-settings which can't be expressed as Tailwind
+   utilities, so they stay as composed classes.
+   ========================================================================== */
+
+@layer components {
+
+  /* --- Display --- */
+  .type-display {
+    font-family: theme(--font-serif);
+    font-weight: 500;
+    font-size: 104px;
+    line-height: 0.98;
+    letter-spacing: -0.025em;
+    font-variation-settings: "opsz" 144, "SOFT" 50;
+    font-feature-settings: "dlig", "kern", "liga";
+  }
+  .type-display em, .type-display i {
+    font-style: italic;
+    font-variation-settings: "opsz" 144, "SOFT" 50;
+  }
+  @media (max-width: 767px) { .type-display { font-size: 56px; } }
+
+  /* --- H1 --- */
+  .type-h1 {
+    font-family: theme(--font-serif);
+    font-weight: 400;
+    font-size: 68px;
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+    font-variation-settings: "opsz" 144, "SOFT" 50;
+  }
+  @media (max-width: 767px) { .type-h1 { font-size: 40px; } }
+
+  /* --- H2 --- */
+  .type-h2 {
+    font-family: theme(--font-serif);
+    font-weight: 500;
+    font-size: 44px;
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+    font-variation-settings: "opsz" 72, "SOFT" 50;
+  }
+  @media (max-width: 767px) { .type-h2 { font-size: 30px; } }
+
+  /* --- H3 (italic) --- */
+  .type-h3 {
+    font-family: theme(--font-serif);
+    font-weight: 400;
+    font-style: italic;
+    font-size: 26px;
+    line-height: 1.3;
+  }
+  @media (max-width: 767px) { .type-h3 { font-size: 21px; } }
+
+  /* --- Lead paragraph --- */
+  .type-lead {
+    font-family: theme(--font-sans);
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 1.55;
+    letter-spacing: -0.005em;
+    color: theme(--color-ink-80);
+  }
+  @media (max-width: 767px) { .type-lead { font-size: 19px; } }
+
+  /* --- Body text --- */
+  .type-body {
+    font-family: theme(--font-sans);
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 1.6;
+    color: theme(--color-ink-85);
+  }
+  @media (max-width: 767px) { .type-body { font-size: 17px; } }
+
+  /* --- Mono label (section markers) --- */
+  .type-mono-label {
+    font-family: theme(--font-mono);
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 1.2;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: theme(--color-clay);
+  }
+
+  /* --- Mono meta (timestamps, secondary) --- */
+  .type-mono-meta {
+    font-family: theme(--font-mono);
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 1.4;
+    letter-spacing: 0.04em;
+    color: theme(--color-stone);
+  }
+
+  /* --- Pullout quote --- */
+  .type-pullout {
+    font-family: theme(--font-serif);
+    font-weight: 400;
+    font-style: italic;
+    font-size: 44px;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: theme(--color-ink);
+    font-variation-settings: "opsz" 144, "SOFT" 50;
+    max-width: 520px;
+    margin-left: auto;
+    text-align: left;
+    text-indent: -0.3em;
+    border-top: 1px solid theme(--color-rule);
+    padding-top: 24px;
+  }
+  @media (max-width: 1023px) {
+    .type-pullout {
+      font-size: 30px;
+      max-width: 100%;
+      margin-left: 0;
+      margin-top: 56px;
+    }
+  }
+
+  /* --- Proof pullquote (large, paper-colored) --- */
+  .type-proof-quote {
+    font-family: theme(--font-serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 52px;
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+    color: theme(--color-paper);
+    max-width: 960px;
+    text-indent: -0.4em;
+    font-variation-settings: "opsz" 144, "SOFT" 50;
+  }
+  @media (max-width: 767px) { .type-proof-quote { font-size: 28px; } }
+
+  /* --- Stat figure (large number) --- */
+  .type-stat-figure {
+    font-family: theme(--font-serif);
+    font-weight: 500;
+    font-size: 128px;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    font-variation-settings: "opsz" 144, "SOFT" 50;
+    margin: 16px 0;
+  }
+  @media (max-width: 767px) { .type-stat-figure { font-size: 88px; } }
+
+  /* --- Fig percentage (chart numbers) --- */
+  .type-fig-pct {
+    font-family: theme(--font-serif);
+    font-weight: 500;
+    font-size: 92px;
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    font-variation-settings: "opsz" 144, "SOFT" 50;
+  }
+  @media (max-width: 767px) { .type-fig-pct { font-size: 60px; } }
+
+  /* --- Serif heading (panels, cards, steps, ledger) — shared fvs --- */
+  .type-serif-heading {
+    font-family: theme(--font-serif);
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+    font-variation-settings: "opsz" 72, "SOFT" 50;
+  }
+
+  /* --- Serif heading small (why items) --- */
+  .type-serif-heading-sm {
+    font-family: theme(--font-serif);
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    font-variation-settings: "opsz" 48, "SOFT" 50;
+  }
+
+  /* --- Serif inline (ledger name, writing row) --- */
+  .type-serif-name {
+    font-family: theme(--font-serif);
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    font-variation-settings: "opsz" 72, "SOFT" 50;
+  }
+
+  /* --- Compare sugo column text --- */
+  .type-compare-sugo {
+    font-family: theme(--font-serif);
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 1.35;
+    letter-spacing: -0.005em;
+    font-variation-settings: "opsz" 72, "SOFT" 50;
+  }
+
+  /* --- Step number --- */
+  .type-step-num {
+    font-family: theme(--font-mono);
+    font-weight: 500;
+    font-size: 80px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  @media (max-width: 767px) { .type-step-num { font-size: 48px; } }
+
+  /* --- Writing row heading --- */
+  .type-writing-title {
+    font-family: theme(--font-serif);
+    font-weight: 500;
+    font-size: 26px;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    display: inline;
+    font-variation-settings: "opsz" 72, "SOFT" 50;
+    background-image: linear-gradient(currentColor, currentColor);
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    background-size: 0% 1px;
+    transition: color 220ms cubic-bezier(0.2,0.6,0.2,1), background-size 260ms cubic-bezier(0.2,0.6,0.2,1);
+  }
+
+  /* --- Post lead --- */
+  .type-post-lead {
+    font-family: theme(--font-serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 26px;
+    line-height: 1.35;
+    color: theme(--color-ink-85);
+    margin: 32px 0 48px;
+    font-variation-settings: "opsz" 72, "SOFT" 50;
+  }
+
+  /* --- Callout block --- */
+  .type-callout {
+    font-family: theme(--font-serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 21px;
+    line-height: 1.4;
+    font-variation-settings: "opsz" 72, "SOFT" 50;
+  }
+
+  /* --- Closing italic --- */
+  .type-closing {
+    font-family: theme(--font-serif);
+    font-style: italic;
+    font-size: 24px;
+    line-height: 1.4;
+  }
+
+  /* --- Dot legend big number --- */
+  .type-dot-big {
+    font-family: theme(--font-serif);
+    font-weight: 500;
+    font-size: 72px;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    font-variation-settings: "opsz" 144, "SOFT" 50;
+  }
+
+  /* --- Dot legend fraction --- */
+  .type-dot-frac {
+    font-family: theme(--font-serif);
+    font-weight: 500;
+    font-size: 40px;
+    line-height: 1;
+    font-variation-settings: "opsz" 72, "SOFT" 50;
+  }
+}
+
+/* ==========================================================================
+   Sugo AI — Interactive components with pseudo-elements & animations
+   These rely on ::before/::after or complex state that can't be inline Tailwind.
+   ========================================================================== */
+
+@layer components {
+
+  /* --- Primary button slide-fill effect --- */
+  .btn-slide {
+    @apply relative inline-block overflow-hidden isolate cursor-pointer border-none;
+    font-family: theme(--font-sans);
+    font-weight: 500;
+    font-size: 18px;
+    letter-spacing: 0.01em;
+    line-height: 1.2;
+    padding: 16px 32px;
+    border-radius: 2px;
+    background: theme(--color-ink);
+    color: theme(--color-paper);
+    text-align: left;
+    transition: color 220ms cubic-bezier(0.2,0.6,0.2,1);
+  }
+  .btn-slide::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: theme(--color-clay);
+    transform: translateX(-101%);
+    transition: transform 260ms cubic-bezier(0.2,0.6,0.2,1);
+    z-index: -1;
+  }
+  .btn-slide:hover::before { transform: translateX(0); }
+
+  /* Inverted button for clay/moss chapters */
+  .chapter-clay .btn-slide,
+  .chapter-moss .btn-slide {
+    background: theme(--color-paper);
+    color: theme(--color-clay);
+    border: 2px solid theme(--color-paper);
+    padding: 14px 30px;
+    transition: background 200ms ease, color 200ms ease;
+  }
+  .chapter-moss .btn-slide { color: theme(--color-moss); }
+  .chapter-clay .btn-slide::before,
+  .chapter-moss .btn-slide::before { display: none; }
+  .chapter-clay .btn-slide:hover { background: transparent; color: theme(--color-paper); }
+  .chapter-moss .btn-slide:hover { background: transparent; color: theme(--color-paper); }
+
+  /* --- Animated link with underline grow --- */
+  .link-grow {
+    font-family: theme(--font-sans);
+    font-weight: 500;
+    font-size: 18px;
+    color: theme(--color-ink);
+    display: inline-flex;
+    align-items: baseline;
+    gap: 6px;
+    background-image: linear-gradient(currentColor, currentColor);
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    background-size: 100% 1px;
+    transition: color 200ms cubic-bezier(0.2,0.6,0.2,1), background-size 200ms cubic-bezier(0.2,0.6,0.2,1);
+  }
+  .link-grow:hover { color: theme(--color-clay); background-size: 100% 2px; }
+
+  /* --- Inline link with underline --- */
+  .link-inline {
+    color: theme(--color-clay);
+    font-weight: 500;
+    text-decoration: none;
+    background-image: linear-gradient(currentColor, currentColor);
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    background-size: 100% 1px;
+    transition: color 200ms cubic-bezier(0.2,0.6,0.2,1), background-size 200ms cubic-bezier(0.2,0.6,0.2,1);
+  }
+  .link-inline:hover { background-size: 100% 2px; }
+
+  /* --- Nav link animated underline --- */
+  .nav-link-anim {
+    font-family: theme(--font-sans);
+    font-weight: 500;
+    font-size: 16px;
+    color: theme(--color-ink);
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+    background-image: linear-gradient(currentColor, currentColor);
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    background-size: 0% 1px;
+    transition: color 200ms cubic-bezier(0.2,0.6,0.2,1), background-size 200ms cubic-bezier(0.2,0.6,0.2,1);
+  }
+  .nav-link-anim:hover, .nav-link-anim[aria-current="page"] {
+    color: theme(--color-clay);
+    background-size: 100% 1px;
+  }
+
+  /* --- Wordmark AI fade-in --- */
+  .wordmark-ai-anim {
+    font-family: theme(--font-mono);
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1;
+    letter-spacing: 0.02em;
+    color: theme(--color-clay);
+    opacity: 0;
+    animation: ai-fade 260ms cubic-bezier(0.2,0.6,0.2,1) 180ms forwards;
+  }
+
+  /* --- Pot mark with ::after bar --- */
+  .pot-mark-icon {
+    font-family: theme(--font-serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 1;
+    text-align: center;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    font-variation-settings: "opsz" 72, "SOFT" 50;
+  }
+  .pot-mark-icon::after {
+    content: "";
+    display: block;
+    width: 48px;
+    height: 2px;
+    background: theme(--color-clay);
+  }
+  .pot-mark-icon-lg { font-size: 42px; }
+
+  /* --- Proof attribution with ::before rule --- */
+  .proof-attrib-mark {
+    position: relative;
+    display: inline-block;
+    padding-top: 16px;
+  }
+  .proof-attrib-mark::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 56px; height: 4px;
+    background: theme(--color-paper);
+  }
+
+  /* --- Compare sugo arrow ::before --- */
+  .compare-arrow::before {
+    content: "\2192 ";
+    color: theme(--color-clay);
+    font-family: theme(--font-mono);
+    font-weight: 500;
+    font-size: 18px;
+    margin-right: 4px;
+  }
+
+  /* --- Turn sugo arrow ::before --- */
+  .turn-arrow::before {
+    content: "\2192 ";
+    color: theme(--color-clay);
+    font-style: normal;
+    font-weight: 500;
+    font-family: theme(--font-mono);
+    font-size: 18px;
+  }
+
+  /* --- Caret blink --- */
+  .caret-blink {
+    display: inline-block;
+    color: theme(--color-clay);
+    animation: caret-blink 900ms steps(2) infinite;
+    margin-left: 1px;
+  }
+
+  /* --- Seed button with dashed underline --- */
+  .seed-btn {
+    font-family: theme(--font-sans);
+    font-weight: 500;
+    font-size: 18px;
+    color: theme(--color-clay);
+    background: none;
+    border: none;
+    padding: 0;
+    text-align: left;
+    cursor: pointer;
+    border-bottom: 1px dashed theme(--color-clay);
+    align-self: flex-start;
+    line-height: 1.4;
+    transition: border-bottom-color 200ms, opacity 200ms;
+  }
+  .seed-btn:hover { border-bottom-style: solid; }
+  .seed-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+
+  /* --- Chat chip pills --- */
+  .chip-pill {
+    font-family: theme(--font-sans);
+    font-weight: 500;
+    font-size: 13.5px;
+    color: theme(--color-clay);
+    background: transparent;
+    border: 1px solid theme(--color-clay);
+    border-radius: 999px;
+    padding: 7px 14px;
+    cursor: pointer;
+    transition: background 180ms, color 180ms;
+  }
+  .chip-pill:hover:not(:disabled) { background: theme(--color-clay); color: theme(--color-paper); }
+  .chip-pill:disabled { opacity: 0.4; cursor: not-allowed; }
+  .chip-pill-cta {
+    background: theme(--color-ink);
+    color: theme(--color-paper);
+    border-color: theme(--color-ink);
+  }
+  .chip-pill-cta:hover:not(:disabled) { background: theme(--color-clay); border-color: theme(--color-clay); }
+
+  /* --- Fade-in entry --- */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 600ms cubic-bezier(0.2,0.6,0.2,1), transform 600ms cubic-bezier(0.2,0.6,0.2,1);
+  }
+  .fade-in.in { opacity: 1; transform: translateY(0); }
+
+  /* --- Post prose headings with ::before bar --- */
+  .post-prose h2 {
+    font-family: theme(--font-serif);
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 1.2;
+    margin: 56px 0 20px;
+    letter-spacing: -0.015em;
+    font-variation-settings: "opsz" 72, "SOFT" 50;
+    position: relative;
+    padding-top: 20px;
+  }
+  .post-prose h2::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 56px; height: 2px;
+    background: theme(--color-clay);
+  }
+  .post-prose p {
+    margin: 0 0 24px;
+    font-size: 19px;
+    line-height: 1.6;
+    color: theme(--color-ink-85);
+  }
+  .post-prose code {
+    font-family: theme(--font-mono);
+    font-size: 15px;
+    background: theme(--color-cream);
+    padding: 2px 6px;
+    border-radius: 2px;
+  }
+
+  /* --- Writing row hover effect --- */
+  .writing-row-link {
+    display: block;
+    padding: 32px 0;
+    border-bottom: 1px solid theme(--color-rule);
+    transition: color 200ms;
+  }
+  .writing-row-link:hover .type-writing-title {
+    color: theme(--color-clay);
+    background-size: 100% 2px;
+  }
+
+  /* --- Gutter annotations --- */
+  .gutter-anno {
+    font-family: theme(--font-mono);
+    font-size: 11px;
+    line-height: 1.5;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(249, 244, 236, 0.7);
+    padding-left: 14px;
+    border-left: 1px solid rgba(249, 244, 236, 0.4);
+  }
+
+  /* --- Dot legend label --- */
+  .dot-legend-lab {
+    font-family: theme(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(249, 244, 236, 0.7);
+  }
+}
+
+/* ==========================================================================
+   Sugo AI — Color chapter overrides
+   These need to cascade onto child elements, so they stay as global CSS.
+   ========================================================================== */
+
+.chapter-clay { background: theme(--color-clay); color: theme(--color-paper); }
+.chapter-moss { background: theme(--color-moss); color: theme(--color-paper); }
+
+.chapter-clay h1, .chapter-clay h2, .chapter-clay h3, .chapter-clay p, .chapter-clay a,
+.chapter-moss h1, .chapter-moss h2, .chapter-moss h3, .chapter-moss p, .chapter-moss a {
+  color: theme(--color-paper);
+}
+.chapter-clay .type-lead, .chapter-moss .type-lead { color: theme(--color-paper-80); }
+.chapter-clay .type-body, .chapter-moss .type-body { color: theme(--color-paper); }
+.chapter-clay .type-mono-label, .chapter-moss .type-mono-label { color: theme(--color-paper); }
+.chapter-clay .type-mono-meta, .chapter-moss .type-mono-meta { color: theme(--color-paper-70); }
+.chapter-clay .type-pullout { color: theme(--color-paper); border-top-color: rgba(249, 244, 236, 0.3); }
+.chapter-clay .type-stat-figure, .chapter-moss .type-stat-figure { color: theme(--color-paper); }
+.chapter-clay .link-grow, .chapter-moss .link-grow { color: theme(--color-paper); }
+.chapter-clay .link-grow:hover, .chapter-moss .link-grow:hover { color: theme(--color-paper); }
+.chapter-clay .link-inline, .chapter-moss .link-inline { color: theme(--color-paper); }
+
+/* Nav color states */
+.nav-bar.on-clay { background: rgba(198, 98, 60, 0.90); }
+.nav-bar.on-moss { background: rgba(74, 93, 62, 0.90); }
+.nav-bar.on-clay .wordmark-sugo-text, .nav-bar.on-clay .wordmark-ai-anim, .nav-bar.on-clay .nav-link-anim,
+.nav-bar.on-moss .wordmark-sugo-text, .nav-bar.on-moss .wordmark-ai-anim, .nav-bar.on-moss .nav-link-anim {
+  color: theme(--color-paper);
+}
+.nav-bar.on-clay .nav-link-anim:hover, .nav-bar.on-clay .nav-link-anim[aria-current="page"],
+.nav-bar.on-moss .nav-link-anim:hover, .nav-bar.on-moss .nav-link-anim[aria-current="page"] {
+  color: theme(--color-paper);
+  background-size: 100% 2px;
+}
+.nav-bar.on-clay .nav-mobile-btn, .nav-bar.on-moss .nav-mobile-btn { color: theme(--color-paper); }
+
+/* ==========================================================================
+   Sugo AI — Keyframes
+   ========================================================================== */
+
+@keyframes ai-fade { to { opacity: 1; } }
+@keyframes caret-blink { 50% { opacity: 0; } }
+
+/* ==========================================================================
+   Sugo AI — Focus & reduced motion
+   ========================================================================== */
+
+:focus-visible {
+  outline: 2px solid theme(--color-clay);
+  outline-offset: 2px;
+}
+.chapter-clay :focus-visible, .chapter-moss :focus-visible {
+  outline-color: theme(--color-paper);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-in { opacity: 1; transform: none; transition: none; }
+  .caret-blink { animation: none; }
+  .wordmark-ai-anim { animation: none; opacity: 1; }
+}
