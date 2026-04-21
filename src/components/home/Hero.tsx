@@ -10,7 +10,7 @@ export function Hero() {
   const [cal, setCal] = useState(false);
 
   return (
-    <section className="pt-[120px] pb-28 max-[767px]:pt-24 max-[767px]:pb-[72px]">
+    <section className="pt-[92px] pb-16 max-[767px]:pt-[72px] max-[767px]:pb-12">
       <div className="max-w-[1320px] mx-auto px-8 max-[1199px]:px-10 max-[767px]:px-6 relative">
         <div className="grid grid-cols-[minmax(0,55fr)_minmax(0,45fr)] gap-[60px] items-start max-[1023px]:grid-cols-1 max-[1023px]:gap-12">
           <div>

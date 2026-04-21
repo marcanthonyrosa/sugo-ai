@@ -40,7 +40,7 @@ export function ProblemChapter() {
   ];
 
   return (
-    <section ref={ref} className="chapter-clay py-40 max-[767px]:py-24 w-full relative">
+    <section ref={ref} className="chapter-clay py-[100px] max-[767px]:py-[56px] w-full relative">
       {/* Gutter annotations */}
       <div className="absolute right-10 top-[140px] w-[180px] flex flex-col gap-6 z-2 max-[1199px]:hidden" aria-hidden="true">
         <div className="gutter-anno">MIT Sloan<br />Aug 2025 · Tbl. 4.2</div>
@@ -79,22 +79,26 @@ export function ProblemChapter() {
           </div>
         </div>
 
-        {/* Numbered list */}
-        <div className="flex flex-col gap-10 mt-24 max-w-[680px]">
-          {items.map(([n, h, b]) => (
-            <Fade key={n} className="grid grid-cols-[48px_1fr] gap-6 items-baseline">
-              <div className="font-mono text-sm tracking-[0.08em] text-paper pt-1">{n}</div>
-              <div>
-                <div className="font-sans font-medium text-[19px] text-paper mb-1.5">{h}</div>
-                <p className="type-body text-paper">{b}</p>
-              </div>
-            </Fade>
-          ))}
-        </div>
+        {/* Numbered list + pullout side-by-side */}
+        <div className="grid grid-cols-[1fr_minmax(0,400px)] gap-20 mt-24 items-start max-[1023px]:grid-cols-1 max-[1023px]:gap-12">
+          <div className="flex flex-col gap-10">
+            {items.map(([n, h, b]) => (
+              <Fade key={n} className="grid grid-cols-[48px_1fr] gap-6 items-baseline">
+                <div className="font-mono text-sm tracking-[0.08em] text-paper pt-1">{n}</div>
+                <div>
+                  <div className="font-sans font-medium text-[19px] text-paper mb-1.5">{h}</div>
+                  <p className="type-body text-paper">{b}</p>
+                </div>
+              </Fade>
+            ))}
+          </div>
 
-        <p className="type-pullout mt-24">
-          &ldquo;The gap isn&rsquo;t the model. It&rsquo;s the mile of work around it.&rdquo;
-        </p>
+          <div className="pt-2 max-[1023px]:pt-0">
+            <p className="type-pullout !ml-0 !max-w-none">
+              &ldquo;The gap isn&rsquo;t the model. It&rsquo;s the mile of work around it.&rdquo;
+            </p>
+          </div>
+        </div>
 
         {/* Fig 01 */}
         <div ref={figRef} className="bg-paper text-ink border border-paper/25 px-14 py-12 mt-24 mb-6 max-[767px]:p-7">

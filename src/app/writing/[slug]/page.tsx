@@ -22,7 +22,7 @@ export default async function WritingPostPage({ params }: WritingPostPageProps) 
 
   return (
     <main>
-      <section className="py-[140px] pt-[180px] max-[1199px]:py-28 max-[767px]:py-[72px]">
+      <section className="py-[84px] pt-[132px] max-[1199px]:py-16 max-[767px]:py-12">
         <div className="max-w-[1320px] mx-auto px-8 max-[1199px]:px-10 max-[767px]:px-6">
           <div className="max-w-[680px] ml-40 max-[1199px]:max-w-[580px] max-[1199px]:ml-20 max-[767px]:max-w-full max-[767px]:ml-0">
             <p className="type-mono-meta uppercase">
