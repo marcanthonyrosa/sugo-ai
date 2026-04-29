@@ -1,18 +1,12 @@
 import type { Metadata } from "next";
-import { Fraunces, Inter, JetBrains_Mono } from "next/font/google";
+import { Fraunces, JetBrains_Mono } from "next/font/google";
 import { Nav } from "@/components/layout/Nav";
-import { NavColorProvider } from "@/contexts/NavColorContext";
 import "./globals.css";
 
 const fraunces = Fraunces({
   variable: "--font-fraunces",
   subsets: ["latin"],
   axes: ["opsz", "SOFT"],
-});
-
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
 });
 
 const jetbrainsMono = JetBrains_Mono({
@@ -34,13 +28,22 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${fraunces.variable} ${inter.variable} ${jetbrainsMono.variable}`}
+      className={`${fraunces.variable} ${jetbrainsMono.variable}`}
     >
+      <head>
+        <link
+          rel="preconnect"
+          href="https://api.fontshare.com"
+          crossOrigin="anonymous"
+        />
+        <link
+          href="https://api.fontshare.com/v2/css?f[]=switzer@300,400,500,600,700&display=swap"
+          rel="stylesheet"
+        />
+      </head>
       <body>
-        <NavColorProvider>
-          <Nav />
-          {children}
-        </NavColorProvider>
+        <Nav />
+        {children}
       </body>
     </html>
   );

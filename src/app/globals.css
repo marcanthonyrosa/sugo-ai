@@ -5,7 +5,7 @@
 @custom-variant dark (&:is(.dark *));
 
 /* ==========================================================================
-   Theme: shadcn defaults + Sugo AI design tokens
+   Theme: Sugo AI · Viola-led design system v1.3
    ========================================================================== */
 
 @theme inline {
@@ -49,31 +49,58 @@
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
 
-  /* --- Sugo AI palette --- */
-  --color-paper: #F2EDE4;
-  --color-ink: #1E1B17;
-  --color-cream: #F8F3EA;
-  --color-clay: #C6623C;
-  --color-moss: #4A5D3E;
-  --color-stone: #A89E8C;
-  --color-ink-80: rgba(30, 27, 23, 0.80);
-  --color-ink-85: rgba(30, 27, 23, 0.85);
-  --color-ink-90: rgba(30, 27, 23, 0.90);
-  --color-clay-20: rgba(198, 98, 60, 0.20);
-  --color-rule: rgba(168, 158, 140, 0.40);
-  --color-paper-80: rgba(242, 237, 228, 0.80);
-  --color-paper-70: rgba(242, 237, 228, 0.70);
-  --color-paper-60: rgba(242, 237, 228, 0.60);
-  --color-paper-40: rgba(242, 237, 228, 0.40);
-  --color-paper-15: rgba(242, 237, 228, 0.15);
+  /* --- Sugo AI · Viola palette --- */
+  --color-navy: #112240;
+  --color-paper: #F7F4EA;
+  --color-cream: #F5EFD6;
+  --color-sage: #4A7C59;
+  --color-slate: #8FA3B1;
+  --color-offwhite: #FAFAF7;
 
-  /* --- Sugo AI fonts --- */
-  --font-sans: var(--font-inter), system-ui, -apple-system, sans-serif;
-  --font-serif: var(--font-fraunces), Georgia, serif;
-  --font-mono: var(--font-jb-mono), ui-monospace, "SF Mono", monospace;
+  /* Ink scale */
+  --color-ink-900: #112240;
+  --color-ink-700: #2A3A56;
+  --color-ink-500: #4E5C74;
+  --color-ink-300: #8A93A4;
+  --color-ink-200: #B5BCC8;
+  --color-ink-100: #DCE0E8;
 
-  /* --- Sugo AI breakpoints (reference: max-width 767/1023/1199) --- */
-  /* Tailwind uses min-width by default; these are custom max-width screens */
+  /* Surface scale */
+  --color-surface-0: #FAFAF7;
+  --color-surface-1: #F7F4EA;
+  --color-surface-2: #F0ECDC;
+  --color-surface-3: #FDFBF4;
+  --color-surface-ink: #112240;
+
+  /* Viola — the named accent */
+  --color-viola-50: #F5EDFA;
+  --color-viola: #E6D4F0;
+  --color-viola-500: #B59AD4;
+  --color-viola-900: #4A2E6B;
+
+  /* Decorative garnishes */
+  --color-pomodoro: #E8806B;
+  --color-pomodoro-50: #FBEBE4;
+  --color-pomodoro-ink: #8a3a27;
+  --color-saffron: #E8C26B;
+  --color-saffron-50: #FBF1D9;
+  --color-basil: #C4D4B9;
+  --color-basil-50: #ECF1E7;
+  --color-basil-ink: #2d4a37;
+  --color-sky: #CAD5DE;
+  --color-sky-50: #EBEFF3;
+  --color-sky-ink: #3b4c5a;
+  --color-blush: #EAD0C8;
+
+  /* Borders */
+  --color-rule: rgba(17, 34, 64, 0.10);
+  --color-rule-soft: rgba(17, 34, 64, 0.06);
+  --color-rule-strong: rgba(17, 34, 64, 0.18);
+
+  /* Sugo AI fonts */
+  --font-sans: var(--font-switzer), 'Switzer', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  --font-serif: var(--font-fraunces), 'Fraunces', Georgia, serif;
+  --font-mono: var(--font-jb-mono), 'JetBrains Mono', ui-monospace, 'SF Mono', monospace;
 }
 
 /* --- shadcn light/dark vars --- */
@@ -111,6 +138,21 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+
+  /* Sugo shadows */
+  --shadow-xs: 0 1px 2px rgba(17,34,64,0.04);
+  --shadow-sm: 0 2px 6px rgba(17,34,64,0.05), 0 1px 2px rgba(17,34,64,0.04);
+  --shadow-md: 0 8px 20px rgba(17,34,64,0.06), 0 2px 4px rgba(17,34,64,0.04);
+  --shadow-lg: 0 24px 48px rgba(17,34,64,0.08), 0 4px 8px rgba(17,34,64,0.04);
+
+  /* Sugo radius tokens */
+  --r-xs: 6px;
+  --r-sm: 10px;
+  --r-md: 16px;
+  --r-lg: 24px;
+  --r-xl: 32px;
+  --r-2xl: 44px;
+  --r-pill: 999px;
 }
 
 .dark {
@@ -162,232 +204,224 @@
 
 @layer base {
   *, *::before, *::after { box-sizing: border-box; }
-  html { background: theme(--color-paper); }
+  html { background: theme(--color-surface-1); }
   body {
-    background: theme(--color-paper);
-    color: theme(--color-ink);
+    background: theme(--color-surface-1);
+    color: theme(--color-ink-900);
     font-family: theme(--font-sans);
     font-weight: 400;
-    font-size: 19px;
-    line-height: 1.6;
+    font-size: 17px;
+    line-height: 1.55;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
-    font-feature-settings: "kern", "liga";
+    font-feature-settings: "ss01", "ss02";
+    overflow-wrap: break-word;
+    word-wrap: break-word;
   }
-  ::selection { background: theme(--color-clay-20); color: theme(--color-ink); }
+  ::selection { background: rgba(181, 154, 212, 0.25); color: theme(--color-ink-900); }
   h1, h2, h3, h4 {
     font-family: theme(--font-serif);
     font-weight: 400;
     margin: 0;
-    color: theme(--color-ink);
-    font-feature-settings: "kern", "liga";
+    color: theme(--color-ink-900);
+    letter-spacing: -0.015em;
+    line-height: 1.05;
   }
-  p { margin: 0; }
-  a { color: theme(--color-ink); text-decoration: none; }
+  p { margin: 0; color: theme(--color-ink-700); }
+  a {
+    color: theme(--color-ink-900);
+    text-decoration: none;
+    border-bottom: 1px solid theme(--color-ink-200);
+    transition: border-color 160ms;
+  }
+  a:hover { border-color: theme(--color-ink-900); }
   body.no-scroll { overflow: hidden; }
 }
 
 /* ==========================================================================
    Sugo AI — Typographic roles
-   These use font-variation-settings which can't be expressed as Tailwind
-   utilities, so they stay as composed classes.
    ========================================================================== */
 
 @layer components {
 
-  /* --- Display --- */
+  /* --- Display XL (hero) --- */
   .type-display {
     font-family: theme(--font-serif);
-    font-weight: 500;
-    font-size: 104px;
-    line-height: 0.98;
-    letter-spacing: -0.025em;
-    font-variation-settings: "opsz" 144, "SOFT" 50;
-    font-feature-settings: "dlig", "kern", "liga";
+    font-weight: 400;
+    font-size: clamp(48px, 7vw, 96px);
+    line-height: 1.05;
+    letter-spacing: -0.015em;
+    color: theme(--color-ink-900);
   }
-  .type-display em, .type-display i {
-    font-style: italic;
-    font-variation-settings: "opsz" 144, "SOFT" 50;
-  }
-  @media (max-width: 767px) { .type-display { font-size: 56px; } }
 
-  /* --- H1 --- */
+  /* --- Display L --- */
   .type-h1 {
     font-family: theme(--font-serif);
     font-weight: 400;
-    font-size: 68px;
-    line-height: 1.02;
-    letter-spacing: -0.02em;
-    font-variation-settings: "opsz" 144, "SOFT" 50;
+    font-size: clamp(36px, 4.5vw, 56px);
+    line-height: 1.05;
+    letter-spacing: -0.015em;
+    margin: 12px 0 20px;
   }
-  @media (max-width: 767px) { .type-h1 { font-size: 40px; } }
 
-  /* --- H2 --- */
+  /* --- Heading --- */
   .type-h2 {
     font-family: theme(--font-serif);
-    font-weight: 500;
-    font-size: 44px;
-    line-height: 1.1;
-    letter-spacing: -0.015em;
-    font-variation-settings: "opsz" 72, "SOFT" 50;
-  }
-  @media (max-width: 767px) { .type-h2 { font-size: 30px; } }
-
-  /* --- H3 (italic) --- */
-  .type-h3 {
-    font-family: theme(--font-serif);
     font-weight: 400;
-    font-style: italic;
-    font-size: 26px;
-    line-height: 1.3;
+    font-size: clamp(22px, 2.2vw, 28px);
+    line-height: 1.2;
+    letter-spacing: -0.015em;
   }
-  @media (max-width: 767px) { .type-h3 { font-size: 21px; } }
 
-  /* --- Lead paragraph --- */
+  /* --- Italic accent (one word per headline) --- */
+  .italic-accent {
+    font-style: italic;
+    font-weight: 300;
+  }
+
+  /* --- Lede paragraph --- */
   .type-lead {
     font-family: theme(--font-sans);
     font-weight: 400;
-    font-size: 22px;
+    font-size: 20px;
     line-height: 1.55;
-    letter-spacing: -0.005em;
-    color: theme(--color-ink-80);
+    color: theme(--color-ink-700);
+    max-width: 62ch;
   }
-  @media (max-width: 767px) { .type-lead { font-size: 19px; } }
+  @media (max-width: 600px) { .type-lead { font-size: 15px; } }
 
   /* --- Body text --- */
   .type-body {
     font-family: theme(--font-sans);
     font-weight: 400;
-    font-size: 19px;
-    line-height: 1.6;
-    color: theme(--color-ink-85);
+    font-size: 17px;
+    line-height: 1.55;
+    color: theme(--color-ink-700);
+    max-width: 62ch;
   }
-  @media (max-width: 767px) { .type-body { font-size: 17px; } }
+  @media (max-width: 600px) { .type-body { font-size: 15px; } }
 
-  /* --- Mono label (section markers) --- */
-  .type-mono-label {
+  /* --- Small text --- */
+  .type-small {
+    font-family: theme(--font-sans);
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.55;
+    color: theme(--color-ink-500);
+  }
+
+  /* --- Eyebrow (section label) --- */
+  .eyebrow {
+    font-family: theme(--font-sans);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: theme(--color-ink-500);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .eyebrow::before {
+    content: "";
+    display: inline-block;
+    width: 24px;
+    height: 1px;
+    background: theme(--color-ink-300);
+  }
+
+  /* --- Section number (§ 01) --- */
+  .section-no {
     font-family: theme(--font-mono);
+    font-size: 12px;
+    font-weight: 500;
+    color: theme(--color-ink-500);
+    letter-spacing: 0.04em;
+  }
+
+  /* --- Figure reference --- */
+  .fig {
+    font-family: theme(--font-mono);
+    font-size: 11px;
+    color: theme(--color-ink-500);
+    letter-spacing: 0.04em;
+  }
+
+  /* --- Mono label (legacy compat) --- */
+  .type-mono-label {
+    font-family: theme(--font-sans);
     font-weight: 500;
     font-size: 12px;
     line-height: 1.2;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: theme(--color-clay);
+    color: theme(--color-ink-500);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .type-mono-label::before {
+    content: "";
+    display: inline-block;
+    width: 24px;
+    height: 1px;
+    background: theme(--color-ink-300);
   }
 
-  /* --- Mono meta (timestamps, secondary) --- */
+  /* --- Mono meta --- */
   .type-mono-meta {
     font-family: theme(--font-mono);
     font-weight: 400;
     font-size: 13px;
     line-height: 1.4;
     letter-spacing: 0.04em;
-    color: theme(--color-stone);
+    color: theme(--color-ink-500);
   }
 
-  /* --- Pullout quote --- */
-  .type-pullout {
-    font-family: theme(--font-serif);
-    font-weight: 400;
-    font-style: italic;
-    font-size: 44px;
-    line-height: 1.15;
-    letter-spacing: -0.02em;
-    color: theme(--color-ink);
-    font-variation-settings: "opsz" 144, "SOFT" 50;
-    max-width: 520px;
-    margin-left: auto;
-    text-align: left;
-    text-indent: -0.3em;
-    border-top: 1px solid theme(--color-rule);
-    padding-top: 24px;
-  }
-  @media (max-width: 1023px) {
-    .type-pullout {
-      font-size: 30px;
-      max-width: 100%;
-      margin-left: 0;
-      margin-top: 56px;
-    }
-  }
-
-  /* --- Proof pullquote (large, paper-colored) --- */
-  .type-proof-quote {
-    font-family: theme(--font-serif);
-    font-style: italic;
-    font-weight: 400;
-    font-size: 52px;
-    line-height: 1.15;
-    letter-spacing: -0.015em;
-    color: theme(--color-paper);
-    max-width: 960px;
-    text-indent: -0.4em;
-    font-variation-settings: "opsz" 144, "SOFT" 50;
-  }
-  @media (max-width: 767px) { .type-proof-quote { font-size: 28px; } }
-
-  /* --- Stat figure (large number) --- */
-  .type-stat-figure {
-    font-family: theme(--font-serif);
-    font-weight: 500;
-    font-size: 128px;
-    line-height: 1;
-    letter-spacing: -0.03em;
-    font-variation-settings: "opsz" 144, "SOFT" 50;
-    margin: 16px 0;
-  }
-  @media (max-width: 767px) { .type-stat-figure { font-size: 88px; } }
-
-  /* --- Fig percentage (chart numbers) --- */
-  .type-fig-pct {
-    font-family: theme(--font-serif);
-    font-weight: 500;
-    font-size: 92px;
-    line-height: 0.95;
-    letter-spacing: -0.03em;
-    font-variation-settings: "opsz" 144, "SOFT" 50;
-  }
-  @media (max-width: 767px) { .type-fig-pct { font-size: 60px; } }
-
-  /* --- Serif heading (panels, cards, steps, ledger) — shared fvs --- */
+  /* --- Serif heading (cards, steps) --- */
   .type-serif-heading {
     font-family: theme(--font-serif);
-    font-weight: 500;
-    font-size: 30px;
-    line-height: 1.15;
-    letter-spacing: -0.015em;
-    font-variation-settings: "opsz" 72, "SOFT" 50;
-  }
-
-  /* --- Serif heading small (why items) --- */
-  .type-serif-heading-sm {
-    font-family: theme(--font-serif);
-    font-weight: 500;
-    font-size: 22px;
+    font-weight: 400;
+    font-size: clamp(22px, 2.2vw, 28px);
     line-height: 1.2;
-    letter-spacing: -0.01em;
-    font-variation-settings: "opsz" 48, "SOFT" 50;
+    letter-spacing: -0.015em;
+    color: theme(--color-ink-900);
   }
 
-  /* --- Serif inline (ledger name, writing row) --- */
+  /* --- Serif name (ledger rows) --- */
   .type-serif-name {
     font-family: theme(--font-serif);
-    font-weight: 500;
+    font-weight: 400;
     font-size: 24px;
     line-height: 1.2;
     letter-spacing: -0.01em;
-    font-variation-settings: "opsz" 72, "SOFT" 50;
   }
 
-  /* --- Compare sugo column text --- */
-  .type-compare-sugo {
+  /* --- Stat number (big data display) --- */
+  .type-stat-figure {
     font-family: theme(--font-serif);
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 1.35;
-    letter-spacing: -0.005em;
-    font-variation-settings: "opsz" 72, "SOFT" 50;
+    font-weight: 400;
+    font-size: clamp(64px, 10vw, 128px);
+    line-height: 0.9;
+    color: theme(--color-navy);
+    letter-spacing: -0.03em;
+  }
+  .type-stat-figure .unit {
+    font-size: 0.45em;
+    font-style: italic;
+    font-weight: 300;
+    color: theme(--color-ink-500);
+    margin-left: 6px;
+  }
+
+  /* --- Fig percentage (charts) --- */
+  .type-fig-pct {
+    font-family: theme(--font-serif);
+    font-weight: 400;
+    font-size: clamp(52px, 10vw, 92px);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
   }
 
   /* --- Step number --- */
@@ -397,309 +431,404 @@
     font-size: 80px;
     line-height: 1;
     letter-spacing: -0.02em;
+    color: theme(--color-ink-300);
   }
   @media (max-width: 767px) { .type-step-num { font-size: 48px; } }
-
-  /* --- Writing row heading --- */
-  .type-writing-title {
-    font-family: theme(--font-serif);
-    font-weight: 500;
-    font-size: 26px;
-    line-height: 1.2;
-    letter-spacing: -0.01em;
-    display: inline;
-    font-variation-settings: "opsz" 72, "SOFT" 50;
-    background-image: linear-gradient(currentColor, currentColor);
-    background-repeat: no-repeat;
-    background-position: 0 100%;
-    background-size: 0% 1px;
-    transition: color 220ms cubic-bezier(0.2,0.6,0.2,1), background-size 260ms cubic-bezier(0.2,0.6,0.2,1);
-  }
 
   /* --- Post lead --- */
   .type-post-lead {
     font-family: theme(--font-serif);
     font-style: italic;
-    font-weight: 400;
+    font-weight: 300;
     font-size: 26px;
     line-height: 1.35;
-    color: theme(--color-ink-85);
+    color: theme(--color-ink-700);
     margin: 32px 0 48px;
-    font-variation-settings: "opsz" 72, "SOFT" 50;
   }
 
-  /* --- Callout block --- */
-  .type-callout {
+  /* --- Writing row heading --- */
+  .type-writing-title {
     font-family: theme(--font-serif);
-    font-style: italic;
     font-weight: 400;
-    font-size: 21px;
-    line-height: 1.4;
-    font-variation-settings: "opsz" 72, "SOFT" 50;
+    font-size: 26px;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    display: inline;
+    color: theme(--color-ink-900);
+    transition: color 200ms;
+  }
+
+  /* --- Pullquote --- */
+  .type-pullquote {
+    font-family: theme(--font-serif);
+    font-size: clamp(24px, 3.2vw, 36px);
+    line-height: 1.25;
+    font-weight: 300;
+    color: theme(--color-navy);
+    padding: 0;
+    border-left: 2px solid theme(--color-viola-500);
+    padding-left: 24px;
+    max-width: 32ch;
+  }
+  .type-pullquote .open {
+    font-style: italic;
+    color: theme(--color-viola-500);
+  }
+  .type-pullquote cite {
+    display: block;
+    font-family: theme(--font-sans);
+    font-style: normal;
+    font-size: 13px;
+    color: theme(--color-ink-500);
+    margin-top: 14px;
+    letter-spacing: 0.04em;
+  }
+  @media (max-width: 600px) {
+    .type-pullquote { font-size: 22px; padding-left: 16px; }
   }
 
   /* --- Closing italic --- */
   .type-closing {
     font-family: theme(--font-serif);
     font-style: italic;
+    font-weight: 300;
     font-size: 24px;
     line-height: 1.4;
+    color: theme(--color-ink-900);
   }
 
-  /* --- Dot legend big number --- */
-  .type-dot-big {
+  /* --- Compare sugo column text --- */
+  .type-compare-sugo {
     font-family: theme(--font-serif);
-    font-weight: 500;
-    font-size: 72px;
-    line-height: 1;
-    letter-spacing: -0.03em;
-    font-variation-settings: "opsz" 144, "SOFT" 50;
-  }
-
-  /* --- Dot legend fraction --- */
-  .type-dot-frac {
-    font-family: theme(--font-serif);
-    font-weight: 500;
-    font-size: 40px;
-    line-height: 1;
-    font-variation-settings: "opsz" 72, "SOFT" 50;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 1.35;
+    letter-spacing: -0.005em;
+    color: theme(--color-ink-900);
   }
 }
 
 /* ==========================================================================
-   Sugo AI — Interactive components with pseudo-elements & animations
-   These rely on ::before/::after or complex state that can't be inline Tailwind.
+   Sugo AI — Interactive components
    ========================================================================== */
 
 @layer components {
 
-  /* --- Primary button slide-fill effect --- */
-  .btn-slide {
-    @apply relative inline-block overflow-hidden isolate cursor-pointer border-none;
+  /* --- Primary button (navy pill) --- */
+  .btn-primary {
+    @apply relative inline-flex items-center gap-2 cursor-pointer;
     font-family: theme(--font-sans);
     font-weight: 500;
-    font-size: 18px;
-    letter-spacing: 0.01em;
-    line-height: 1.2;
-    padding: 16px 32px;
-    border-radius: 2px;
-    background: theme(--color-ink);
-    color: theme(--color-paper);
-    text-align: left;
-    transition: color 220ms cubic-bezier(0.2,0.6,0.2,1);
+    font-size: 15px;
+    padding: 12px 22px;
+    border-radius: var(--r-pill);
+    border: 1px solid transparent;
+    background: theme(--color-navy);
+    color: theme(--color-offwhite);
+    box-shadow: var(--shadow-sm);
+    transition: transform 120ms, background 160ms, box-shadow 160ms;
+    text-decoration: none;
   }
-  .btn-slide::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: theme(--color-clay);
-    transform: translateX(-101%);
-    transition: transform 260ms cubic-bezier(0.2,0.6,0.2,1);
-    z-index: -1;
+  .btn-primary:hover {
+    transform: translateY(-1px);
+    background: #1b3258;
+    box-shadow: var(--shadow-md);
+    border-color: transparent;
   }
-  .btn-slide:hover::before { transform: translateX(0); }
+  .btn-primary .arrow {
+    font-family: theme(--font-serif);
+    font-size: 1.05em;
+    font-style: italic;
+    transition: transform 160ms;
+  }
+  .btn-primary:hover .arrow { transform: translateX(2px); }
 
-  /* Inverted button for clay/moss chapters */
-  .chapter-clay .btn-slide,
-  .chapter-moss .btn-slide {
-    background: theme(--color-paper);
-    color: theme(--color-clay);
-    border: 2px solid theme(--color-paper);
-    padding: 14px 30px;
-    transition: background 200ms ease, color 200ms ease;
+  /* --- Secondary button (outline pill) --- */
+  .btn-secondary {
+    @apply relative inline-flex items-center gap-2 cursor-pointer;
+    font-family: theme(--font-sans);
+    font-weight: 500;
+    font-size: 15px;
+    padding: 12px 22px;
+    border-radius: var(--r-pill);
+    border: 1px solid theme(--color-rule-strong);
+    background: transparent;
+    color: theme(--color-navy);
+    transition: transform 120ms, background 160ms, border-color 160ms;
+    text-decoration: none;
   }
-  .chapter-moss .btn-slide { color: theme(--color-moss); }
-  .chapter-clay .btn-slide::before,
-  .chapter-moss .btn-slide::before { display: none; }
-  .chapter-clay .btn-slide:hover { background: transparent; color: theme(--color-paper); }
-  .chapter-moss .btn-slide:hover { background: transparent; color: theme(--color-paper); }
+  .btn-secondary:hover {
+    transform: translateY(-1px);
+    background: theme(--color-surface-3);
+  }
+  .btn-secondary .arrow {
+    font-family: theme(--font-serif);
+    font-size: 1.05em;
+    font-style: italic;
+    transition: transform 160ms;
+  }
+  .btn-secondary:hover .arrow { transform: translateX(2px); }
 
-  /* --- Animated link with underline grow --- */
+  /* --- Ghost button --- */
+  .btn-ghost {
+    @apply relative inline-flex items-center gap-2 cursor-pointer;
+    font-family: theme(--font-sans);
+    font-weight: 500;
+    font-size: 15px;
+    padding: 10px 14px;
+    border-radius: var(--r-pill);
+    border: 1px solid transparent;
+    background: transparent;
+    color: theme(--color-navy);
+    transition: transform 120ms, background 160ms;
+    text-decoration: none;
+  }
+  .btn-ghost:hover {
+    transform: translateY(-1px);
+    background: theme(--color-surface-3);
+  }
+  .btn-ghost .arrow {
+    font-family: theme(--font-serif);
+    font-size: 1.05em;
+    font-style: italic;
+    transition: transform 160ms;
+  }
+  .btn-ghost:hover .arrow { transform: translateX(2px); }
+
+  /* --- Legacy btn-slide → maps to primary --- */
+  .btn-slide {
+    @apply relative inline-flex items-center gap-2 cursor-pointer;
+    font-family: theme(--font-sans);
+    font-weight: 500;
+    font-size: 15px;
+    padding: 12px 22px;
+    border-radius: var(--r-pill);
+    border: 1px solid transparent;
+    background: theme(--color-navy);
+    color: theme(--color-offwhite);
+    box-shadow: var(--shadow-sm);
+    transition: transform 120ms, background 160ms, box-shadow 160ms;
+    text-decoration: none;
+  }
+  .btn-slide::before { display: none; }
+  .btn-slide:hover {
+    transform: translateY(-1px);
+    background: #1b3258;
+    box-shadow: var(--shadow-md);
+  }
+
+  /* --- Card --- */
+  .card {
+    background: theme(--color-surface-3);
+    border: 1px solid theme(--color-rule-soft);
+    border-radius: var(--r-lg);
+    padding: 28px;
+    transition: transform 200ms, box-shadow 200ms;
+  }
+  .card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+  .card .icon-frame {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--r-md);
+    display: grid;
+    place-items: center;
+  }
+
+  /* --- Viola callout --- */
+  .callout-viola {
+    background: theme(--color-viola-50);
+    border: 1px solid rgba(181, 154, 212, 0.25);
+    border-left: 3px solid theme(--color-viola-500);
+    border-radius: var(--r-md);
+    padding: 22px 26px;
+    display: grid;
+    gap: 10px;
+  }
+  .callout-viola .eyebrow { color: theme(--color-viola-900); opacity: 0.75; }
+  .callout-viola .eyebrow::before { background: theme(--color-viola-500); opacity: 0.5; }
+  .callout-viola h3 { color: theme(--color-viola-900); font-size: 22px; }
+  .callout-viola p { color: theme(--color-viola-900); opacity: 0.85; font-size: 15px; margin: 0; }
+
+  /* --- Link with border-bottom (default via base `a` rule) --- */
   .link-grow {
     font-family: theme(--font-sans);
     font-weight: 500;
-    font-size: 18px;
-    color: theme(--color-ink);
+    font-size: 15px;
+    color: theme(--color-ink-900);
     display: inline-flex;
-    align-items: baseline;
+    align-items: center;
     gap: 6px;
-    background-image: linear-gradient(currentColor, currentColor);
-    background-repeat: no-repeat;
-    background-position: 0 100%;
-    background-size: 100% 1px;
-    transition: color 200ms cubic-bezier(0.2,0.6,0.2,1), background-size 200ms cubic-bezier(0.2,0.6,0.2,1);
+    border-bottom: 1px solid theme(--color-ink-200);
+    transition: border-color 160ms, color 160ms;
+    text-decoration: none;
   }
-  .link-grow:hover { color: theme(--color-clay); background-size: 100% 2px; }
+  .link-grow:hover {
+    color: theme(--color-ink-900);
+    border-color: theme(--color-ink-900);
+  }
 
-  /* --- Inline link with underline --- */
+  /* --- Inline link --- */
   .link-inline {
-    color: theme(--color-clay);
+    color: theme(--color-ink-900);
     font-weight: 500;
     text-decoration: none;
-    background-image: linear-gradient(currentColor, currentColor);
-    background-repeat: no-repeat;
-    background-position: 0 100%;
-    background-size: 100% 1px;
-    transition: color 200ms cubic-bezier(0.2,0.6,0.2,1), background-size 200ms cubic-bezier(0.2,0.6,0.2,1);
+    border-bottom: 1px solid theme(--color-ink-200);
+    transition: border-color 160ms;
   }
-  .link-inline:hover { background-size: 100% 2px; }
+  .link-inline:hover { border-color: theme(--color-ink-900); }
 
-  /* --- Nav link animated underline --- */
+  /* --- Nav link --- */
   .nav-link-anim {
     font-family: theme(--font-sans);
     font-weight: 500;
-    font-size: 16px;
-    color: theme(--color-ink);
+    font-size: 14px;
+    color: theme(--color-ink-500);
     cursor: pointer;
     background: none;
     border: none;
+    border-bottom: none;
     padding: 0;
-    background-image: linear-gradient(currentColor, currentColor);
-    background-repeat: no-repeat;
-    background-position: 0 100%;
-    background-size: 0% 1px;
-    transition: color 200ms cubic-bezier(0.2,0.6,0.2,1), background-size 200ms cubic-bezier(0.2,0.6,0.2,1);
+    transition: color 160ms;
+    text-decoration: none;
   }
   .nav-link-anim:hover, .nav-link-anim[aria-current="page"] {
-    color: theme(--color-clay);
-    background-size: 100% 1px;
+    color: theme(--color-ink-900);
   }
 
-  /* --- Wordmark AI fade-in --- */
-  .wordmark-ai-anim {
-    font-family: theme(--font-mono);
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 1;
-    letter-spacing: 0.02em;
-    color: theme(--color-clay);
-    opacity: 0;
-    animation: ai-fade 260ms cubic-bezier(0.2,0.6,0.2,1) 180ms forwards;
+  /* --- Wordmark --- */
+  .wordmark-dot {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    background: theme(--color-pomodoro);
+    display: grid;
+    place-items: center;
+    box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.35);
+    flex-shrink: 0;
   }
-
-  /* --- Pot mark with ::after bar --- */
-  .pot-mark-icon {
+  .wordmark-text {
     font-family: theme(--font-serif);
-    font-style: italic;
-    font-weight: 400;
-    font-size: 28px;
-    line-height: 1;
-    text-align: center;
+    font-size: 22px;
+    letter-spacing: -0.01em;
+    color: theme(--color-ink-900);
+  }
+
+  /* --- Pot mark (footer) --- */
+  .pot-mark-icon {
     display: inline-flex;
-    flex-direction: column;
     align-items: center;
-    gap: 8px;
-    font-variation-settings: "opsz" 72, "SOFT" 50;
+    gap: 10px;
+    text-align: center;
   }
-  .pot-mark-icon::after {
-    content: "";
+  .pot-mark-icon .dot {
+    width: 20px;
+    height: 20px;
+    border-radius: 6px;
+    background: theme(--color-pomodoro);
+    box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.35);
+  }
+  .pot-mark-icon .text {
+    font-family: theme(--font-serif);
+    font-size: 18px;
+    color: theme(--color-ink-500);
+  }
+
+  /* --- Fade-in (reveal on scroll) --- */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 400ms cubic-bezier(0.2,0.6,0.2,1), transform 400ms cubic-bezier(0.2,0.6,0.2,1);
+  }
+  .fade-in.in { opacity: 1; transform: translateY(0); }
+
+  /* --- Writing row --- */
+  .writing-row-link {
     display: block;
-    width: 48px;
-    height: 2px;
-    background: theme(--color-clay);
+    padding: 32px 0;
+    border-bottom: 1px solid theme(--color-rule-soft);
+    transition: color 200ms;
+    text-decoration: none;
   }
-  .pot-mark-icon-lg { font-size: 42px; }
-
-  /* --- Proof attribution with ::before rule --- */
-  .proof-attrib-mark {
-    position: relative;
-    display: inline-block;
-    padding-top: 16px;
-  }
-  .proof-attrib-mark::before {
-    content: "";
-    position: absolute;
-    top: 0; left: 0;
-    width: 56px; height: 4px;
-    background: theme(--color-paper);
+  .writing-row-link:hover .type-writing-title {
+    color: theme(--color-viola-500);
   }
 
-  /* --- Compare sugo arrow ::before --- */
+  /* --- Compare sugo arrow --- */
   .compare-arrow::before {
     content: "\2192 ";
-    color: theme(--color-clay);
-    font-family: theme(--font-mono);
-    font-weight: 500;
+    color: theme(--color-viola-500);
+    font-family: theme(--font-serif);
+    font-style: italic;
+    font-weight: 300;
     font-size: 18px;
     margin-right: 4px;
   }
 
-  /* --- Turn sugo arrow ::before --- */
-  .turn-arrow::before {
-    content: "\2192 ";
-    color: theme(--color-clay);
+  /* --- Marquee --- */
+  .marquee {
+    overflow: hidden;
+    max-width: 100%;
+    border-top: 1px solid theme(--color-rule-soft);
+    border-bottom: 1px solid theme(--color-rule-soft);
+    padding: 22px 0;
+    background: theme(--color-surface-2);
+    border-radius: var(--r-lg);
+  }
+  .marquee-track {
+    display: flex;
+    gap: 56px;
+    animation: marquee-scroll 28s linear infinite;
+    width: max-content;
+    align-items: center;
+  }
+  .marquee-track span {
+    font-family: theme(--font-serif);
+    font-size: 26px;
+    font-style: italic;
+    color: theme(--color-ink-500);
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 56px;
+  }
+  .marquee-track span::after {
+    content: "✴";
+    color: theme(--color-viola-500);
     font-style: normal;
-    font-weight: 500;
-    font-family: theme(--font-mono);
-    font-size: 18px;
+    font-size: 14px;
   }
 
-  /* --- Caret blink --- */
-  .caret-blink {
-    display: inline-block;
-    color: theme(--color-clay);
-    animation: caret-blink 900ms steps(2) infinite;
-    margin-left: 1px;
-  }
-
-  /* --- Seed button with dashed underline --- */
-  .seed-btn {
-    font-family: theme(--font-sans);
-    font-weight: 500;
-    font-size: 18px;
-    color: theme(--color-clay);
-    background: none;
-    border: none;
-    padding: 0;
-    text-align: left;
-    cursor: pointer;
-    border-bottom: 1px dashed theme(--color-clay);
-    align-self: flex-start;
-    line-height: 1.4;
-    transition: border-bottom-color 200ms, opacity 200ms;
-  }
-  .seed-btn:hover { border-bottom-style: solid; }
-  .seed-btn:disabled { opacity: 0.35; cursor: not-allowed; }
-
-  /* --- Chat chip pills --- */
+  /* --- Chip --- */
   .chip-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
     font-family: theme(--font-sans);
+    font-size: 13px;
     font-weight: 500;
-    font-size: 13.5px;
-    color: theme(--color-clay);
-    background: transparent;
-    border: 1px solid theme(--color-clay);
-    border-radius: 999px;
-    padding: 7px 14px;
-    cursor: pointer;
-    transition: background 180ms, color 180ms;
+    padding: 6px 12px;
+    border-radius: var(--r-pill);
+    background: theme(--color-surface-3);
+    border: 1px solid theme(--color-rule-soft);
+    color: theme(--color-ink-700);
   }
-  .chip-pill:hover:not(:disabled) { background: theme(--color-clay); color: theme(--color-paper); }
-  .chip-pill:disabled { opacity: 0.4; cursor: not-allowed; }
-  .chip-pill-cta {
-    background: theme(--color-ink);
-    color: theme(--color-paper);
-    border-color: theme(--color-ink);
+  .chip-pill.viola {
+    background: theme(--color-viola-50);
+    color: theme(--color-viola-900);
+    border-color: rgba(181, 154, 212, 0.30);
   }
-  .chip-pill-cta:hover:not(:disabled) { background: theme(--color-clay); border-color: theme(--color-clay); }
 
-  /* --- Fade-in entry --- */
-  .fade-in {
-    opacity: 0;
-    transform: translateY(12px);
-    transition: opacity 600ms cubic-bezier(0.2,0.6,0.2,1), transform 600ms cubic-bezier(0.2,0.6,0.2,1);
-  }
-  .fade-in.in { opacity: 1; transform: translateY(0); }
-
-  /* --- Post prose headings with ::before bar --- */
+  /* --- Post prose --- */
   .post-prose h2 {
     font-family: theme(--font-serif);
-    font-weight: 500;
-    font-size: 30px;
+    font-weight: 400;
+    font-size: clamp(22px, 2.2vw, 28px);
     line-height: 1.2;
     margin: 56px 0 20px;
     letter-spacing: -0.015em;
-    font-variation-settings: "opsz" 72, "SOFT" 50;
     position: relative;
     padding-top: 20px;
   }
@@ -708,113 +837,114 @@
     position: absolute;
     top: 0; left: 0;
     width: 56px; height: 2px;
-    background: theme(--color-clay);
+    background: theme(--color-viola-500);
   }
   .post-prose p {
     margin: 0 0 24px;
-    font-size: 19px;
-    line-height: 1.6;
-    color: theme(--color-ink-85);
+    font-size: 17px;
+    line-height: 1.55;
+    color: theme(--color-ink-700);
   }
   .post-prose code {
     font-family: theme(--font-mono);
-    font-size: 15px;
-    background: theme(--color-cream);
+    font-size: 0.88em;
+    background: theme(--color-surface-3);
     padding: 2px 6px;
-    border-radius: 2px;
+    border-radius: var(--r-xs);
+    border: 1px solid theme(--color-rule-soft);
   }
 
-  /* --- Writing row hover effect --- */
-  .writing-row-link {
-    display: block;
-    padding: 32px 0;
-    border-bottom: 1px solid theme(--color-rule);
-    transition: color 200ms;
+  /* --- Seed button (Ask Sugo) --- */
+  .seed-btn {
+    font-family: theme(--font-sans);
+    font-weight: 500;
+    font-size: 15px;
+    color: theme(--color-ink-900);
+    background: none;
+    border: none;
+    padding: 0;
+    text-align: left;
+    cursor: pointer;
+    border-bottom: 1px solid theme(--color-ink-200);
+    align-self: flex-start;
+    line-height: 1.4;
+    transition: border-bottom-color 200ms;
   }
-  .writing-row-link:hover .type-writing-title {
-    color: theme(--color-clay);
-    background-size: 100% 2px;
-  }
+  .seed-btn:hover { border-bottom-color: theme(--color-ink-900); }
+  .seed-btn:disabled { opacity: 0.35; cursor: not-allowed; }
 
-  /* --- Gutter annotations --- */
-  .gutter-anno {
-    font-family: theme(--font-mono);
-    font-size: 11px;
-    line-height: 1.5;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: rgba(249, 244, 236, 0.7);
-    padding-left: 14px;
-    border-left: 1px solid rgba(249, 244, 236, 0.4);
+  /* --- Canvas (ink surface) --- */
+  .canvas-ink {
+    background: theme(--color-surface-ink);
+    color: theme(--color-offwhite);
+    border-radius: var(--r-lg);
+    padding: 32px;
   }
-
-  /* --- Dot legend label --- */
-  .dot-legend-lab {
-    font-family: theme(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: rgba(249, 244, 236, 0.7);
+  .canvas-ink h1, .canvas-ink h2, .canvas-ink h3 { color: theme(--color-offwhite); }
+  .canvas-ink p { color: rgba(255, 255, 255, 0.7); }
+  .canvas-ink .eyebrow, .canvas-ink .type-mono-label { color: rgba(255, 255, 255, 0.55); }
+  .canvas-ink .eyebrow::before, .canvas-ink .type-mono-label::before { background: rgba(255, 255, 255, 0.3); }
+  .canvas-ink .type-stat-figure { color: theme(--color-offwhite); }
+  .canvas-ink .fig { color: rgba(255, 255, 255, 0.55); }
+  .canvas-ink .type-pullquote { color: theme(--color-offwhite); }
+  .canvas-ink .type-pullquote .open { color: theme(--color-viola-500); }
+  .canvas-ink .type-pullquote cite { color: rgba(255, 255, 255, 0.55); }
+  .canvas-ink .type-closing { color: rgba(255, 255, 255, 0.85); }
+  .canvas-ink .type-lead { color: rgba(255, 255, 255, 0.7); }
+  .canvas-ink .type-body { color: rgba(255, 255, 255, 0.7); }
+  .canvas-ink .btn-slide,
+  .canvas-ink .btn-primary {
+    background: theme(--color-offwhite);
+    color: theme(--color-navy);
   }
+  .canvas-ink .btn-slide:hover,
+  .canvas-ink .btn-primary:hover { background: #FFFFFF; }
+  .canvas-ink .link-grow { color: theme(--color-offwhite); border-color: rgba(255, 255, 255, 0.3); }
+  .canvas-ink .link-grow:hover { border-color: theme(--color-offwhite); }
+  .canvas-ink .dot-legend-lab { color: rgba(255, 255, 255, 0.55); }
 }
 
 /* ==========================================================================
-   Sugo AI — Color chapter overrides
-   These need to cascade onto child elements, so they stay as global CSS.
+   Sugo AI — Nav bar
    ========================================================================== */
 
-.chapter-clay { background: theme(--color-clay); color: theme(--color-paper); }
-.chapter-moss { background: theme(--color-moss); color: theme(--color-paper); }
-
-.chapter-clay h1, .chapter-clay h2, .chapter-clay h3, .chapter-clay p, .chapter-clay a,
-.chapter-moss h1, .chapter-moss h2, .chapter-moss h3, .chapter-moss p, .chapter-moss a {
-  color: theme(--color-paper);
+.nav-bar {
+  background: rgba(247, 244, 234, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
-.chapter-clay .type-lead, .chapter-moss .type-lead { color: theme(--color-paper-80); }
-.chapter-clay .type-body, .chapter-moss .type-body { color: theme(--color-paper); }
-.chapter-clay .type-mono-label, .chapter-moss .type-mono-label { color: theme(--color-paper); }
-.chapter-clay .type-mono-meta, .chapter-moss .type-mono-meta { color: theme(--color-paper-70); }
-.chapter-clay .type-pullout { color: theme(--color-paper); border-top-color: rgba(249, 244, 236, 0.3); }
-.chapter-clay .type-stat-figure, .chapter-moss .type-stat-figure { color: theme(--color-paper); }
-.chapter-clay .link-grow, .chapter-moss .link-grow { color: theme(--color-paper); }
-.chapter-clay .link-grow:hover, .chapter-moss .link-grow:hover { color: theme(--color-paper); }
-.chapter-clay .link-inline, .chapter-moss .link-inline { color: theme(--color-paper); }
-
-/* Nav color states */
-.nav-bar.on-clay { background: rgba(198, 98, 60, 0.90); }
-.nav-bar.on-moss { background: rgba(74, 93, 62, 0.90); }
-.nav-bar.on-clay .wordmark-sugo-text, .nav-bar.on-clay .wordmark-ai-anim, .nav-bar.on-clay .nav-link-anim,
-.nav-bar.on-moss .wordmark-sugo-text, .nav-bar.on-moss .wordmark-ai-anim, .nav-bar.on-moss .nav-link-anim {
-  color: theme(--color-paper);
-}
-.nav-bar.on-clay .nav-link-anim:hover, .nav-bar.on-clay .nav-link-anim[aria-current="page"],
-.nav-bar.on-moss .nav-link-anim:hover, .nav-bar.on-moss .nav-link-anim[aria-current="page"] {
-  color: theme(--color-paper);
-  background-size: 100% 2px;
-}
-.nav-bar.on-clay .nav-mobile-btn, .nav-bar.on-moss .nav-mobile-btn { color: theme(--color-paper); }
 
 /* ==========================================================================
    Sugo AI — Keyframes
    ========================================================================== */
 
-@keyframes ai-fade { to { opacity: 1; } }
-@keyframes caret-blink { 50% { opacity: 0; } }
+@keyframes marquee-scroll { to { transform: translateX(-50%); } }
 
 /* ==========================================================================
    Sugo AI — Focus & reduced motion
    ========================================================================== */
 
 :focus-visible {
-  outline: 2px solid theme(--color-clay);
+  outline: 2px solid theme(--color-navy);
   outline-offset: 2px;
-}
-.chapter-clay :focus-visible, .chapter-moss :focus-visible {
-  outline-color: theme(--color-paper);
 }
 
 @media (prefers-reduced-motion: reduce) {
   .fade-in { opacity: 1; transform: none; transition: none; }
-  .caret-blink { animation: none; }
-  .wordmark-ai-anim { animation: none; opacity: 1; }
+  .marquee-track { animation: none; }
+}
+
+/* ==========================================================================
+   Sugo AI — Responsive
+   ========================================================================== */
+
+@media (max-width: 600px) {
+  .type-display { font-size: 38px; line-height: 1.05; }
+  .type-h1 { font-size: 28px; }
+  .type-h2 { font-size: 20px; }
+  .type-stat-figure { font-size: clamp(52px, 14vw, 80px); }
+  .type-pullquote { font-size: 22px; padding-left: 16px; }
+  .marquee { border-radius: var(--r-md); }
+  .marquee-track span { font-size: 20px; gap: 32px; }
+  .marquee-track { gap: 32px; }
 }

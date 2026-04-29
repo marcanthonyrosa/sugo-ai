@@ -1,16 +1,15 @@
 import Link from "next/link";
-import { SectionLabel } from "@/components/ui/SectionLabel";
 import { Footer } from "@/components/layout/Footer";
 
 export default function AboutPage() {
   return (
     <main>
-      <section className="py-[84px] pt-[132px] max-[1199px]:py-16 max-[767px]:py-12">
-        <div className="max-w-[1320px] mx-auto px-8 max-[1199px]:px-10 max-[767px]:px-6">
-          <div className="max-w-[680px] ml-40 max-[1199px]:max-w-[580px] max-[1199px]:ml-20 max-[767px]:max-w-full max-[767px]:ml-0">
-            <SectionLabel n="—">About — Sugo AI</SectionLabel>
-            <h1 className="type-h1">A small firm, built slowly.</h1>
-            <p className="type-lead mt-10">
+      <section className="py-[100px] pt-[140px] max-[767px]:py-[56px] max-[767px]:pt-[100px]">
+        <div className="max-w-[1180px] mx-auto px-8 max-[1024px]:px-6">
+          <div className="max-w-[680px]">
+            <div className="eyebrow mb-6">About</div>
+            <h1 className="type-h1">A small firm, built <span className="italic-accent">slowly.</span></h1>
+            <p className="type-lead" style={{ marginTop: "24px" }}>
               Sugo AI is a product and consulting practice founded by Marc
               Anthony Rosa. The name is a nod to Sunday sauce
               {"\u200A—\u200A"}the slow, intentional kind, made with care. We
@@ -18,7 +17,7 @@ export default function AboutPage() {
               genuine capability-building, no shortcuts that become liabilities.
             </p>
 
-            <h2 className="type-h2 mt-28 mb-6">The thesis.</h2>
+            <h2 className="type-h1" style={{ marginTop: "80px", marginBottom: "16px" }}>The <span className="italic-accent">thesis.</span></h2>
             <p className="type-body mb-6">
               Most enterprise AI efforts stall. Not because the models
               aren&rsquo;t good enough{"\u200A—\u200A"}they&rsquo;re
@@ -34,7 +33,7 @@ export default function AboutPage() {
               Sugo AI exists to be that partner.
             </p>
 
-            <h2 className="type-h2 mt-28 mb-6">Two places we work.</h2>
+            <h2 className="type-h1" style={{ marginTop: "80px", marginBottom: "16px" }}>Two places we <span className="italic-accent">work.</span></h2>
             <p className="type-body mb-6">
               Inside the business, we build agents and automations that take
               manual work off the team. Dashboards that get used. Integrations
@@ -49,13 +48,13 @@ export default function AboutPage() {
               architecture, build, measurement, launch.
             </p>
 
-            <h2 className="type-h2 mt-28 mb-6">How we work.</h2>
+            <h2 className="type-h1" style={{ marginTop: "80px", marginBottom: "16px" }}>How we <span className="italic-accent">work.</span></h2>
             <p className="type-body mb-6">
               Small, senior, and on the clock. Every engagement is staffed by
-              people who have shipped real software. We work fluently with
-              Claude Code, Cursor, Figma, Supabase, and Vercel
-              {"\u200A—\u200A"}which is why a small Sugo team delivers faster
-              than a traditional firm three times our size.
+              people who have shipped real software. We work with an AI-native
+              toolchain and a modern stack{"\u200A—\u200A"}which is why a small
+              Sugo team delivers faster than a traditional firm three times our
+              size.
             </p>
             <p className="type-body">
               Our default is that the work product is yours. We document
@@ -63,16 +62,24 @@ export default function AboutPage() {
               ship.
             </p>
 
-            <h2 className="type-h2 mt-28 mb-6">The founder.</h2>
+            <h2 className="type-h1" style={{ marginTop: "80px", marginBottom: "16px" }}>The <span className="italic-accent">founder.</span></h2>
 
             <figure className="my-10 mb-14 max-w-[440px]">
-              <div className="aspect-[4/5] bg-cream border border-clay flex items-center justify-center">
-                <span className="font-mono text-[11px] tracking-[0.12em] uppercase text-stone">
-                  Photo · Marc Rosa · 2026
+              <div
+                className="flex items-center justify-center"
+                style={{
+                  aspectRatio: "4/5",
+                  background: "var(--color-surface-2)",
+                  border: "1px solid var(--color-rule-soft)",
+                  borderRadius: "var(--r-lg)",
+                }}
+              >
+                <span className="fig">
+                  Photo &middot; Marc Rosa &middot; 2026
                 </span>
               </div>
-              <figcaption className="font-mono text-[11px] tracking-[0.12em] uppercase text-stone mt-3.5">
-                Marc Anthony Rosa · Founder · Houston, TX
+              <figcaption className="fig mt-3">
+                Marc Anthony Rosa &middot; Founder &middot; Houston, TX
               </figcaption>
             </figure>
 
@@ -87,12 +94,9 @@ export default function AboutPage() {
               He lives in Houston, Texas, with his family.
             </p>
 
-            <p className="mt-14">
-              <span className="type-body text-ink-80">
-                Want to work together?{" "}
-              </span>
-              <Link className="link-grow" href="/contact">
-                Start a conversation →
+            <p className="mt-12">
+              <Link className="btn-primary" href="/contact" style={{ border: "none", textDecoration: "none" }}>
+                Start a conversation <span className="arrow">→</span>
               </Link>
             </p>
           </div>

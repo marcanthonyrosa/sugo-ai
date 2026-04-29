@@ -4,11 +4,9 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Wordmark } from "@/components/ui/Wordmark";
-import { useNavColor } from "@/contexts/NavColorContext";
 
 export function Nav() {
   const pathname = usePathname();
-  const { navColor } = useNavColor();
   const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
@@ -20,15 +18,18 @@ export function Nav() {
 
   const showWriting = process.env.NODE_ENV === "development";
 
-  const cls = `nav-bar fixed top-0 left-0 right-0 z-80 flex items-center justify-between px-8 py-6 bg-paper/90 backdrop-saturate-[1.05] transition-[background,color] duration-200 ease-in-out ${
-    navColor === "clay" ? "on-clay" : navColor === "moss" ? "on-moss" : ""
-  }`;
-
   return (
     <>
-      <nav className={cls}>
+      <nav className="nav-bar fixed top-0 left-0 right-0 z-80 flex items-center justify-between px-8 py-5">
         <Wordmark />
-        <div className="flex gap-9 max-[767px]:hidden">
+        <div className="flex gap-8 max-[767px]:hidden">
+          <Link
+            className="nav-link-anim"
+            href="/how-we-work"
+            aria-current={pathname === "/how-we-work" ? "page" : undefined}
+          >
+            How We Work
+          </Link>
           <Link
             className="nav-link-anim"
             href="/about"
@@ -56,7 +57,8 @@ export function Nav() {
           </Link>
         </div>
         <button
-          className="nav-mobile-btn hidden max-[767px]:inline-block font-sans font-medium text-base bg-transparent border-none p-0 cursor-pointer text-ink"
+          className="hidden max-[767px]:inline-block font-sans font-medium text-sm bg-transparent p-0 cursor-pointer"
+          style={{ color: "var(--color-ink-500)", border: "none" }}
           onClick={() => setMobileOpen(true)}
         >
           Menu
@@ -64,22 +66,19 @@ export function Nav() {
       </nav>
       {mobileOpen && (
         <div
-          className={`fixed inset-0 z-90 flex flex-col pt-24 px-6 pb-10 gap-6 ${
-            navColor === "clay"
-              ? "bg-clay"
-              : navColor === "moss"
-                ? "bg-moss"
-                : "bg-paper"
-          }`}
+          className="fixed inset-0 z-90 flex flex-col pt-24 px-6 pb-10 gap-6"
+          style={{ background: "var(--color-surface-1)" }}
         >
           <button
-            className="absolute top-6 right-6 font-sans font-medium text-base bg-transparent border-none cursor-pointer text-inherit"
+            className="absolute top-6 right-6 font-sans font-medium text-sm bg-transparent cursor-pointer"
+            style={{ color: "var(--color-ink-500)", border: "none" }}
             onClick={() => setMobileOpen(false)}
           >
             Close
           </button>
           {[
             { href: "/", label: "Home" },
+            { href: "/how-we-work", label: "How We Work" },
             { href: "/about", label: "About" },
             ...(showWriting
               ? [{ href: "/writing", label: "Writing" }]
@@ -88,11 +87,12 @@ export function Nav() {
           ].map(({ href, label }) => (
             <Link
               key={href}
-              className={`font-serif font-normal text-[56px] leading-[1.02] bg-transparent border-none text-left p-0 cursor-pointer ${
-                navColor === "clay" || navColor === "moss"
-                  ? "text-paper"
-                  : "text-ink"
-              }`}
+              className="font-serif font-normal text-[48px] leading-[1.05] p-0 cursor-pointer"
+              style={{
+                color: "var(--color-ink-900)",
+                letterSpacing: "-0.015em",
+                border: "none",
+              }}
               href={href}
               onClick={() => setMobileOpen(false)}
             >

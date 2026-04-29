@@ -5,8 +5,8 @@ import { AskPageClient } from "./AskPageClient";
 export default function AskPage() {
   return (
     <main>
-      <section className="section" style={{ paddingTop: "180px" }}>
-        <div className="wrap">
+      <section className="py-[100px] pt-[140px] max-[767px]:py-[56px] max-[767px]:pt-[100px]">
+        <div className="max-w-[1180px] mx-auto px-8 max-[1024px]:px-6">
           <div style={{ maxWidth: "520px", margin: "0 auto" }}>
             <Suspense fallback={null}>
               <AskPageClient />
