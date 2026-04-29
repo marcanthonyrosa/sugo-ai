@@ -39,7 +39,6 @@ export function ProofChapter() {
           <cite>MIT &middot; State of AI in Business 2025</cite>
         </blockquote>
 
-        {/* Dot grid */}
         <div className="mt-14 grid grid-cols-[auto_1fr] gap-12 items-start max-[900px]:grid-cols-1 max-[900px]:gap-8" ref={s1Ref}>
           <div
             className="grid gap-2"

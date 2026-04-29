@@ -13,6 +13,8 @@ export function generateStaticParams() {
 }
 
 export default async function WritingPostPage({ params }: WritingPostPageProps) {
+  if (process.env.NODE_ENV !== "development") notFound();
+
   const { slug } = await params;
   const article = getArticleBySlug(slug);
 

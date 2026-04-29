@@ -31,7 +31,6 @@ export function ProblemChapter() {
           </h2>
         </div>
 
-        {/* Problem grid */}
         <div className="grid grid-cols-[minmax(0,1fr)_minmax(280px,360px)] gap-16 items-start mt-14 max-[900px]:grid-cols-1 max-[900px]:gap-10">
           <div className="max-w-[620px]">
             <Fade>
@@ -62,7 +61,6 @@ export function ProblemChapter() {
           </div>
         </div>
 
-        {/* Numbered list */}
         <div className="flex flex-col gap-8 mt-16 max-w-[620px]">
           {items.map(([n, h, b]) => (
             <Fade key={n} className="grid grid-cols-[48px_1fr] gap-6 items-baseline">
@@ -82,7 +80,6 @@ export function ProblemChapter() {
           </blockquote>
         </Fade>
 
-        {/* Fig 01 */}
         <Fade>
           <div
             ref={figRef}

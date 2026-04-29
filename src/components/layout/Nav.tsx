@@ -16,6 +16,8 @@ export function Nav() {
     };
   }, [mobileOpen]);
 
+  const showWriting = process.env.NODE_ENV === "development";
+
   return (
     <>
       <nav className="nav-bar fixed top-0 left-0 right-0 z-80 flex items-center justify-between px-8 py-5">
@@ -35,17 +37,17 @@ export function Nav() {
           >
             About
           </Link>
-          {/* Writing — commented out until content is ready
-          <Link
-            className="nav-link-anim"
-            href="/writing"
-            aria-current={
-              pathname.startsWith("/writing") ? "page" : undefined
-            }
-          >
-            Writing
-          </Link>
-          */}
+          {showWriting && (
+            <Link
+              className="nav-link-anim"
+              href="/writing"
+              aria-current={
+                pathname.startsWith("/writing") ? "page" : undefined
+              }
+            >
+              Writing
+            </Link>
+          )}
           <Link
             className="nav-link-anim"
             href="/contact"
@@ -78,7 +80,9 @@ export function Nav() {
             { href: "/", label: "Home" },
             { href: "/how-we-work", label: "How We Work" },
             { href: "/about", label: "About" },
-            // { href: "/writing", label: "Writing" }, // commented out until content is ready
+            ...(showWriting
+              ? [{ href: "/writing", label: "Writing" }]
+              : []),
             { href: "/contact", label: "Contact" },
           ].map(({ href, label }) => (
             <Link
