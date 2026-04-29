@@ -22,23 +22,29 @@ export default async function WritingPostPage({ params }: WritingPostPageProps) 
 
   return (
     <main>
-      <section className="py-[140px] pt-[180px] max-[1199px]:py-28 max-[767px]:py-[72px]">
-        <div className="max-w-[1320px] mx-auto px-8 max-[1199px]:px-10 max-[767px]:px-6">
-          <div className="max-w-[680px] ml-40 max-[1199px]:max-w-[580px] max-[1199px]:ml-20 max-[767px]:max-w-full max-[767px]:ml-0">
+      <section className="py-[100px] pt-[140px] max-[767px]:py-[56px] max-[767px]:pt-[100px]">
+        <div className="max-w-[1180px] mx-auto px-8 max-[1024px]:px-6">
+          <div className="max-w-[680px]">
             <p className="type-mono-meta uppercase">
-              {article.date} &nbsp; · &nbsp; {article.readTime} &nbsp; ·
-              &nbsp; {article.category}
+              {article.date} &nbsp; &middot; &nbsp; {article.readTime} &nbsp;
+              &middot; &nbsp; {article.category}
             </p>
             <h1 className="type-h1 mt-4">{article.title}</h1>
             <p className="type-post-lead">{article.standfirst}</p>
 
             <MdxContent source={article.content} />
 
-            <div className="mt-24 pt-8 border-t border-rule font-sans text-[17px] text-ink-80 flex flex-col gap-2">
+            <div
+              className="mt-20 pt-8 font-sans text-[15px] flex flex-col gap-2"
+              style={{
+                borderTop: "1px solid var(--color-rule-soft)",
+                color: "var(--color-ink-700)",
+              }}
+            >
               <span>Written by Marc Anthony Rosa.</span>
               <span>If this is useful, forward it to one person.</span>
-              <Link className="link-grow" href="/contact">
-                Start a conversation →
+              <Link className="btn-ghost mt-2" href="/contact" style={{ border: "none" }}>
+                Start a conversation <span className="arrow">→</span>
               </Link>
             </div>
           </div>

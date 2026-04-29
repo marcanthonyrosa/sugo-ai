@@ -1,14 +1,8 @@
-interface PotMarkProps {
-  large?: boolean;
-}
-
-export function PotMark({ large }: PotMarkProps) {
+export function PotMark() {
   return (
-    <span
-      className={`pot-mark-icon text-ink ${large ? "pot-mark-icon-lg" : ""}`}
-      aria-label="Sugo mark"
-    >
-      <span style={{ fontStyle: "italic" }}>sugo</span>
+    <span className="pot-mark-icon" aria-label="Sugo mark">
+      <span className="dot" />
+      <span className="text">sugo</span>
     </span>
   );
 }

@@ -23,7 +23,8 @@ function EmailLine({ onSent }: { onSent: () => void }) {
         value={v}
         onChange={(e) => setV(e.target.value)}
         aria-label="Your email"
-        className="w-full font-mono text-[13px] bg-transparent border-none outline-none border-b border-rule py-1.5 text-ink"
+        className="w-full font-mono text-[13px] bg-transparent border-none outline-none py-1.5"
+        style={{ color: "var(--color-ink-900)", borderBottom: "1px solid var(--color-rule)" }}
       />
     </form>
   );
@@ -95,17 +96,40 @@ export function AskSugoChat({ openCal }: AskSugoChatProps) {
   const allSeedsUsed = usedSeeds.size === SEEDS.length;
   const remainingSeeds = SEEDS.filter((s) => !usedSeeds.has(s));
 
+  const avatarStyle = {
+    background: "var(--color-pomodoro)",
+    color: "var(--color-offwhite)",
+    fontVariationSettings: '"opsz" 72, "SOFT" 50',
+  };
+
   return (
-    <div className="bg-white border border-ink/8 rounded-xl shadow-[0_10px_36px_rgba(30,27,23,0.14)] max-w-[520px] flex flex-col overflow-hidden" role="region" aria-label="Ask Sugo">
+    <div
+      className="max-w-[520px] flex flex-col overflow-hidden"
+      style={{
+        background: "var(--color-surface-3)",
+        border: "1px solid var(--color-rule-soft)",
+        borderRadius: "var(--r-lg)",
+        boxShadow: "var(--shadow-lg)",
+      }}
+      role="region"
+      aria-label="Ask Sugo"
+    >
       {/* Header */}
-      <div className="flex items-center gap-3 px-5 py-[18px] border-b border-rule bg-white">
-        <div className="w-10 h-10 rounded-full bg-clay text-paper flex items-center justify-center font-serif font-medium text-xl shrink-0" style={{ fontVariationSettings: '"opsz" 72, "SOFT" 50' }} aria-hidden="true">
+      <div
+        className="flex items-center gap-3 px-5 py-[18px]"
+        style={{ borderBottom: "1px solid var(--color-rule-soft)", background: "var(--color-surface-3)" }}
+      >
+        <div
+          className="w-10 h-10 rounded-full flex items-center justify-center font-serif font-medium text-xl shrink-0"
+          style={avatarStyle}
+          aria-hidden="true"
+        >
           S
         </div>
         <div>
-          <div className="font-sans font-medium text-[15px] text-ink">Sugo AI</div>
-          <div className="font-mono text-[10px] tracking-[0.1em] uppercase text-stone flex items-center gap-1.5 mt-1">
-            <span className="w-[7px] h-[7px] rounded-full bg-[#5a7a5a] inline-block" aria-hidden="true" />
+          <div className="font-sans font-medium text-[15px]" style={{ color: "var(--color-ink-900)" }}>Sugo AI</div>
+          <div className="font-mono text-[10px] tracking-[0.1em] uppercase flex items-center gap-1.5 mt-1" style={{ color: "var(--color-ink-500)" }}>
+            <span className="w-[7px] h-[7px] rounded-full inline-block" style={{ background: "var(--color-sage)" }} aria-hidden="true" />
             Online &middot; replies in seconds
           </div>
         </div>
@@ -116,20 +140,27 @@ export function AskSugoChat({ openCal }: AskSugoChatProps) {
         {log.map((t, i) => (
           <div key={i} className={`flex gap-2.5 items-end max-w-[90%] ${t.who === "sugo" ? "self-start" : "self-end flex-row-reverse"}`}>
             {t.who === "sugo" && (
-              <div className="w-[26px] h-[26px] rounded-full bg-clay text-paper flex items-center justify-center font-serif font-medium text-[13px] shrink-0" style={{ fontVariationSettings: '"opsz" 72, "SOFT" 50' }} aria-hidden="true">
+              <div
+                className="w-[26px] h-[26px] rounded-full flex items-center justify-center font-serif font-medium text-[13px] shrink-0"
+                style={avatarStyle}
+                aria-hidden="true"
+              >
                 S
               </div>
             )}
-            <div className={`font-sans text-[14.5px] leading-[1.5] px-4 py-3 rounded-[14px] ${
-              t.who === "sugo"
-                ? "bg-[#F5F1EA] border border-ink/6 rounded-bl-[4px] text-ink"
-                : "bg-ink text-white rounded-br-[4px]"
-            }`}>
+            <div
+              className="font-sans text-[14.5px] leading-[1.5] px-4 py-3 rounded-[14px]"
+              style={
+                t.who === "sugo"
+                  ? { background: "var(--color-surface-2)", border: "1px solid var(--color-rule-soft)", borderBottomLeftRadius: "4px", color: "var(--color-ink-900)" }
+                  : { background: "var(--color-navy)", color: "var(--color-offwhite)", borderBottomRightRadius: "4px" }
+              }
+            >
               {t.text.split(/\n\n+/).map((p, j, arr) => (
                 <p key={j} className="[&+p]:mt-2">
                   {p}
                   {t.streaming && j === arr.length - 1 && (
-                    <span className="caret-blink">▊</span>
+                    <span style={{ color: "var(--color-viola-500)", animation: "caret-blink 900ms steps(2) infinite", marginLeft: "1px", display: "inline-block" }}>▊</span>
                   )}
                 </p>
               ))}
@@ -138,10 +169,8 @@ export function AskSugoChat({ openCal }: AskSugoChatProps) {
         ))}
         {emailSlot && !emailSent && (
           <div className="flex gap-2.5 items-end max-w-[90%] self-start">
-            <div className="w-[26px] h-[26px] rounded-full bg-clay text-paper flex items-center justify-center font-serif font-medium text-[13px] shrink-0" style={{ fontVariationSettings: '"opsz" 72, "SOFT" 50' }} aria-hidden="true">
-              S
-            </div>
-            <div className="font-sans text-[14.5px] leading-[1.5] px-4 py-3 rounded-[14px] bg-[#F5F1EA] border border-ink/6 rounded-bl-[4px] text-ink">
+            <div className="w-[26px] h-[26px] rounded-full flex items-center justify-center font-serif font-medium text-[13px] shrink-0" style={avatarStyle} aria-hidden="true">S</div>
+            <div className="font-sans text-[14.5px] leading-[1.5] px-4 py-3 rounded-[14px]" style={{ background: "var(--color-surface-2)", border: "1px solid var(--color-rule-soft)", borderBottomLeftRadius: "4px", color: "var(--color-ink-900)" }}>
               <p>Leave an email and I&rsquo;ll reply personally.</p>
               <EmailLine onSent={() => setEmailSent(true)} />
             </div>
@@ -149,10 +178,8 @@ export function AskSugoChat({ openCal }: AskSugoChatProps) {
         )}
         {emailSent && (
           <div className="flex gap-2.5 items-end max-w-[90%] self-start">
-            <div className="w-[26px] h-[26px] rounded-full bg-clay text-paper flex items-center justify-center font-serif font-medium text-[13px] shrink-0" style={{ fontVariationSettings: '"opsz" 72, "SOFT" 50' }} aria-hidden="true">
-              S
-            </div>
-            <div className="font-sans text-[14.5px] leading-[1.5] px-4 py-3 rounded-[14px] bg-[#F5F1EA] border border-ink/6 rounded-bl-[4px] text-ink">
+            <div className="w-[26px] h-[26px] rounded-full flex items-center justify-center font-serif font-medium text-[13px] shrink-0" style={avatarStyle} aria-hidden="true">S</div>
+            <div className="font-sans text-[14.5px] leading-[1.5] px-4 py-3 rounded-[14px]" style={{ background: "var(--color-surface-2)", border: "1px solid var(--color-rule-soft)", borderBottomLeftRadius: "4px", color: "var(--color-ink-900)" }}>
               <p>Thanks &middot; Marc will be in touch.</p>
             </div>
           </div>
@@ -168,14 +195,18 @@ export function AskSugoChat({ openCal }: AskSugoChatProps) {
             </button>
           ))}
         {allSeedsUsed && !streaming && (
-          <button className="chip-pill chip-pill-cta" onClick={openCal}>
+          <button className="chip-pill" style={{ background: "var(--color-navy)", color: "var(--color-offwhite)", borderColor: "transparent" }} onClick={openCal}>
             I&rsquo;m ready to get in touch →
           </button>
         )}
       </div>
 
       {/* Input */}
-      <form className="border-t border-rule px-4 pl-5 py-3 flex items-center gap-3 bg-white" onSubmit={onSubmit}>
+      <form
+        className="px-4 pl-5 py-3 flex items-center gap-3"
+        style={{ borderTop: "1px solid var(--color-rule-soft)", background: "var(--color-surface-3)" }}
+        onSubmit={onSubmit}
+      >
         <input
           type="text"
           placeholder="Message Sugo AI…"
@@ -183,11 +214,13 @@ export function AskSugoChat({ openCal }: AskSugoChatProps) {
           onChange={(e) => setInput(e.target.value)}
           disabled={streaming}
           aria-label="Message Sugo AI"
-          className="flex-1 font-sans text-[14.5px] bg-transparent border-none outline-none text-ink py-2 placeholder:text-stone"
+          className="flex-1 font-sans text-[14.5px] bg-transparent border-none outline-none py-2"
+          style={{ color: "var(--color-ink-900)" }}
         />
         <button
           type="submit"
-          className="font-mono text-[11px] font-medium tracking-[0.12em] uppercase text-clay bg-transparent border-none cursor-pointer py-1.5 px-1 disabled:text-stone disabled:cursor-not-allowed"
+          className="font-mono text-[11px] font-medium tracking-[0.12em] uppercase bg-transparent border-none cursor-pointer py-1.5 px-1 disabled:cursor-not-allowed"
+          style={{ color: streaming || !input.trim() ? "var(--color-ink-300)" : "var(--color-viola-500)" }}
           disabled={streaming || !input.trim()}
         >
           Send

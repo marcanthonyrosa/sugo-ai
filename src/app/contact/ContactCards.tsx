@@ -1,42 +1,36 @@
 "use client";
 
-import { useState } from "react";
-import { CalModal } from "@/components/ui/CalModal";
+import { openCal } from "@/components/ui/CalModal";
 
 export function ContactCards() {
-  const [cal, setCal] = useState(false);
-
   return (
-    <>
-      <div className="grid grid-cols-2 gap-8 mt-14 max-[1023px]:grid-cols-1">
-        <div className="bg-cream border border-rule p-12 flex flex-col gap-4">
-          <p className="type-mono-label">15 min · Calendly</p>
-          <h3 className="type-serif-heading" style={{ fontSize: "34px" }}>Pick a slot.</h3>
-          <p className="type-body">
-            A short intro call{"\u200A—\u200A"}no deck, no agenda. Just a
-            conversation.
-          </p>
-          <div className="mt-3">
-            <button className="btn-slide" onClick={() => setCal(true)}>
-              Book 15 minutes →
-            </button>
-          </div>
-        </div>
-        <div className="bg-cream border border-rule p-12 flex flex-col gap-4">
-          <p className="type-mono-label">Direct</p>
-          <h3 className="type-serif-heading" style={{ fontSize: "34px" }}>Email Marc directly.</h3>
-          <p className="type-body">
-            marc@sugoai.com. Tell me what you&rsquo;re working on
-            {"\u200A—\u200A"}I read these myself and write back personally.
-          </p>
-          <div className="mt-3">
-            <a className="link-grow" href="mailto:marc@sugoai.com">
-              marc@sugoai.com →
-            </a>
-          </div>
+    <div className="grid grid-cols-2 gap-6 mt-12 max-[900px]:grid-cols-1">
+      <div className="card" style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+        <div className="eyebrow">30 min &middot; Google Meet</div>
+        <h3 className="type-serif-heading">Pick a <span className="italic-accent">slot.</span></h3>
+        <p className="type-body">
+          A short intro call{"\u200A—\u200A"}no deck, no agenda. Just a
+          conversation.
+        </p>
+        <div className="mt-2">
+          <button className="btn-primary" onClick={openCal}>
+            Book 30 minutes <span className="arrow">→</span>
+          </button>
         </div>
       </div>
-      <CalModal open={cal} onClose={() => setCal(false)} />
-    </>
+      <div className="card" style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+        <div className="eyebrow">Direct</div>
+        <h3 className="type-serif-heading">Email Marc <span className="italic-accent">directly.</span></h3>
+        <p className="type-body">
+          marc@sugoai.com. Tell me what you&rsquo;re working on
+          {"\u200A—\u200A"}I read these myself and write back personally.
+        </p>
+        <div className="mt-2">
+          <a className="btn-secondary" href="mailto:marc@sugoai.com" style={{ textDecoration: "none" }}>
+            marc@sugoai.com <span className="arrow">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
   );
 }

@@ -9,16 +9,19 @@ const STEPS: [string, string, string][] = [
 
 export function HowWeWork() {
   return (
-    <section className="py-[140px] max-[1199px]:py-28 max-[767px]:py-[72px]">
-      <div className="max-w-[1320px] mx-auto px-8 max-[1199px]:px-10 max-[767px]:px-6 relative">
+    <section
+      className="py-[100px] max-[767px]:py-[56px]"
+      style={{ borderTop: "1px solid var(--color-rule-soft)" }}
+    >
+      <div className="max-w-[1180px] mx-auto px-8 max-[1024px]:px-6 relative">
         <div className="max-w-[680px]">
-          <SectionLabel n="04">How We Work</SectionLabel>
-          <h2 className="type-h2">Small, senior, and on the clock.</h2>
+          <SectionLabel n="03">Process</SectionLabel>
+          <h2 className="type-h1">Small, senior, and on the <span className="italic-accent">clock.</span></h2>
         </div>
-        <div className="flex flex-col gap-16 mt-[72px] max-w-[680px] ml-40 max-[1199px]:max-w-[580px] max-[1199px]:ml-20 max-[767px]:max-w-full max-[767px]:ml-0">
-          {STEPS.map(([n, h, b]) => (
-            <Fade key={n} className="grid grid-cols-[140px_1fr] gap-10 items-baseline max-[767px]:grid-cols-1 max-[767px]:gap-3">
-              <div className="type-step-num text-clay">{n}</div>
+        <div className="flex flex-col gap-12 mt-14 max-w-[680px]">
+          {STEPS.map(([n, h, b], i) => (
+            <Fade key={n} delay={i * 80} className="grid grid-cols-[100px_1fr] gap-8 items-baseline max-[767px]:grid-cols-1 max-[767px]:gap-3">
+              <div className="type-step-num">{n}</div>
               <div>
                 <h3 className="type-serif-heading mb-3">{h}</h3>
                 <p className="type-body">{b}</p>
@@ -26,9 +29,11 @@ export function HowWeWork() {
             </Fade>
           ))}
         </div>
-        <p className="type-pullout mt-24">
-          &ldquo;Software your team uses on Monday&mdash;not a deck.&rdquo;
-        </p>
+        <Fade>
+          <blockquote className="type-pullquote mt-16">
+            <span className="open">&ldquo;</span>Software your team uses on Monday{"\u200A—\u200A"}not a deck.<span className="open">&rdquo;</span>
+          </blockquote>
+        </Fade>
       </div>
     </section>
   );

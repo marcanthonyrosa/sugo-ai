@@ -10,17 +10,19 @@ interface LogEntry {
 }
 
 function Turn({ turn }: { turn: LogEntry }) {
-  const cls = turn.who === "visitor"
-    ? "font-serif text-[21px] leading-[1.4] text-ink italic"
-    : "turn-arrow font-serif text-[21px] leading-[1.4] text-ink";
+  const isVisitor = turn.who === "visitor";
   const paras = turn.text.split(/\n\n+/);
   return (
-    <div className={cls} style={{ fontVariationSettings: '"opsz" 72, "SOFT" 50' }}>
+    <div
+      className={`font-serif text-[21px] leading-[1.4] ${isVisitor ? "italic" : ""}`}
+      style={{ color: "var(--color-ink-900)" }}
+    >
+      {!isVisitor && <span style={{ color: "var(--color-viola-500)", fontFamily: "var(--font-serif)", fontStyle: "italic", fontWeight: 300, marginRight: "4px" }}>→ </span>}
       {paras.map((p, i) => (
         <p key={i} className="[&+p]:mt-2.5">
           {p}
           {turn.streaming && i === paras.length - 1 && (
-            <span className="caret-blink">▊</span>
+            <span style={{ color: "var(--color-viola-500)", animation: "caret-blink 900ms steps(2) infinite", marginLeft: "1px", display: "inline-block" }}>▊</span>
           )}
         </p>
       ))}
@@ -42,7 +44,8 @@ function EmailLine({ onSent }: { onSent: () => void }) {
         value={v}
         onChange={(e) => setV(e.target.value)}
         aria-label="Your email"
-        className="w-full font-mono text-[13px] bg-transparent border-none outline-none border-b border-rule py-1.5 text-ink"
+        className="w-full font-mono text-[13px] bg-transparent border-none outline-none py-1.5"
+        style={{ color: "var(--color-ink-900)", borderBottom: "1px solid var(--color-rule)" }}
       />
     </form>
   );
@@ -105,12 +108,26 @@ export function AskSugoPaper() {
   const seedsShown = usedSeeds.size === 0 && !streaming;
 
   return (
-    <div className="bg-cream border border-rule rounded-[4px] p-9 max-[767px]:p-7 shadow-[0_6px_28px_rgba(30,27,23,0.10)] relative max-w-[520px]" role="region" aria-label="Ask Sugo">
+    <div
+      className="p-9 max-[767px]:p-7 relative max-w-[520px]"
+      style={{
+        background: "var(--color-surface-3)",
+        border: "1px solid var(--color-rule-soft)",
+        borderRadius: "var(--r-lg)",
+        boxShadow: "var(--shadow-md)",
+      }}
+      role="region"
+      aria-label="Ask Sugo"
+    >
       <div className="flex justify-between items-baseline gap-4 mb-2.5">
         <span className="type-mono-label">Ask Sugo &middot; v0.1</span>
         <span className="type-mono-meta text-xs">2026 &middot; TX</span>
       </div>
-      <div className="h-0.5 w-14 bg-clay mb-6" aria-hidden="true" />
+      <div
+        className="h-0.5 w-14 mb-6"
+        style={{ background: "var(--color-viola-500)" }}
+        aria-hidden="true"
+      />
       <div className="flex flex-col gap-6" role="log" aria-live="polite">
         {log.map((t, i) => (
           <Turn key={i} turn={t} />
@@ -130,9 +147,14 @@ export function AskSugoPaper() {
           </div>
         )}
       </div>
-      <form className="mt-7 flex items-center gap-3 border-t border-rule pt-5" onSubmit={onSubmit}>
+      <form
+        className="mt-7 flex items-center gap-3 pt-5"
+        style={{ borderTop: "1px solid var(--color-rule-soft)" }}
+        onSubmit={onSubmit}
+      >
         <input
-          className="flex-1 font-mono text-[13px] text-ink bg-transparent border-none outline-none py-1.5 tracking-[0.02em] placeholder:text-stone"
+          className="flex-1 font-mono text-[13px] bg-transparent border-none outline-none py-1.5 tracking-[0.02em]"
+          style={{ color: "var(--color-ink-900)" }}
           type="text"
           placeholder="Ask anything —"
           value={input}
@@ -142,14 +164,22 @@ export function AskSugoPaper() {
         />
         <button
           type="submit"
-          className="font-mono text-xs font-medium tracking-[0.1em] uppercase text-clay bg-transparent border-none cursor-pointer py-1 hover:underline"
+          className="font-mono text-xs font-medium tracking-[0.1em] uppercase bg-transparent border-none cursor-pointer py-1 hover:underline"
+          style={{ color: "var(--color-viola-500)" }}
           disabled={streaming || !input.trim()}
         >
           Send →
         </button>
       </form>
       {emailSlot && !emailSent && (
-        <div className="mt-4 p-4 px-5 bg-paper border border-rule rounded-sm">
+        <div
+          className="mt-4 p-4 px-5"
+          style={{
+            background: "var(--color-surface-1)",
+            border: "1px solid var(--color-rule-soft)",
+            borderRadius: "var(--r-sm)",
+          }}
+        >
           <div className="type-mono-label mb-2">
             Leave an email &middot; Marc will reply
           </div>
@@ -157,7 +187,14 @@ export function AskSugoPaper() {
         </div>
       )}
       {emailSent && (
-        <div className="mt-4 p-4 px-5 bg-paper border border-rule rounded-sm">
+        <div
+          className="mt-4 p-4 px-5"
+          style={{
+            background: "var(--color-surface-1)",
+            border: "1px solid var(--color-rule-soft)",
+            borderRadius: "var(--r-sm)",
+          }}
+        >
           <div className="type-mono-label">
             Thanks &middot; Marc will be in touch
           </div>
