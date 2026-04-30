@@ -243,7 +243,7 @@ export default function TmcBenefitsPage() {
           <div style={{ marginBottom: "36px" }}>
             <Fade>
               <h1 className="type-h1" style={{ margin: "0 0 10px" }}>
-                TMC discovery — <span className="italic-accent">spring</span> 2026
+                TMC Product candidates — <span className="italic-accent">spring</span> 2026
               </h1>
             </Fade>
             <Fade delay={60}>
@@ -259,14 +259,6 @@ export default function TmcBenefitsPage() {
           <div id="portfolio-overview" style={{ marginBottom: "40px" }}>
             <Fade>
               <SectionLabel n="01">Portfolio overview</SectionLabel>
-            </Fade>
-            <Fade delay={40}>
-              <p
-                className="type-small"
-                style={{ margin: "4px 0 18px" }}
-              >
-                Snapshot of org-level KPI performance and the project portfolio.
-              </p>
             </Fade>
 
             {/* Metric cards */}
@@ -436,17 +428,9 @@ export default function TmcBenefitsPage() {
               <SectionLabel n="02">Project deep dives</SectionLabel>
             </Fade>
             <Fade delay={40}>
-              <h2 className="type-h2" style={{ margin: "0 0 8px" }}>
+              <h2 className="type-h2" style={{ margin: "0 0 32px" }}>
                 What each product does and why it <span className="italic-accent">matters.</span>
               </h2>
-            </Fade>
-            <Fade delay={60}>
-              <p
-                className="type-body"
-                style={{ margin: "0 0 32px", maxWidth: "540px" }}
-              >
-                Expand each project to review detailed impact assumptions and value levers.
-              </p>
             </Fade>
 
             {products.map((product, i) => (
