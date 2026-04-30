@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Footer } from "@/components/layout/Footer";
 
@@ -65,19 +66,18 @@ export default function AboutPage() {
             <h2 className="type-h1" style={{ marginTop: "80px", marginBottom: "16px" }}>The <span className="italic-accent">founder.</span></h2>
 
             <figure className="my-10 mb-14 max-w-[440px]">
-              <div
-                className="flex items-center justify-center"
+              <Image
+                src="/marc-rosa.png"
+                alt="Marc Anthony Rosa"
+                width={440}
+                height={550}
                 style={{
-                  aspectRatio: "4/5",
-                  background: "var(--color-surface-2)",
                   border: "1px solid var(--color-rule-soft)",
                   borderRadius: "var(--r-lg)",
+                  width: "100%",
+                  height: "auto",
                 }}
-              >
-                <span className="fig">
-                  Photo &middot; Marc Rosa &middot; 2026
-                </span>
-              </div>
+              />
               <figcaption className="fig mt-3">
                 Marc Anthony Rosa &middot; Founder &middot; Houston, TX
               </figcaption>

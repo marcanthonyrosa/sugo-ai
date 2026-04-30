@@ -18,6 +18,13 @@ export const metadata: Metadata = {
   title: "Sugo AI — Where AI strategy becomes working software.",
   description:
     "Sugo AI helps mid-to-large enterprises cross the gap between AI pilots and production — with agents inside the business and AI-native features inside the product.",
+  icons: {
+    icon: [
+      { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
+      { url: "/icon-512.png", sizes: "512x512", type: "image/png" },
+    ],
+    apple: "/apple-icon.png",
+  },
 };
 
 export default function RootLayout({
