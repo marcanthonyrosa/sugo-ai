@@ -1,4 +1,3 @@
-import { SectionLabel } from "@/components/ui/SectionLabel";
 import { Fade } from "@/components/ui/Fade";
 
 const ROWS: [string, string, string][] = [
@@ -16,7 +15,7 @@ export function WhySugo() {
     >
       <div className="max-w-[1180px] mx-auto px-8 max-[1024px]:px-6 relative">
         <div className="max-w-[680px]">
-          <SectionLabel n="05">Why Sugo</SectionLabel>
+          <div className="eyebrow mb-5">Why Sugo</div>
           <h2 className="type-h1">What makes this <span className="italic-accent">different.</span></h2>
         </div>
         <div
