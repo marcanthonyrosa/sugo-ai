@@ -40,34 +40,16 @@ export function Hero() {
               </p>
             </Fade>
             <Fade delay={40}>
-              <div className="grid grid-cols-2 gap-4 mt-8 max-[640px]:grid-cols-1">
-                <div className="card" style={{ padding: "18px 20px", display: "grid", gap: "8px" }}>
-                  <div className="fig">Best fit</div>
-                  <p style={{ fontSize: "15px", color: "var(--color-ink-700)", lineHeight: 1.5 }}>
-                    Small and mid-sized teams with a stuck pilot, a painful ops
-                    workflow, or an AI feature that needs to get out of concept mode.
-                  </p>
-                </div>
-                <div className="card" style={{ padding: "18px 20px", display: "grid", gap: "8px" }}>
-                  <div className="fig">What changes</div>
-                  <p style={{ fontSize: "15px", color: "var(--color-ink-700)", lineHeight: 1.5 }}>
-                    We clarify where AI should go, build one thing that works, and
-                    leave your team with something measurable and maintainable.
-                  </p>
-                </div>
-              </div>
-            </Fade>
-            <Fade delay={80}>
               <div className="flex items-center gap-4 flex-wrap mt-8">
                 <button className="btn-primary" onClick={openCal}>
                   Start a conversation <span className="arrow">→</span>
                 </button>
-                <Link className="btn-secondary" href="/how-we-work" style={{ border: "none" }}>
+                <Link className="btn-secondary" href="/how-we-work">
                   See how we work <span className="arrow">→</span>
                 </Link>
               </div>
             </Fade>
-            <Fade delay={120}>
+            <Fade delay={80}>
               <div className="grid grid-cols-3 gap-4 mt-8 max-[700px]:grid-cols-1">
                 {[
                   ["2-3 weeks", "to rank the right opportunities"],
@@ -89,26 +71,6 @@ export function Hero() {
           <Fade delay={120}>
             <div className="max-[900px]:max-w-[420px] max-[900px]:mx-auto relative">
               <HeroIllustration />
-              <div
-                className="card absolute bottom-[8%] right-0 max-w-[260px] max-[900px]:right-[4%] max-[900px]:bottom-[4%]"
-                style={{
-                  padding: "18px 18px 16px",
-                  background: "rgba(253, 251, 244, 0.94)",
-                  backdropFilter: "blur(8px)",
-                }}
-              >
-                <div className="fig mb-2">What we deliver</div>
-                <div
-                  style={{
-                    fontFamily: "var(--font-serif)",
-                    fontSize: "24px",
-                    lineHeight: 1.15,
-                    color: "var(--color-ink-900)",
-                  }}
-                >
-                  Real workflow fit, real software, and a team that can carry it forward.
-                </div>
-              </div>
             </div>
           </Fade>
         </div>
