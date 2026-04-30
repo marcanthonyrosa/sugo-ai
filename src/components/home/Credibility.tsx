@@ -41,8 +41,6 @@ export function Credibility() {
               }}
             >
               Most recently Head of Product at a conversational AI company.
-              Currently leading AI product development at a major health-tech
-              organization.
             </p>
             <p className="type-body" style={{ maxWidth: "56ch" }}>
               Sugo AI is his practice &mdash; senior product thinking paired

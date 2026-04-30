@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 export function Footer() {
@@ -9,17 +10,12 @@ export function Footer() {
           {/* Brand column */}
           <div>
             <div className="flex items-center gap-[10px] mb-4">
-              <span
-                style={{
-                  width: "24px",
-                  height: "24px",
-                  borderRadius: "6px",
-                  background: "var(--color-pomodoro)",
-                  display: "grid",
-                  placeItems: "center",
-                  boxShadow: "inset 0 0 0 2px rgba(255,255,255,0.35)",
-                  flexShrink: 0,
-                }}
+              <Image
+                src="/sugo-logo.png"
+                alt="Sugo logo"
+                width={24}
+                height={24}
+                style={{ flexShrink: 0 }}
               />
               <span style={{ fontFamily: "var(--font-serif)", fontSize: "18px", color: "var(--color-ink-900)" }}>
                 Sugo AI
