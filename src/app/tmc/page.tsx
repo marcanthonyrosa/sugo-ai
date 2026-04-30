@@ -1,0 +1,626 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { Fade } from "@/components/ui/Fade";
+import { SectionLabel } from "@/components/ui/SectionLabel";
+import { ProductTableToggle } from "@/components/tmc/ProductTableToggle";
+import { Footer } from "@/components/layout/Footer";
+
+export const metadata: Metadata = {
+  title: "Product Benefits — TMC × Sugo AI",
+  description:
+    "Org-wide impact summary: 6 deployed software products, ~$1.5M equiv. headcount value automated, 3 teams benefiting across Innovation, Comms, and Fund.",
+};
+
+/* ── Data ──────────────────────────────────────────────────────────────── */
+
+interface Metric {
+  label: string;
+  value: string;
+  note?: string;
+  tags?: { text: string; variant: "innovation" | "comms" }[];
+}
+
+const metrics: Metric[] = [
+  {
+    label: "Software products",
+    value: "6",
+    note: "Across portfolio intelligence, marketing, ops, and pipeline",
+  },
+  {
+    label: "Savings + revenue",
+    value: "$550K–$960K",
+    note: "Conservative–aggressive range",
+  },
+  {
+    label: "Benefitting functions",
+    value: "4",
+    tags: [
+      { text: "Innovation", variant: "innovation" },
+      { text: "Venture Fund", variant: "innovation" },
+      { text: "Comms", variant: "comms" },
+      { text: "Development", variant: "comms" },
+    ],
+  },
+];
+
+type BenefitColor = "basil" | "viola" | "saffron";
+
+interface Benefit {
+  color: BenefitColor;
+  title: string;
+  body: string;
+  pill?: { label: string; variant: "basil" | "sky" | "saffron" };
+}
+
+interface Product {
+  num: string;
+  slug: string;
+  name: string;
+  tag: string;
+  accentColor: BenefitColor;
+  benefits: Benefit[];
+}
+
+const products: Product[] = [
+  {
+    num: "01",
+    slug: "portfolio-intelligence-platform",
+    name: "Portfolio intelligence platform",
+    tag: "Tom Luby · Innovation + Venture Fund",
+    accentColor: "basil",
+    benefits: [
+      {
+        color: "basil",
+        title: "Scales a 500-company network",
+        body: "without adding headcount. Today this is a manual, unsustainable process for Tom\u2019s team \u2014 the platform automates surveillance on funding, hiring, and milestone signals across the entire portfolio automatically.",
+      },
+      {
+        color: "basil",
+        title: "Improves investment timing",
+        body: "by surfacing companies 12\u201318 months early \u2014 before they\u2019re ready for a traditional conversation, but with enough signal to warm a relationship now.",
+      },
+      {
+        color: "basil",
+        title: "Drives Houston ecosystem density.",
+        body: 'The \u201Cmagic\u201D network introduction experience \u2014 matching companies to TMC faculty, labs, and partners \u2014 creates the FOMO effect that makes Houston a destination, not a fallback.',
+      },
+    ],
+  },
+  {
+    num: "02",
+    slug: "social-media-marketing-automation",
+    name: "Social media & marketing automation",
+    tag: "Bill McKeon · Communications + Talent + Brand",
+    accentColor: "viola",
+    benefits: [
+      {
+        color: "viola",
+        title: "Makes hiring materially easier.",
+        body: "A consistently active, high-signal TMC presence \u2014 conference coverage, portfolio milestones, founder stories \u2014 is employer brand at scale. Candidates who see TMC as a vibrant ecosystem are warmer before the first conversation.",
+        pill: { label: "Talent acquisition", variant: "sky" },
+      },
+      {
+        color: "viola",
+        title: "Recruits stronger portfolio companies.",
+        body: 'Founders choose accelerators partly based on visibility and community. Automated content that celebrates portfolio milestones \u2014 \u201CRemember Motif when they were early days, now they\u2019ve raised $18.7M\u201D \u2014 is a live proof-of-value signal to incoming companies.',
+        pill: { label: "Pipeline quality", variant: "sky" },
+      },
+      {
+        color: "viola",
+        title: "Retains employees by amplifying their work.",
+        body: "Staff whose contributions are regularly visible externally feel more recognized and connected to the mission. Internal digital boards become a real-time activity feed, not a static event calendar.",
+        pill: { label: "Retention", variant: "sky" },
+      },
+      {
+        color: "viola",
+        title: "10x marketing output without additional headcount.",
+        body: "Pre-created conference content, automated post-event reflections, and scheduled posts replace dozens of hours of manual coordination per month across Innovation and Comms.",
+        pill: { label: "Cost avoidance", variant: "basil" },
+      },
+    ],
+  },
+  {
+    num: "03",
+    slug: "strategic-business-intelligence",
+    name: "Strategic business intelligence",
+    tag: "Bill McKeon · Fund + Business Development",
+    accentColor: "saffron",
+    benefits: [
+      {
+        color: "saffron",
+        title: "Replaces 2 research analysts",
+        body: "running venture partner surveillance, pre-travel briefing prep, VC identification ahead of conferences like LSI, and competitive landscape monitoring. At $120\u2013$150K each, that\u2019s $240K\u2013$300K in annual headcount avoided at higher throughput.",
+        pill: { label: "~$240\u2013300K saved", variant: "basil" },
+      },
+      {
+        color: "saffron",
+        title: "Produces better diligence",
+        body: "on incoming decks \u2014 Japanese, Korean, and European companies \u2014 by running structured analysis, rack-and-stack comparisons, and clinical trial context before it hits Tom\u2019s desk. Less noise, better signal.",
+        pill: { label: "Diligence quality", variant: "saffron" },
+      },
+      {
+        color: "saffron",
+        title: "Drives sponsorship revenue",
+        body: "through budget tracking and sponsor identification \u2014 the agent surfaces likely candidates, enables targeted outreach, and feeds the social media automation pipeline to build awareness before the ask.",
+      },
+    ],
+  },
+  {
+    num: "04",
+    slug: "program-operations-diligence-automation",
+    name: "Program operations & diligence automation",
+    tag: "Tom Luby · Accelerator + Program teams",
+    accentColor: "basil",
+    benefits: [
+      {
+        color: "basil",
+        title: "Eliminates the program manager coordination tax.",
+        body: "Today Megan manually coordinates contracting, CRM, scheduling, events, and reporting across 6\u20139 month programs. Automation handles the routine \u2014 she handles the judgment calls.",
+      },
+      {
+        color: "basil",
+        title: "Scales the Netherlands accelerator model",
+        body: "without scaling the team. The same tooling that runs one program runs three \u2014 standardizing the operational playbook across geographies and cohorts.",
+        pill: { label: "Org scalability", variant: "basil" },
+      },
+      {
+        color: "basil",
+        title: "Surfaces licensing opportunities passively",
+        body: "through automated technology transfer website scraping \u2014 a revenue channel that currently requires manual monitoring to capture.",
+      },
+    ],
+  },
+  {
+    num: "05",
+    slug: "eir-talent-pipeline",
+    name: "EIR talent pipeline",
+    tag: "Tom Luby · Venture Studio + T Labs",
+    accentColor: "viola",
+    benefits: [
+      {
+        color: "viola",
+        title: "Builds a continuously refreshed candidate pool",
+        body: "of seasoned med-device and therapeutics executives \u2014 PhD-level profiles who can hunt for technology and spin out companies \u2014 without a standing recruiter or executive search firm.",
+      },
+      {
+        color: "viola",
+        title: "Strengthens the Venture Studio pipeline",
+        body: "by combining EIR identification with portfolio intelligence \u2014 surfacing which med-device companies are ready to come into T Labs and which executives are the right match for them.",
+      },
+    ],
+  },
+  {
+    num: "06",
+    slug: "philanthropic-investment-intelligence",
+    name: "Philanthropic investment intelligence",
+    tag: "Bill McKeon · Foundation + Development",
+    accentColor: "saffron",
+    benefits: [
+      {
+        color: "saffron",
+        title: "Tracks Houston\u2019s philanthropic community",
+        body: "\u2014 Brown Foundation, Kinder Foundation, and others \u2014 surfacing giving cycles, board connections, and investment appetite before outreach. The Russell Franklin dinner is the right example: prep that used to take days takes minutes.",
+      },
+      {
+        color: "saffron",
+        title: "Enables Program Related Investment (PRI) positioning.",
+        body: "The IRS-approved structure that lets foundations count early-stage investments toward their 5% giving requirement is an underused channel. A tool that identifies foundations with capacity and surfaces the right moment to introduce the concept could unlock meaningful non-dilutive capital.",
+        pill: { label: "Capital strategy", variant: "saffron" },
+      },
+    ],
+  },
+];
+
+/* ── Color maps ────────────────────────────────────────────────────────── */
+
+const dotColors: Record<BenefitColor, { bg: string; dot: string }> = {
+  basil:   { bg: "var(--color-basil-50)",  dot: "var(--color-basil-ink)" },
+  viola:   { bg: "var(--color-viola-50)",  dot: "var(--color-viola-900)" },
+  saffron: { bg: "var(--color-saffron-50)", dot: "#854F0B" },
+};
+
+const accentBorders: Record<BenefitColor, string> = {
+  basil:   "var(--color-basil)",
+  viola:   "var(--color-viola-500)",
+  saffron: "var(--color-saffron)",
+};
+
+const pillStyles: Record<string, { background: string; color: string }> = {
+  basil:   { background: "var(--color-basil-50)",  color: "var(--color-basil-ink)" },
+  sky:     { background: "var(--color-sky-50)",    color: "var(--color-sky-ink)" },
+  saffron: { background: "var(--color-saffron-50)", color: "#854F0B" },
+};
+
+/* ── Page ──────────────────────────────────────────────────────────────── */
+
+export default function TmcBenefitsPage() {
+  return (
+    <main>
+      {/* ── Hero + Overview Section ──────────────────────────────────────── */}
+      <section className="pt-[140px] pb-16 max-[767px]:pt-[100px] max-[767px]:pb-8">
+        <div className="max-w-[860px] mx-auto px-8 max-[1024px]:px-6">
+          {/* Header */}
+          <div style={{ marginBottom: "36px" }}>
+            <Fade>
+              <h1 className="type-h1" style={{ margin: "0 0 10px" }}>
+                TMC discovery — <span className="italic-accent">spring</span> 2026
+              </h1>
+            </Fade>
+            <Fade delay={60}>
+              <p className="type-lead" style={{ marginTop: 0, maxWidth: "640px" }}>
+                A collection of tooling opportunities to help accelerate TMC&rsquo;s
+                various initiatives, gathered from discovery calls with Bill, Tom,
+                Ashley, Julia, and Blaine.
+              </p>
+            </Fade>
+          </div>
+
+          {/* Portfolio overview */}
+          <div id="portfolio-overview" style={{ marginBottom: "40px" }}>
+            <Fade>
+              <SectionLabel n="01">Portfolio overview</SectionLabel>
+            </Fade>
+            <Fade delay={40}>
+              <p
+                className="type-small"
+                style={{ margin: "4px 0 18px" }}
+              >
+                Snapshot of org-level KPI performance and the project portfolio.
+              </p>
+            </Fade>
+
+            {/* Metric cards */}
+            <Fade delay={60}>
+              <div
+                className="grid grid-cols-3 gap-3 max-[640px]:grid-cols-1"
+                style={{ marginBottom: "22px" }}
+              >
+                {metrics.map((m) => (
+                  <div key={m.label} className="card" style={{ padding: "16px 18px" }}>
+                    <div
+                      style={{
+                        fontSize: "12px",
+                        color: "var(--color-ink-300)",
+                        marginBottom: "6px",
+                      }}
+                    >
+                      {m.label}
+                    </div>
+                    <div
+                      style={{
+                        fontSize: "22px",
+                        fontWeight: 500,
+                        color: "var(--color-ink-900)",
+                        lineHeight: 1.1,
+                      }}
+                    >
+                      {m.value}
+                    </div>
+                    {m.note && (
+                      <div
+                        style={{
+                          fontSize: "11px",
+                          color: "var(--color-ink-300)",
+                          marginTop: "5px",
+                          lineHeight: 1.4,
+                        }}
+                      >
+                        {m.note}
+                      </div>
+                    )}
+                    {m.tags && (
+                      <div style={{ marginTop: "5px" }}>
+                        {m.tags.map((tag) => (
+                          <span
+                            key={tag.text}
+                            style={{
+                              display: "inline-block",
+                              fontSize: "11px",
+                              fontWeight: 500,
+                              padding: "1px 7px",
+                              borderRadius: "var(--r-pill)",
+                              margin: "2px 2px 0 0",
+                              ...(tag.variant === "innovation"
+                                ? {
+                                    background: "var(--color-basil-50)",
+                                    color: "var(--color-basil-ink)",
+                                  }
+                                : {
+                                    background: "var(--color-viola-50)",
+                                    color: "var(--color-viola-900)",
+                                  }),
+                            }}
+                          >
+                            {tag.text}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </Fade>
+
+            {/* Product table */}
+            <Fade delay={80}>
+              <div className="card" style={{ padding: "12px" }}>
+                <ProductTableToggle />
+              </div>
+            </Fade>
+
+            {/* Deep dive callout */}
+            <Fade delay={100}>
+              <div className="callout-viola" style={{ marginTop: "20px" }}>
+                <div
+                  style={{
+                    display: "flex",
+                    gap: "16px",
+                    alignItems: "flex-start",
+                    flexWrap: "wrap",
+                  }}
+                >
+                  <div style={{ flex: 1, minWidth: "240px" }}>
+                    <div
+                      className="type-mono-label"
+                      style={{
+                        color: "var(--color-viola-500)",
+                        marginBottom: "8px",
+                      }}
+                    >
+                      Deep Dive Available · Product 01
+                    </div>
+                    <p
+                      style={{
+                        fontSize: "15px",
+                        color: "var(--color-ink-900)",
+                        margin: "0 0 4px",
+                        fontWeight: 500,
+                      }}
+                    >
+                      See the Portfolio Intelligence Platform worked out end-to-end.
+                    </p>
+                    <p
+                      style={{
+                        fontSize: "14px",
+                        color: "var(--color-ink-500)",
+                        margin: 0,
+                        lineHeight: 1.6,
+                      }}
+                    >
+                      Discovery · Figma prototype · Product spec · System architecture
+                    </p>
+                  </div>
+                  <Link
+                    href="/tmc-example"
+                    className="btn-primary"
+                    style={{ alignSelf: "center", whiteSpace: "nowrap" }}
+                  >
+                    View prototype
+                  </Link>
+                </div>
+              </div>
+            </Fade>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Deep Dives — overlay section ──────────────────────────────────── */}
+      <section
+        id="project-deep-dives"
+        style={{ position: "relative", overflow: "hidden" }}
+      >
+        <style>{`
+          .tmc-deep-dive-toggle summary::-webkit-details-marker { display: none; }
+          .tmc-deep-dive-toggle[open] .tmc-chevron { transform: rotate(180deg); }
+          .tmc-deep-dive-toggle .tmc-chevron { transition: transform 160ms ease; }
+          .tmc-deep-dive-content {
+            display: grid;
+            grid-template-rows: 0fr;
+            transition: grid-template-rows 200ms ease;
+          }
+          .tmc-deep-dive-toggle[open] .tmc-deep-dive-content {
+            grid-template-rows: 1fr;
+          }
+          .tmc-deep-dive-inner { overflow: hidden; }
+        `}</style>
+
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 pointer-events-none"
+          style={{ background: "var(--color-surface-2)" }}
+        />
+
+        <div className="py-[72px] max-[767px]:py-[48px]">
+          <div className="max-w-[860px] mx-auto px-8 max-[1024px]:px-6 relative">
+            <Fade>
+              <SectionLabel n="02">Project deep dives</SectionLabel>
+            </Fade>
+            <Fade delay={40}>
+              <h2 className="type-h2" style={{ margin: "0 0 8px" }}>
+                What each product does and why it <span className="italic-accent">matters.</span>
+              </h2>
+            </Fade>
+            <Fade delay={60}>
+              <p
+                className="type-body"
+                style={{ margin: "0 0 32px", maxWidth: "540px" }}
+              >
+                Expand each project to review detailed impact assumptions and value levers.
+              </p>
+            </Fade>
+
+            {products.map((product, i) => (
+              <Fade key={product.num} delay={80 + i * 40}>
+                <details
+                  id={`project-${product.slug}`}
+                  className="tmc-deep-dive-toggle"
+                  open={i === 0}
+                  style={{
+                    background: "var(--color-surface-3)",
+                    border: "1px solid var(--color-rule-soft)",
+                    borderLeft: `4px solid ${accentBorders[product.accentColor]}`,
+                    borderRadius: "var(--r-lg)",
+                    marginBottom: "16px",
+                    overflow: "hidden",
+                    boxShadow: "var(--shadow-xs)",
+                  }}
+                >
+                  <summary
+                    style={{
+                      listStyle: "none",
+                      display: "flex",
+                      alignItems: "flex-start",
+                      justifyContent: "space-between",
+                      gap: "12px",
+                      padding: "16px 20px",
+                      cursor: "pointer",
+                    }}
+                  >
+                    <div style={{ display: "flex", alignItems: "flex-start", gap: "12px" }}>
+                      <div
+                        style={{
+                          fontSize: "11px",
+                          fontWeight: 500,
+                          fontFamily: "var(--font-mono)",
+                          color: "var(--color-ink-300)",
+                          marginTop: "2px",
+                          minWidth: "20px",
+                        }}
+                      >
+                        {product.num}
+                      </div>
+                      <div>
+                        <div
+                          style={{
+                            fontSize: "15px",
+                            fontWeight: 500,
+                            color: "var(--color-ink-900)",
+                            marginBottom: "3px",
+                          }}
+                        >
+                          {product.name}
+                        </div>
+                        <div style={{ fontSize: "11px", color: "var(--color-ink-300)" }}>
+                          {product.tag}
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "8px",
+                        color: "var(--color-ink-300)",
+                        flexShrink: 0,
+                      }}
+                    >
+                      <span style={{ fontSize: "11px" }}>
+                        {product.benefits.length} points
+                      </span>
+                      <span className="tmc-chevron" aria-hidden="true">
+                        &#9662;
+                      </span>
+                    </div>
+                  </summary>
+
+                  <div className="tmc-deep-dive-content">
+                    <div className="tmc-deep-dive-inner">
+                      <div
+                        style={{
+                          padding: "0 20px 14px",
+                          borderTop: "1px solid var(--color-rule-soft)",
+                          marginLeft: "32px",
+                        }}
+                      >
+                        {product.benefits.map((benefit, j) => (
+                          <div
+                            key={benefit.title}
+                            style={{
+                              display: "flex",
+                              gap: "10px",
+                              padding: "11px 0",
+                              borderBottom:
+                                j < product.benefits.length - 1
+                                  ? "1px solid var(--color-rule-soft)"
+                                  : "none",
+                              paddingBottom:
+                                j === product.benefits.length - 1 ? "0" : "11px",
+                            }}
+                          >
+                            {/* Colored dot */}
+                            <div
+                              style={{
+                                width: "20px",
+                                height: "20px",
+                                borderRadius: "50%",
+                                flexShrink: 0,
+                                marginTop: "2px",
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "center",
+                                background: dotColors[benefit.color].bg,
+                              }}
+                            >
+                              <div
+                                style={{
+                                  width: "6px",
+                                  height: "6px",
+                                  borderRadius: "50%",
+                                  background: dotColors[benefit.color].dot,
+                                }}
+                              />
+                            </div>
+
+                            {/* Benefit text */}
+                            <div
+                              style={{
+                                fontSize: "13px",
+                                color: "var(--color-ink-700)",
+                                lineHeight: 1.65,
+                                fontWeight: 300,
+                                flex: 1,
+                              }}
+                            >
+                              <strong
+                                style={{
+                                  fontWeight: 500,
+                                  color: "var(--color-ink-900)",
+                                }}
+                              >
+                                {benefit.title}
+                              </strong>{" "}
+                              {benefit.body}
+                              {benefit.pill && (
+                                <span
+                                  style={{
+                                    display: "inline-block",
+                                    fontSize: "11px",
+                                    fontWeight: 500,
+                                    padding: "2px 8px",
+                                    borderRadius: "var(--r-pill)",
+                                    marginLeft: "6px",
+                                    verticalAlign: "middle",
+                                    whiteSpace: "nowrap",
+                                    ...pillStyles[benefit.pill.variant],
+                                  }}
+                                >
+                                  {benefit.pill.label}
+                                </span>
+                              )}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </details>
+              </Fade>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <Footer />
+    </main>
+  );
+}
