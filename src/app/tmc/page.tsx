@@ -13,12 +13,21 @@ export const metadata: Metadata = {
 
 /* ── Data ──────────────────────────────────────────────────────────────── */
 
+type TeamVariant = "innovation" | "new-ventures" | "marketing" | "biobridge";
+
 interface Metric {
   label: string;
   value: string;
   note?: string;
-  tags?: { text: string; variant: "innovation" | "comms" }[];
+  tags?: { text: string; variant: TeamVariant }[];
 }
+
+const teamPillStyles: Record<TeamVariant, { background: string; color: string }> = {
+  innovation:     { background: "var(--color-basil-50)",   color: "var(--color-basil-ink)"  },
+  "new-ventures": { background: "var(--color-viola-50)",   color: "var(--color-viola-900)"  },
+  marketing:      { background: "var(--color-saffron-50)", color: "#854F0B"                 },
+  biobridge:      { background: "var(--color-sky-50)",     color: "var(--color-sky-ink)"    },
+};
 
 const metrics: Metric[] = [
   {
@@ -35,10 +44,10 @@ const metrics: Metric[] = [
     label: "Benefitting functions",
     value: "4",
     tags: [
-      { text: "Innovation", variant: "innovation" },
-      { text: "Venture Fund", variant: "innovation" },
-      { text: "Comms", variant: "comms" },
-      { text: "Development", variant: "comms" },
+      { text: "Innovation",   variant: "innovation"   },
+      { text: "Strategy & New Ventures", variant: "new-ventures" },
+      { text: "Marketing",    variant: "marketing"    },
+      { text: "BioBridge",    variant: "biobridge"    },
     ],
   },
 ];
@@ -320,15 +329,7 @@ export default function TmcBenefitsPage() {
                               padding: "1px 7px",
                               borderRadius: "var(--r-pill)",
                               margin: "2px 2px 0 0",
-                              ...(tag.variant === "innovation"
-                                ? {
-                                    background: "var(--color-basil-50)",
-                                    color: "var(--color-basil-ink)",
-                                  }
-                                : {
-                                    background: "var(--color-viola-50)",
-                                    color: "var(--color-viola-900)",
-                                  }),
+                              ...teamPillStyles[tag.variant],
                             }}
                           >
                             {tag.text}
