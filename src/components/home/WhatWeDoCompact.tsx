@@ -4,15 +4,17 @@ import { Fade } from "@/components/ui/Fade";
 export function WhatWeDoCompact() {
   return (
     <section
-      className="py-[80px] max-[767px]:py-[48px]"
+      className="py-[72px] max-[767px]:py-[48px]"
       style={{ borderTop: "1px solid var(--color-rule-soft)" }}
     >
       <div className="max-w-[1180px] mx-auto px-8 max-[1024px]:px-6">
         <Fade>
-          <div className="eyebrow mb-5">What we do</div>
-          <h2 className="type-h1">
-            Two places AI earns its <span className="italic-accent">keep.</span>
-          </h2>
+          <div>
+            <div className="eyebrow mb-5">What we do</div>
+            <h2 className="type-h1">
+              Two places AI earns its <span className="italic-accent">keep.</span>
+            </h2>
+          </div>
         </Fade>
 
         <div className="grid grid-cols-2 gap-6 mt-10 max-[900px]:grid-cols-1">
@@ -47,6 +49,18 @@ export function WhatWeDoCompact() {
                 integrations that stop the copy-paste, dashboards that actually
                 get opened on Monday.
               </p>
+              <div className="grid gap-2 pt-2">
+                {[
+                  "Operations workflows with clear waste",
+                  "Cross-tool handoffs that people do manually",
+                  "Teams that need value fast, not a platform rebuild",
+                ].map((item) => (
+                  <div key={item} className="flex items-center gap-3">
+                    <span aria-hidden="true" className="h-2 w-2 rounded-full" style={{ background: "var(--color-basil-ink)" }} />
+                    <span style={{ fontSize: "14px", color: "var(--color-ink-500)" }}>{item}</span>
+                  </div>
+                ))}
+              </div>
             </div>
           </Fade>
           <Fade delay={80}>
@@ -80,12 +94,24 @@ export function WhatWeDoCompact() {
                 through launch, measured against real outcomes. The kind
                 customers feel.
               </p>
+              <div className="grid gap-2 pt-2">
+                {[
+                  "Products looking for a credible AI wedge",
+                  "Teams that need concept-to-launch support",
+                  "Features that must drive usage, not novelty",
+                ].map((item) => (
+                  <div key={item} className="flex items-center gap-3">
+                    <span aria-hidden="true" className="h-2 w-2 rounded-full" style={{ background: "var(--color-sky-ink)" }} />
+                    <span style={{ fontSize: "14px", color: "var(--color-ink-500)" }}>{item}</span>
+                  </div>
+                ))}
+              </div>
             </div>
           </Fade>
         </div>
 
         <Fade>
-          <div className="mt-8">
+          <div className="mt-8 flex justify-end">
             <Link className="btn-ghost" href="/how-we-work" style={{ border: "none" }}>
               See all engagements <span className="arrow">→</span>
             </Link>

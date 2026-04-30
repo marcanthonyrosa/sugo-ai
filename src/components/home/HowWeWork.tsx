@@ -10,7 +10,7 @@ const STEPS: [string, string, string][] = [
 export function HowWeWork() {
   return (
     <section
-      className="py-[100px] max-[767px]:py-[56px]"
+      className="py-[84px] max-[767px]:py-[56px]"
       style={{ borderTop: "1px solid var(--color-rule-soft)" }}
     >
       <div className="max-w-[1180px] mx-auto px-8 max-[1024px]:px-6 relative">
