@@ -11,7 +11,7 @@ export function ValuesMarquee() {
   const items = [...VALUES, ...VALUES];
 
   return (
-    <section className="py-4">
+    <section className="py-3">
       <div className="max-w-[1180px] mx-auto px-8 max-[1024px]:px-6">
         <div className="marquee" aria-hidden="true">
           <div className="marquee-track">
