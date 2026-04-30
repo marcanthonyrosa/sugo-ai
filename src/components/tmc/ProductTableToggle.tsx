@@ -4,15 +4,20 @@ import { useState, useRef, useEffect } from "react";
 
 /* ── Types ──────────────────────────────────────────────────────────────── */
 
-type Team = "Innovation" | "Comms/Development";
+type Team = "Innovation" | "Strategy & New Ventures" | "Marketing" | "BioBridge";
 type Confidence = "High" | "Medium" | "Low";
+
+interface TeamTag {
+  name: Team;
+  tentative?: boolean;
+}
 
 interface Product {
   id: string;
   slug: string;
   name: string;
   description: string;
-  team: Team;
+  teams: TeamTag[];
   basis: string;
   conservative: string;
   conservativeNote: string;
@@ -31,7 +36,7 @@ const initialProducts: Product[] = [
     name: "Portfolio intelligence",
     description:
       "AI-powered surveillance across 500+ portfolio companies, surfacing funding, hiring, and milestone signals to prioritize follow-on conversations and introductions.",
-    team: "Innovation",
+    teams: [{ name: "Innovation" }, { name: "Strategy & New Ventures" }],
     basis:
       "Manual tracking of 500+ companies is unsustainable — typically 1–2 junior analysts doing monitoring and reporting.",
     conservative: "$100K",
@@ -47,7 +52,7 @@ const initialProducts: Product[] = [
     name: "Social media & marketing",
     description:
       "Transforms TMC's travel, conferences, and portfolio milestones into a consistently active social presence with automated scheduling and digital board feeds.",
-    team: "Comms/Development",
+    teams: [{ name: "Marketing" }],
     basis:
       "1 social media coordinator + avoided agency fees. Tatum currently manages digital boards manually.",
     conservative: "$70K",
@@ -63,7 +68,7 @@ const initialProducts: Product[] = [
     name: "Strategic business intelligence",
     description:
       "Continuous venture partner surveillance, pre-travel briefings, VC identification before conferences, and structured diligence on incoming company decks.",
-    team: "Comms/Development",
+    teams: [{ name: "BioBridge" }],
     basis:
       "2 research analysts explicitly named in stakeholder notes. Houston market: $120–150K each.",
     conservative: "$240K",
@@ -79,7 +84,7 @@ const initialProducts: Product[] = [
     name: "Program ops & diligence",
     description:
       "Automates contracting, CRM, scheduling, and reporting across 6–9 month accelerator programs, plus competitive landscape research and technology transfer monitoring.",
-    team: "Innovation",
+    teams: [{ name: "Innovation" }],
     basis:
       "~50% of Megan's coordination time freed across 6–9 month programs. Not a full headcount replacement.",
     conservative: "$50K",
@@ -95,7 +100,7 @@ const initialProducts: Product[] = [
     name: "EIR talent pipeline",
     description:
       "AI agent that continuously identifies seasoned med-device and therapeutics executives for TMC's EIR program and Venture Studio model at T Labs.",
-    team: "Innovation",
+    teams: [{ name: "Strategy & New Ventures" }, { name: "Innovation", tentative: true }],
     basis:
       "Replaces retained executive search fees ($40–80K per placement) and an ongoing recruiter or scout role.",
     conservative: "$40K",
@@ -111,7 +116,7 @@ const initialProducts: Product[] = [
     name: "Philanthropic intelligence",
     description:
       "Tracks Houston's philanthropic community, surfacing giving cycles and positioning TMC for Program Related Investments with foundations like Brown and Kinder.",
-    team: "Comms/Development",
+    teams: [{ name: "Strategy & New Ventures" }],
     basis:
       "Development research and foundation tracking typically done by a development associate or outsourced research firm.",
     conservative: "$50K",
@@ -127,7 +132,9 @@ const initialProducts: Product[] = [
 
 const teamStyles: Record<Team, { background: string; color: string }> = {
   Innovation: { background: "var(--color-basil-50)", color: "var(--color-basil-ink)" },
-  "Comms/Development": { background: "var(--color-viola-50)", color: "var(--color-viola-900)" },
+  "Strategy & New Ventures": { background: "var(--color-viola-50)", color: "var(--color-viola-900)" },
+  Marketing: { background: "var(--color-saffron-50)", color: "#854F0B" },
+  BioBridge: { background: "var(--color-sky-50)", color: "var(--color-sky-ink)" },
 };
 
 const confidenceStyles: Record<
@@ -149,14 +156,16 @@ const confidenceStyles: Record<
 };
 
 const teamLegend: Record<Team, string> = {
-  Innovation: "TMC Innovation + Venture Fund",
-  "Comms/Development": "Communications + Development",
+  Innovation: "Innovation",
+  "Strategy & New Ventures": "Strategy & New Ventures",
+  Marketing: "Marketing",
+  BioBridge: "BioBridge",
 };
 
 /* ── Component ──────────────────────────────────────────────────────────── */
 
 export function ProductTableToggle() {
-  const [mode, setMode] = useState<"overview" | "headcount">("headcount");
+  const [mode, setMode] = useState<"overview" | "headcount">("overview");
   const [rows, setRows] = useState<Product[]>(initialProducts);
   const dragIndex = useRef<number | null>(null);
   const [dragOverIndex, setDragOverIndex] = useState<number | null>(null);
@@ -207,7 +216,7 @@ export function ProductTableToggle() {
           overflow: "hidden",
         }}
       >
-        {(["headcount", "overview"] as const).map((m) => (
+        {(["overview", "headcount"] as const).map((m) => (
           <button
             key={m}
             onClick={() => setMode(m)}
@@ -360,19 +369,32 @@ export function ProductTableToggle() {
                       {row.description}
                     </td>
                     <td style={tdStyle}>
-                      <span
+                      <div
                         style={{
-                          display: "inline-block",
-                          fontSize: "11px",
-                          fontWeight: 500,
-                          padding: "2px 8px",
-                          borderRadius: "var(--r-pill)",
-                          whiteSpace: "nowrap",
-                          ...getTeamStyle(row.team),
+                          display: "flex",
+                          flexWrap: "wrap",
+                          gap: "4px",
                         }}
                       >
-                        {row.team}
-                      </span>
+                        {row.teams.map((tag) => (
+                          <span
+                            key={tag.name}
+                            title={tag.tentative ? "Possibly applies" : undefined}
+                            style={{
+                              display: "inline-block",
+                              fontSize: "11px",
+                              fontWeight: 500,
+                              padding: "2px 8px",
+                              borderRadius: "var(--r-pill)",
+                              whiteSpace: "nowrap",
+                              opacity: tag.tentative ? 0.55 : 1,
+                              ...getTeamStyle(tag.name),
+                            }}
+                          >
+                            {tag.tentative ? `[${tag.name}]` : tag.name}
+                          </span>
+                        ))}
+                      </div>
                     </td>
                   </>
                 ) : (
@@ -570,36 +592,6 @@ export function ProductTableToggle() {
             ))}
       </div>
 
-      {/* Verdict callout (headcount mode only) */}
-      {mode === "headcount" && (
-        <div className="callout-viola" style={{ marginTop: "20px" }}>
-          <p
-            style={{
-              fontSize: "13px",
-              fontWeight: 500,
-              color: "var(--color-ink-900)",
-              marginBottom: "4px",
-            }}
-          >
-            The defensible number in the room
-          </p>
-          <p
-            style={{
-              fontSize: "13px",
-              color: "var(--color-ink-500)",
-              lineHeight: 1.55,
-              margin: 0,
-            }}
-          >
-            The math lands at{" "}
-            <strong style={{ color: "var(--color-ink-900)" }}>$550K–$960K</strong>{" "}
-            with honest assumptions. The solid core — Strategic BI and Portfolio
-            Intelligence — is{" "}
-            <strong style={{ color: "var(--color-ink-900)" }}>$340–500K</strong> and
-            fully auditable. Lead with that; let the audience extrapolate upward.
-          </p>
-        </div>
-      )}
     </div>
   );
 }
