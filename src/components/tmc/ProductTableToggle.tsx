@@ -155,13 +155,6 @@ const confidenceStyles: Record<
   },
 };
 
-const teamLegend: Record<Team, string> = {
-  Innovation: "Innovation",
-  "Strategy & New Ventures": "Strategy & New Ventures",
-  Marketing: "Marketing",
-  BioBridge: "BioBridge",
-};
-
 /* ── Component ──────────────────────────────────────────────────────────── */
 
 export function ProductTableToggle() {
@@ -200,7 +193,7 @@ export function ProductTableToggle() {
   const getConfStyle = (conf: Confidence) => confidenceStyles[conf];
 
   return (
-    <div style={{ marginBottom: "48px" }}>
+    <div style={{ marginBottom: "8px" }}>
       <style>{`
         @media (max-width: 640px) {
           .ptt-drag-col { display: none !important; }
@@ -540,56 +533,6 @@ export function ProductTableToggle() {
             </tr>
           </tfoot>
         </table>
-      </div>
-
-      {/* Legend */}
-      <div
-        style={{
-          display: "flex",
-          gap: "16px",
-          marginTop: "12px",
-          fontSize: "11px",
-          color: "var(--color-ink-300)",
-          flexWrap: "wrap",
-        }}
-      >
-        {mode === "overview"
-          ? (Object.keys(teamLegend) as Team[]).map((team) => (
-              <div
-                key={team}
-                style={{ display: "flex", alignItems: "center", gap: "6px" }}
-              >
-                <span
-                  style={{
-                    display: "inline-block",
-                    width: "8px",
-                    height: "8px",
-                    borderRadius: "50%",
-                    background: getTeamStyle(team).background,
-                    border: `1px solid ${getTeamStyle(team).color}`,
-                  }}
-                />
-                {teamLegend[team]}
-              </div>
-            ))
-          : (["High", "Medium", "Low"] as Confidence[]).map((c) => (
-              <div
-                key={c}
-                style={{ display: "flex", alignItems: "center", gap: "6px" }}
-              >
-                <span
-                  style={{
-                    display: "inline-block",
-                    width: "8px",
-                    height: "8px",
-                    borderRadius: "50%",
-                    background: getConfStyle(c).pill.background,
-                    border: `1px solid ${getConfStyle(c).pill.color}`,
-                  }}
-                />
-                {c} confidence
-              </div>
-            ))}
       </div>
 
     </div>
