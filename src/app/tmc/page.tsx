@@ -36,11 +36,6 @@ const metrics: Metric[] = [
     note: "Across portfolio intelligence, marketing, ops, and pipeline",
   },
   {
-    label: "Savings + revenue",
-    value: "$550K–$960K",
-    note: "Conservative–aggressive range",
-  },
-  {
     label: "Benefitting functions",
     value: "4",
     tags: [
@@ -273,7 +268,7 @@ export default function TmcBenefitsPage() {
             {/* Metric cards */}
             <Fade delay={60}>
               <div
-                className="grid grid-cols-3 gap-3 max-[640px]:grid-cols-1"
+                className="grid grid-cols-2 gap-3 max-[640px]:grid-cols-1"
                 style={{ marginBottom: "22px" }}
               >
                 {metrics.map((m) => (
