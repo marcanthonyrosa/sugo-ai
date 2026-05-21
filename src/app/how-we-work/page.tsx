@@ -175,10 +175,14 @@ export default function HowWeWorkPage() {
                 <rect x="92" y="18" width="40" height="30" rx="3" fill="none" stroke="currentColor" strokeWidth="1.5" />
                 <text x="112" y="38" fontSize="10" fill="currentColor" textAnchor="middle" fontWeight="600" fontFamily="var(--font-mono)">+AI</text>
                 <rect x="138" y="20" width="36" height="26" rx="2" fill="none" stroke="currentColor" strokeWidth="1" opacity="0.32" />
-                <path d="M 0 92 L 40 86 L 80 76 L 120 66 L 160 54 L 200 44" stroke="currentColor" strokeWidth="1.5" opacity="0.6" fill="none" />
-                <circle cx="200" cy="44" r="3" fill="currentColor" opacity="0.85" />
+                <line x1="0" y1="80" x2="200" y2="80" stroke="currentColor" strokeWidth="1" opacity="0.25" />
+                <circle cx="40" cy="80" r="2" fill="currentColor" opacity="0.45" />
+                <circle cx="80" cy="80" r="2" fill="currentColor" opacity="0.5" />
+                <circle cx="120" cy="80" r="2" fill="currentColor" opacity="0.55" />
+                <circle cx="160" cy="80" r="2" fill="currentColor" opacity="0.65" />
+                <circle cx="200" cy="80" r="3" fill="currentColor" opacity="0.9" />
               </svg>
-              <div className="phase__diagram-caption">Feature &rarr; usage</div>
+              <div className="phase__diagram-caption">Measured outcome</div>
             </div>
           </div>
         </div>
