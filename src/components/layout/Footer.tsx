@@ -12,8 +12,7 @@ export function Footer() {
               <span className="footer__brand-name">Sugo AI</span>
             </div>
             <p className="footer__tagline">
-              Where AI strategy becomes working software. A small firm, built
-              slowly.
+              Where AI strategy becomes working software.
             </p>
           </div>
           <div>
@@ -34,7 +33,7 @@ export function Footer() {
         </div>
         <div className="footer__bottom">
           <span>&copy; 2026 Sugo Product Company, LLC</span>
-          <span>Small firm, built slowly.</span>
+          <span>Houston, TX &middot; est. 2026</span>
         </div>
       </div>
     </footer>

@@ -11,7 +11,7 @@ export default function HomePage() {
             <br />
             <span className="accent">Working software is rare.</span>
             <br />
-            Sugo closes the gap.
+            We close the gap.
           </h1>
           <div className="thesis__byline fade-in fade-in-2">
             <span className="thesis__byline-rule" aria-hidden="true" />
@@ -38,9 +38,8 @@ export default function HomePage() {
             </div>
             <div className="callout__body">
               <p>
-                of enterprise AI pilots fail to move the P&amp;L &mdash; for
-                lack of workflow fit, last-mile ownership, and someone close
-                enough to the build to make the right calls on Monday.
+                of enterprise AI pilots fail to move the P&amp;L &mdash;
+                because nobody close enough to the build is making the call.
               </p>
               <div className="callout__source">
                 MIT &middot; State of AI in Business &middot; Aug 2025
@@ -81,8 +80,8 @@ export default function HomePage() {
               <h3>Agents that take manual work off the team.</h3>
               <p>
                 Back-office workflows where humans copy-paste between systems.
-                Sugo finds the one with the clearest waste and ships an agent
-                that owns it end-to-end.
+                I find the one with the clearest waste and ship the agent that
+                owns it.
               </p>
               <div className="work__diagram" aria-hidden="true">
                 <svg
@@ -111,10 +110,9 @@ export default function HomePage() {
               <span className="work__label">Inside the product</span>
               <h3>AI-native features customers feel.</h3>
               <p>
-                A real user, a real job, a real outcome metric. Sugo takes the
-                wedge from discovery through launch &mdash; close enough to
-                engineering to make the trade-offs that decide whether the
-                feature drives usage.
+                A real user, a real job, a real outcome metric. I take the
+                first feature from discovery through launch &mdash; close
+                enough to engineering to make the calls that matter.
               </p>
               <div className="work__diagram" aria-hidden="true">
                 <svg
@@ -145,38 +143,33 @@ export default function HomePage() {
         <div className="wrap">
           <div className="story__meta">One engagement, told plainly</div>
           <h2 className="story__h">
-            Closing a workflow gap at a mid-sized MSP.
+            Where dispatch was the bottleneck.
           </h2>
 
           <div className="story__prose">
             <div className="story__chapter">
               <p>
-                <strong>The situation.</strong> A managed-service provider was
-                losing a meaningful share of dispatch time each week to manual
-                triage of customer tickets &mdash; the kind of work that sits
-                between the PSA and the RMM, that everyone knows is wasteful,
-                that no platform vendor solves because it&rsquo;s between the
-                seams.
+                <strong>The situation.</strong> A managed-service provider
+                losing dispatch hours each week to manual ticket triage &mdash;
+                the work that sits between the PSA and the RMM, that everyone
+                knows is wasteful, that no platform vendor solves.
               </p>
               <p>
                 <strong>The first move.</strong> A short stretch of paired
-                sessions with the dispatch team. No interviews, no
-                surveys &mdash; sitting beside the work. We left with a workflow
-                map of every place a human was acting as glue, ranked by hours
-                saved per change.
+                sessions with dispatch. No interviews, no surveys &mdash;
+                sitting beside the work. We left with a map of every place a
+                human was acting as glue.
               </p>
               <p>
                 <strong>What shipped.</strong> A small triage agent that read
-                incoming tickets, drafted the first response, and routed to the
-                right pod. Not a platform &mdash; one workflow, one owner, one
-                metric. Integrated with the PSA they already paid for.
+                incoming tickets, drafted the first response, routed to the
+                right pod. One workflow, one owner, one metric. Integrated with
+                the PSA they already paid for.
               </p>
               <p>
-                <strong>What changed.</strong> Dispatch reclaimed the majority
-                of those hours within the first month, with the remainder split
-                across edge cases the team still wanted to handle directly. The
-                team kept the workflow. The agent stayed quiet. That&rsquo;s the
-                bar.
+                <strong>What changed.</strong> Dispatch got most of the hours
+                back inside a month. The team kept the workflow. The agent
+                stayed quiet. That&rsquo;s the bar.
               </p>
             </div>
 
@@ -185,18 +178,6 @@ export default function HomePage() {
                 <span className="story__keylabel">Engagement</span>
                 <span className="story__keyvalue">
                   Operations agent &middot; MSP vertical
-                </span>
-              </div>
-              <div className="story__keyrow">
-                <span className="story__keylabel">Timeline</span>
-                <span className="story__keyvalue">
-                  &mdash; <span className="story__keyhint">(on a call)</span>
-                </span>
-              </div>
-              <div className="story__keyrow">
-                <span className="story__keylabel">Measured outcome</span>
-                <span className="story__keyvalue">
-                  &mdash; <span className="story__keyhint">(on a call)</span>
                 </span>
               </div>
               <div className="story__keyrow">
@@ -210,8 +191,8 @@ export default function HomePage() {
           </div>
 
           <div className="story__attribution">
-            Engagement details kept off the public site at the client&rsquo;s
-            request. Happy to walk through specifics on a call.
+            Specifics kept private at the client&rsquo;s request. Happy to walk
+            you through on a call.
           </div>
         </div>
       </section>

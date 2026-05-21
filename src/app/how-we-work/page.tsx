@@ -29,25 +29,25 @@ export default function HowWeWorkPage() {
             <div className="phase__body">
               <h2 className="phase__name">Opportunity Audit</h2>
               <p className="phase__lede">
-                Sort signal from noise. Find the one painful workflow or one
+                Sort signal from noise &mdash; the one painful workflow or one
                 promising feature worth shipping first.
               </p>
               <p>
-                Most teams arrive with five candidate use cases and no honest
-                ranking. The audit puts each on the table &mdash; workflow fit,
-                integration depth, last-mile owner, expected hours saved or
-                revenue moved &mdash; and produces a short written assessment.
+                The audit puts each candidate on the table against the same
+                criteria &mdash; fit, integration depth, last-mile owner,
+                hours saved &mdash; and ranks them.
               </p>
               <p>
-                No deck. No 40-page deliverable. A ranked list, a
-                recommendation, and an honest read on whether Sugo is the right
-                partner for the build that follows.
+                Working prototypes are far more useful than decks, so
+                we&rsquo;ll start around there. A ranked list, a
+                recommendation, and an honest read on whether Sugo is the
+                right partner for what comes next.
               </p>
               <div className="phase__deliverables">
                 <div>
                   <div className="phase__deliverable-label">What you get</div>
                   <div className="phase__deliverable-value">
-                    Ranked use cases &middot; written recommendation &middot;
+                    Working prototype &middot; ranked use cases &middot;
                     scoped pilot proposal
                   </div>
                 </div>
@@ -75,13 +75,13 @@ export default function HowWeWorkPage() {
               </p>
               <p>
                 Two weeks of paired sessions with the team that owns the
-                workflow. A scoped agent or integration that handles the manual
-                work, ships in production, and is measured against the
-                hours-saved baseline established in the audit.
+                workflow. Then a scoped agent that handles the manual work,
+                ships in production, and gets measured against the hours-saved
+                baseline from the audit.
               </p>
               <p>
-                Not a platform. Not a roadmap. A working piece of software your
-                operations lead uses on Monday.
+                Working code first. Your operations lead has something they
+                actually use, not a deck to read.
               </p>
               <div className="phase__deliverables">
                 <div>
@@ -115,10 +115,9 @@ export default function HowWeWorkPage() {
                 launch, measured against real outcomes.
               </p>
               <p>
-                Embedded with the product and engineering team. The wedge is
-                shaped, instrumented, shipped behind a flag, and measured. Sugo
-                stays close enough to make the trade-offs that decide whether
-                the feature drives usage or just shipped.
+                Embedded with the product and engineering team. I shape the
+                first feature, instrument it, ship behind a flag, measure what
+                changed. Close enough to make the calls that matter.
               </p>
               <p>
                 The handoff is a launched feature with an outcome dashboard your
@@ -135,8 +134,8 @@ export default function HowWeWorkPage() {
                 <div>
                   <div className="phase__deliverable-label">Good fit when</div>
                   <div className="phase__deliverable-value">
-                    A real customer job needs an AI wedge &mdash; not a novelty
-                    bolt-on.
+                    A real customer job needs a real AI feature &mdash; not a
+                    novelty bolt-on.
                   </div>
                 </div>
               </div>
@@ -151,7 +150,7 @@ export default function HowWeWorkPage() {
           <h2 className="principles__h">How I tend to work.</h2>
           <div className="principles__list">
             <div>
-              <h3 className="principle__name">Software before ceremony.</h3>
+              <h3 className="principle__name">Software, not decks.</h3>
               <p className="principle__body">
                 The deliverable is working code in production, not a deck about
                 working code. Frameworks and templates are tools, not artifacts.
@@ -165,14 +164,14 @@ export default function HowWeWorkPage() {
               </p>
             </div>
             <div>
-              <h3 className="principle__name">One thing, fully.</h3>
+              <h3 className="principle__name">Fewer things, done very well.</h3>
               <p className="principle__body">
-                A scoped agent shipped in eight weeks beats a platform vision
-                shipped never. Pick one workflow, own its last mile.
+                A scoped agent shipped beats a platform vision shipped never.
+                Pick fewer things, own them fully.
               </p>
             </div>
             <div>
-              <h3 className="principle__name">Measure honestly.</h3>
+              <h3 className="principle__name">Genuine ROI.</h3>
               <p className="principle__body">
                 Every build has a baseline metric set in the audit and a target
                 measured at 30 / 60 / 90 days. No vanity dashboards.
@@ -190,7 +189,7 @@ export default function HowWeWorkPage() {
               <p className="principle__body">
                 Your team owns the software after launch. Documentation,
                 monitoring, and a written brief on what to build next &mdash;
-                all on day one.
+                delivered on launch day.
               </p>
             </div>
           </div>
@@ -204,9 +203,9 @@ export default function HowWeWorkPage() {
             How engagements are scoped &amp; priced.
           </h2>
           <p className="pricing__lede">
-            Sugo prices by engagement, not by hour. Each phase is scoped against
-            a written outcome and paid in even biweekly invoices. No retainers,
-            no platform fees, no add-ons.
+            I price by engagement. Each phase is scoped against a written
+            outcome and paid in even biweekly invoices. No retainers, no
+            platform fees, no add-ons.
           </p>
           <div className="pricing__rows">
             <div className="pricing__row">

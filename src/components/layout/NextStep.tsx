@@ -8,8 +8,8 @@ export function NextStep() {
               Start a <span className="accent">conversation.</span>
             </h2>
             <p className="next-step__body">
-              30 minutes, no deck. Tell me what you&rsquo;re working on, where
-              the friction is, and what a useful first move would look like.
+              30 minutes, no deck. Tell me what you&rsquo;re working on and
+              where the friction is.
             </p>
             <div className="next-step__actions">
               <a
@@ -46,7 +46,7 @@ export function NextStep() {
                 Whether this is an audit, a build, or not a fit yet
               </div>
               <div className="next-step__card-row">
-                What a realistic timeline and scope might be
+                What the timeline and scope might look like
               </div>
             </div>
             <div className="next-step__card-divider" />
@@ -55,9 +55,9 @@ export function NextStep() {
                 Good reasons to reach out
               </div>
               <p>
-                You have AI energy but not enough clarity, or you know exactly
-                where the drag is and need a senior partner to ship the first
-                serious version.
+                You have momentum around AI but no clarity on where it should
+                apply or what to do. Or, you know where the drag is and need a
+                senior operator to bring v1 to market.
               </p>
             </div>
           </div>

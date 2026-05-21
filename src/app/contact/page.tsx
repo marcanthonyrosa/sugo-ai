@@ -10,7 +10,8 @@ export default function ContactPage() {
           <div className="thesis__byline fade-in fade-in-2">
             <span className="thesis__byline-rule" aria-hidden="true" />
             <span>
-              30 minutes, no deck. Tell me what you&rsquo;re working on.
+              A 30-minute discovery brain-dump &mdash; talk through your
+              goals, zero prep needed.
             </span>
           </div>
         </div>
@@ -24,7 +25,7 @@ export default function ContactPage() {
               <p className="actions__lede">
                 The fastest way is the calendar link. If you&rsquo;d rather
                 write first, my inbox is below &mdash; I read everything and
-                reply within a day.
+                reply within a day or two.
               </p>
 
               <div className="actions__buttons">
@@ -139,7 +140,7 @@ export default function ContactPage() {
                 <span className="filter__mark filter__mark--yes">Yes</span>
                 <p className="filter__text">
                   You&rsquo;re early in product or operations leadership and
-                  want a senior thought partner in the room.
+                  want someone senior in the room with you.
                 </p>
               </div>
               <div className="filter__item">
