@@ -30,36 +30,11 @@ export default function HomePage() {
       <section className="callout" aria-label="Industry data">
         <div className="wrap">
           <div className="callout__grid">
-            <div className="callout__evidence">
-              <div
-                className="callout__figure"
-                aria-label="Ninety-five percent"
-              >
-                95<span className="pct">%</span>
-              </div>
-              <div className="callout__viz-wrap">
-                <div
-                  className="callout__viz"
-                  role="img"
-                  aria-label="Visualization: 95 of 100 pilots fail to ship"
-                >
-                  {/* 100 dots: 95 fail (muted viola), 5 ship (deep ink) */}
-                  {Array.from({ length: 100 }, (_, i) => {
-                    const successPositions = [16, 42, 58, 74, 91];
-                    return (
-                      <span
-                        key={i}
-                        className={
-                          successPositions.includes(i) ? "success" : undefined
-                        }
-                      />
-                    );
-                  })}
-                </div>
-                <div className="callout__viz-label">
-                  95 fail &middot; <strong>5 ship</strong>
-                </div>
-              </div>
+            <div
+              className="callout__figure"
+              aria-label="Ninety-five percent"
+            >
+              95<span className="pct">%</span>
             </div>
             <div className="callout__body">
               <p>
@@ -69,6 +44,27 @@ export default function HomePage() {
               <div className="callout__source">
                 MIT &middot; State of AI in Business &middot; Aug 2025
               </div>
+            </div>
+            <div className="callout__viz-wrap">
+              <div
+                className="callout__viz"
+                role="img"
+                aria-label="Visualization: 95 of 100 pilots fail to ship"
+              >
+                {/* 100 dots: 95 fail (muted viola), 5 ship (deep ink) */}
+                {Array.from({ length: 100 }, (_, i) => {
+                  const successPositions = [16, 42, 58, 74, 91];
+                  return (
+                    <span
+                      key={i}
+                      className={
+                        successPositions.includes(i) ? "success" : undefined
+                      }
+                    />
+                  );
+                })}
+              </div>
+              <div className="callout__viz-label">95 fail &middot; 5 ship</div>
             </div>
           </div>
         </div>
