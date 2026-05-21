@@ -1,3 +1,5 @@
+import { CAL_URL } from "@/components/ui/CalModal";
+
 export function NextStep() {
   return (
     <section className="next-step" id="next-step">
@@ -14,7 +16,7 @@ export function NextStep() {
             <div className="next-step__actions">
               <a
                 className="btn-primary"
-                href="https://cal.com/marcrosa"
+                href={CAL_URL}
                 target="_blank"
                 rel="noopener"
               >

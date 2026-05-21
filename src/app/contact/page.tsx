@@ -1,3 +1,5 @@
+import { CAL_URL } from "@/components/ui/CalModal";
+
 export default function ContactPage() {
   return (
     <main>
@@ -31,7 +33,7 @@ export default function ContactPage() {
               <div className="actions__buttons">
                 <a
                   className="btn-primary"
-                  href="https://cal.com/marcrosa"
+                  href={CAL_URL}
                   target="_blank"
                   rel="noopener"
                 >

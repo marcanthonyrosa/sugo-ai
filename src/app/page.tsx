@@ -150,21 +150,18 @@ export default function HomePage() {
             <div className="story__chapter">
               <p>
                 <strong>The situation.</strong> A managed-service provider
-                losing dispatch hours each week to manual ticket triage &mdash;
-                the work that sits between the PSA and the RMM, that everyone
-                knows is wasteful, that no platform vendor solves.
+                losing dispatch hours each week to manual ticket triage. The
+                kind of work no platform vendor solves.
               </p>
               <p>
-                <strong>The first move.</strong> A short stretch of paired
-                sessions with dispatch. No interviews, no surveys &mdash;
-                sitting beside the work. We left with a map of every place a
-                human was acting as glue.
+                <strong>The first move.</strong> Paired with the dispatch
+                team &mdash; sitting beside the work, not interviewing it. We
+                left with a map of every place a human was acting as glue.
               </p>
               <p>
-                <strong>What shipped.</strong> A small triage agent that read
-                incoming tickets, drafted the first response, routed to the
-                right pod. One workflow, one owner, one metric. Integrated with
-                the PSA they already paid for.
+                <strong>What shipped.</strong> A small triage agent on the PSA
+                they already had. Drafted first responses, routed to the right
+                pod. One workflow, one owner, one metric.
               </p>
               <p>
                 <strong>What changed.</strong> Dispatch got most of the hours
