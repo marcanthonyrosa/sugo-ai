@@ -7,9 +7,9 @@ interface SectionLabelProps {
 
 export function SectionLabel({ n, children }: SectionLabelProps) {
   return (
-    <>
-      <div className="section-no mb-2">§ {n}</div>
-      <div className="eyebrow mb-6">{children}</div>
-    </>
+    <div className="eyebrow mb-6">
+      <span className="eyebrow__num">{n}</span>
+      <span>{children}</span>
+    </div>
   );
 }

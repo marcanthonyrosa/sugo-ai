@@ -1,5 +1,4 @@
 import { NextStep } from "@/components/layout/NextStep";
-import { Footer } from "@/components/layout/Footer";
 
 export default function HowWeWorkPage() {
   return (
@@ -22,7 +21,7 @@ export default function HowWeWorkPage() {
       <section className="phases">
         <div className="wrap">
           {/* Phase 01 */}
-          <div className="phase">
+          <div className="phase phase--saffron">
             <div className="phase__index">
               <span className="phase__num">01</span>
               <span className="phase__when">2&ndash;3 weeks</span>
@@ -30,25 +29,25 @@ export default function HowWeWorkPage() {
             <div className="phase__body">
               <h2 className="phase__name">Opportunity Audit</h2>
               <p className="phase__lede">
-                Sort signal from noise. Find the one painful workflow or one
+                Sort signal from noise &mdash; the one painful workflow or one
                 promising feature worth shipping first.
               </p>
               <p>
-                Most teams arrive with five candidate use cases and no honest
-                ranking. The audit puts each on the table &mdash; workflow fit,
-                integration depth, last-mile owner, expected hours saved or
-                revenue moved &mdash; and produces a short written assessment.
+                The audit puts each candidate on the table against the same
+                criteria &mdash; fit, integration depth, last-mile owner,
+                hours saved &mdash; and ranks them.
               </p>
               <p>
-                No deck. No 40-page deliverable. A ranked list, a
-                recommendation, and an honest read on whether Sugo is the right
-                partner for the build that follows.
+                Working prototypes are far more useful than decks, so
+                we&rsquo;ll start around there. A ranked list, a
+                recommendation, and an honest read on whether Sugo is the
+                right partner for what comes next.
               </p>
               <div className="phase__deliverables">
                 <div>
                   <div className="phase__deliverable-label">What you get</div>
                   <div className="phase__deliverable-value">
-                    Ranked use cases &middot; written recommendation &middot;
+                    Working prototype &middot; ranked use cases &middot;
                     scoped pilot proposal
                   </div>
                 </div>
@@ -60,10 +59,20 @@ export default function HowWeWorkPage() {
                 </div>
               </div>
             </div>
+            <div className="phase__diagram" aria-hidden="true">
+              <svg viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
+                <rect x="0" y="0" width="180" height="14" rx="2" fill="currentColor" opacity="0.95" />
+                <rect x="0" y="22" width="140" height="14" rx="2" fill="currentColor" opacity="0.42" />
+                <rect x="0" y="44" width="100" height="14" rx="2" fill="currentColor" opacity="0.32" />
+                <rect x="0" y="66" width="72" height="14" rx="2" fill="currentColor" opacity="0.22" />
+                <rect x="0" y="88" width="44" height="14" rx="2" fill="currentColor" opacity="0.16" />
+              </svg>
+              <div className="phase__diagram-caption">Ranked candidates</div>
+            </div>
           </div>
 
           {/* Phase 02 */}
-          <div className="phase">
+          <div className="phase phase--basil">
             <div className="phase__index">
               <span className="phase__num">02</span>
               <span className="phase__when">6&ndash;12 weeks</span>
@@ -76,13 +85,13 @@ export default function HowWeWorkPage() {
               </p>
               <p>
                 Two weeks of paired sessions with the team that owns the
-                workflow. A scoped agent or integration that handles the manual
-                work, ships in production, and is measured against the
-                hours-saved baseline established in the audit.
+                workflow. Then a scoped agent that handles the manual work,
+                ships in production, and gets measured against the hours-saved
+                baseline from the audit.
               </p>
               <p>
-                Not a platform. Not a roadmap. A working piece of software your
-                operations lead uses on Monday.
+                Working code first. Your operations lead has something they
+                actually use, not a deck to read.
               </p>
               <div className="phase__deliverables">
                 <div>
@@ -101,10 +110,25 @@ export default function HowWeWorkPage() {
                 </div>
               </div>
             </div>
+            <div className="phase__diagram" aria-hidden="true">
+              <svg viewBox="0 0 200 80" xmlns="http://www.w3.org/2000/svg">
+                <rect x="0" y="14" width="48" height="32" rx="3" fill="none" stroke="currentColor" strokeWidth="1" opacity="0.5" />
+                <text x="24" y="34" fontSize="9" fill="currentColor" textAnchor="middle" opacity="0.85" fontFamily="var(--font-mono)">IN</text>
+                <line x1="50" y1="30" x2="74" y2="30" stroke="currentColor" strokeWidth="1" opacity="0.5" />
+                <polygon points="72,27 77,30 72,33" fill="currentColor" opacity="0.5" />
+                <rect x="76" y="6" width="48" height="48" rx="3" fill="currentColor" opacity="0.92" />
+                <text x="100" y="34" fontSize="9" fill="var(--color-basil-50)" textAnchor="middle" fontWeight="500" fontFamily="var(--font-mono)">AGENT</text>
+                <line x1="126" y1="30" x2="150" y2="30" stroke="currentColor" strokeWidth="1" opacity="0.5" />
+                <polygon points="148,27 153,30 148,33" fill="currentColor" opacity="0.5" />
+                <rect x="152" y="14" width="48" height="32" rx="3" fill="none" stroke="currentColor" strokeWidth="1" opacity="0.5" />
+                <text x="176" y="34" fontSize="9" fill="currentColor" textAnchor="middle" opacity="0.85" fontFamily="var(--font-mono)">OUT</text>
+              </svg>
+              <div className="phase__diagram-caption">One workflow, one owner</div>
+            </div>
           </div>
 
           {/* Phase 03 */}
-          <div className="phase">
+          <div className="phase phase--viola">
             <div className="phase__index">
               <span className="phase__num">03</span>
               <span className="phase__when">8&ndash;16 weeks</span>
@@ -116,10 +140,9 @@ export default function HowWeWorkPage() {
                 launch, measured against real outcomes.
               </p>
               <p>
-                Embedded with the product and engineering team. The wedge is
-                shaped, instrumented, shipped behind a flag, and measured. Sugo
-                stays close enough to make the trade-offs that decide whether
-                the feature drives usage or just shipped.
+                Embedded with the product and engineering team. I shape the
+                first feature, instrument it, ship behind a flag, measure what
+                changed. Close enough to make the calls that matter.
               </p>
               <p>
                 The handoff is a launched feature with an outcome dashboard your
@@ -136,11 +159,26 @@ export default function HowWeWorkPage() {
                 <div>
                   <div className="phase__deliverable-label">Good fit when</div>
                   <div className="phase__deliverable-value">
-                    A real customer job needs an AI wedge &mdash; not a novelty
-                    bolt-on.
+                    A real customer job needs a real AI feature &mdash; not a
+                    novelty bolt-on.
                   </div>
                 </div>
               </div>
+            </div>
+            <div className="phase__diagram" aria-hidden="true">
+              <svg viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
+                <rect x="0" y="0" width="200" height="56" rx="3" fill="none" stroke="currentColor" strokeWidth="1" opacity="0.28" />
+                <line x1="8" y1="10" x2="44" y2="10" stroke="currentColor" strokeWidth="2" opacity="0.45" />
+                <rect x="8" y="20" width="36" height="26" rx="2" fill="none" stroke="currentColor" strokeWidth="1" opacity="0.32" />
+                <rect x="50" y="20" width="36" height="26" rx="2" fill="none" stroke="currentColor" strokeWidth="1" opacity="0.32" />
+                <rect x="92" y="18" width="40" height="30" rx="3" fill="var(--color-viola-500)" opacity="0.5" />
+                <rect x="92" y="18" width="40" height="30" rx="3" fill="none" stroke="currentColor" strokeWidth="1.5" />
+                <text x="112" y="38" fontSize="10" fill="currentColor" textAnchor="middle" fontWeight="600" fontFamily="var(--font-mono)">+AI</text>
+                <rect x="138" y="20" width="36" height="26" rx="2" fill="none" stroke="currentColor" strokeWidth="1" opacity="0.32" />
+                <path d="M 0 92 L 40 86 L 80 76 L 120 66 L 160 54 L 200 44" stroke="currentColor" strokeWidth="1.5" opacity="0.6" fill="none" />
+                <circle cx="200" cy="44" r="3" fill="currentColor" opacity="0.85" />
+              </svg>
+              <div className="phase__diagram-caption">Feature &rarr; usage</div>
             </div>
           </div>
         </div>
@@ -152,7 +190,7 @@ export default function HowWeWorkPage() {
           <h2 className="principles__h">How I tend to work.</h2>
           <div className="principles__list">
             <div>
-              <h3 className="principle__name">Software before ceremony.</h3>
+              <h3 className="principle__name">Software, not decks.</h3>
               <p className="principle__body">
                 The deliverable is working code in production, not a deck about
                 working code. Frameworks and templates are tools, not artifacts.
@@ -166,14 +204,14 @@ export default function HowWeWorkPage() {
               </p>
             </div>
             <div>
-              <h3 className="principle__name">One thing, fully.</h3>
+              <h3 className="principle__name">Fewer things, done very well.</h3>
               <p className="principle__body">
-                A scoped agent shipped in eight weeks beats a platform vision
-                shipped never. Pick one workflow, own its last mile.
+                A scoped agent shipped beats a platform vision shipped never.
+                Pick fewer things, own them fully.
               </p>
             </div>
             <div>
-              <h3 className="principle__name">Measure honestly.</h3>
+              <h3 className="principle__name">Genuine ROI.</h3>
               <p className="principle__body">
                 Every build has a baseline metric set in the audit and a target
                 measured at 30 / 60 / 90 days. No vanity dashboards.
@@ -191,7 +229,7 @@ export default function HowWeWorkPage() {
               <p className="principle__body">
                 Your team owns the software after launch. Documentation,
                 monitoring, and a written brief on what to build next &mdash;
-                all on day one.
+                delivered on launch day.
               </p>
             </div>
           </div>
@@ -205,9 +243,9 @@ export default function HowWeWorkPage() {
             How engagements are scoped &amp; priced.
           </h2>
           <p className="pricing__lede">
-            Sugo prices by engagement, not by hour. Each phase is scoped against
-            a written outcome and paid in even biweekly invoices. No retainers,
-            no platform fees, no add-ons.
+            I price by engagement. Each phase is scoped against a written
+            outcome and paid in even biweekly invoices. No retainers, no
+            platform fees, no add-ons.
           </p>
           <div className="pricing__rows">
             <div className="pricing__row">
@@ -250,7 +288,6 @@ export default function HowWeWorkPage() {
       </section>
 
       <NextStep />
-      <Footer />
     </main>
   );
 }

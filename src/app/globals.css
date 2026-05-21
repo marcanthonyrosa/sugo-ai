@@ -5,8 +5,9 @@
 @custom-variant dark (&:is(.dark *));
 
 /* ==========================================================================
-   Theme: Sugo AI · Viola-led design system
-   Hallmark · design-system: design.md · Sugo AI editorial system
+   Sugo AI · editorial system
+   Hallmark · genre: editorial · paper: cream · accent: viola
+   Secondary accents (functional surface tints only): pomodoro · saffron · basil · sky
    ========================================================================== */
 
 @theme inline {
@@ -60,11 +61,13 @@
 
   /* Ink scale */
   --color-ink-900: #112240;
+  --color-ink-800: #1B3258;
   --color-ink-700: #2A3A56;
   --color-ink-500: #4E5C74;
   --color-ink-300: #8A93A4;
   --color-ink-200: #B5BCC8;
   --color-ink-100: #DCE0E8;
+  --color-white: #FFFFFF;
 
   /* Surface scale */
   --color-surface-0: #FAFAF7;
@@ -85,6 +88,7 @@
   --color-pomodoro-ink: #8a3a27;
   --color-saffron: #E8C26B;
   --color-saffron-50: #FBF1D9;
+  --color-saffron-ink: #854F0B;
   --color-basil: #C4D4B9;
   --color-basil-50: #ECF1E7;
   --color-basil-ink: #2d4a37;
@@ -257,11 +261,6 @@
   font-family: var(--font-serif); font-size: 21px;
   color: var(--color-ink-900);
 }
-.nav__dot {
-  width: 22px; height: 22px; border-radius: 6px;
-  background: linear-gradient(135deg, var(--color-pomodoro) 0%, var(--color-saffron) 100%);
-  flex-shrink: 0;
-}
 .nav__logo {
   width: 22px; height: 22px;
   flex-shrink: 0;
@@ -325,7 +324,7 @@
   transition: background 160ms var(--ease-out), transform 120ms var(--ease-out), box-shadow 160ms var(--ease-out);
   cursor: pointer;
 }
-.btn-primary:hover { background: #1b3258; transform: translateY(-1px); box-shadow: 0 4px 10px rgba(17,34,64,0.15); }
+.btn-primary:hover { background: var(--color-ink-800); transform: translateY(-1px); box-shadow: 0 4px 10px rgba(17,34,64,0.15); }
 .btn-primary .arrow { font-family: var(--font-serif); font-style: italic; font-size: 1.1em; transition: transform 160ms var(--ease-out); }
 .btn-primary:hover .arrow { transform: translateX(3px); }
 
@@ -447,12 +446,13 @@
 }
 .callout__viz span {
   background: var(--color-viola-500);
-  opacity: 0.85;
+  opacity: 0.32;
   border-radius: 2px;
 }
 .callout__viz span.success {
   background: var(--color-ink-900);
-  opacity: 0.4;
+  opacity: 1;
+  box-shadow: 0 0 0 1px var(--color-surface-2);
 }
 .callout__viz-label {
   margin-top: 12px;
@@ -635,15 +635,17 @@
 }
 .phase {
   display: grid;
-  grid-template-columns: 1fr 1.6fr;
-  gap: 64px;
+  grid-template-columns: 0.7fr 2fr auto;
+  gap: 56px;
   padding: 72px 0;
   border-bottom: 1px solid var(--color-rule-soft);
   align-items: start;
 }
 .phase:last-child { border-bottom: none; }
 .phase__index {
-  display: flex; align-items: baseline; gap: 16px;
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
 }
 .phase__num {
   font-family: var(--font-mono);
@@ -660,6 +662,34 @@
   text-transform: uppercase;
   color: var(--color-ink-500);
 }
+.phase__diagram {
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 12px;
+  color: var(--color-ink-700);
+}
+.phase__diagram svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.phase__diagram-caption {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-ink-500);
+}
+
+/* Chromatic phase identities */
+.phase--saffron .phase__num,
+.phase--saffron .phase__diagram { color: var(--color-saffron-ink); }
+.phase--basil .phase__num,
+.phase--basil .phase__diagram { color: var(--color-basil-ink); }
+.phase--viola .phase__num,
+.phase--viola .phase__diagram { color: var(--color-viola-900); }
 .phase__body { max-width: 56ch; }
 .phase__name {
   font-family: var(--font-serif);
@@ -710,6 +740,7 @@
 @media (max-width: 900px) {
   .phase { grid-template-columns: 1fr; gap: 24px; padding: 56px 0; }
   .phase__deliverables { grid-template-columns: 1fr; gap: 20px; }
+  .phase__diagram { width: 100%; max-width: 240px; padding-top: 0; margin-top: 12px; }
 }
 
 /* ==========================================================================
@@ -1260,7 +1291,7 @@
 }
 .next-step__actions { display: flex; gap: 18px; flex-wrap: wrap; align-items: center; }
 .next-step .btn-primary { background: var(--color-offwhite); color: var(--color-ink-900); box-shadow: none; }
-.next-step .btn-primary:hover { background: #ffffff; }
+.next-step .btn-primary:hover { background: var(--color-white); }
 .next-step__secondary {
   font-family: var(--font-sans); font-size: 15px; font-weight: 500;
   color: var(--color-offwhite);
@@ -1283,12 +1314,6 @@
   border: 1px solid rgba(255,255,255,0.12);
   border-radius: var(--r-md);
   padding: 20px 22px;
-}
-.next-step__card-section { }
-.next-step__card-divider {
-  height: 1px;
-  background: rgba(255,255,255,0.10);
-  margin: 16px 0;
 }
 .next-step__card-label {
   font-family: var(--font-mono);
@@ -1333,11 +1358,6 @@
 .footer__brand-row {
   display: flex; align-items: center; gap: 10px;
   margin-bottom: 16px;
-}
-.footer__brand-dot {
-  width: 22px; height: 22px; border-radius: 6px;
-  background: linear-gradient(135deg, var(--color-pomodoro) 0%, var(--color-saffron) 100%);
-  flex-shrink: 0;
 }
 .footer__brand-logo {
   width: 22px; height: 22px;
@@ -1475,12 +1495,13 @@
     height: 1px;
     background: var(--color-ink-300);
   }
-  .section-no {
+  .eyebrow__num {
     font-family: var(--font-mono);
-    font-size: 12px;
     font-weight: 500;
-    color: var(--color-ink-500);
     letter-spacing: 0.04em;
+    color: var(--color-ink-300);
+    text-transform: none;
+    margin-right: 2px;
   }
   .fig {
     font-family: var(--font-mono);
@@ -1644,8 +1665,7 @@
   }
   .callout-viola {
     background: var(--color-viola-50);
-    border: 1px solid rgba(181, 154, 212, 0.25);
-    border-left: 3px solid var(--color-viola-500);
+    border: 1px solid rgba(181, 154, 212, 0.30);
     border-radius: var(--r-md);
     padding: 22px 26px;
     display: grid;
@@ -1723,7 +1743,7 @@
     background: var(--color-offwhite);
     color: var(--color-navy);
   }
-  .canvas-ink .btn-primary:hover { background: #FFFFFF; }
+  .canvas-ink .btn-primary:hover { background: var(--color-white); }
   .canvas-ink .link-grow { color: var(--color-offwhite); border-color: rgba(255, 255, 255, 0.3); }
   .canvas-ink .link-grow:hover { border-color: var(--color-offwhite); }
 
@@ -1743,6 +1763,8 @@
     width: max-content;
     align-items: center;
   }
+  .marquee:hover .marquee-track,
+  .marquee:focus-within .marquee-track { animation-play-state: paused; }
   .marquee-track span {
     font-family: var(--font-serif);
     font-size: 26px;

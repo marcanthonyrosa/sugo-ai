@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { NextStep } from "@/components/layout/NextStep";
-import { Footer } from "@/components/layout/Footer";
 
 export default function AboutPage() {
   return (
@@ -45,27 +44,30 @@ export default function AboutPage() {
               </p>
               <p>
                 <strong>Most recently</strong> I was Head of Product at Thread,
-                a conversational-AI platform for managed-service
-                providers &mdash; three years building AI-native software for a
-                vertical where buyers know the difference between a real
-                workflow tool and a demo.
+                where we turned a feature with traction into the
+                category-leading AI service desk for MSPs.
               </p>
               <p>
-                Before that I was Director of Product at{" "}
-                <strong>Deep 6 AI</strong>, a clinical-trial matching company in
-                TMC&rsquo;s portfolio that was later acquired by Tempus AI. I
-                spent the previous decade between health-tech and SaaS, mostly
-                in 0&rarr;1 product roles where the brief was &ldquo;find the
-                wedge, ship the first real version, and instrument it
-                honestly.&rdquo;
+                Before Thread, I was Director of Product at{" "}
+                <strong>Deep 6 AI</strong> &mdash; clinical-trial matching, in
+                TMC&rsquo;s portfolio, acquired by Tempus.
               </p>
               <p>
-                I started Sugo because the AI consulting market is full of firms
-                that ship slides and short on people who ship software. The
-                companies I&rsquo;ve enjoyed working with most had one thing in
-                common: a senior partner close enough to the build to make the
-                trade-offs that decide whether a feature lands or just shipped.
-                Sugo is that partner, available by the engagement.
+                The decade before that was health-tech and SaaS, mostly
+                0&rarr;1 work: find the right thing to build, ship the first
+                real version, measure what actually changed.
+              </p>
+              <p>
+                I started Sugo for legacy enterprises that want AI but
+                don&rsquo;t know where to start. Outside software, agent
+                penetration is under 5% &mdash; most industries have real
+                appetite and no obvious first move.
+              </p>
+              <p>
+                That&rsquo;s the work: find the opening, ship the first real
+                workflow, put working software in the team&rsquo;s hands. A
+                senior partner close enough to the build to make the calls that
+                matter.
               </p>
             </div>
           </div>
@@ -142,15 +144,17 @@ export default function AboutPage() {
             <span className="anchor__label">Off the clock</span>
             <div className="anchor__body">
               <p>
-                I&rsquo;m in Houston with my wife &mdash; a residential interior
-                designer &mdash; three sons (the youngest still very new), and
-                an embarrassing number of half-finished side projects. We chose
-                to build slowly here on purpose.
+                I&rsquo;m in Houston with my wife Elle, who runs an interior
+                design studio. We have a four-year-old and a newborn.
+              </p>
+              <p>
+                Sugo is Italian for sauce. Every Sunday, my sons and I make
+                it &mdash; same starting recipe, a small change each week.
+                The pixelated tomato in the logo is a callback to that.
               </p>
               <p>
                 If you want the longer version of any of the above, the easiest
-                thing is usually a thirty-minute call. I&rsquo;d rather talk
-                than write more about myself.
+                thing is usually a thirty-minute call.
               </p>
               <Link className="link-text" href="/contact">
                 Write to me{" "}
@@ -164,7 +168,6 @@ export default function AboutPage() {
       </section>
 
       <NextStep />
-      <Footer />
     </main>
   );
 }
