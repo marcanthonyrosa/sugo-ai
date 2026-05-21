@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { NextStep } from "@/components/layout/NextStep";
-import { Footer } from "@/components/layout/Footer";
 
 export default function AboutPage() {
   return (
@@ -164,7 +163,6 @@ export default function AboutPage() {
       </section>
 
       <NextStep />
-      <Footer />
     </main>
   );
 }

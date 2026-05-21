@@ -1,5 +1,4 @@
 import { NextStep } from "@/components/layout/NextStep";
-import { Footer } from "@/components/layout/Footer";
 
 export default function HowWeWorkPage() {
   return (
@@ -250,7 +249,6 @@ export default function HowWeWorkPage() {
       </section>
 
       <NextStep />
-      <Footer />
     </main>
   );
 }

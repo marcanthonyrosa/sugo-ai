@@ -1,6 +1,5 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { Footer } from "@/components/layout/Footer";
 import { MdxContent } from "@/components/writing/MdxContent";
 import { getArticleBySlug, getAllSlugs } from "@/lib/mdx";
 
@@ -45,14 +44,14 @@ export default async function WritingPostPage({ params }: WritingPostPageProps) 
             >
               <span>Written by Marc Anthony Rosa.</span>
               <span>If this is useful, forward it to one person.</span>
-              <Link className="btn-ghost mt-2" href="/contact" style={{ border: "none" }}>
-                Start a conversation <span className="arrow">→</span>
+              <Link className="link-text mt-2" href="/contact">
+                Start a conversation
+                <span className="arrow" aria-hidden="true">→</span>
               </Link>
             </div>
           </div>
         </div>
       </section>
-      <Footer />
     </main>
   );
 }

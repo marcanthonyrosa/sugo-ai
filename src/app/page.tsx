@@ -1,5 +1,4 @@
 import { NextStep } from "@/components/layout/NextStep";
-import { Footer } from "@/components/layout/Footer";
 
 export default function HomePage() {
   return (
@@ -16,7 +15,7 @@ export default function HomePage() {
           </h1>
           <div className="thesis__byline fade-in fade-in-2">
             <span className="thesis__byline-rule" aria-hidden="true" />
-            <span>A small practice &middot; Houston, TX &middot; est. 2025</span>
+            <span>A small practice &middot; Houston, TX &middot; est. 2026</span>
           </div>
           <a className="link-text thesis__cta fade-in fade-in-3" href="/contact">
             Start a conversation
@@ -89,17 +88,18 @@ export default function HomePage() {
                 <svg
                   viewBox="0 0 280 56"
                   xmlns="http://www.w3.org/2000/svg"
+                  style={{ color: "var(--color-basil-ink)" }}
                 >
-                  <rect x="2" y="14" width="68" height="28" rx="4" fill="none" stroke="#2d4a37" strokeWidth="1" opacity="0.55" />
-                  <text x="36" y="32" fontFamily="JetBrains Mono, monospace" fontSize="10" fill="#2d4a37" textAnchor="middle" opacity="0.85">PSA</text>
-                  <line x1="74" y1="28" x2="100" y2="28" stroke="#2d4a37" strokeWidth="1" opacity="0.55" />
-                  <polygon points="98,25 104,28 98,31" fill="#2d4a37" opacity="0.55" />
-                  <rect x="104" y="10" width="72" height="36" rx="4" fill="#2d4a37" opacity="0.85" />
-                  <text x="140" y="32" fontFamily="JetBrains Mono, monospace" fontSize="10" fill="#ecf1e7" textAnchor="middle" fontWeight="500">AGENT</text>
-                  <line x1="180" y1="28" x2="206" y2="28" stroke="#2d4a37" strokeWidth="1" opacity="0.55" />
-                  <polygon points="204,25 210,28 204,31" fill="#2d4a37" opacity="0.55" />
-                  <rect x="210" y="14" width="68" height="28" rx="4" fill="none" stroke="#2d4a37" strokeWidth="1" opacity="0.55" />
-                  <text x="244" y="32" fontFamily="JetBrains Mono, monospace" fontSize="10" fill="#2d4a37" textAnchor="middle" opacity="0.85">CRM</text>
+                  <rect x="2" y="14" width="68" height="28" rx="4" fill="none" stroke="currentColor" strokeWidth="1" opacity="0.55" />
+                  <text x="36" y="32" fontFamily="var(--font-mono)" fontSize="10" fill="currentColor" textAnchor="middle" opacity="0.85">PSA</text>
+                  <line x1="74" y1="28" x2="100" y2="28" stroke="currentColor" strokeWidth="1" opacity="0.55" />
+                  <polygon points="98,25 104,28 98,31" fill="currentColor" opacity="0.55" />
+                  <rect x="104" y="10" width="72" height="36" rx="4" fill="currentColor" opacity="0.85" />
+                  <text x="140" y="32" fontFamily="var(--font-mono)" fontSize="10" fill="var(--color-basil-50)" textAnchor="middle" fontWeight="500">AGENT</text>
+                  <line x1="180" y1="28" x2="206" y2="28" stroke="currentColor" strokeWidth="1" opacity="0.55" />
+                  <polygon points="204,25 210,28 204,31" fill="currentColor" opacity="0.55" />
+                  <rect x="210" y="14" width="68" height="28" rx="4" fill="none" stroke="currentColor" strokeWidth="1" opacity="0.55" />
+                  <text x="244" y="32" fontFamily="var(--font-mono)" fontSize="10" fill="currentColor" textAnchor="middle" opacity="0.85">CRM</text>
                 </svg>
               </div>
               <div className="work__timing">
@@ -120,15 +120,16 @@ export default function HomePage() {
                 <svg
                   viewBox="0 0 280 56"
                   xmlns="http://www.w3.org/2000/svg"
+                  style={{ color: "var(--color-viola-900)" }}
                 >
-                  <rect x="2" y="6" width="276" height="44" rx="4" fill="none" stroke="#4a2e6b" strokeWidth="1" opacity="0.25" />
-                  <line x1="10" y1="16" x2="50" y2="16" stroke="#4a2e6b" strokeWidth="2" opacity="0.4" />
-                  <rect x="10" y="24" width="58" height="20" rx="3" fill="none" stroke="#4a2e6b" strokeWidth="1" opacity="0.35" />
-                  <rect x="76" y="24" width="58" height="20" rx="3" fill="none" stroke="#4a2e6b" strokeWidth="1" opacity="0.35" />
-                  <rect x="142" y="22" width="60" height="24" rx="3" fill="#b59ad4" opacity="0.5" />
-                  <rect x="142" y="22" width="60" height="24" rx="3" fill="none" stroke="#4a2e6b" strokeWidth="1.5" />
-                  <text x="172" y="38" fontFamily="JetBrains Mono, monospace" fontSize="8" fill="#4a2e6b" textAnchor="middle" fontWeight="600">+ AI</text>
-                  <rect x="210" y="24" width="58" height="20" rx="3" fill="none" stroke="#4a2e6b" strokeWidth="1" opacity="0.35" />
+                  <rect x="2" y="6" width="276" height="44" rx="4" fill="none" stroke="currentColor" strokeWidth="1" opacity="0.25" />
+                  <line x1="10" y1="16" x2="50" y2="16" stroke="currentColor" strokeWidth="2" opacity="0.4" />
+                  <rect x="10" y="24" width="58" height="20" rx="3" fill="none" stroke="currentColor" strokeWidth="1" opacity="0.35" />
+                  <rect x="76" y="24" width="58" height="20" rx="3" fill="none" stroke="currentColor" strokeWidth="1" opacity="0.35" />
+                  <rect x="142" y="22" width="60" height="24" rx="3" fill="var(--color-viola-500)" opacity="0.5" />
+                  <rect x="142" y="22" width="60" height="24" rx="3" fill="none" stroke="currentColor" strokeWidth="1.5" />
+                  <text x="172" y="38" fontFamily="var(--font-mono)" fontSize="8" fill="currentColor" textAnchor="middle" fontWeight="600">+ AI</text>
+                  <rect x="210" y="24" width="58" height="20" rx="3" fill="none" stroke="currentColor" strokeWidth="1" opacity="0.35" />
                 </svg>
               </div>
               <div className="work__timing">
@@ -144,35 +145,35 @@ export default function HomePage() {
         <div className="wrap">
           <div className="story__meta">One engagement, told plainly</div>
           <h2 className="story__h">
-            Closing a 40-hour-a-week workflow gap at a 200-person MSP.
+            Closing a workflow gap at a mid-sized MSP.
           </h2>
 
           <div className="story__prose">
             <div className="story__chapter">
               <p>
                 <strong>The situation.</strong> A managed-service provider was
-                losing forty hours a week to manual triage of customer
-                tickets &mdash; the kind of work that sits between the PSA and
-                the RMM, that everyone knows is wasteful, that no platform
-                vendor solves because it&rsquo;s between the seams.
+                losing a meaningful share of dispatch time each week to manual
+                triage of customer tickets &mdash; the kind of work that sits
+                between the PSA and the RMM, that everyone knows is wasteful,
+                that no platform vendor solves because it&rsquo;s between the
+                seams.
               </p>
               <p>
-                <strong>The first move.</strong> Two weeks of paired sessions
-                with the dispatch team. No interviews, no surveys &mdash;
-                sitting beside the work. By the end of week two we had a
-                workflow map of every place a human was acting as glue, ranked
-                by hours saved per change.
+                <strong>The first move.</strong> A short stretch of paired
+                sessions with the dispatch team. No interviews, no
+                surveys &mdash; sitting beside the work. We left with a workflow
+                map of every place a human was acting as glue, ranked by hours
+                saved per change.
               </p>
               <p>
                 <strong>What shipped.</strong> A small triage agent that read
                 incoming tickets, drafted the first response, and routed to the
                 right pod. Not a platform &mdash; one workflow, one owner, one
-                metric. Live in eight weeks. Integrated with the PSA they
-                already paid for.
+                metric. Integrated with the PSA they already paid for.
               </p>
               <p>
-                <strong>What changed.</strong> Dispatch reclaimed twenty-eight
-                of the forty hours in the first month, with the remainder split
+                <strong>What changed.</strong> Dispatch reclaimed the majority
+                of those hours within the first month, with the remainder split
                 across edge cases the team still wanted to handle directly. The
                 team kept the workflow. The agent stayed quiet. That&rsquo;s the
                 bar.
@@ -189,13 +190,13 @@ export default function HomePage() {
               <div className="story__keyrow">
                 <span className="story__keylabel">Timeline</span>
                 <span className="story__keyvalue">
-                  10 weeks, scope to launch
+                  &mdash; <span className="story__keyhint">(on a call)</span>
                 </span>
               </div>
               <div className="story__keyrow">
                 <span className="story__keylabel">Measured outcome</span>
                 <span className="story__keyvalue">
-                  28 hrs/week reclaimed, sustained at 90 days
+                  &mdash; <span className="story__keyhint">(on a call)</span>
                 </span>
               </div>
               <div className="story__keyrow">
@@ -209,16 +210,14 @@ export default function HomePage() {
           </div>
 
           <div className="story__attribution">
-            Engagement details lightly anonymized at client&rsquo;s request.
-            Happy to walk through specifics on a call.
+            Engagement details kept off the public site at the client&rsquo;s
+            request. Happy to walk through specifics on a call.
           </div>
         </div>
       </section>
 
       {/* ARCHETYPE G · NEXT-STEP */}
       <NextStep />
-
-      <Footer />
     </main>
   );
 }

@@ -1,7 +1,6 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { PotMark } from "@/components/ui/PotMark";
-import { Footer } from "@/components/layout/Footer";
 import { getAllArticles } from "@/lib/mdx";
 
 export default function WritingPage() {
@@ -16,7 +15,6 @@ export default function WritingPage() {
             <div className="mb-10">
               <PotMark />
             </div>
-            <div className="eyebrow mb-6">Writing</div>
             <h1 className="type-h1">On the <span className="italic-accent">record.</span></h1>
             <p className="type-lead" style={{ marginTop: "16px" }}>
               A monthly essay on what&rsquo;s actually happening at the edge of
@@ -31,11 +29,11 @@ export default function WritingPage() {
 
             <p className="mt-6">
               <a
-                className="btn-ghost"
+                className="link-text"
                 href="mailto:marc@sugoai.com?subject=Sugo%20essays"
-                style={{ border: "none" }}
               >
-                Get essays by email <span className="arrow">→</span>
+                Get essays by email
+                <span className="arrow" aria-hidden="true">→</span>
               </a>
             </p>
 
@@ -63,7 +61,6 @@ export default function WritingPage() {
           </div>
         </div>
       </section>
-      <Footer />
     </main>
   );
 }
