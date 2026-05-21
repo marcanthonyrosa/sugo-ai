@@ -1,20 +1,223 @@
-import { Hero } from "@/components/home/Hero";
-import { StatCallout } from "@/components/home/StatCallout";
-import { WhatWeDoCompact } from "@/components/home/WhatWeDoCompact";
-import { Credibility } from "@/components/home/Credibility";
-import { WhySugo } from "@/components/home/WhySugo";
-import { GetStarted } from "@/components/home/GetStarted";
+import { NextStep } from "@/components/layout/NextStep";
 import { Footer } from "@/components/layout/Footer";
 
 export default function HomePage() {
   return (
     <main>
-      <Hero />
-      <StatCallout />
-      <WhatWeDoCompact />
-      <Credibility />
-      <WhySugo />
-      <GetStarted />
+      {/* ARCHETYPE B · THESIS HERO */}
+      <section className="thesis">
+        <div className="wrap">
+          <h1 className="thesis__lede fade-in">
+            AI strategy is cheap.
+            <br />
+            <span className="accent">Working software is rare.</span>
+            <br />
+            Sugo closes the gap.
+          </h1>
+          <div className="thesis__byline fade-in fade-in-2">
+            <span className="thesis__byline-rule" aria-hidden="true" />
+            <span>A small practice &middot; Houston, TX &middot; est. 2025</span>
+          </div>
+          <a className="link-text thesis__cta fade-in fade-in-3" href="/contact">
+            Start a conversation
+            <span className="arrow" aria-hidden="true">
+              &rarr;
+            </span>
+          </a>
+        </div>
+      </section>
+
+      {/* ARCHETYPE C · BLEED-TINT CALLOUT */}
+      <section className="callout" aria-label="Industry data">
+        <div className="wrap">
+          <div className="callout__grid">
+            <div
+              className="callout__figure"
+              aria-label="Ninety-five percent"
+            >
+              95<span className="pct">%</span>
+            </div>
+            <div className="callout__body">
+              <p>
+                of enterprise AI pilots fail to move the P&amp;L &mdash; for
+                lack of workflow fit, last-mile ownership, and someone close
+                enough to the build to make the right calls on Monday.
+              </p>
+              <div className="callout__source">
+                MIT &middot; State of AI in Business &middot; Aug 2025
+              </div>
+            </div>
+            <div className="callout__viz-wrap">
+              <div
+                className="callout__viz"
+                role="img"
+                aria-label="Visualization: 95 of 100 pilots fail to ship"
+              >
+                {/* 100 dots: 95 fail (viola), 5 succeed (dark) */}
+                {Array.from({ length: 100 }, (_, i) => {
+                  const successPositions = [16, 42, 58, 74, 91];
+                  return (
+                    <span
+                      key={i}
+                      className={
+                        successPositions.includes(i) ? "success" : undefined
+                      }
+                    />
+                  );
+                })}
+              </div>
+              <div className="callout__viz-label">95 fail &middot; 5 ship</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ARCHETYPE D · TWO-PANE COMPACT */}
+      <section className="work">
+        <div className="wrap">
+          <h2 className="work__h">Two places AI earns its keep.</h2>
+          <div className="work__grid">
+            <div className="work__pane work__pane--ops">
+              <span className="work__label">Inside the business</span>
+              <h3>Agents that take manual work off the team.</h3>
+              <p>
+                Back-office workflows where humans copy-paste between systems.
+                Sugo finds the one with the clearest waste and ships an agent
+                that owns it end-to-end.
+              </p>
+              <div className="work__diagram" aria-hidden="true">
+                <svg
+                  viewBox="0 0 280 56"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <rect x="2" y="14" width="68" height="28" rx="4" fill="none" stroke="#2d4a37" strokeWidth="1" opacity="0.55" />
+                  <text x="36" y="32" fontFamily="JetBrains Mono, monospace" fontSize="10" fill="#2d4a37" textAnchor="middle" opacity="0.85">PSA</text>
+                  <line x1="74" y1="28" x2="100" y2="28" stroke="#2d4a37" strokeWidth="1" opacity="0.55" />
+                  <polygon points="98,25 104,28 98,31" fill="#2d4a37" opacity="0.55" />
+                  <rect x="104" y="10" width="72" height="36" rx="4" fill="#2d4a37" opacity="0.85" />
+                  <text x="140" y="32" fontFamily="JetBrains Mono, monospace" fontSize="10" fill="#ecf1e7" textAnchor="middle" fontWeight="500">AGENT</text>
+                  <line x1="180" y1="28" x2="206" y2="28" stroke="#2d4a37" strokeWidth="1" opacity="0.55" />
+                  <polygon points="204,25 210,28 204,31" fill="#2d4a37" opacity="0.55" />
+                  <rect x="210" y="14" width="68" height="28" rx="4" fill="none" stroke="#2d4a37" strokeWidth="1" opacity="0.55" />
+                  <text x="244" y="32" fontFamily="JetBrains Mono, monospace" fontSize="10" fill="#2d4a37" textAnchor="middle" opacity="0.85">CRM</text>
+                </svg>
+              </div>
+              <div className="work__timing">
+                6&ndash;12 weeks &middot; scope to handoff
+              </div>
+            </div>
+
+            <div className="work__pane work__pane--feat">
+              <span className="work__label">Inside the product</span>
+              <h3>AI-native features customers feel.</h3>
+              <p>
+                A real user, a real job, a real outcome metric. Sugo takes the
+                wedge from discovery through launch &mdash; close enough to
+                engineering to make the trade-offs that decide whether the
+                feature drives usage.
+              </p>
+              <div className="work__diagram" aria-hidden="true">
+                <svg
+                  viewBox="0 0 280 56"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <rect x="2" y="6" width="276" height="44" rx="4" fill="none" stroke="#4a2e6b" strokeWidth="1" opacity="0.25" />
+                  <line x1="10" y1="16" x2="50" y2="16" stroke="#4a2e6b" strokeWidth="2" opacity="0.4" />
+                  <rect x="10" y="24" width="58" height="20" rx="3" fill="none" stroke="#4a2e6b" strokeWidth="1" opacity="0.35" />
+                  <rect x="76" y="24" width="58" height="20" rx="3" fill="none" stroke="#4a2e6b" strokeWidth="1" opacity="0.35" />
+                  <rect x="142" y="22" width="60" height="24" rx="3" fill="#b59ad4" opacity="0.5" />
+                  <rect x="142" y="22" width="60" height="24" rx="3" fill="none" stroke="#4a2e6b" strokeWidth="1.5" />
+                  <text x="172" y="38" fontFamily="JetBrains Mono, monospace" fontSize="8" fill="#4a2e6b" textAnchor="middle" fontWeight="600">+ AI</text>
+                  <rect x="210" y="24" width="58" height="20" rx="3" fill="none" stroke="#4a2e6b" strokeWidth="1" opacity="0.35" />
+                </svg>
+              </div>
+              <div className="work__timing">
+                8&ndash;16 weeks &middot; concept to launch
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ARCHETYPE E · STORY (dark bleed) */}
+      <section className="story">
+        <div className="wrap">
+          <div className="story__meta">One engagement, told plainly</div>
+          <h2 className="story__h">
+            Closing a 40-hour-a-week workflow gap at a 200-person MSP.
+          </h2>
+
+          <div className="story__prose">
+            <div className="story__chapter">
+              <p>
+                <strong>The situation.</strong> A managed-service provider was
+                losing forty hours a week to manual triage of customer
+                tickets &mdash; the kind of work that sits between the PSA and
+                the RMM, that everyone knows is wasteful, that no platform
+                vendor solves because it&rsquo;s between the seams.
+              </p>
+              <p>
+                <strong>The first move.</strong> Two weeks of paired sessions
+                with the dispatch team. No interviews, no surveys &mdash;
+                sitting beside the work. By the end of week two we had a
+                workflow map of every place a human was acting as glue, ranked
+                by hours saved per change.
+              </p>
+              <p>
+                <strong>What shipped.</strong> A small triage agent that read
+                incoming tickets, drafted the first response, and routed to the
+                right pod. Not a platform &mdash; one workflow, one owner, one
+                metric. Live in eight weeks. Integrated with the PSA they
+                already paid for.
+              </p>
+              <p>
+                <strong>What changed.</strong> Dispatch reclaimed twenty-eight
+                of the forty hours in the first month, with the remainder split
+                across edge cases the team still wanted to handle directly. The
+                team kept the workflow. The agent stayed quiet. That&rsquo;s the
+                bar.
+              </p>
+            </div>
+
+            <aside className="story__sidekey">
+              <div className="story__keyrow">
+                <span className="story__keylabel">Engagement</span>
+                <span className="story__keyvalue">
+                  Operations agent &middot; MSP vertical
+                </span>
+              </div>
+              <div className="story__keyrow">
+                <span className="story__keylabel">Timeline</span>
+                <span className="story__keyvalue">
+                  10 weeks, scope to launch
+                </span>
+              </div>
+              <div className="story__keyrow">
+                <span className="story__keylabel">Measured outcome</span>
+                <span className="story__keyvalue">
+                  28 hrs/week reclaimed, sustained at 90 days
+                </span>
+              </div>
+              <div className="story__keyrow">
+                <span className="story__keylabel">Stack</span>
+                <span className="story__keyvalue">
+                  Claude &middot; the client&rsquo;s existing PSA &middot; a
+                  thin agent service
+                </span>
+              </div>
+            </aside>
+          </div>
+
+          <div className="story__attribution">
+            Engagement details lightly anonymized at client&rsquo;s request.
+            Happy to walk through specifics on a call.
+          </div>
+        </div>
+      </section>
+
+      {/* ARCHETYPE G · NEXT-STEP */}
+      <NextStep />
+
       <Footer />
     </main>
   );

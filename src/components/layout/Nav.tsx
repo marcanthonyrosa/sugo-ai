@@ -1,9 +1,9 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Wordmark } from "@/components/ui/Wordmark";
 
 export function Nav() {
   const pathname = usePathname();
@@ -11,45 +11,40 @@ export function Nav() {
 
   useEffect(() => {
     document.body.classList.toggle("no-scroll", mobileOpen);
-    return () => {
-      document.body.classList.remove("no-scroll");
-    };
+    return () => document.body.classList.remove("no-scroll");
   }, [mobileOpen]);
-
-  const showWriting = process.env.NODE_ENV === "development";
 
   return (
     <>
-      <nav className="nav-bar fixed top-0 left-0 right-0 z-80 flex items-center justify-between px-8 py-5">
-        <Wordmark />
-        <div className="flex gap-8 max-[767px]:hidden">
+      <nav className="nav" aria-label="Primary">
+        <Link className="nav__wordmark" href="/">
+          <Image
+            src="/sugo-logo.png"
+            alt=""
+            width={22}
+            height={22}
+            className="nav__logo"
+            aria-hidden="true"
+          />
+          <span>Sugo AI</span>
+        </Link>
+        <div className="nav__links">
           <Link
-            className="nav-link-anim"
+            className="nav__link"
             href="/how-we-work"
             aria-current={pathname === "/how-we-work" ? "page" : undefined}
           >
-            How We Work
+            How we work
           </Link>
           <Link
-            className="nav-link-anim"
+            className="nav__link"
             href="/about"
             aria-current={pathname === "/about" ? "page" : undefined}
           >
             About
           </Link>
-          {showWriting && (
-            <Link
-              className="nav-link-anim"
-              href="/writing"
-              aria-current={
-                pathname.startsWith("/writing") ? "page" : undefined
-              }
-            >
-              Writing
-            </Link>
-          )}
           <Link
-            className="nav-link-anim"
+            className="nav__link"
             href="/contact"
             aria-current={pathname === "/contact" ? "page" : undefined}
           >
@@ -57,42 +52,32 @@ export function Nav() {
           </Link>
         </div>
         <button
-          className="hidden max-[767px]:inline-block font-sans font-medium text-sm bg-transparent p-0 cursor-pointer"
-          style={{ color: "var(--color-ink-500)", border: "none" }}
+          className="nav__menu-toggle"
           onClick={() => setMobileOpen(true)}
+          aria-label="Open menu"
         >
           Menu
         </button>
       </nav>
+
       {mobileOpen && (
-        <div
-          className="fixed inset-0 z-90 flex flex-col pt-24 px-6 pb-10 gap-6"
-          style={{ background: "var(--color-surface-1)" }}
-        >
+        <div className="nav-overlay" role="dialog" aria-label="Navigation">
           <button
-            className="absolute top-6 right-6 font-sans font-medium text-sm bg-transparent cursor-pointer"
-            style={{ color: "var(--color-ink-500)", border: "none" }}
+            className="nav-overlay__close"
             onClick={() => setMobileOpen(false)}
+            aria-label="Close menu"
           >
             Close
           </button>
           {[
             { href: "/", label: "Home" },
-            { href: "/how-we-work", label: "How We Work" },
+            { href: "/how-we-work", label: "How we work" },
             { href: "/about", label: "About" },
-            ...(showWriting
-              ? [{ href: "/writing", label: "Writing" }]
-              : []),
             { href: "/contact", label: "Contact" },
           ].map(({ href, label }) => (
             <Link
               key={href}
-              className="font-serif font-normal text-[48px] leading-[1.05] p-0 cursor-pointer"
-              style={{
-                color: "var(--color-ink-900)",
-                letterSpacing: "-0.015em",
-                border: "none",
-              }}
+              className="nav-overlay__link"
               href={href}
               onClick={() => setMobileOpen(false)}
             >
