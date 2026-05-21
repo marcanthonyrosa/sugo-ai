@@ -154,8 +154,7 @@ export default function AboutPage() {
               </p>
               <p>
                 If you want the longer version of any of the above, the easiest
-                thing is usually a thirty-minute call. I&rsquo;d rather talk
-                than write more about myself.
+                thing is usually a thirty-minute call.
               </p>
               <Link className="link-text" href="/contact">
                 Write to me{" "}

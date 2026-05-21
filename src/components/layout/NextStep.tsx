@@ -35,30 +35,17 @@ export function NextStep() {
             </div>
           </div>
           <div className="next-step__card">
-            <div className="next-step__card-section">
-              <div className="next-step__card-label">
-                What we cover in the first call
-              </div>
-              <div className="next-step__card-row">
-                What problem is worth solving first
-              </div>
-              <div className="next-step__card-row">
-                Whether this is an audit, a build, or not a fit yet
-              </div>
-              <div className="next-step__card-row">
-                What the timeline and scope might look like
-              </div>
+            <div className="next-step__card-label">
+              What we cover in the first call
             </div>
-            <div className="next-step__card-divider" />
-            <div className="next-step__card-section">
-              <div className="next-step__card-label">
-                Good reasons to reach out
-              </div>
-              <p>
-                You have momentum around AI but no clarity on where it should
-                apply or what to do. Or, you know where the drag is and need a
-                senior operator to bring v1 to market.
-              </p>
+            <div className="next-step__card-row">
+              What problem is worth solving first
+            </div>
+            <div className="next-step__card-row">
+              Whether this is an audit, a build, or not a fit yet
+            </div>
+            <div className="next-step__card-row">
+              What the timeline and scope might look like
             </div>
           </div>
         </div>

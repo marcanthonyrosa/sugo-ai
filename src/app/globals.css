@@ -405,9 +405,15 @@
 }
 .callout__grid {
   display: grid;
-  grid-template-columns: auto 1fr auto;
-  gap: 56px;
-  align-items: center;
+  grid-template-columns: auto 1fr;
+  gap: 80px;
+  align-items: start;
+}
+.callout__evidence {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  align-items: flex-start;
 }
 .callout__figure {
   font-family: var(--font-serif);
@@ -421,7 +427,7 @@
   font-size: 0.42em; font-style: italic; font-weight: 300;
   color: var(--color-viola-500); margin-left: 6px;
 }
-.callout__body { max-width: 42ch; }
+.callout__body { max-width: 42ch; padding-top: 18px; }
 .callout__body p {
   font-family: var(--font-serif);
   font-size: clamp(17px, 1.8vw, 21px);
@@ -436,41 +442,52 @@
   color: var(--color-ink-500);
   text-transform: uppercase;
 }
-.callout__viz-wrap { display: flex; flex-direction: column; align-items: center; }
+.callout__viz-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
 .callout__viz {
   display: grid;
-  grid-template-columns: repeat(10, 8px);
-  grid-template-rows: repeat(10, 8px);
+  grid-template-columns: repeat(10, 10px);
+  grid-template-rows: repeat(10, 10px);
   gap: 4px;
   flex-shrink: 0;
 }
 .callout__viz span {
   background: var(--color-viola-500);
-  opacity: 0.85;
+  opacity: 0.32;
   border-radius: 2px;
 }
 .callout__viz span.success {
   background: var(--color-ink-900);
-  opacity: 0.4;
+  opacity: 1;
+  box-shadow: 0 0 0 1px var(--color-surface-2);
 }
 .callout__viz-label {
-  margin-top: 12px;
   font-family: var(--font-mono);
   font-size: 10px;
   letter-spacing: 0.08em;
   color: var(--color-ink-500);
   text-transform: uppercase;
 }
+.callout__viz-label strong {
+  color: var(--color-ink-900);
+  font-weight: 500;
+}
 @media (max-width: 900px) {
-  .callout { padding: 56px 0 60px; }
-  .callout__grid { grid-template-columns: auto 1fr; gap: 32px; row-gap: 28px; align-items: start; }
-  .callout__viz-wrap { grid-column: 1 / -1; flex-direction: row; gap: 18px; align-items: center; }
-  .callout__viz-label { margin-top: 0; }
+  .callout { padding: 64px 0 72px; }
+  .callout__grid { grid-template-columns: 1fr; gap: 48px; }
+  .callout__evidence { gap: 28px; }
+  .callout__body { padding-top: 0; }
 }
 @media (max-width: 600px) {
-  .callout__grid { grid-template-columns: 1fr; gap: 32px; row-gap: 36px; }
   .callout__figure { font-size: clamp(72px, 18vw, 96px); }
-  .callout__viz-wrap { padding-top: 8px; }
+  .callout__viz {
+    grid-template-columns: repeat(10, 9px);
+    grid-template-rows: repeat(10, 9px);
+  }
 }
 
 /* ==========================================================================
@@ -642,7 +659,14 @@
 }
 .phase:last-child { border-bottom: none; }
 .phase__index {
-  display: flex; align-items: baseline; gap: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+.phase__index-row {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
 }
 .phase__num {
   font-family: var(--font-mono);
@@ -651,6 +675,7 @@
   letter-spacing: -0.02em;
   color: var(--color-ink-300);
   line-height: 1;
+  transition: color 200ms var(--ease-out);
 }
 .phase__when {
   font-family: var(--font-mono);
@@ -659,6 +684,34 @@
   text-transform: uppercase;
   color: var(--color-ink-500);
 }
+.phase__diagram {
+  max-width: 240px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: var(--color-ink-700);
+}
+.phase__diagram svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.phase__diagram-caption {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-ink-500);
+}
+
+/* Chromatic phase identities */
+.phase--saffron .phase__num,
+.phase--saffron .phase__diagram { color: var(--color-saffron-ink); }
+.phase--basil .phase__num,
+.phase--basil .phase__diagram { color: var(--color-basil-ink); }
+.phase--viola .phase__num,
+.phase--viola .phase__diagram { color: var(--color-viola-900); }
 .phase__body { max-width: 56ch; }
 .phase__name {
   font-family: var(--font-serif);
@@ -1282,12 +1335,6 @@
   border: 1px solid rgba(255,255,255,0.12);
   border-radius: var(--r-md);
   padding: 20px 22px;
-}
-.next-step__card-section { }
-.next-step__card-divider {
-  height: 1px;
-  background: rgba(255,255,255,0.10);
-  margin: 16px 0;
 }
 .next-step__card-label {
   font-family: var(--font-mono);

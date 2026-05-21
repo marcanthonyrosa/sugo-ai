@@ -21,10 +21,22 @@ export default function HowWeWorkPage() {
       <section className="phases">
         <div className="wrap">
           {/* Phase 01 */}
-          <div className="phase">
+          <div className="phase phase--saffron">
             <div className="phase__index">
-              <span className="phase__num">01</span>
-              <span className="phase__when">2&ndash;3 weeks</span>
+              <div className="phase__index-row">
+                <span className="phase__num">01</span>
+                <span className="phase__when">2&ndash;3 weeks</span>
+              </div>
+              <div className="phase__diagram" aria-hidden="true">
+                <svg viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="0" y="0" width="180" height="14" rx="2" fill="currentColor" opacity="0.95" />
+                  <rect x="0" y="22" width="140" height="14" rx="2" fill="currentColor" opacity="0.42" />
+                  <rect x="0" y="44" width="100" height="14" rx="2" fill="currentColor" opacity="0.32" />
+                  <rect x="0" y="66" width="72" height="14" rx="2" fill="currentColor" opacity="0.22" />
+                  <rect x="0" y="88" width="44" height="14" rx="2" fill="currentColor" opacity="0.16" />
+                </svg>
+                <div className="phase__diagram-caption">Ranked candidates</div>
+              </div>
             </div>
             <div className="phase__body">
               <h2 className="phase__name">Opportunity Audit</h2>
@@ -62,10 +74,27 @@ export default function HowWeWorkPage() {
           </div>
 
           {/* Phase 02 */}
-          <div className="phase">
+          <div className="phase phase--basil">
             <div className="phase__index">
-              <span className="phase__num">02</span>
-              <span className="phase__when">6&ndash;12 weeks</span>
+              <div className="phase__index-row">
+                <span className="phase__num">02</span>
+                <span className="phase__when">6&ndash;12 weeks</span>
+              </div>
+              <div className="phase__diagram" aria-hidden="true">
+                <svg viewBox="0 0 200 80" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="0" y="14" width="48" height="32" rx="3" fill="none" stroke="currentColor" strokeWidth="1" opacity="0.5" />
+                  <text x="24" y="34" fontSize="9" fill="currentColor" textAnchor="middle" opacity="0.85" fontFamily="var(--font-mono)">IN</text>
+                  <line x1="50" y1="30" x2="74" y2="30" stroke="currentColor" strokeWidth="1" opacity="0.5" />
+                  <polygon points="72,27 77,30 72,33" fill="currentColor" opacity="0.5" />
+                  <rect x="76" y="6" width="48" height="48" rx="3" fill="currentColor" opacity="0.92" />
+                  <text x="100" y="34" fontSize="9" fill="var(--color-basil-50)" textAnchor="middle" fontWeight="500" fontFamily="var(--font-mono)">AGENT</text>
+                  <line x1="126" y1="30" x2="150" y2="30" stroke="currentColor" strokeWidth="1" opacity="0.5" />
+                  <polygon points="148,27 153,30 148,33" fill="currentColor" opacity="0.5" />
+                  <rect x="152" y="14" width="48" height="32" rx="3" fill="none" stroke="currentColor" strokeWidth="1" opacity="0.5" />
+                  <text x="176" y="34" fontSize="9" fill="currentColor" textAnchor="middle" opacity="0.85" fontFamily="var(--font-mono)">OUT</text>
+                </svg>
+                <div className="phase__diagram-caption">One workflow, one owner</div>
+              </div>
             </div>
             <div className="phase__body">
               <h2 className="phase__name">Operations Build</h2>
@@ -103,10 +132,27 @@ export default function HowWeWorkPage() {
           </div>
 
           {/* Phase 03 */}
-          <div className="phase">
+          <div className="phase phase--viola">
             <div className="phase__index">
-              <span className="phase__num">03</span>
-              <span className="phase__when">8&ndash;16 weeks</span>
+              <div className="phase__index-row">
+                <span className="phase__num">03</span>
+                <span className="phase__when">8&ndash;16 weeks</span>
+              </div>
+              <div className="phase__diagram" aria-hidden="true">
+                <svg viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="0" y="0" width="200" height="56" rx="3" fill="none" stroke="currentColor" strokeWidth="1" opacity="0.28" />
+                  <line x1="8" y1="10" x2="44" y2="10" stroke="currentColor" strokeWidth="2" opacity="0.45" />
+                  <rect x="8" y="20" width="36" height="26" rx="2" fill="none" stroke="currentColor" strokeWidth="1" opacity="0.32" />
+                  <rect x="50" y="20" width="36" height="26" rx="2" fill="none" stroke="currentColor" strokeWidth="1" opacity="0.32" />
+                  <rect x="92" y="18" width="40" height="30" rx="3" fill="var(--color-viola-500)" opacity="0.5" />
+                  <rect x="92" y="18" width="40" height="30" rx="3" fill="none" stroke="currentColor" strokeWidth="1.5" />
+                  <text x="112" y="38" fontSize="10" fill="currentColor" textAnchor="middle" fontWeight="600" fontFamily="var(--font-mono)">+AI</text>
+                  <rect x="138" y="20" width="36" height="26" rx="2" fill="none" stroke="currentColor" strokeWidth="1" opacity="0.32" />
+                  <path d="M 0 92 L 40 86 L 80 76 L 120 66 L 160 54 L 200 44" stroke="currentColor" strokeWidth="1.5" opacity="0.6" fill="none" />
+                  <circle cx="200" cy="44" r="3" fill="currentColor" opacity="0.85" />
+                </svg>
+                <div className="phase__diagram-caption">Feature → usage</div>
+              </div>
             </div>
             <div className="phase__body">
               <h2 className="phase__name">Product Build</h2>
