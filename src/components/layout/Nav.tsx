@@ -43,13 +43,6 @@ export function Nav() {
           >
             About
           </Link>
-          <Link
-            className="nav__link"
-            href="/contact"
-            aria-current={pathname === "/contact" ? "page" : undefined}
-          >
-            Contact
-          </Link>
         </div>
         <button
           className="nav__menu-toggle"
@@ -73,7 +66,6 @@ export function Nav() {
             { href: "/", label: "Home" },
             { href: "/how-we-work", label: "How we work" },
             { href: "/about", label: "About" },
-            { href: "/contact", label: "Contact" },
           ].map(({ href, label }) => (
             <Link
               key={href}

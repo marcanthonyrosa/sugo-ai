@@ -291,7 +291,7 @@ export default function HowWeWorkPage() {
         </div>
       </section>
 
-      <NextStep />
+      <NextStep closer="If that’s the shape of what you need, the next step is a real call — not a vendor pitch." />
     </main>
   );
 }
