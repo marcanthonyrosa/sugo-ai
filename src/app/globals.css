@@ -1909,6 +1909,7 @@
 .memo__prose p { margin: 0 0 20px; }
 .memo__prose p:last-child { margin-bottom: 0; }
 .memo__prose strong { color: var(--color-ink-900); font-weight: 600; }
+.memo__prose p strong:first-child { margin-inline-end: 0.25em; }
 .memo__aside {
   font-size: 15px;
   color: var(--color-ink-500);
@@ -2199,7 +2200,9 @@
 }
 
 @media (max-width: 900px) {
+  .engagement--ops { grid-template-columns: 1fr; gap: 24px; }
   .engagement--feat { grid-template-columns: 1fr; gap: 32px; }
+  .engagement--feat .engagement__diagram svg { max-width: 280px; }
   .memo__stat-block { grid-template-columns: 1fr; gap: 24px; }
   .memo__stat-figure { font-size: clamp(80px, 22vw, 144px); }
 }
