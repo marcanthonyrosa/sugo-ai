@@ -2388,3 +2388,79 @@
 @media (max-width: 768px) {
   .memo--about .memo__hero { padding: 96px 0 40px; }
 }
+
+/* ==========================================================================
+   /contact · qualification-first
+   Hallmark · macrostructure: Option B (Surgical · qualification page)
+   ========================================================================== */
+
+.memo--contact .memo__hero { padding: 132px 0 56px; }
+.memo--contact .memo__thesis { font-size: clamp(36px, 6vw, 80px); max-width: 22ch; }
+
+.memo--contact .memo__section { padding: 56px 0; }
+.memo--contact .memo__section:first-of-type { padding-top: 56px; }
+
+.qualification {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0 0;
+  display: grid;
+  gap: 18px;
+}
+.qualification li {
+  font-family: var(--font-sans);
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--color-ink-800);
+  max-width: 62ch;
+  padding-left: 22px;
+  position: relative;
+}
+.qualification li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 12px;
+  width: 12px;
+  height: 1px;
+  background: var(--color-ink-300);
+}
+.qualification__exit {
+  margin: 40px 0 0;
+  padding: 16px 0 0 22px;
+  border-top: 1px solid var(--color-rule-soft);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  font-style: italic;
+  color: var(--color-ink-500);
+  max-width: 62ch;
+}
+
+.contact__meta {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  color: var(--color-ink-500);
+  margin: 8px 0 28px;
+  max-width: 70ch;
+}
+.contact__actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 36px;
+}
+.contact__close {
+  font-family: var(--font-sans);
+  font-size: 18px;
+  font-style: italic;
+  line-height: 1.55;
+  color: var(--color-ink-700);
+  max-width: 56ch;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .memo--contact .memo__hero { padding: 96px 0 40px; }
+}

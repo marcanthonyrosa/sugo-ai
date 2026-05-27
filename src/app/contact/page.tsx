@@ -2,192 +2,121 @@ import { CAL_URL } from "@/components/ui/CalModal";
 
 export default function ContactPage() {
   return (
-    <main>
-      {/* THESIS (inner) */}
-      <section className="thesis thesis--inner" style={{ paddingBottom: 64 }}>
+    <main className="memo memo--contact">
+      {/* /contact · macrostructure: qualification-first */}
+
+      <section className="memo__hero">
         <div className="wrap">
-          <h1 className="thesis__lede fade-in">
-            Start a <span className="accent">conversation.</span>
-          </h1>
-          <div className="thesis__byline fade-in fade-in-2">
-            <span className="thesis__byline-rule" aria-hidden="true" />
-            <span>
-              A 30-minute discovery brain-dump &mdash; talk through your
-              goals, zero prep needed.
-            </span>
-          </div>
-        </div>
-      </section>
-
-      {/* ACTIONS */}
-      <section className="actions">
-        <div className="wrap">
-          <div className="actions__grid">
-            <div>
-              <p className="actions__lede">
-                The fastest way is the calendar link. If you&rsquo;d rather
-                write first, my inbox is below &mdash; I read everything and
-                reply within a day or two.
-              </p>
-
-              <div className="actions__buttons">
-                <a
-                  className="btn-primary"
-                  href={CAL_URL}
-                  target="_blank"
-                  rel="noopener"
-                >
-                  Book 30 minutes{" "}
-                  <span className="arrow" aria-hidden="true">
-                    &rarr;
-                  </span>
-                </a>
-                <a
-                  className="btn-secondary"
-                  href="mailto:marc@sugoai.com?subject=Sugo%20%E2%80%94%20worth%20a%20conversation"
-                >
-                  Email Marc{" "}
-                  <span className="arrow" aria-hidden="true">
-                    &rarr;
-                  </span>
-                </a>
-              </div>
-
-              <div className="actions__direct">
-                <div className="actions__row">
-                  <span className="actions__row-label">Email</span>
-                  <span className="actions__row-value">
-                    <a href="mailto:marc@sugoai.com">marc@sugoai.com</a>
-                  </span>
-                </div>
-                <div className="actions__row">
-                  <span className="actions__row-label">Based in</span>
-                  <span className="actions__row-value">
-                    Houston, TX &middot; working US-wide
-                  </span>
-                </div>
-                <div className="actions__row">
-                  <span className="actions__row-label">Availability</span>
-                  <span className="actions__row-value">
-                    Mon&ndash;Thu &middot; response within 24 hours
-                  </span>
-                </div>
-                <div className="actions__row">
-                  <span className="actions__row-label">Time zone</span>
-                  <span className="actions__row-value">
-                    Central &middot; happy to move to your calendar
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            <div className="actions__sidecard-group">
-              <div className="actions__sidecard">
-                <div className="actions__sidecard-label">
-                  What we cover in the first call
-                </div>
-                <div className="actions__sidecard-row">
-                  What problem is worth solving first
-                </div>
-                <div className="actions__sidecard-row">
-                  Whether this is an audit, a build, or not a fit yet
-                </div>
-                <div className="actions__sidecard-row">
-                  What a realistic timeline and scope might be
-                </div>
-              </div>
-              <div className="actions__sidecard">
-                <div className="actions__sidecard-label">
-                  How to make the call useful
-                </div>
-                <p>
-                  Come with one concrete workflow that&rsquo;s broken or one
-                  feature you&rsquo;ve been circling. I&rsquo;d rather solve a
-                  small real thing than discuss a vision deck.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* FILTER */}
-      <section className="filter">
-        <div className="wrap">
-          <div className="filter__grid">
-            <div>
-              <h2 className="filter__h">Is this the right call for you?</h2>
-              <p className="filter__lede">
-                Sugo is a small practice. I take a few engagements a year and
-                turn away more than I take. Honesty about fit saves both of
-                us time &mdash; so the short version is below.
-              </p>
-            </div>
-
-            <div className="filter__list">
-              <div className="filter__item">
-                <span className="filter__mark filter__mark--yes">Yes</span>
-                <p className="filter__text">
-                  You have AI energy but not enough clarity on the first move.
-                </p>
-              </div>
-              <div className="filter__item">
-                <span className="filter__mark filter__mark--yes">Yes</span>
-                <p className="filter__text">
-                  You know exactly where the drag is and need a senior partner
-                  to ship the first real version.
-                </p>
-              </div>
-              <div className="filter__item">
-                <span className="filter__mark filter__mark--yes">Yes</span>
-                <p className="filter__text">
-                  You&rsquo;re early in product or operations leadership and
-                  want someone senior in the room with you.
-                </p>
-              </div>
-              <div className="filter__item">
-                <span className="filter__mark filter__mark--no">Not yet</span>
-                <p className="filter__text">
-                  You need a long-running staff augmentation engagement. Sugo is
-                  project-shaped, not team-shaped.
-                </p>
-              </div>
-              <div className="filter__item">
-                <span className="filter__mark filter__mark--no">Not yet</span>
-                <p className="filter__text">
-                  You&rsquo;re shopping for the lowest-bid build. Sugo is
-                  senior-led; the rate reflects that.
-                </p>
-              </div>
-              <div className="filter__item">
-                <span className="filter__mark filter__mark--no">Not yet</span>
-                <p className="filter__text">
-                  You haven&rsquo;t yet decided AI is worth investing in. The
-                  first call should be a strategic one, not this one.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* SIGNOFF */}
-      <section className="signoff">
-        <div className="wrap">
-          <p className="signoff__text">
-            However you reach out, I&rsquo;ll reply with a real human sentence
-            and a calendar link. &mdash; Marc
+          <h1 className="memo__thesis fade-in">Before the call.</h1>
+          <p className="memo__intro fade-in fade-in-2">
+            A short honest read on who this is for &mdash; then the
+            calendar link.
           </p>
-          <div className="signoff__sign">
-            <span>Marc Rosa</span>
-            <span>&middot;</span>
-            <a href="mailto:marc@sugoai.com">marc@sugoai.com</a>
-            <span>&middot;</span>
-            <span>Houston, TX</span>
+        </div>
+      </section>
+
+      <section className="memo__section">
+        <div className="wrap">
+          <h2 className="memo__h">This is a great fit if&hellip;</h2>
+          <ul className="qualification">
+            <li>
+              You have AI energy but not enough clarity on the first move.
+            </li>
+            <li>
+              You know exactly where the drag is and need a senior partner
+              to ship the first real version.
+            </li>
+            <li>
+              You&rsquo;re early in product or operations leadership and
+              want someone senior in the room with you.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section className="memo__section">
+        <div className="wrap">
+          <h2 className="memo__h">This isn&rsquo;t a fit if&hellip;</h2>
+          <ul className="qualification">
+            <li>
+              You need a long-running staff-augmentation engagement &mdash;
+              I run project-shaped, not team-shaped.
+            </li>
+            <li>
+              You&rsquo;re shopping for the lowest-bid build. I&rsquo;m
+              senior-led; the rate reflects that.
+            </li>
+            <li>
+              You haven&rsquo;t decided AI is worth investing in. That
+              first call is a strategic one, not this one.
+            </li>
+          </ul>
+          <p className="qualification__exit">
+            If now isn&rsquo;t the right moment, keep my email &mdash; most
+            engagements start as a check-in months before they become work.
+          </p>
+        </div>
+      </section>
+
+      <section className="memo__section">
+        <div className="wrap">
+          <h2 className="memo__h">How to make the call useful.</h2>
+          <div className="memo__prose">
+            <p>
+              Come with one concrete workflow that&rsquo;s broken or one
+              feature you&rsquo;ve been circling. I&rsquo;d rather solve a
+              small real thing than discuss a vision deck.
+            </p>
           </div>
         </div>
       </section>
 
+      <section className="memo__section">
+        <div className="wrap">
+          <h2 className="memo__h">What we&rsquo;ll cover.</h2>
+          <ul className="qualification">
+            <li>What problem is worth solving first.</li>
+            <li>Whether this is an audit, a build, or not a fit yet.</li>
+            <li>What a realistic timeline and scope might be.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section className="memo__section">
+        <div className="wrap">
+          <h2 className="memo__h">Reach out.</h2>
+          <p className="contact__meta">
+            marc@sugoai.com &middot; Houston, Central time &middot; response
+            within 24 hours &middot; happy to move to your calendar.
+          </p>
+          <div className="contact__actions">
+            <a
+              className="btn-primary"
+              href={CAL_URL}
+              target="_blank"
+              rel="noopener"
+            >
+              Book 30 minutes{" "}
+              <span className="arrow" aria-hidden="true">
+                &rarr;
+              </span>
+            </a>
+            <a
+              className="btn-secondary"
+              href="mailto:marc@sugoai.com?subject=Sugo%20%E2%80%94%20worth%20a%20conversation"
+            >
+              Email Marc{" "}
+              <span className="arrow" aria-hidden="true">
+                &rarr;
+              </span>
+            </a>
+          </div>
+          <p className="contact__close">
+            However you reach out, I&rsquo;ll reply with a real human
+            sentence and a calendar link. &mdash; Marc
+          </p>
+        </div>
+      </section>
     </main>
   );
 }
