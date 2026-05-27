@@ -167,7 +167,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <NextStep />
+      <NextStep closer="If you want the longer version of any of the above, the easiest thing is usually a thirty-minute call." />
     </main>
   );
 }
