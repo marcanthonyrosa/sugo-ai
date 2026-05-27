@@ -2208,3 +2208,259 @@
   .engagement--ops .engagement__diagram { padding: 24px 16px; }
   .memo__dot-grid { max-width: 100%; }
 }
+
+/* ==========================================================================
+   Footer · one-line colophon (post-redesign)
+   ========================================================================== */
+.footer {
+  padding: 32px 0 48px;
+  border-top: 1px solid var(--color-rule-soft);
+  background: var(--color-paper);
+}
+.footer__colophon {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--color-ink-500);
+  margin: 0;
+  text-align: center;
+}
+
+/* ==========================================================================
+   /how-we-work · long-document continuation
+   Hallmark · macrostructure: Option B (Long Document) · genre: process explainer
+   ========================================================================== */
+
+.memo--howw .memo__hero { padding: 132px 0 64px; }
+.memo--howw .memo__thesis { font-size: clamp(36px, 6vw, 80px); max-width: 22ch; }
+
+/* Audit · prose left, ranked-candidates SVG right */
+.audit {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: 56px;
+  align-items: start;
+  margin-top: 8px;
+}
+.audit__prose {
+  font-family: var(--font-sans);
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--color-ink-800);
+  max-width: 62ch;
+}
+.audit__prose p { margin: 0 0 20px; }
+.audit__prose p:last-child { margin-bottom: 0; }
+.audit__aside {
+  font-style: italic;
+  color: var(--color-ink-500);
+  font-size: 16px;
+}
+.audit__when {
+  margin-top: 24px !important;
+  font-family: var(--font-sans);
+  font-size: 16px;
+  color: var(--color-ink-700);
+  padding-top: 18px;
+  border-top: 1px solid var(--color-rule-soft);
+}
+.audit__when-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-saffron-ink);
+  margin-right: 4px;
+}
+.audit__diagram { color: var(--color-saffron-ink); padding-top: 4px; }
+.audit__diagram svg { width: 100%; max-width: 280px; height: auto; display: block; }
+
+/* Builds · side-by-side spread · justified asymmetric (the IA is "pick one") */
+.builds {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 32px;
+}
+.build {
+  padding: 32px;
+  background: var(--color-paper);
+  border: 1px solid var(--color-rule);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.build--ops { border-color: rgba(74, 124, 89, 0.28); }
+.build--feat { border-color: rgba(181, 154, 212, 0.32); }
+.build__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+}
+.build__name {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: clamp(22px, 2.2vw, 28px);
+  margin: 0;
+  letter-spacing: -0.01em;
+  color: var(--color-ink-900);
+}
+.build__time {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--color-ink-500);
+  white-space: nowrap;
+}
+.build__sub {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin: 0;
+}
+.build--ops .build__sub { color: var(--color-basil-ink); }
+.build--feat .build__sub { color: var(--color-viola-900); }
+.build__body {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--color-ink-800);
+  margin: 0;
+}
+
+@media (max-width: 900px) {
+  .audit { grid-template-columns: 1fr; gap: 32px; }
+  .audit__diagram svg { max-width: 240px; }
+  .builds { grid-template-columns: 1fr; gap: 16px; }
+}
+@media (max-width: 768px) {
+  .build { padding: 24px; }
+  .memo--howw .memo__hero { padding: 96px 0 48px; }
+}
+
+/* ==========================================================================
+   /about · long-form letter
+   Hallmark · macrostructure: Option B (Letter) · genre: practitioner profile
+   ========================================================================== */
+
+.memo--about .memo__hero { padding: 132px 0 48px; }
+.memo--about .memo__thesis { font-size: clamp(36px, 6vw, 80px); max-width: 22ch; }
+
+.letter__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr);
+  gap: 64px;
+  align-items: start;
+}
+.letter__portrait img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 2px;
+  box-shadow: 0 16px 36px rgba(17, 34, 64, 0.08);
+}
+.letter__body {
+  font-family: var(--font-sans);
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--color-ink-800);
+  max-width: 60ch;
+}
+.letter__body p { margin: 0 0 24px; }
+.letter__body p:last-child { margin-bottom: 0; }
+.letter__body strong { color: var(--color-ink-900); font-weight: 600; }
+.letter__lede {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: clamp(22px, 2.4vw, 28px);
+  line-height: 1.35;
+  letter-spacing: -0.005em;
+  color: var(--color-ink-900) !important;
+  margin-bottom: 32px !important;
+}
+
+@media (max-width: 900px) {
+  .letter__grid { grid-template-columns: 1fr; gap: 32px; }
+  .letter__portrait { max-width: 360px; }
+}
+@media (max-width: 768px) {
+  .memo--about .memo__hero { padding: 96px 0 40px; }
+}
+
+/* ==========================================================================
+   /contact · qualification-first
+   Hallmark · macrostructure: Option B (Surgical · qualification page)
+   ========================================================================== */
+
+.memo--contact .memo__hero { padding: 132px 0 56px; }
+.memo--contact .memo__thesis { font-size: clamp(36px, 6vw, 80px); max-width: 22ch; }
+
+.memo--contact .memo__section { padding: 56px 0; }
+.memo--contact .memo__section:first-of-type { padding-top: 56px; }
+
+.qualification {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0 0;
+  display: grid;
+  gap: 18px;
+}
+.qualification li {
+  font-family: var(--font-sans);
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--color-ink-800);
+  max-width: 62ch;
+  padding-left: 22px;
+  position: relative;
+}
+.qualification li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 12px;
+  width: 12px;
+  height: 1px;
+  background: var(--color-ink-300);
+}
+.qualification__exit {
+  margin: 40px 0 0;
+  padding: 16px 0 0 22px;
+  border-top: 1px solid var(--color-rule-soft);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  font-style: italic;
+  color: var(--color-ink-500);
+  max-width: 62ch;
+}
+
+.contact__meta {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  color: var(--color-ink-500);
+  margin: 8px 0 28px;
+  max-width: 70ch;
+}
+.contact__actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 36px;
+}
+.contact__close {
+  font-family: var(--font-sans);
+  font-size: 18px;
+  font-style: italic;
+  line-height: 1.55;
+  color: var(--color-ink-700);
+  max-width: 56ch;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .memo--contact .memo__hero { padding: 96px 0 40px; }
+}
