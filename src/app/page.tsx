@@ -49,18 +49,32 @@ export default function HomePage() {
                 </div>
               </div>
               <div className="engagement__diagram" aria-hidden="true">
-                <svg viewBox="0 0 600 100" xmlns="http://www.w3.org/2000/svg">
-                  <rect x="20" y="30" width="140" height="40" rx="4" fill="none" stroke="currentColor" strokeWidth="1.5" opacity="0.55" />
-                  <text x="90" y="55" fontFamily="var(--font-sans)" fontSize="14" fill="currentColor" textAnchor="middle">Tickets in</text>
-                  <line x1="168" y1="50" x2="218" y2="50" stroke="currentColor" strokeWidth="1.5" opacity="0.55" />
-                  <polygon points="214,46 222,50 214,54" fill="currentColor" opacity="0.55" />
-                  <rect x="230" y="22" width="140" height="56" rx="4" fill="currentColor" />
-                  <text x="300" y="46" fontFamily="var(--font-sans)" fontSize="14" fill="var(--color-basil-50)" textAnchor="middle" fontWeight="500">Triage agent</text>
-                  <text x="300" y="64" fontFamily="var(--font-mono)" fontSize="9" fill="var(--color-basil-50)" textAnchor="middle" opacity="0.75" letterSpacing="1">SUGO</text>
-                  <line x1="378" y1="50" x2="428" y2="50" stroke="currentColor" strokeWidth="1.5" opacity="0.55" />
-                  <polygon points="424,46 432,50 424,54" fill="currentColor" opacity="0.55" />
-                  <rect x="440" y="30" width="140" height="40" rx="4" fill="none" stroke="currentColor" strokeWidth="1.5" opacity="0.55" />
-                  <text x="510" y="55" fontFamily="var(--font-sans)" fontSize="14" fill="currentColor" textAnchor="middle">Routed to pod</text>
+                <svg viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg">
+                  <text x="300" y="20" fontFamily="var(--font-mono)" fontSize="10" fill="currentColor" textAnchor="middle" opacity="0.6" letterSpacing="1.5">ONE WORKFLOW &middot; ONE OWNER &middot; ONE METRIC</text>
+                  <line x1="40" y1="36" x2="560" y2="36" stroke="currentColor" strokeWidth="1" opacity="0.2" />
+
+                  <rect x="20" y="70" width="140" height="56" rx="4" fill="none" stroke="currentColor" strokeWidth="1.5" opacity="0.55" />
+                  <text x="90" y="103" fontFamily="var(--font-sans)" fontSize="15" fill="currentColor" textAnchor="middle">Tickets in</text>
+
+                  <line x1="168" y1="98" x2="222" y2="98" stroke="currentColor" strokeWidth="1.5" opacity="0.55" />
+                  <polygon points="218,94 226,98 218,102" fill="currentColor" opacity="0.55" />
+
+                  <rect x="230" y="62" width="140" height="72" rx="4" fill="currentColor" />
+                  <text x="300" y="95" fontFamily="var(--font-sans)" fontSize="15" fill="var(--color-basil-50)" textAnchor="middle" fontWeight="500">Triage agent</text>
+                  <text x="300" y="116" fontFamily="var(--font-mono)" fontSize="9" fill="var(--color-basil-50)" textAnchor="middle" opacity="0.8" letterSpacing="1.2">SUGO</text>
+
+                  <line x1="378" y1="98" x2="432" y2="98" stroke="currentColor" strokeWidth="1.5" opacity="0.55" />
+                  <polygon points="428,94 436,98 428,102" fill="currentColor" opacity="0.55" />
+
+                  <rect x="440" y="70" width="140" height="56" rx="4" fill="none" stroke="currentColor" strokeWidth="1.5" opacity="0.55" />
+                  <text x="510" y="103" fontFamily="var(--font-sans)" fontSize="15" fill="currentColor" textAnchor="middle">Routed to pod</text>
+
+                  <text x="90" y="158" fontFamily="var(--font-mono)" fontSize="10" fill="currentColor" textAnchor="middle" opacity="0.55">unrouted backlog</text>
+                  <text x="300" y="158" fontFamily="var(--font-mono)" fontSize="10" fill="currentColor" textAnchor="middle" opacity="0.55">drafts &middot; picks pod</text>
+                  <text x="510" y="158" fontFamily="var(--font-mono)" fontSize="10" fill="currentColor" textAnchor="middle" opacity="0.55">human owner</text>
+
+                  <line x1="40" y1="178" x2="560" y2="178" stroke="currentColor" strokeWidth="1" opacity="0.18" />
+                  <text x="300" y="194" fontFamily="var(--font-mono)" fontSize="9" fill="currentColor" textAnchor="middle" opacity="0.55" letterSpacing="1.4">PRODUCTION &middot; MONITORED &middot; HANDED BACK</text>
                 </svg>
               </div>
             </article>

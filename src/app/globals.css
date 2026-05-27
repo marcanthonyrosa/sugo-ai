@@ -2036,7 +2036,7 @@
   align-items: start;
 }
 .engagement--ops .engagement__diagram {
-  padding: 28px 24px;
+  padding: 20px;
   background: var(--color-basil-50);
   border: 1px solid rgba(74, 124, 89, 0.18);
   color: var(--color-basil-ink);
