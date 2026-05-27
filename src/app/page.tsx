@@ -149,36 +149,35 @@ export default function HomePage() {
             </div>
           </div>
           <p className="memo__stat-outro">
-            Sugo tries to occupy all three rooms.
+            Sugo is built for the in-between.
           </p>
         </div>
       </section>
 
-      <section className="memo__section">
+      <section className="memo__section memo__section--tinted">
         <div className="wrap">
           <h2 className="memo__h">How Sugo works.</h2>
           <div className="memo__prose">
             <p>
-              <strong>Software, not decks.</strong> Sugo&rsquo;s deliverable
-              is working code in production, not a deck about working code.
-              Decks compress what&rsquo;s hard about a build into something
-              that looks easy, and the easy version is the one that ships.
+              <strong>Software, not decks.</strong> The deliverable is
+              working code in production, not a deck about working code.
+              Frameworks and templates are tools, not artifacts.
             </p>
             <p>
               <strong>Sit beside the work.</strong> Two weeks of paired
-              sessions with the team doing the workflow beats six weeks of
-              interviews. People who do the work know where it breaks;
-              Sugo&rsquo;s job is to be there when it does.
+              sessions beats six weeks of interviews. The team doing the
+              workflow knows where it breaks.
             </p>
             <p>
-              <strong>Fewer things, done very well.</strong> A scoped agent
-              shipped beats a platform vision shipped never. Sugo would
-              rather own one workflow end-to-end than scope three at once.
+              <strong>Genuine ROI.</strong> Every build has a baseline
+              metric set in the audit and a target measured at 30 / 60 / 90
+              days. No vanity dashboards.
             </p>
             <p>
-              <strong>Stay small.</strong> No subcontractors, no junior
-              handoffs, no offshore implementation team. The person scoping
-              the work is the person shipping it.
+              <strong>Leave a clean handoff.</strong> Your team owns the
+              software after launch. Documentation, monitoring, and a
+              written brief on what to build next &mdash; delivered on
+              launch day.
             </p>
           </div>
         </div>
@@ -213,7 +212,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="memo__close">
+      <section className="memo__close memo__close--dark">
         <div className="wrap">
           <h2 className="memo__close-h">
             Start a <span className="accent">conversation.</span>

@@ -2029,22 +2029,29 @@
   margin-top: 4px;
 }
 
-/* Ops · prose above, basil-tinted horizontal banner diagram below */
+/* Ops · prose left, basil-tinted horizontal flow diagram right · wider diagram column */
+.engagement--ops {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr);
+  gap: 48px;
+  align-items: stretch;
+}
 .engagement--ops .engagement__diagram {
-  padding: 36px 32px;
+  padding: 28px 24px;
   background: var(--color-basil-50);
   border: 1px solid rgba(74, 124, 89, 0.18);
   color: var(--color-basil-ink);
-  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  align-self: stretch;
 }
 .engagement--ops .engagement__diagram svg {
   width: 100%;
   height: auto;
-  max-height: 110px;
+  max-height: 120px;
   display: block;
 }
 
-/* Feat · prose left, vertical product UI sketch right · no tinted background */
+/* Feat · prose left, naked vertical product UI sketch right · narrower diagram column */
 .engagement--feat {
   grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
   gap: 56px;
@@ -2059,6 +2066,43 @@
   max-width: 280px;
   height: auto;
   display: block;
+}
+
+/* Tinted section · subtle cream visual relief */
+.memo__section--tinted {
+  background: var(--color-surface-2);
+  border-top: none;
+  padding: 88px 0;
+}
+
+/* Dark close · navy bleed matching the next-step treatment on legacy pages */
+.memo__close--dark {
+  background: linear-gradient(to bottom, #152a4d 0%, var(--color-ink-900) 140px);
+  color: var(--color-offwhite);
+  border-top: none;
+  padding: 112px 0 104px;
+}
+.memo__close--dark .memo__close-h { color: var(--color-offwhite); }
+.memo__close--dark .memo__close-h .accent {
+  color: var(--color-viola-500);
+  font-weight: 300;
+}
+.memo__close--dark .memo__close-sub { color: var(--color-ink-100); }
+.memo__close--dark .btn-primary {
+  background: var(--color-offwhite);
+  color: var(--color-ink-900);
+  box-shadow: none;
+}
+.memo__close--dark .btn-primary:hover {
+  background: var(--color-white);
+}
+.memo__close--dark .memo__secondary {
+  color: var(--color-ink-100);
+  border-bottom-color: rgba(255, 255, 255, 0.2);
+}
+.memo__close--dark .memo__secondary:hover {
+  color: var(--color-offwhite);
+  border-bottom-color: var(--color-offwhite);
 }
 
 /* 95% callout · stat anchored left, narrative + dot grid right */
