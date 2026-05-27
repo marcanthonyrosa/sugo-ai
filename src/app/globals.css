@@ -2033,7 +2033,7 @@
 .engagement--ops {
   grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr);
   gap: 48px;
-  align-items: stretch;
+  align-items: start;
 }
 .engagement--ops .engagement__diagram {
   padding: 28px 24px;
@@ -2042,12 +2042,13 @@
   color: var(--color-basil-ink);
   display: flex;
   align-items: center;
-  align-self: stretch;
+  justify-content: center;
+  height: 240px;
 }
 .engagement--ops .engagement__diagram svg {
   width: 100%;
   height: auto;
-  max-height: 120px;
+  max-height: 100%;
   display: block;
 }
 
@@ -2059,12 +2060,14 @@
 }
 .engagement--feat .engagement__diagram {
   color: var(--color-viola-900);
-  padding-top: 4px;
+  height: 240px;
+  display: flex;
+  align-items: flex-start;
 }
 .engagement--feat .engagement__diagram svg {
-  width: 100%;
-  max-width: 280px;
-  height: auto;
+  height: 100%;
+  width: auto;
+  max-width: 100%;
   display: block;
 }
 
