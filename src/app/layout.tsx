@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Red_Hat_Display, JetBrains_Mono } from "next/font/google";
 import { Nav } from "@/components/layout/Nav";
+import { Footer } from "@/components/layout/Footer";
 import "./globals.css";
 import "./site.css";
 
@@ -46,6 +47,7 @@ export default function RootLayout({
         </a>
         <Nav />
         {children}
+        <Footer />
       </body>
     </html>
   );

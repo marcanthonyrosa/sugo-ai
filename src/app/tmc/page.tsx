@@ -3,7 +3,6 @@ import Link from "next/link";
 import { Fade } from "@/components/ui/Fade";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { ProductTableToggle } from "@/components/tmc/ProductTableToggle";
-import { Footer } from "@/components/layout/Footer";
 
 export const metadata: Metadata = {
   title: "Product Benefits — TMC × Sugo AI",
@@ -25,7 +24,7 @@ interface Metric {
 const teamPillStyles: Record<TeamVariant, { background: string; color: string }> = {
   innovation:     { background: "var(--color-basil-50)",   color: "var(--color-basil-ink)"  },
   "new-ventures": { background: "var(--color-viola-50)",   color: "var(--color-viola-900)"  },
-  marketing:      { background: "var(--color-saffron-50)", color: "#854F0B"                 },
+  marketing:      { background: "var(--color-saffron-50)", color: "var(--color-saffron-ink)" },
   biobridge:      { background: "var(--color-sky-50)",     color: "var(--color-sky-ink)"    },
 };
 
@@ -220,7 +219,7 @@ const products: Product[] = [
 const dotColors: Record<BenefitColor, { bg: string; dot: string }> = {
   basil:   { bg: "var(--color-basil-50)",  dot: "var(--color-basil-ink)" },
   viola:   { bg: "var(--color-viola-50)",  dot: "var(--color-viola-900)" },
-  saffron: { bg: "var(--color-saffron-50)", dot: "#854F0B" },
+  saffron: { bg: "var(--color-saffron-50)", dot: "var(--color-saffron-ink)" },
 };
 
 const accentBorders: Record<BenefitColor, string> = {
@@ -232,7 +231,7 @@ const accentBorders: Record<BenefitColor, string> = {
 const pillStyles: Record<string, { background: string; color: string }> = {
   basil:   { background: "var(--color-basil-50)",  color: "var(--color-basil-ink)" },
   sky:     { background: "var(--color-sky-50)",    color: "var(--color-sky-ink)" },
-  saffron: { background: "var(--color-saffron-50)", color: "#854F0B" },
+  saffron: { background: "var(--color-saffron-50)", color: "var(--color-saffron-ink)" },
 };
 
 /* ── Page ──────────────────────────────────────────────────────────────── */
@@ -400,16 +399,18 @@ export default function TmcBenefitsPage() {
         <style>{`
           .tmc-deep-dive-toggle summary::-webkit-details-marker { display: none; }
           .tmc-deep-dive-toggle[open] .tmc-chevron { transform: rotate(180deg); }
-          .tmc-deep-dive-toggle .tmc-chevron { transition: transform 160ms ease; }
-          .tmc-deep-dive-content {
-            display: grid;
-            grid-template-rows: 0fr;
-            transition: grid-template-rows 200ms ease;
+          .tmc-deep-dive-toggle .tmc-chevron { transition: transform 160ms var(--ease-out); }
+          .tmc-deep-dive-toggle[open] .tmc-deep-dive-inner {
+            animation: tmc-fade-in 200ms var(--ease-out) both;
           }
-          .tmc-deep-dive-toggle[open] .tmc-deep-dive-content {
-            grid-template-rows: 1fr;
+          @keyframes tmc-fade-in {
+            from { opacity: 0; transform: translateY(-2px); }
+            to   { opacity: 1; transform: none; }
           }
-          .tmc-deep-dive-inner { overflow: hidden; }
+          @media (prefers-reduced-motion: reduce) {
+            .tmc-deep-dive-toggle[open] .tmc-deep-dive-inner { animation: none; }
+            .tmc-deep-dive-toggle .tmc-chevron { transition: none; }
+          }
         `}</style>
 
         <div
@@ -438,7 +439,6 @@ export default function TmcBenefitsPage() {
                   style={{
                     background: "var(--color-surface-3)",
                     border: "1px solid var(--color-rule-soft)",
-                    borderLeft: `4px solid ${accentBorders[product.accentColor]}`,
                     borderRadius: "var(--r-lg)",
                     marginBottom: "16px",
                     overflow: "hidden",
@@ -476,8 +476,22 @@ export default function TmcBenefitsPage() {
                             fontWeight: 500,
                             color: "var(--color-ink-900)",
                             marginBottom: "3px",
+                            display: "inline-flex",
+                            alignItems: "center",
+                            gap: "10px",
                           }}
                         >
+                          <span
+                            aria-hidden="true"
+                            style={{
+                              display: "inline-block",
+                              width: "8px",
+                              height: "8px",
+                              borderRadius: "50%",
+                              background: accentBorders[product.accentColor],
+                              flexShrink: 0,
+                            }}
+                          />
                           {product.name}
                         </div>
                         <div style={{ fontSize: "11px", color: "var(--color-ink-300)" }}>
@@ -600,7 +614,6 @@ export default function TmcBenefitsPage() {
         </div>
       </section>
 
-      <Footer />
     </main>
   );
 }

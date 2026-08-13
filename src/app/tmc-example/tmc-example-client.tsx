@@ -13,7 +13,6 @@ import {
 } from "lucide-react";
 import { Fade } from "@/components/ui/Fade";
 import { SectionLabel } from "@/components/ui/SectionLabel";
-import { Footer } from "@/components/layout/Footer";
 
 /* ── Data ──────────────────────────────────────────────────────────────── */
 
@@ -555,7 +554,6 @@ export function TmcExampleClient() {
         </div>
       </section>
 
-      <Footer />
     </main>
   );
 }
