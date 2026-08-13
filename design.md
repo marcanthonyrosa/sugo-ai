@@ -46,6 +46,8 @@ system. Amend intentionally — the file is the rule.
 ```
 
 ## Carpentry & CTA voice
+- Nav: sticky (`position: sticky; top: 0; z-index: var(--z-sticky-nav)`) — in-flow, never fixed;
+  the 2px ink rule is the seam content slides beneath. Approved 2026-08-13.
 - Panels: 2px solid `--color-ink` borders; adjacent panels share borders (zine carpentry).
 - Primary CTA · navy fill (`--color-accent`) + `--color-accent-ink` text · radius-btn ·
   stacked hard shadow `4px 4px 0 var(--color-viola-500)` · hover darkens to accent-hover.
