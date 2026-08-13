@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sugo AI — Panel Press · Studio Edition</title>
+<meta name="description" content="Sugo AI is a product studio for traditional businesses building serious software — internal tools, AI agents, and customer products, shipped with the discipline of a modern software company.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=switzer@400,600&display=swap" rel="stylesheet">
+<style>
+/* Hallmark · genre: playful · macrostructure: Split Studio · H2 knobs: ratio=7/5, right=illustration-flood, divider=2px-ink-border
+ * VARIANT E · “Studio Edition” — legacy palette test (source: legacy/styles.css) applied to the Panel Press structure
+ * nav: N7 brutal slab · footer: Ft5 statement · theme: custom-from-legacy · vibe: “warm studio paper, clay & moss, serif-led”
+ * paper: oklch(94% 0.012 85) [#F2EDE4] · accent: oklch(46% 0.125 40) [clay #C6623C darkened for 4.5:1 button text]
+ * display: Fraunces (600; one italic moment) · body: Switzer (Inter in legacy — upgraded, banned default) · outlier: JetBrains Mono (numerals + meta)
+ * axes: light / roman-serif / warm-clay + chromatic-moss · enrichment: E-hand-SVG Tier B (sugo pot, recolored only)
+ * contrast fixes vs legacy hexes: clay #C6623C ≈3.6:1 under cream → accent darkened to 46% L (≥4.5:1); stone #A89E8C fails as text →
+ *   kept as rules/hairlines only, muted text darkened to 45% L; manifesto label uses paper (not stone) on moss; SOFT axis omitted from
+ *   the Fraunces request for font-delivery reliability (visual delta minor vs legacy’s "SOFT" 50)
+ * deviations (deliberate, user-approved Dodonut DNA): stacked hard offset shadows on primary CTA + one panel · bounded color-flood panels ·
+ *   slow subtle steam loop (stops under reduced motion) · 2px ink border-carpentry
+ * pre-emit critique: P4 H5 E4 S4 R4 V4 · contrast: pass (46–50, recomputed for this palette) · nav/footer/hero: pass (51–55)
+ * honest: pass (56) · chrome: pass (57) · tokens: pass (58) · responsive: pass (59) · icons: pass (60) · mobile: pass (36, 59, 61–68)
+ */
+:root {
+  --color-paper:      oklch(94% 0.012 85);   /* legacy paper  #F2EDE4 */
+  --color-paper-2:    oklch(91% 0.014 85);
+  --color-card:       oklch(96.5% 0.010 90); /* legacy cream  #F8F3EA */
+  --color-ink:        oklch(21% 0.010 75);   /* legacy ink    #1E1B17 */
+  --color-ink-2:      oklch(34% 0.012 75);
+  --color-muted:      oklch(45% 0.015 80);   /* stone family, darkened for text contrast */
+  --color-rule:       oklch(68% 0.018 85);   /* legacy stone  #A89E8C — hairlines only */
+  --color-rule-moss:  oklch(56% 0.045 140);
+  --color-moss:       oklch(42% 0.055 140);  /* legacy moss   #4A5D3E */
+  --color-sand:       oklch(90% 0.020 85);   /* warm sand — evidence panel, spoon */
+  --color-blush:      oklch(90% 0.030 40);   /* clay at low chroma — bucket B */
+  --color-clay-soft:  oklch(84% 0.055 45);   /* light clay — affirm line on moss */
+  --color-accent:     oklch(46% 0.125 40);   /* legacy clay #C6623C, darkened (see stamp) */
+  --color-accent-ink: oklch(96.5% 0.010 90);
+  --color-focus:      oklch(42% 0.150 40);
+
+  --font-display: "Fraunces", Georgia, serif;
+  --font-body:    "Switzer", ui-sans-serif, system-ui, sans-serif;
+  --font-outlier: "JetBrains Mono", ui-monospace, monospace;
+
+  --text-sm:   0.875rem;
+  --text-base: 1rem;
+  --text-md:   1.25rem;
+  --text-lg:   1.5625rem;
+  --text-xl:   1.953rem;
+  --text-2xl:  2.441rem;
+  --text-3xl:  3.052rem;
+  --text-display-s: clamp(2.4rem, 3.7vw + 1rem, 3.9rem);
+  --text-statement: clamp(2rem, 3vw + 1rem, 3.25rem);
+  --text-stat: clamp(3.5rem, 6vw + 1rem, 6rem);
+
+  --space-2xs: 0.25rem;
+  --space-xs:  0.5rem;
+  --space-sm:  0.75rem;
+  --space-md:  1rem;
+  --space-lg:  1.5rem;
+  --space-xl:  2.5rem;
+  --space-2xl: 4rem;
+  --space-3xl: 6rem;
+
+  --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in:     cubic-bezier(0.7, 0, 0.84, 0);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-micro: 120ms;
+  --dur-short: 220ms;
+  --dur-long:  420ms;
+
+  --border-panel: 2px solid var(--color-ink);
+  --radius-panel: 12px;
+  --radius-btn: 8px;
+  --shadow-stack: 4px 4px 0 var(--color-ink);
+  --shadow-stack-lift: 5px 5px 0 var(--color-ink);
+  --shadow-stack-press: 2px 2px 0 var(--color-ink);
+
+  --z-raised: 10;
+  --z-sticky-nav: 300;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body { overflow-x: clip; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.55;
+  padding-inline: max(0px, env(safe-area-inset-left)) max(0px, env(safe-area-inset-right));
+}
+h1, h2, h3 {
+  font-family: var(--font-display); font-weight: 600;
+  line-height: 1.12; letter-spacing: -0.015em; margin: 0;
+  overflow-wrap: anywhere; min-width: 0;
+  font-optical-sizing: auto;
+}
+p { margin: 0; }
+::selection { background: var(--color-accent); color: var(--color-accent-ink); }
+
+.wrap { max-width: 74rem; margin-inline: auto; padding-inline: clamp(1rem, 4vw, 2rem); }
+
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; border-radius: 2px; }
+
+.skip {
+  position: absolute; left: var(--space-md); top: -100px;
+  background: var(--color-ink); color: var(--color-paper);
+  padding: var(--space-sm) var(--space-md); border-radius: var(--radius-btn);
+  z-index: var(--z-sticky-nav); transition: none;
+}
+.skip:focus-visible { top: var(--space-md); }
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.5em;
+  min-height: 48px; padding: var(--space-sm) var(--space-lg);
+  border-radius: var(--radius-btn); border: 2px solid var(--color-ink);
+  font-family: var(--font-body); font-weight: 600; font-size: var(--text-base);
+  text-decoration: none; white-space: nowrap; cursor: pointer; line-height: 1;
+  transition: transform var(--dur-micro) var(--ease-out),
+              box-shadow var(--dur-micro) var(--ease-out),
+              background-color var(--dur-micro) var(--ease-out);
+}
+.btn--primary { background: var(--color-accent); color: var(--color-accent-ink); box-shadow: var(--shadow-stack); }
+.btn--primary:hover { transform: translate(-1px, -1px); box-shadow: var(--shadow-stack-lift); }
+.btn--primary:active { transform: translate(1px, 1px); box-shadow: var(--shadow-stack-press); }
+.btn--ghost { background: transparent; color: var(--color-ink); }
+.btn--ghost:hover { background: var(--color-paper-2); }
+.btn--ghost:active { transform: translateY(1px); }
+.btn:disabled, .btn[aria-disabled="true"] { opacity: 0.55; cursor: not-allowed; box-shadow: none; transform: none; }
+
+/* ---------- Nav (N7 brutal slab) ---------- */
+.nav { border-bottom: var(--border-panel); background: var(--color-paper); }
+.nav__row { display: flex; align-items: center; gap: var(--space-lg); padding-block: var(--space-sm); }
+.wordmark {
+  font-family: var(--font-display); font-weight: 600; font-size: var(--text-md);
+  text-decoration: none; letter-spacing: -0.005em; display: inline-flex; align-items: center; gap: 0.35em;
+  min-height: 44px; font-optical-sizing: auto;
+}
+.wordmark::after { content: ""; width: 0.4em; height: 0.4em; background: var(--color-accent); border-radius: 50%; }
+.nav__links { display: flex; align-items: center; gap: var(--space-lg); margin-left: auto; list-style: none; padding: 0; margin-block: 0; }
+.nav__link {
+  text-transform: uppercase; letter-spacing: 0.08em; font-size: var(--text-sm); font-weight: 600;
+  text-decoration: none; white-space: nowrap; padding-block: var(--space-sm); display: inline-block;
+}
+.nav__link:hover { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 6px; text-decoration-color: var(--color-accent); }
+.nav__cta { margin-left: var(--space-xs); }
+.nav__toggle { display: none; }
+
+.nav__drawer { display: grid; grid-template-rows: 0fr; transition: grid-template-rows var(--dur-long) var(--ease-in-out); }
+.nav__drawer > div { overflow: hidden; min-height: 0; }
+.nav__drawer.is-open { grid-template-rows: 1fr; }
+.nav__drawer ul { list-style: none; margin: 0; padding: var(--space-md) 0 var(--space-lg); display: grid; gap: var(--space-xs); }
+
+@media (max-width: 59.99rem) {
+  .nav__links { display: none; }
+  .nav__toggle {
+    display: inline-flex; margin-left: auto;
+    background: transparent; color: var(--color-ink);
+  }
+}
+@media (min-width: 60rem) { .nav__drawer { display: none; } }
+
+/* ---------- Hero ---------- */
+.hero { padding-block-start: var(--space-xl); padding-block-end: var(--space-3xl); }
+.hero__panel {
+  border: var(--border-panel); border-radius: var(--radius-panel);
+  overflow: hidden; background: var(--color-paper);
+}
+.hero__grid { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); }
+.hero__copy { padding: clamp(var(--space-lg), 4vw, var(--space-2xl)); align-self: center; }
+.hero__title { font-size: var(--text-display-s); letter-spacing: -0.02em; max-width: 17ch; }
+.hero__sub { margin-top: var(--space-lg); font-size: var(--text-md); color: var(--color-ink-2); max-width: 48ch; }
+.hero__ctas { margin-top: var(--space-xl); display: flex; flex-wrap: wrap; gap: var(--space-md); align-items: center; }
+.hero__art {
+  background: var(--color-moss); border-left: var(--border-panel);
+  display: grid; place-items: center; padding: clamp(var(--space-lg), 3vw, var(--space-xl));
+}
+.hero__art svg { width: 100%; max-width: 420px; height: auto; display: block; }
+.hero__strip {
+  border-top: var(--border-panel); background: var(--color-paper-2);
+  padding: var(--space-lg) clamp(var(--space-lg), 4vw, var(--space-2xl));
+}
+.hero__strip strong { font-family: var(--font-display); font-weight: 600; font-size: var(--text-md); display: block; font-optical-sizing: auto; }
+.hero__strip p { color: var(--color-ink-2); max-width: 70ch; margin-top: var(--space-xs); }
+
+@media (max-width: 59.99rem) {
+  .hero__grid { grid-template-columns: minmax(0, 1fr); }
+  .hero__art { border-left: none; border-top: var(--border-panel); }
+  .hero__art svg { max-width: 340px; }
+}
+
+/* steam */
+.steam { animation: steam 7s var(--ease-in-out) infinite; opacity: 0.55; }
+.steam--2 { animation-delay: 2.2s; }
+.steam--3 { animation-delay: 4.1s; }
+@keyframes steam {
+  0%   { transform: translateY(4px); opacity: 0.25; }
+  50%  { transform: translateY(-4px); opacity: 0.7; }
+  100% { transform: translateY(4px); opacity: 0.25; }
+}
+
+/* entrance (one orchestrated moment) */
+.reveal { opacity: 0; transform: translateY(8px); animation: reveal var(--dur-long) var(--ease-out) forwards; animation-delay: calc(var(--i, 0) * 90ms); }
+@keyframes reveal { to { opacity: 1; transform: none; } }
+
+/* ---------- Evidence panel ---------- */
+.evidence { padding-block-end: var(--space-3xl); }
+.evidence__panel { border: var(--border-panel); border-radius: var(--radius-panel); overflow: hidden; background: var(--color-paper); }
+.evidence__grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); }
+.evidence__stat {
+  background: var(--color-sand); border-right: var(--border-panel);
+  padding: clamp(var(--space-lg), 4vw, var(--space-2xl));
+  display: grid; align-content: center; gap: var(--space-sm);
+}
+.evidence__num { font-family: var(--font-outlier); font-weight: 500; font-size: var(--text-stat); line-height: 1; font-variant-numeric: tabular-nums; letter-spacing: -0.03em; color: var(--color-accent); }
+.evidence__qual { max-width: 26ch; font-weight: 600; }
+.evidence__body { padding: clamp(var(--space-lg), 4vw, var(--space-2xl)); display: grid; gap: var(--space-md); align-content: center; }
+.evidence__body h2 { font-size: var(--text-xl); max-width: 24ch; }
+.evidence__body p { max-width: 62ch; color: var(--color-ink-2); }
+.evidence__body .lead { color: var(--color-ink); font-weight: 600; }
+.evidence__foot {
+  border-top: var(--border-panel); padding: var(--space-sm) clamp(var(--space-lg), 4vw, var(--space-2xl));
+  font-family: var(--font-outlier); font-size: var(--text-sm); color: var(--color-muted);
+}
+@media (max-width: 59.99rem) {
+  .evidence__grid { grid-template-columns: minmax(0, 1fr); }
+  .evidence__stat { border-right: none; border-bottom: var(--border-panel); }
+}
+
+/* ---------- Two buckets ---------- */
+.buckets { padding-block-end: var(--space-3xl); }
+.section-title { font-size: var(--text-2xl); max-width: 22ch; }
+.buckets__grid { display: grid; grid-template-columns: minmax(0, 6.5fr) minmax(0, 5.5fr); gap: var(--space-lg); margin-top: var(--space-xl); }
+.bucket { border: var(--border-panel); border-radius: var(--radius-panel); padding: var(--space-xl); display: grid; gap: var(--space-md); align-content: start; }
+.bucket h3 { font-size: var(--text-lg); }
+.bucket p { color: var(--color-ink-2); max-width: 55ch; }
+.bucket--tools { background: var(--color-card); box-shadow: var(--shadow-stack); }
+.bucket--customer { background: var(--color-blush); }
+.bucket--customer p { color: var(--color-ink); }
+@media (max-width: 59.99rem) { .buckets__grid { grid-template-columns: minmax(0, 1fr); } }
+
+/* ---------- Process ---------- */
+.process { padding-block-end: var(--space-3xl); }
+.process__intro { margin-top: var(--space-md); max-width: 62ch; color: var(--color-ink-2); }
+.acc { list-style: none; margin: var(--space-xl) 0 0; padding: 0; display: grid; gap: var(--space-md); }
+.acc__item { border: var(--border-panel); border-radius: var(--radius-panel); background: var(--color-card); overflow: hidden; }
+.acc__trigger {
+  width: 100%; display: flex; align-items: center; gap: var(--space-md);
+  background: transparent; border: none; padding: var(--space-md) var(--space-lg);
+  font-family: var(--font-display); font-weight: 600; font-size: var(--text-md);
+  color: var(--color-ink); text-align: left; cursor: pointer; min-height: 56px;
+  font-optical-sizing: auto;
+  transition: background-color var(--dur-micro) var(--ease-out);
+}
+.acc__trigger:hover { background: var(--color-paper-2); }
+.acc__trigger:active { background: var(--color-paper); }
+.acc__trigger:focus-visible { outline-offset: -4px; }
+.acc__trigger:disabled { opacity: 0.55; cursor: not-allowed; }
+.acc__num { font-family: var(--font-outlier); font-weight: 500; font-size: var(--text-sm); color: var(--color-muted); font-variant-numeric: tabular-nums; }
+.acc__chev { margin-left: auto; flex: none; transition: transform var(--dur-short) var(--ease-in-out); }
+.acc__item.is-open .acc__chev { transform: rotate(180deg); }
+.acc__panel { display: grid; grid-template-rows: 0fr; transition: grid-template-rows var(--dur-long) var(--ease-in-out); }
+.acc__panel > div { overflow: hidden; min-height: 0; }
+.acc__item.is-open .acc__panel { grid-template-rows: 1fr; }
+.acc__content { padding: 0 var(--space-lg) var(--space-lg); display: grid; gap: var(--space-md); }
+.acc__content p { max-width: 62ch; color: var(--color-ink-2); }
+.acc__label { font-weight: 600; font-size: var(--text-sm); text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-ink); }
+.acc__outputs { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-xs); }
+.acc__outputs li { position: relative; padding-left: var(--space-lg); color: var(--color-ink-2); max-width: 60ch; }
+.acc__outputs li::before {
+  content: ""; position: absolute; left: 0; top: 0.45em;
+  width: 8px; height: 8px; background: var(--color-accent); border-radius: 50%;
+}
+.process__own { margin-top: var(--space-2xl); display: grid; gap: var(--space-md); }
+.process__own .big { font-family: var(--font-display); font-weight: 600; font-size: var(--text-lg); line-height: 1.3; max-width: 34ch; letter-spacing: -0.01em; font-optical-sizing: auto; }
+.process__own .supporting { color: var(--color-muted); max-width: 68ch; }
+
+/* ---------- Manifesto ---------- */
+.manifesto { padding-block-end: var(--space-3xl); }
+.manifesto__panel {
+  background: var(--color-moss); color: var(--color-paper);
+  border: var(--border-panel); border-radius: var(--radius-panel);
+  padding: clamp(var(--space-xl), 5vw, var(--space-2xl));
+}
+.manifesto__panel h2 { font-size: var(--text-md); font-weight: 500; color: var(--color-paper); letter-spacing: 0.01em; }
+.manifesto__lines { list-style: none; margin: var(--space-lg) 0 0; padding: 0; }
+.manifesto__lines li {
+  font-family: var(--font-display); font-weight: 600; letter-spacing: -0.01em;
+  font-size: clamp(var(--text-lg), 2.5vw + 0.5rem, var(--text-2xl)); line-height: 1.2;
+  padding-block: var(--space-lg); border-top: 1px solid var(--color-rule-moss);
+  max-width: 30ch; overflow-wrap: anywhere; min-width: 0;
+  font-optical-sizing: auto;
+}
+.manifesto__lines li:first-child { border-top: none; padding-top: 0; }
+.manifesto__lines li:last-child { padding-bottom: 0; }
+.manifesto__lines .affirm { color: var(--color-clay-soft); }
+
+/* ---------- Plain terms ---------- */
+.terms { padding-block-end: var(--space-3xl); }
+.terms__card {
+  background: var(--color-card); border: var(--border-panel); border-radius: var(--radius-panel);
+  padding: var(--space-xl); max-width: 46rem;
+}
+.terms__card h2 { font-size: var(--text-xl); }
+.terms__card .intro { margin-top: var(--space-xs); color: var(--color-muted); }
+.terms__card dl { margin: var(--space-lg) 0 0; display: grid; gap: var(--space-md); }
+.terms__card dt { font-family: var(--font-display); font-weight: 600; font-size: var(--text-md); font-optical-sizing: auto; }
+.terms__card dd { margin: var(--space-2xs) 0 0; color: var(--color-ink-2); max-width: 58ch; }
+.link {
+  font-weight: 600; color: var(--color-ink); text-decoration: underline;
+  text-decoration-thickness: 1px; text-underline-offset: 3px; white-space: nowrap;
+}
+.link:hover { text-decoration-thickness: 2px; text-decoration-color: var(--color-accent); }
+.link:active { color: var(--color-ink-2); }
+.terms__more { display: inline-block; margin-top: var(--space-lg); }
+
+/* ---------- Footer (Ft5 statement) ---------- */
+.foot { border-top: var(--border-panel); background: var(--color-paper); padding-block: var(--space-2xl) var(--space-xl); }
+.foot__statement { font-family: var(--font-display); font-weight: 600; font-size: var(--text-statement); line-height: 1.12; letter-spacing: -0.015em; max-width: 24ch; overflow-wrap: anywhere; min-width: 0; font-optical-sizing: auto; }
+.foot__statement em { font-style: italic; font-weight: 500; }
+.foot__body { margin-top: var(--space-lg); max-width: 56ch; color: var(--color-ink-2); }
+.foot__cta { margin-top: var(--space-xl); }
+.foot__meta {
+  margin-top: var(--space-2xl); padding-top: var(--space-md); border-top: 1px solid var(--color-rule);
+  display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-md) var(--space-lg);
+  font-size: var(--text-sm); color: var(--color-muted);
+}
+.foot__meta a { text-decoration: none; white-space: nowrap; }
+.foot__meta a:hover { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 4px; }
+.foot__note { font-family: var(--font-outlier); margin-left: auto; }
+@media (max-width: 40rem) { .foot__note { margin-left: 0; } }
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 150ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 150ms !important;
+  }
+  html { scroll-behavior: auto; }
+  .steam { animation: none; opacity: 0.55; }
+  .reveal { animation: reveal-reduced 150ms linear forwards; }
+  @keyframes reveal-reduced { to { opacity: 1; transform: none; } }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav">
+  <div class="wrap">
+    <div class="nav__row">
+      <a class="wordmark" href="/">Sugo AI</a>
+      <ul class="nav__links">
+        <li><a class="nav__link" href="/how-we-work">How we work</a></li>
+        <li><a class="nav__link" href="/writing">Writing</a></li>
+        <li><a class="nav__link" href="/about">About</a></li>
+        <li><a class="btn btn--primary nav__cta" href="/contact">Contact us</a></li>
+      </ul>
+      <button class="btn btn--ghost nav__toggle" aria-expanded="false" aria-controls="nav-drawer">Menu</button>
+    </div>
+    <div class="nav__drawer" id="nav-drawer">
+      <div>
+        <ul>
+          <li><a class="nav__link" href="/how-we-work">How we work</a></li>
+          <li><a class="nav__link" href="/writing">Writing</a></li>
+          <li><a class="nav__link" href="/about">About</a></li>
+          <li><a class="btn btn--primary" href="/contact">Contact us</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="wrap">
+      <article class="hero__panel">
+        <div class="hero__grid">
+          <div class="hero__copy">
+            <h1 class="hero__title reveal" style="--i: 0">Modern product development for companies that aren’t software companies.</h1>
+            <p class="hero__sub reveal" style="--i: 1">We help traditional businesses ship internal tools, AI&nbsp;agents, and customer products with the discipline of a modern software company.</p>
+            <div class="hero__ctas reveal" style="--i: 2">
+              <a class="btn btn--primary" href="/contact">Start a conversation</a>
+              <a class="btn btn--ghost" href="/how-we-work">How we work</a>
+            </div>
+          </div>
+          <div class="hero__art reveal" style="--i: 3">
+            <svg viewBox="0 0 520 360" role="img" aria-label="A simmering pot of sugo — slow-made, with care">
+              <!-- steam -->
+              <g fill="none" stroke="var(--color-paper)" stroke-width="6" stroke-linecap="round">
+                <path class="steam" d="M215 96 C 205 76, 225 62, 215 42"/>
+                <path class="steam steam--2" d="M262 88 C 252 66, 274 52, 264 30"/>
+                <path class="steam steam--3" d="M310 96 C 300 76, 320 62, 310 42"/>
+              </g>
+              <!-- pot shadow -->
+              <ellipse cx="260" cy="320" rx="150" ry="14" fill="var(--color-rule-moss)"/>
+              <!-- pot body -->
+              <path d="M150 150 L370 150 C 372 220, 360 290, 300 308 L220 308 C 160 290, 148 220, 150 150 Z"
+                    fill="var(--color-card)" stroke="var(--color-ink)" stroke-width="5"/>
+              <!-- sauce at the rim -->
+              <path d="M150 150 L370 150 L370 168 C 320 178, 200 178, 150 168 Z" fill="var(--color-accent)" stroke="var(--color-ink)" stroke-width="5" stroke-linejoin="round"/>
+              <!-- handles -->
+              <path d="M150 168 C 118 168, 118 200, 152 198" fill="none" stroke="var(--color-ink)" stroke-width="5" stroke-linecap="round"/>
+              <path d="M370 168 C 402 168, 402 200, 368 198" fill="none" stroke="var(--color-ink)" stroke-width="5" stroke-linecap="round"/>
+              <!-- pot band -->
+              <path d="M156 218 L364 218" stroke="var(--color-rule)" stroke-width="4" stroke-linecap="round"/>
+              <!-- wooden spoon -->
+              <g transform="rotate(-14 300 140)">
+                <rect x="286" y="30" width="14" height="120" rx="7" fill="var(--color-sand)" stroke="var(--color-ink)" stroke-width="4"/>
+                <ellipse cx="293" cy="160" rx="24" ry="30" fill="var(--color-sand)" stroke="var(--color-ink)" stroke-width="4"/>
+              </g>
+              <!-- tomato -->
+              <g>
+                <circle cx="122" cy="292" r="26" fill="var(--color-accent)" stroke="var(--color-ink)" stroke-width="4"/>
+                <path d="M122 268 C 118 260, 126 258, 122 252" fill="none" stroke="var(--color-ink)" stroke-width="4" stroke-linecap="round"/>
+                <path d="M112 266 L122 270 L132 266" fill="none" stroke="var(--color-ink)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+              </g>
+            </svg>
+          </div>
+        </div>
+        <div class="hero__strip reveal" style="--i: 4">
+          <strong>Sugo AI is a product studio for traditional businesses building serious software.</strong>
+          <p>We partner with teams that know their business deeply but have not historically operated like software companies. We bring the product, design, and engineering discipline needed to build software that is modern, usable, and worth rolling out.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Evidence -->
+  <section class="evidence" aria-labelledby="evidence-title">
+    <div class="wrap">
+      <article class="evidence__panel">
+        <div class="evidence__grid">
+          <div class="evidence__stat">
+            <p class="evidence__num">≈5%</p>
+            <p class="evidence__qual">of enterprise GenAI pilots show measurable P&amp;L impact¹</p>
+          </div>
+          <div class="evidence__body">
+            <h2 id="evidence-title">Most AI pilots don’t stall because the model is weak.</h2>
+            <p>A widely cited MIT NANDA report from August 2025 found that only a small minority of enterprise GenAI pilots showed measurable P&amp;L impact. In our experience, the issue is usually ownership: the team shaping the opportunity is too far from the team building the product, and no one is accountable end to end.</p>
+            <p class="lead">We work differently. We embed closely, shape the product with the business, and stay responsible for what actually ships.</p>
+          </div>
+        </div>
+        <p class="evidence__foot">1 — MIT NANDA, “The GenAI Divide: State of AI in Business,” August 2025.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- Two buckets -->
+  <section class="buckets" aria-labelledby="buckets-title">
+    <div class="wrap">
+      <h2 class="section-title" id="buckets-title">The work falls into two buckets.</h2>
+      <div class="buckets__grid">
+        <article class="bucket bucket--tools">
+          <h3>Internal tools &amp; AI agents</h3>
+          <p>Software for operations, workflows, decision support, and team productivity. We help businesses replace manual work, disconnected systems, and shallow pilots with tools that fit how the organization actually runs.</p>
+        </article>
+        <article class="bucket bucket--customer">
+          <h3>Customer products</h3>
+          <p>Portals, platforms, and digital experiences for customers, members, partners, and policyholders. We build products that are clear, trustworthy, and easy to use, especially when the business behind them is operationally complex.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section class="process" aria-labelledby="process-title">
+    <div class="wrap">
+      <h2 class="section-title" id="process-title">We run like a software company. That’s where we come from.</h2>
+      <p class="process__intro">Traditional businesses often have strong operators, strong constraints, and strong domain knowledge. What they usually lack is a product-development system built for fast learning, tight iteration, and high-quality shipping. That’s what we bring.</p>
+
+      <ol class="acc">
+        <li class="acc__item is-open">
+          <h3>
+            <button class="acc__trigger" aria-expanded="true" aria-controls="stage-1">
+              <span class="acc__num">01</span>
+              Discovery
+              <svg class="acc__chev" width="20" height="20" viewBox="0 0 20 20" aria-hidden="true" fill="none" stroke="var(--color-ink)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8 L10 13 L15 8"/></svg>
+            </button>
+          </h3>
+          <div class="acc__panel" id="stage-1">
+            <div>
+              <div class="acc__content">
+                <p>Deep discovery to find the real operational pain. We start inside the work, not in a slide deck — sitting with the operators who live the process, tracing where time and money actually leak, and naming the constraint that matters.</p>
+                <p class="acc__label">What you get</p>
+                <ul class="acc__outputs">
+                  <li>A named problem worth building for</li>
+                  <li>A clear picture of how the work moves today</li>
+                  <li>A scoped first release with a reason to exist</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="acc__item">
+          <h3>
+            <button class="acc__trigger" aria-expanded="false" aria-controls="stage-2">
+              <span class="acc__num">02</span>
+              Workflow mapping
+              <svg class="acc__chev" width="20" height="20" viewBox="0 0 20 20" aria-hidden="true" fill="none" stroke="var(--color-ink)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8 L10 13 L15 8"/></svg>
+            </button>
+          </h3>
+          <div class="acc__panel" id="stage-2">
+            <div>
+              <div class="acc__content">
+                <p>End-to-end workflow mapping so the product fits the business. Software fails in the seams — handoffs, exceptions, approvals, the spreadsheet nobody admits to. We map the full path from intake to done before we design a single screen.</p>
+                <p class="acc__label">What you get</p>
+                <ul class="acc__outputs">
+                  <li>An end-to-end map of the workflow, seams included</li>
+                  <li>The exception cases named up front</li>
+                  <li>A plan for the systems the product must talk to</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="acc__item">
+          <h3>
+            <button class="acc__trigger" aria-expanded="false" aria-controls="stage-3">
+              <span class="acc__num">03</span>
+              Product design
+              <svg class="acc__chev" width="20" height="20" viewBox="0 0 20 20" aria-hidden="true" fill="none" stroke="var(--color-ink)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8 L10 13 L15 8"/></svg>
+            </button>
+          </h3>
+          <div class="acc__panel" id="stage-3">
+            <div>
+              <div class="acc__content">
+                <p>Product design shaped around regulated, operationally complex environments. We design for the people who will use the product every day — clear states, honest edge cases, accessibility from the start. Compliance and audit needs are design inputs, not afterthoughts.</p>
+                <p class="acc__label">What you get</p>
+                <ul class="acc__outputs">
+                  <li>Working prototypes tested with the people who’ll use them</li>
+                  <li>Interfaces the team can actually run the business on</li>
+                  <li>Accessibility built in, not bolted on</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="acc__item">
+          <h3>
+            <button class="acc__trigger" aria-expanded="false" aria-controls="stage-4">
+              <span class="acc__num">04</span>
+              Engineering through production
+              <svg class="acc__chev" width="20" height="20" viewBox="0 0 20 20" aria-hidden="true" fill="none" stroke="var(--color-ink)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8 L10 13 L15 8"/></svg>
+            </button>
+          </h3>
+          <div class="acc__panel" id="stage-4">
+            <div>
+              <div class="acc__content">
+                <p>Hands-on engineering ownership until it’s live. We write the code, integrate the systems, and carry the product through security review, data migration, and rollout — accountable until it is standing up in the real world.</p>
+                <p class="acc__label">What you get</p>
+                <ul class="acc__outputs">
+                  <li>Production-grade code, shipped</li>
+                  <li>Integration with the systems you already run</li>
+                  <li>A rollout your teams can actually follow</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="acc__item">
+          <h3>
+            <button class="acc__trigger" aria-expanded="false" aria-controls="stage-5">
+              <span class="acc__num">05</span>
+              Iteration
+              <svg class="acc__chev" width="20" height="20" viewBox="0 0 20 20" aria-hidden="true" fill="none" stroke="var(--color-ink)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8 L10 13 L15 8"/></svg>
+            </button>
+          </h3>
+          <div class="acc__panel" id="stage-5">
+            <div>
+              <div class="acc__content">
+                <p>Ongoing iteration after version one. Launch is the beginning of the learning, not the end of the engagement — we watch how the product is used, fix what the real world reveals, and keep improving what matters.</p>
+                <p class="acc__label">What you get</p>
+                <ul class="acc__outputs">
+                  <li>Improvements driven by real usage, not opinions</li>
+                  <li>A steady cadence of releases</li>
+                  <li>A product that keeps earning its place</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ol>
+
+      <div class="process__own">
+        <p class="big">We own the full product lifecycle. We do not stop at recommendations, specs, or prototypes. We stay close to the work until the product is live, stable, usable, and working inside the real constraints of the business.</p>
+        <p class="supporting">That includes the parts many firms avoid: production readiness, accessibility, implementation detail, coordination with internal teams, and the practical work required to get software standing up in the real world.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Manifesto -->
+  <section class="manifesto" aria-labelledby="manifesto-title">
+    <div class="wrap">
+      <div class="manifesto__panel">
+        <h2 id="manifesto-title">Why Sugo AI</h2>
+        <ul class="manifesto__lines">
+          <li>We are not a strategy shop that disappears after the deck.</li>
+          <li>We are not a dev shop waiting for tickets.</li>
+          <li class="affirm">We are a product studio that helps traditional businesses build and ship software to a much higher standard.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Plain terms -->
+  <section class="terms" aria-labelledby="terms-title">
+    <div class="wrap">
+      <div class="terms__card">
+        <h2 id="terms-title">Plain terms.</h2>
+        <p class="intro">The jargon, translated. For operators, not engineers.</p>
+        <dl>
+          <div>
+            <dt>AI agent</dt>
+            <dd>Software that can carry out a multi-step task on its own, with your rules and your data. Not magic — a diligent junior teammate that never sleeps.</dd>
+          </div>
+          <div>
+            <dt>Pilot</dt>
+            <dd>A trial run. Useful when someone owns getting it into real work; shelf-ware when nobody does.</dd>
+          </div>
+          <div>
+            <dt>Production</dt>
+            <dd>When software stops being a demo and starts being how the work gets done.</dd>
+          </div>
+        </dl>
+        <a class="link terms__more" href="/writing">More terms, plainly →</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- Footer -->
+<footer class="foot">
+  <div class="wrap">
+    <p class="foot__statement">If the software matters, the <em>product work</em> should too.</p>
+    <p class="foot__body">Sugo AI helps traditional businesses build internal tools, AI&nbsp;agents, and customer products with more rigor, better taste, and end-to-end ownership.</p>
+    <div class="foot__cta">
+      <a class="btn btn--primary" href="/contact">Start a conversation</a>
+    </div>
+    <div class="foot__meta">
+      <a class="wordmark" href="/">Sugo AI</a>
+      <a href="/how-we-work">How we work</a>
+      <a href="/writing">Writing</a>
+      <a href="/about">About</a>
+      <a href="/contact">Contact</a>
+      <span>© 2026 Sugo Product Company, LLC d/b/a Sugo AI</span>
+      <span class="foot__note">sugo (n.) — Italian for sauce. The good ones are made slowly, with real ingredients.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Mobile nav disclosure
+  const toggle = document.querySelector('.nav__toggle');
+  const drawer = document.getElementById('nav-drawer');
+  toggle.addEventListener('click', () => {
+    const open = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!open));
+    drawer.classList.toggle('is-open', !open);
+  });
+
+  // Process accordion
+  document.querySelectorAll('.acc__trigger').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.acc__item');
+      const open = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!open));
+      item.classList.toggle('is-open', !open);
+    });
+  });
+</script>
+</body>
+</html>

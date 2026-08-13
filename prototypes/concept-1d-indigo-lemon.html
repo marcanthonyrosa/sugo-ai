@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sugo AI — Panel Press · Indigo &amp; Lemon</title>
+<meta name="description" content="Sugo AI is a product studio for traditional businesses building serious software — internal tools, AI agents, and customer products, shipped with the discipline of a modern software company.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600&f[]=switzer@400,600&display=swap" rel="stylesheet">
+<!-- SUGO-DEMO-KIT START · pre-paint state restore + font-pack faces (strip before integration) -->
+<script>(function(){try{var f=localStorage.getItem("sugo-demo-fontpack");if(f&&/^[1-5]$/.test(f))document.documentElement.setAttribute("data-fontpack",f);var a=localStorage.getItem("sugo-demo-heroart");if(a==="pixel-chunky"||a==="pixel-16bit")document.documentElement.setAttribute("data-heroart",a);}catch(e){}})();</script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Schibsted+Grotesk:wght@500;700&family=Familjen+Grotesk:wght@500;700&family=Bricolage+Grotesque:wght@600;700&family=IBM+Plex+Sans:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,600&f[]=cabinet-grotesk@500,700&display=swap" rel="stylesheet">
+<!-- SUGO-DEMO-KIT END -->
+<style>
+/* Hallmark · genre: playful · macrostructure: Split Studio · H2 knobs: ratio=7/5, right=illustration-flood, divider=2px-ink-border
+ * VARIANT D of Panel Press · "Indigo & Lemon" · the Dodonut-literal exploration (their face, their voltage, blue/yellow lean)
+ * nav: N7 brutal slab · footer: Ft5 statement · theme: custom · vibe: “inked workshop, indigo current, lemon light”
+ * paper: oklch(96% 0.008 150) · accent/flood: oklch(47% 0.19 278) indigo · panels: lemon oklch(92% 0.13 105) + lavender oklch(89% 0.05 285)
+ * display: Clash Display 600/500 (Fontshare) · body: Switzer 400/600 · outlier: IBM Plex Mono (numerals + meta)
+ * axes: light / display-heavy / cool-indigo+warm-lemon · enrichment: E-hand-SVG Tier B (sugo pot → lemon still-life, aria-labelled)
+ * deviations (deliberate, user-approved Dodonut DNA): stacked hard offset shadows on primary CTA + one panel · bounded color-flood panels ·
+ *   slow subtle steam loop (stops under reduced motion) · 2px ink border-carpentry ·
+ *   pot outlines remain ink (light fills carry the contrast against indigo; paper strokes would vanish against card fills) — steam is paper
+ * pre-emit critique: P4 H5 E4 S4 R4 V4 · contrast: pass (46–50; accent-ink on indigo ≈5:1, ink on lemon ≈10:1, focus ring ≥3:1 on paper/card/lemon)
+ * nav/footer/hero: pass (51–55) · honest: pass (56) · chrome: pass (57) · tokens: pass (58) · responsive: pass (59) · icons: pass (60)
+ * mobile: pass (36, 59, 61–68) · studied: informed by dodonut.com (structure only)
+ * SUGO-DEMO-KIT installed (demo chrome, strip before integration): font packs + pixel-tomato hero art. Red strategy: lightened coral
+ *   mark is the page’s only red-family element (mark-scope license), ≤3% viewport; flag — eyeball coral-on-indigo hue vibration at demo.
+ */
+:root {
+  --color-paper:          oklch(96% 0.008 150);
+  --color-paper-2:        oklch(93% 0.010 150);
+  --color-card:           oklch(99% 0.004 150);
+  --color-ink:            oklch(22% 0.02 150);
+  --color-ink-2:          oklch(35% 0.018 150);
+  --color-muted:          oklch(45% 0.015 150);
+  --color-rule:           oklch(82% 0.010 150);
+  --color-indigo:         oklch(47% 0.19 278);
+  --color-indigo-deep:    oklch(38% 0.16 278);
+  --color-lemon:          oklch(92% 0.13 105);
+  --color-lavender:       oklch(89% 0.05 285);
+  --color-manifesto:      oklch(24% 0.02 150);
+  --color-rule-manifesto: oklch(42% 0.02 150);
+  --color-accent:         var(--color-indigo);
+  --color-accent-ink:     oklch(97% 0.008 150);
+  --color-focus:          oklch(44% 0.19 278);
+
+  --font-display: "Clash Display", ui-sans-serif, system-ui, sans-serif;
+  --font-body:    "Switzer", ui-sans-serif, system-ui, sans-serif;
+  --font-outlier: "IBM Plex Mono", ui-monospace, monospace;
+
+  /* display tuning vars — consumed below, overridable by SUGO-DEMO-KIT font packs */
+  --display-tracking: -0.01em;
+  --display-lh: 1.1;
+  --display-weight: 600;
+  --display-weight-md: 500;
+
+  --text-sm:   0.875rem;
+  --text-base: 1.0625rem;
+  --text-md:   1.25rem;
+  --text-lg:   1.5625rem;
+  --text-xl:   1.953rem;
+  --text-2xl:  2.441rem;
+  --text-3xl:  3.052rem;
+  --text-display-s: clamp(2.4rem, 3.8vw + 1rem, 4rem);
+  --text-statement: clamp(2rem, 3vw + 1rem, 3.25rem);
+  --text-stat: clamp(3.5rem, 6vw + 1rem, 6rem);
+
+  --space-2xs: 0.25rem;
+  --space-xs:  0.5rem;
+  --space-sm:  0.75rem;
+  --space-md:  1rem;
+  --space-lg:  1.5rem;
+  --space-xl:  2.5rem;
+  --space-2xl: 4rem;
+  --space-3xl: 6rem;
+
+  --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in:     cubic-bezier(0.7, 0, 0.84, 0);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-micro: 120ms;
+  --dur-short: 220ms;
+  --dur-long:  420ms;
+
+  --border-panel: 2px solid var(--color-ink);
+  --radius-panel: 12px;
+  --radius-btn: 8px;
+  --shadow-stack: 4px 4px 0 var(--color-ink);
+  --shadow-stack-lift: 5px 5px 0 var(--color-ink);
+  --shadow-stack-press: 2px 2px 0 var(--color-ink);
+
+  --z-raised: 10;
+  --z-sticky-nav: 300;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body { overflow-x: clip; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.6;
+  padding-inline: max(0px, env(safe-area-inset-left)) max(0px, env(safe-area-inset-right));
+}
+h1, h2, h3 { font-family: var(--font-display); line-height: var(--display-lh); letter-spacing: var(--display-tracking); margin: 0; overflow-wrap: anywhere; min-width: 0; }
+p { margin: 0; }
+::selection { background: var(--color-accent); color: var(--color-accent-ink); }
+
+.wrap { max-width: 74rem; margin-inline: auto; padding-inline: clamp(1rem, 4vw, 2rem); }
+
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; border-radius: 2px; }
+
+.skip {
+  position: absolute; left: var(--space-md); top: -100px;
+  background: var(--color-ink); color: var(--color-paper);
+  padding: var(--space-sm) var(--space-md); border-radius: var(--radius-btn);
+  z-index: var(--z-sticky-nav); transition: none;
+}
+.skip:focus-visible { top: var(--space-md); }
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.5em;
+  min-height: 48px; padding: var(--space-sm) var(--space-lg);
+  border-radius: var(--radius-btn); border: 2px solid var(--color-ink);
+  font-family: var(--font-body); font-weight: 600; font-size: var(--text-base);
+  text-decoration: none; white-space: nowrap; cursor: pointer; line-height: 1;
+  transition: transform var(--dur-micro) var(--ease-out),
+              box-shadow var(--dur-micro) var(--ease-out),
+              background-color var(--dur-micro) var(--ease-out);
+}
+.btn--primary { background: var(--color-accent); color: var(--color-accent-ink); box-shadow: var(--shadow-stack); }
+.btn--primary:hover { transform: translate(-1px, -1px); box-shadow: var(--shadow-stack-lift); }
+.btn--primary:active { transform: translate(1px, 1px); box-shadow: var(--shadow-stack-press); }
+.btn--ghost { background: transparent; color: var(--color-ink); }
+.btn--ghost:hover { background: var(--color-paper-2); }
+.btn--ghost:active { transform: translateY(1px); }
+.btn:disabled, .btn[aria-disabled="true"] { opacity: 0.55; cursor: not-allowed; box-shadow: none; transform: none; }
+
+/* ---------- Nav (N7 brutal slab) ---------- */
+.nav { border-bottom: var(--border-panel); background: var(--color-paper); }
+.nav__row { display: flex; align-items: center; gap: var(--space-lg); padding-block: var(--space-sm); }
+.wordmark {
+  font-family: var(--font-display); font-weight: var(--display-weight); font-size: var(--text-md);
+  text-decoration: none; letter-spacing: 0.01em; display: inline-flex; align-items: center; gap: 0.35em;
+  min-height: 44px;
+}
+.wordmark::after { content: ""; width: 0.4em; height: 0.4em; background: var(--color-accent); border-radius: 2px; }
+.nav__links { display: flex; align-items: center; gap: var(--space-lg); margin-left: auto; list-style: none; padding: 0; margin-block: 0; }
+.nav__link {
+  text-transform: uppercase; letter-spacing: 0.08em; font-size: var(--text-sm); font-weight: 600;
+  text-decoration: none; white-space: nowrap; padding-block: var(--space-sm); display: inline-block;
+}
+.nav__link:hover { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 6px; text-decoration-color: var(--color-accent); }
+.nav__cta { margin-left: var(--space-xs); }
+.nav__toggle { display: none; }
+
+.nav__drawer { display: grid; grid-template-rows: 0fr; transition: grid-template-rows var(--dur-long) var(--ease-in-out); }
+.nav__drawer > div { overflow: hidden; min-height: 0; }
+.nav__drawer.is-open { grid-template-rows: 1fr; }
+.nav__drawer ul { list-style: none; margin: 0; padding: var(--space-md) 0 var(--space-lg); display: grid; gap: var(--space-xs); }
+
+@media (max-width: 59.99rem) {
+  .nav__links { display: none; }
+  .nav__toggle {
+    display: inline-flex; margin-left: auto;
+    background: transparent; color: var(--color-ink);
+  }
+}
+@media (min-width: 60rem) { .nav__drawer { display: none; } }
+
+/* ---------- Hero ---------- */
+.hero { padding-block-start: var(--space-xl); padding-block-end: var(--space-3xl); }
+.hero__panel {
+  border: var(--border-panel); border-radius: var(--radius-panel);
+  overflow: hidden; background: var(--color-paper);
+}
+.hero__grid { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); }
+.hero__copy { padding: clamp(var(--space-lg), 4vw, var(--space-2xl)); align-self: center; }
+.hero__title { font-size: var(--text-display-s); font-weight: var(--display-weight); max-width: 16ch; }
+.hero__sub { margin-top: var(--space-lg); font-size: var(--text-md); color: var(--color-ink-2); max-width: 48ch; }
+.hero__ctas { margin-top: var(--space-xl); display: flex; flex-wrap: wrap; gap: var(--space-md); align-items: center; }
+.hero__art {
+  background: var(--color-indigo); border-left: var(--border-panel);
+  display: grid; place-items: center; padding: clamp(var(--space-lg), 3vw, var(--space-xl));
+}
+.hero__art svg { width: 100%; max-width: 420px; height: auto; display: block; }
+.hero__strip {
+  border-top: var(--border-panel); background: var(--color-paper-2);
+  padding: var(--space-lg) clamp(var(--space-lg), 4vw, var(--space-2xl));
+}
+.hero__strip strong { font-family: var(--font-display); font-weight: var(--display-weight); font-size: var(--text-md); display: block; }
+.hero__strip p { color: var(--color-ink-2); max-width: 70ch; margin-top: var(--space-xs); }
+
+@media (max-width: 59.99rem) {
+  .hero__grid { grid-template-columns: minmax(0, 1fr); }
+  .hero__art { border-left: none; border-top: var(--border-panel); }
+  .hero__art svg { max-width: 340px; }
+}
+
+/* steam */
+.steam { animation: steam 7s var(--ease-in-out) infinite; opacity: 0.55; }
+.steam--2 { animation-delay: 2.2s; }
+.steam--3 { animation-delay: 4.1s; }
+@keyframes steam {
+  0%   { transform: translateY(4px); opacity: 0.25; }
+  50%  { transform: translateY(-4px); opacity: 0.7; }
+  100% { transform: translateY(4px); opacity: 0.25; }
+}
+
+/* entrance (one orchestrated moment) */
+.reveal { opacity: 0; transform: translateY(8px); animation: reveal var(--dur-long) var(--ease-out) forwards; animation-delay: calc(var(--i, 0) * 90ms); }
+@keyframes reveal { to { opacity: 1; transform: none; } }
+
+/* ---------- Evidence panel ---------- */
+.evidence { padding-block-end: var(--space-3xl); }
+.evidence__panel { border: var(--border-panel); border-radius: var(--radius-panel); overflow: hidden; background: var(--color-paper); }
+.evidence__grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); }
+.evidence__stat {
+  background: var(--color-lemon); border-right: var(--border-panel);
+  padding: clamp(var(--space-lg), 4vw, var(--space-2xl));
+  display: grid; align-content: center; gap: var(--space-sm);
+}
+.evidence__num { font-family: var(--font-outlier); font-weight: 500; font-size: var(--text-stat); line-height: 1; font-variant-numeric: tabular-nums; letter-spacing: -0.03em; }
+.evidence__qual { max-width: 26ch; font-weight: 600; }
+.evidence__body { padding: clamp(var(--space-lg), 4vw, var(--space-2xl)); display: grid; gap: var(--space-md); align-content: center; }
+.evidence__body h2 { font-size: var(--text-xl); font-weight: var(--display-weight); max-width: 24ch; }
+.evidence__body p { max-width: 62ch; color: var(--color-ink-2); }
+.evidence__body .lead { color: var(--color-ink); font-weight: 600; }
+.evidence__foot {
+  border-top: var(--border-panel); padding: var(--space-sm) clamp(var(--space-lg), 4vw, var(--space-2xl));
+  font-family: var(--font-outlier); font-size: var(--text-sm); color: var(--color-muted);
+}
+@media (max-width: 59.99rem) {
+  .evidence__grid { grid-template-columns: minmax(0, 1fr); }
+  .evidence__stat { border-right: none; border-bottom: var(--border-panel); }
+}
+
+/* ---------- Two buckets ---------- */
+.buckets { padding-block-end: var(--space-3xl); }
+.section-title { font-size: var(--text-2xl); font-weight: var(--display-weight); max-width: 22ch; }
+.buckets__grid { display: grid; grid-template-columns: minmax(0, 6.5fr) minmax(0, 5.5fr); gap: var(--space-lg); margin-top: var(--space-xl); }
+.bucket { border: var(--border-panel); border-radius: var(--radius-panel); padding: var(--space-xl); display: grid; gap: var(--space-md); align-content: start; }
+.bucket h3 { font-size: var(--text-lg); font-weight: var(--display-weight-md); }
+.bucket p { color: var(--color-ink-2); max-width: 55ch; }
+.bucket--tools { background: var(--color-card); box-shadow: var(--shadow-stack); }
+.bucket--customer { background: var(--color-lavender); }
+.bucket--customer p { color: var(--color-ink); }
+@media (max-width: 59.99rem) { .buckets__grid { grid-template-columns: minmax(0, 1fr); } }
+
+/* ---------- Process ---------- */
+.process { padding-block-end: var(--space-3xl); }
+.process__intro { margin-top: var(--space-md); max-width: 62ch; color: var(--color-ink-2); }
+.acc { list-style: none; margin: var(--space-xl) 0 0; padding: 0; display: grid; gap: var(--space-md); }
+.acc__item { border: var(--border-panel); border-radius: var(--radius-panel); background: var(--color-card); overflow: hidden; }
+.acc__trigger {
+  width: 100%; display: flex; align-items: center; gap: var(--space-md);
+  background: transparent; border: none; padding: var(--space-md) var(--space-lg);
+  font-family: var(--font-display); font-weight: var(--display-weight-md); font-size: var(--text-md);
+  color: var(--color-ink); text-align: left; cursor: pointer; min-height: 56px;
+  transition: background-color var(--dur-micro) var(--ease-out);
+}
+.acc__trigger:hover { background: var(--color-paper-2); }
+.acc__trigger:active { background: var(--color-paper); }
+.acc__trigger:focus-visible { outline-offset: -4px; }
+.acc__trigger:disabled { opacity: 0.55; cursor: not-allowed; }
+.acc__num { font-family: var(--font-outlier); font-weight: 500; font-size: var(--text-sm); color: var(--color-muted); font-variant-numeric: tabular-nums; }
+.acc__chev { margin-left: auto; flex: none; transition: transform var(--dur-short) var(--ease-in-out); }
+.acc__item.is-open .acc__chev { transform: rotate(180deg); }
+.acc__panel { display: grid; grid-template-rows: 0fr; transition: grid-template-rows var(--dur-long) var(--ease-in-out); }
+.acc__panel > div { overflow: hidden; min-height: 0; }
+.acc__item.is-open .acc__panel { grid-template-rows: 1fr; }
+.acc__content { padding: 0 var(--space-lg) var(--space-lg); display: grid; gap: var(--space-md); }
+.acc__content p { max-width: 62ch; color: var(--color-ink-2); }
+.acc__label { font-weight: 600; font-size: var(--text-sm); text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-ink); }
+.acc__outputs { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-xs); }
+.acc__outputs li { position: relative; padding-left: var(--space-lg); color: var(--color-ink-2); max-width: 60ch; }
+.acc__outputs li::before {
+  content: ""; position: absolute; left: 0; top: 0.45em;
+  width: 8px; height: 8px; background: var(--color-accent); border-radius: 2px;
+}
+.process__own { margin-top: var(--space-2xl); display: grid; gap: var(--space-md); }
+.process__own .big { font-family: var(--font-display); font-weight: var(--display-weight-md); font-size: var(--text-lg); line-height: 1.25; max-width: 34ch; letter-spacing: -0.01em; }
+.process__own .supporting { color: var(--color-muted); max-width: 68ch; }
+
+/* ---------- Manifesto ---------- */
+.manifesto { padding-block-end: var(--space-3xl); }
+.manifesto__panel {
+  background: var(--color-manifesto); color: var(--color-paper);
+  border: var(--border-panel); border-radius: var(--radius-panel);
+  padding: clamp(var(--space-xl), 5vw, var(--space-2xl));
+}
+.manifesto__panel h2 { font-size: var(--text-md); font-weight: var(--display-weight-md); color: var(--color-rule); letter-spacing: 0.02em; }
+.manifesto__lines { list-style: none; margin: var(--space-lg) 0 0; padding: 0; }
+.manifesto__lines li {
+  font-family: var(--font-display); font-weight: var(--display-weight); letter-spacing: var(--display-tracking);
+  font-size: clamp(var(--text-lg), 2.5vw + 0.5rem, var(--text-2xl)); line-height: 1.15;
+  padding-block: var(--space-lg); border-top: 1px solid var(--color-rule-manifesto);
+  max-width: 30ch; overflow-wrap: anywhere; min-width: 0;
+}
+.manifesto__lines li:first-child { border-top: none; padding-top: 0; }
+.manifesto__lines li:last-child { padding-bottom: 0; }
+.manifesto__lines .affirm { color: var(--color-lemon); }
+
+/* ---------- Plain terms ---------- */
+.terms { padding-block-end: var(--space-3xl); }
+.terms__card {
+  background: var(--color-card); border: var(--border-panel); border-radius: var(--radius-panel);
+  padding: var(--space-xl); max-width: 46rem;
+}
+.terms__card h2 { font-size: var(--text-xl); font-weight: var(--display-weight); }
+.terms__card .intro { margin-top: var(--space-xs); color: var(--color-muted); }
+.terms__card dl { margin: var(--space-lg) 0 0; display: grid; gap: var(--space-md); }
+.terms__card dt { font-family: var(--font-display); font-weight: var(--display-weight-md); font-size: var(--text-md); }
+.terms__card dd { margin: var(--space-2xs) 0 0; color: var(--color-ink-2); max-width: 58ch; }
+.link {
+  font-weight: 600; color: var(--color-ink); text-decoration: underline;
+  text-decoration-thickness: 1px; text-underline-offset: 3px; white-space: nowrap;
+}
+.link:hover { text-decoration-thickness: 2px; text-decoration-color: var(--color-accent); }
+.link:active { color: var(--color-ink-2); }
+.terms__more { display: inline-block; margin-top: var(--space-lg); }
+
+/* ---------- Footer (Ft5 statement) ---------- */
+.foot { border-top: var(--border-panel); background: var(--color-paper); padding-block: var(--space-2xl) var(--space-xl); }
+.foot__statement { font-family: var(--font-display); font-weight: var(--display-weight); font-size: var(--text-statement); line-height: var(--display-lh); letter-spacing: var(--display-tracking); max-width: 24ch; overflow-wrap: anywhere; min-width: 0; }
+.foot__body { margin-top: var(--space-lg); max-width: 56ch; color: var(--color-ink-2); }
+.foot__cta { margin-top: var(--space-xl); }
+.foot__meta {
+  margin-top: var(--space-2xl); padding-top: var(--space-md); border-top: 1px solid var(--color-rule);
+  display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-md) var(--space-lg);
+  font-size: var(--text-sm); color: var(--color-muted);
+}
+.foot__meta a { text-decoration: none; white-space: nowrap; }
+.foot__meta a:hover { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 4px; }
+.foot__note { font-family: var(--font-outlier); margin-left: auto; }
+@media (max-width: 40rem) { .foot__note { margin-left: 0; } }
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 150ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 150ms !important;
+  }
+  html { scroll-behavior: auto; }
+  .steam { animation: none; opacity: 0.55; }
+  .reveal { animation: reveal-reduced 150ms linear forwards; }
+  @keyframes reveal-reduced { to { opacity: 1; transform: none; } }
+}
+
+/* SUGO-DEMO-KIT START — demo chrome: font packs + hero-art states + control panel.
+   Strip this block (and the matching HTML/JS blocks) before integration. */
+
+/* Font packs — override display/body faces + tuning via data-fontpack on <html>.
+   Native state = attribute absent (this page's own fonts). Headers stay ≤700 in every pack. */
+[data-fontpack="1"] { --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif; --font-body: "General Sans", ui-sans-serif, system-ui, sans-serif; --display-tracking: -0.02em; --display-lh: 1.08; --display-weight: 700; --display-weight-md: 500; }
+[data-fontpack="2"] { --font-display: "Schibsted Grotesk", ui-sans-serif, system-ui, sans-serif; --font-body: "Switzer", ui-sans-serif, system-ui, sans-serif; --display-tracking: -0.015em; --display-lh: 1.08; --display-weight: 700; --display-weight-md: 500; }
+[data-fontpack="3"] { --font-display: "Familjen Grotesk", ui-sans-serif, system-ui, sans-serif; --font-body: "General Sans", ui-sans-serif, system-ui, sans-serif; --display-tracking: -0.015em; --display-lh: 1.08; --display-weight: 700; --display-weight-md: 500; }
+[data-fontpack="4"] { --font-display: "Cabinet Grotesk", ui-sans-serif, system-ui, sans-serif; --font-body: "Switzer", ui-sans-serif, system-ui, sans-serif; --display-tracking: -0.02em; --display-lh: 1.08; --display-weight: 700; --display-weight-md: 500; }
+[data-fontpack="5"] { --font-display: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif; --font-body: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif; --display-tracking: -0.015em; --display-lh: 1.14; --display-weight: 700; --display-weight-md: 600; }
+
+/* Pixel-tomato tokens — page-mapped for the indigo flood (see _demo-kit-reference.html).
+   Red strategy: the tomato is the page's ONLY red-family element (mark-scope license), lightened coral not pure red, ≤3% viewport.
+   Demo flag: eyeball coral-on-indigo for hue vibration. */
+:root {
+  --px-body:  oklch(76% 0.11 30);  /* coral lightened a step · vs indigo flood ≈3.2:1 */
+  --px-shade: oklch(58% 0.10 20);
+  --px-glint: oklch(92% 0.03 40);
+  --px-stem:  oklch(72% 0.09 145); /* light basil on dark flood */
+  --px-outline: var(--color-card); /* cream "sticker" outline on indigo */
+}
+
+/* Hero-art states via data-heroart on <html>: (absent|"pot") | "pixel-chunky" | "pixel-16bit". */
+.hero__art .art--chunky, .hero__art .art--16bit { display: none; }
+[data-heroart="pixel-chunky"] .hero__art .art--pot { display: none; }
+[data-heroart="pixel-16bit"] .hero__art .art--pot { display: none; }
+[data-heroart="pixel-chunky"] .hero__art .art--chunky { display: block; }
+[data-heroart="pixel-16bit"] .hero__art .art--16bit { display: block; }
+.hero__art svg.art--chunky, .hero__art svg.art--16bit { max-width: 300px; image-rendering: pixelated; }
+@media (max-width: 59.99rem) { .hero__art svg.art--chunky, .hero__art svg.art--16bit { max-width: 240px; } }
+
+/* Control panel — demo chrome, not site design. */
+.demokit {
+  position: fixed;
+  right: max(var(--space-md), env(safe-area-inset-right));
+  bottom: max(var(--space-md), env(safe-area-inset-bottom));
+  z-index: 400;
+  display: grid; justify-items: end; gap: var(--space-xs);
+  font-family: var(--font-outlier);
+}
+.demokit__chip, .demokit__btn {
+  min-height: 44px; padding: 0 var(--space-sm);
+  border: 2px solid var(--color-ink); border-radius: var(--radius-btn);
+  background: var(--color-card); color: var(--color-ink);
+  font-family: var(--font-outlier); font-size: 12px; letter-spacing: 0.06em;
+  white-space: nowrap; cursor: pointer;
+}
+.demokit__chip { box-shadow: var(--shadow-stack); font-weight: 700; }
+.demokit__chip:hover, .demokit__btn:hover { background: var(--color-paper-2); }
+.demokit__chip:active, .demokit__btn:active { transform: translateY(1px); }
+.demokit__btn[aria-pressed="true"] { background: var(--color-ink); color: var(--color-paper); }
+.demokit__btn[aria-pressed="true"]:hover { background: var(--color-ink-2); }
+.demokit__panel {
+  background: var(--color-card); border: 2px solid var(--color-ink); border-radius: var(--radius-panel);
+  padding: var(--space-sm); display: grid; gap: var(--space-xs);
+  max-width: min(92vw, 34rem); box-shadow: var(--shadow-stack);
+}
+.demokit__row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2xs); }
+.demokit__lab { font-size: 11px; letter-spacing: 0.1em; color: var(--color-muted); min-width: 4.5ch; }
+@media print { .demokit { display: none; } }
+/* SUGO-DEMO-KIT END */
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav">
+  <div class="wrap">
+    <div class="nav__row">
+      <a class="wordmark" href="/">Sugo AI</a>
+      <ul class="nav__links">
+        <li><a class="nav__link" href="/how-we-work">How we work</a></li>
+        <li><a class="nav__link" href="/writing">Writing</a></li>
+        <li><a class="nav__link" href="/about">About</a></li>
+        <li><a class="btn btn--primary nav__cta" href="/contact">Contact us</a></li>
+      </ul>
+      <button class="btn btn--ghost nav__toggle" aria-expanded="false" aria-controls="nav-drawer">Menu</button>
+    </div>
+    <div class="nav__drawer" id="nav-drawer">
+      <div>
+        <ul>
+          <li><a class="nav__link" href="/how-we-work">How we work</a></li>
+          <li><a class="nav__link" href="/writing">Writing</a></li>
+          <li><a class="nav__link" href="/about">About</a></li>
+          <li><a class="btn btn--primary" href="/contact">Contact us</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="wrap">
+      <article class="hero__panel">
+        <div class="hero__grid">
+          <div class="hero__copy">
+            <h1 class="hero__title reveal" style="--i: 0">Modern product development for companies that aren’t software companies.</h1>
+            <p class="hero__sub reveal" style="--i: 1">We help traditional businesses ship internal tools, AI&nbsp;agents, and customer products with the discipline of a modern software company.</p>
+            <div class="hero__ctas reveal" style="--i: 2">
+              <a class="btn btn--primary" href="/contact">Start a conversation</a>
+              <a class="btn btn--ghost" href="/how-we-work">How we work</a>
+            </div>
+          </div>
+          <div class="hero__art reveal" style="--i: 3">
+            <svg class="art art--pot" viewBox="0 0 520 360" role="img" aria-label="A simmering pot of sugo — slow-made, with care">
+              <!-- steam -->
+              <g fill="none" stroke="var(--color-paper)" stroke-width="6" stroke-linecap="round">
+                <path class="steam" d="M215 96 C 205 76, 225 62, 215 42"/>
+                <path class="steam steam--2" d="M262 88 C 252 66, 274 52, 264 30"/>
+                <path class="steam steam--3" d="M310 96 C 300 76, 320 62, 310 42"/>
+              </g>
+              <!-- pot shadow -->
+              <ellipse cx="260" cy="320" rx="150" ry="14" fill="var(--color-indigo-deep)"/>
+              <!-- pot body -->
+              <path d="M150 150 L370 150 C 372 220, 360 290, 300 308 L220 308 C 160 290, 148 220, 150 150 Z"
+                    fill="var(--color-card)" stroke="var(--color-ink)" stroke-width="5"/>
+              <!-- sauce at the rim -->
+              <path d="M150 150 L370 150 L370 168 C 320 178, 200 178, 150 168 Z" fill="var(--color-lemon)" stroke="var(--color-ink)" stroke-width="5" stroke-linejoin="round"/>
+              <!-- handles -->
+              <path d="M150 168 C 118 168, 118 200, 152 198" fill="none" stroke="var(--color-ink)" stroke-width="5" stroke-linecap="round"/>
+              <path d="M370 168 C 402 168, 402 200, 368 198" fill="none" stroke="var(--color-ink)" stroke-width="5" stroke-linecap="round"/>
+              <!-- pot band -->
+              <path d="M156 218 L364 218" stroke="var(--color-rule)" stroke-width="4" stroke-linecap="round"/>
+              <!-- wooden spoon -->
+              <g transform="rotate(-14 300 140)">
+                <rect x="286" y="30" width="14" height="120" rx="7" fill="var(--color-lavender)" stroke="var(--color-ink)" stroke-width="4"/>
+                <ellipse cx="293" cy="160" rx="24" ry="30" fill="var(--color-lavender)" stroke="var(--color-ink)" stroke-width="4"/>
+              </g>
+              <!-- lemon -->
+              <g>
+                <circle cx="122" cy="292" r="26" fill="var(--color-lemon)" stroke="var(--color-ink)" stroke-width="4"/>
+                <path d="M122 268 C 118 260, 126 258, 122 252" fill="none" stroke="var(--color-ink)" stroke-width="4" stroke-linecap="round"/>
+                <path d="M112 266 L122 270 L132 266" fill="none" stroke="var(--color-ink)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+              </g>
+            </svg>
+            <!-- SUGO-DEMO-KIT START · alternate hero art (pixel tomatoes, hand-built rect grids) -->
+            <svg class="art art--chunky" viewBox="0 0 14 14" role="img" aria-label="A chunky pixel tomato — the Sugo mark">
+              <g shape-rendering="crispEdges">
+                <rect x="6" y="0" width="2" height="2" fill="var(--px-stem)"/>
+                <rect x="5" y="2" width="4" height="2" fill="var(--px-stem)"/>
+                <rect x="3" y="1" width="1" height="1" fill="var(--px-stem)"/>
+                <rect x="10" y="1" width="1" height="1" fill="var(--px-stem)"/>
+                <rect x="6" y="4" width="2" height="1" fill="var(--px-stem)"/>
+                <rect x="3" y="4" width="3" height="1" fill="var(--px-body)"/>
+                <rect x="8" y="4" width="3" height="1" fill="var(--px-body)"/>
+                <rect x="2" y="5" width="10" height="1" fill="var(--px-body)"/>
+                <rect x="1" y="6" width="12" height="4" fill="var(--px-body)"/>
+                <rect x="2" y="10" width="10" height="1" fill="var(--px-body)"/>
+                <rect x="3" y="11" width="8" height="1" fill="var(--px-body)"/>
+                <rect x="4" y="12" width="6" height="1" fill="var(--px-body)"/>
+                <rect x="4" y="5" width="1" height="1" fill="var(--color-card)"/>
+                <rect x="3" y="6" width="1" height="1" fill="var(--color-card)"/>
+              </g>
+            </svg>
+            <svg class="art art--16bit" viewBox="0 0 20 20" role="img" aria-label="A 16-bit pixel tomato">
+              <g shape-rendering="crispEdges">
+                <rect x="6" y="6" width="8" height="1" fill="var(--px-outline)"/>
+                <rect x="4" y="7" width="12" height="1" fill="var(--px-outline)"/>
+                <rect x="3" y="8" width="14" height="1" fill="var(--px-outline)"/>
+                <rect x="2" y="9" width="16" height="5" fill="var(--px-outline)"/>
+                <rect x="3" y="14" width="14" height="1" fill="var(--px-outline)"/>
+                <rect x="4" y="15" width="12" height="1" fill="var(--px-outline)"/>
+                <rect x="6" y="16" width="8" height="1" fill="var(--px-outline)"/>
+                <rect x="8" y="17" width="4" height="1" fill="var(--px-outline)"/>
+                <rect x="5" y="7" width="10" height="1" fill="var(--px-body)"/>
+                <rect x="4" y="8" width="12" height="1" fill="var(--px-body)"/>
+                <rect x="3" y="9" width="14" height="5" fill="var(--px-body)"/>
+                <rect x="4" y="14" width="12" height="1" fill="var(--px-body)"/>
+                <rect x="5" y="15" width="10" height="1" fill="var(--px-body)"/>
+                <rect x="7" y="16" width="6" height="1" fill="var(--px-body)"/>
+                <rect x="14" y="10" width="3" height="1" fill="var(--px-shade)"/>
+                <rect x="12" y="11" width="5" height="1" fill="var(--px-shade)"/>
+                <rect x="11" y="12" width="6" height="1" fill="var(--px-shade)"/>
+                <rect x="10" y="13" width="7" height="1" fill="var(--px-shade)"/>
+                <rect x="10" y="14" width="6" height="1" fill="var(--px-shade)"/>
+                <rect x="9" y="15" width="5" height="1" fill="var(--px-shade)"/>
+                <rect x="8" y="16" width="4" height="1" fill="var(--px-shade)"/>
+                <rect x="5" y="8" width="2" height="1" fill="var(--px-glint)"/>
+                <rect x="4" y="9" width="2" height="1" fill="var(--px-glint)"/>
+                <rect x="5" y="10" width="1" height="1" fill="var(--px-glint)"/>
+                <rect x="9" y="2" width="2" height="1" fill="var(--px-outline)"/>
+                <rect x="9" y="3" width="2" height="3" fill="var(--px-stem)"/>
+                <rect x="6" y="3" width="1" height="1" fill="var(--px-stem)"/>
+                <rect x="6" y="4" width="3" height="1" fill="var(--px-stem)"/>
+                <rect x="13" y="3" width="1" height="1" fill="var(--px-stem)"/>
+                <rect x="11" y="4" width="3" height="1" fill="var(--px-stem)"/>
+                <rect x="6" y="5" width="1" height="1" fill="var(--px-outline)"/>
+                <rect x="13" y="5" width="1" height="1" fill="var(--px-outline)"/>
+              </g>
+            </svg>
+            <!-- SUGO-DEMO-KIT END -->
+          </div>
+        </div>
+        <div class="hero__strip reveal" style="--i: 4">
+          <strong>Sugo AI is a product studio for traditional businesses building serious software.</strong>
+          <p>We partner with teams that know their business deeply but have not historically operated like software companies. We bring the product, design, and engineering discipline needed to build software that is modern, usable, and worth rolling out.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Evidence -->
+  <section class="evidence" aria-labelledby="evidence-title">
+    <div class="wrap">
+      <article class="evidence__panel">
+        <div class="evidence__grid">
+          <div class="evidence__stat">
+            <p class="evidence__num">≈5%</p>
+            <p class="evidence__qual">of enterprise GenAI pilots show measurable P&amp;L impact¹</p>
+          </div>
+          <div class="evidence__body">
+            <h2 id="evidence-title">Most AI pilots don’t stall because the model is weak.</h2>
+            <p>A widely cited MIT NANDA report from August 2025 found that only a small minority of enterprise GenAI pilots showed measurable P&amp;L impact. In our experience, the issue is usually ownership: the team shaping the opportunity is too far from the team building the product, and no one is accountable end to end.</p>
+            <p class="lead">We work differently. We embed closely, shape the product with the business, and stay responsible for what actually ships.</p>
+          </div>
+        </div>
+        <p class="evidence__foot">1 — MIT NANDA, “The GenAI Divide: State of AI in Business,” August 2025.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- Two buckets -->
+  <section class="buckets" aria-labelledby="buckets-title">
+    <div class="wrap">
+      <h2 class="section-title" id="buckets-title">The work falls into two buckets.</h2>
+      <div class="buckets__grid">
+        <article class="bucket bucket--tools">
+          <h3>Internal tools &amp; AI agents</h3>
+          <p>Software for operations, workflows, decision support, and team productivity. We help businesses replace manual work, disconnected systems, and shallow pilots with tools that fit how the organization actually runs.</p>
+        </article>
+        <article class="bucket bucket--customer">
+          <h3>Customer products</h3>
+          <p>Portals, platforms, and digital experiences for customers, members, partners, and policyholders. We build products that are clear, trustworthy, and easy to use, especially when the business behind them is operationally complex.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section class="process" aria-labelledby="process-title">
+    <div class="wrap">
+      <h2 class="section-title" id="process-title">We run like a software company. That’s where we come from.</h2>
+      <p class="process__intro">Traditional businesses often have strong operators, strong constraints, and strong domain knowledge. What they usually lack is a product-development system built for fast learning, tight iteration, and high-quality shipping. That’s what we bring.</p>
+
+      <ol class="acc">
+        <li class="acc__item is-open">
+          <h3>
+            <button class="acc__trigger" aria-expanded="true" aria-controls="stage-1">
+              <span class="acc__num">01</span>
+              Discovery
+              <svg class="acc__chev" width="20" height="20" viewBox="0 0 20 20" aria-hidden="true" fill="none" stroke="var(--color-ink)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8 L10 13 L15 8"/></svg>
+            </button>
+          </h3>
+          <div class="acc__panel" id="stage-1">
+            <div>
+              <div class="acc__content">
+                <p>Deep discovery to find the real operational pain. We start inside the work, not in a slide deck — sitting with the operators who live the process, tracing where time and money actually leak, and naming the constraint that matters.</p>
+                <p class="acc__label">What you get</p>
+                <ul class="acc__outputs">
+                  <li>A named problem worth building for</li>
+                  <li>A clear picture of how the work moves today</li>
+                  <li>A scoped first release with a reason to exist</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="acc__item">
+          <h3>
+            <button class="acc__trigger" aria-expanded="false" aria-controls="stage-2">
+              <span class="acc__num">02</span>
+              Workflow mapping
+              <svg class="acc__chev" width="20" height="20" viewBox="0 0 20 20" aria-hidden="true" fill="none" stroke="var(--color-ink)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8 L10 13 L15 8"/></svg>
+            </button>
+          </h3>
+          <div class="acc__panel" id="stage-2">
+            <div>
+              <div class="acc__content">
+                <p>End-to-end workflow mapping so the product fits the business. Software fails in the seams — handoffs, exceptions, approvals, the spreadsheet nobody admits to. We map the full path from intake to done before we design a single screen.</p>
+                <p class="acc__label">What you get</p>
+                <ul class="acc__outputs">
+                  <li>An end-to-end map of the workflow, seams included</li>
+                  <li>The exception cases named up front</li>
+                  <li>A plan for the systems the product must talk to</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="acc__item">
+          <h3>
+            <button class="acc__trigger" aria-expanded="false" aria-controls="stage-3">
+              <span class="acc__num">03</span>
+              Product design
+              <svg class="acc__chev" width="20" height="20" viewBox="0 0 20 20" aria-hidden="true" fill="none" stroke="var(--color-ink)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8 L10 13 L15 8"/></svg>
+            </button>
+          </h3>
+          <div class="acc__panel" id="stage-3">
+            <div>
+              <div class="acc__content">
+                <p>Product design shaped around regulated, operationally complex environments. We design for the people who will use the product every day — clear states, honest edge cases, accessibility from the start. Compliance and audit needs are design inputs, not afterthoughts.</p>
+                <p class="acc__label">What you get</p>
+                <ul class="acc__outputs">
+                  <li>Working prototypes tested with the people who’ll use them</li>
+                  <li>Interfaces the team can actually run the business on</li>
+                  <li>Accessibility built in, not bolted on</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="acc__item">
+          <h3>
+            <button class="acc__trigger" aria-expanded="false" aria-controls="stage-4">
+              <span class="acc__num">04</span>
+              Engineering through production
+              <svg class="acc__chev" width="20" height="20" viewBox="0 0 20 20" aria-hidden="true" fill="none" stroke="var(--color-ink)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8 L10 13 L15 8"/></svg>
+            </button>
+          </h3>
+          <div class="acc__panel" id="stage-4">
+            <div>
+              <div class="acc__content">
+                <p>Hands-on engineering ownership until it’s live. We write the code, integrate the systems, and carry the product through security review, data migration, and rollout — accountable until it is standing up in the real world.</p>
+                <p class="acc__label">What you get</p>
+                <ul class="acc__outputs">
+                  <li>Production-grade code, shipped</li>
+                  <li>Integration with the systems you already run</li>
+                  <li>A rollout your teams can actually follow</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="acc__item">
+          <h3>
+            <button class="acc__trigger" aria-expanded="false" aria-controls="stage-5">
+              <span class="acc__num">05</span>
+              Iteration
+              <svg class="acc__chev" width="20" height="20" viewBox="0 0 20 20" aria-hidden="true" fill="none" stroke="var(--color-ink)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8 L10 13 L15 8"/></svg>
+            </button>
+          </h3>
+          <div class="acc__panel" id="stage-5">
+            <div>
+              <div class="acc__content">
+                <p>Ongoing iteration after version one. Launch is the beginning of the learning, not the end of the engagement — we watch how the product is used, fix what the real world reveals, and keep improving what matters.</p>
+                <p class="acc__label">What you get</p>
+                <ul class="acc__outputs">
+                  <li>Improvements driven by real usage, not opinions</li>
+                  <li>A steady cadence of releases</li>
+                  <li>A product that keeps earning its place</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ol>
+
+      <div class="process__own">
+        <p class="big">We own the full product lifecycle. We do not stop at recommendations, specs, or prototypes. We stay close to the work until the product is live, stable, usable, and working inside the real constraints of the business.</p>
+        <p class="supporting">That includes the parts many firms avoid: production readiness, accessibility, implementation detail, coordination with internal teams, and the practical work required to get software standing up in the real world.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Manifesto -->
+  <section class="manifesto" aria-labelledby="manifesto-title">
+    <div class="wrap">
+      <div class="manifesto__panel">
+        <h2 id="manifesto-title">Why Sugo AI</h2>
+        <ul class="manifesto__lines">
+          <li>We are not a strategy shop that disappears after the deck.</li>
+          <li>We are not a dev shop waiting for tickets.</li>
+          <li class="affirm">We are a product studio that helps traditional businesses build and ship software to a much higher standard.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Plain terms -->
+  <section class="terms" aria-labelledby="terms-title">
+    <div class="wrap">
+      <div class="terms__card">
+        <h2 id="terms-title">Plain terms.</h2>
+        <p class="intro">The jargon, translated. For operators, not engineers.</p>
+        <dl>
+          <div>
+            <dt>AI agent</dt>
+            <dd>Software that can carry out a multi-step task on its own, with your rules and your data. Not magic — a diligent junior teammate that never sleeps.</dd>
+          </div>
+          <div>
+            <dt>Pilot</dt>
+            <dd>A trial run. Useful when someone owns getting it into real work; shelf-ware when nobody does.</dd>
+          </div>
+          <div>
+            <dt>Production</dt>
+            <dd>When software stops being a demo and starts being how the work gets done.</dd>
+          </div>
+        </dl>
+        <a class="link terms__more" href="/writing">More terms, plainly →</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- Footer -->
+<footer class="foot">
+  <div class="wrap">
+    <p class="foot__statement">If the software matters, the product work should too.</p>
+    <p class="foot__body">Sugo AI helps traditional businesses build internal tools, AI&nbsp;agents, and customer products with more rigor, better taste, and end-to-end ownership.</p>
+    <div class="foot__cta">
+      <a class="btn btn--primary" href="/contact">Start a conversation</a>
+    </div>
+    <div class="foot__meta">
+      <a class="wordmark" href="/">Sugo AI</a>
+      <a href="/how-we-work">How we work</a>
+      <a href="/writing">Writing</a>
+      <a href="/about">About</a>
+      <a href="/contact">Contact</a>
+      <span>© 2026 Sugo Product Company, LLC d/b/a Sugo AI</span>
+      <span class="foot__note">sugo (n.) — Italian for sauce. The good ones are made slowly, with real ingredients.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Mobile nav disclosure
+  const toggle = document.querySelector('.nav__toggle');
+  const drawer = document.getElementById('nav-drawer');
+  toggle.addEventListener('click', () => {
+    const open = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!open));
+    drawer.classList.toggle('is-open', !open);
+  });
+
+  // Process accordion
+  document.querySelectorAll('.acc__trigger').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.acc__item');
+      const open = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!open));
+      item.classList.toggle('is-open', !open);
+    });
+  });
+</script>
+<!-- SUGO-DEMO-KIT START · control panel (demo chrome — strip before integration) -->
+<div class="demokit">
+  <div class="demokit__panel" id="demokit-panel" hidden>
+    <div class="demokit__row" role="group" aria-label="Type pack">
+      <span class="demokit__lab" aria-hidden="true">TYPE</span>
+      <button class="demokit__btn" type="button" data-kit-pack="" aria-pressed="true">Native</button>
+      <button class="demokit__btn" type="button" data-kit-pack="1" aria-pressed="false">1 Space</button>
+      <button class="demokit__btn" type="button" data-kit-pack="2" aria-pressed="false">2 Schibsted</button>
+      <button class="demokit__btn" type="button" data-kit-pack="3" aria-pressed="false">3 Familjen</button>
+      <button class="demokit__btn" type="button" data-kit-pack="4" aria-pressed="false">4 Cabinet</button>
+      <button class="demokit__btn" type="button" data-kit-pack="5" aria-pressed="false">5 Bricolage</button>
+    </div>
+    <div class="demokit__row" role="group" aria-label="Hero art">
+      <span class="demokit__lab" aria-hidden="true">ART</span>
+      <button class="demokit__btn" type="button" data-kit-art="pot" aria-pressed="true">Pot</button>
+      <button class="demokit__btn" type="button" data-kit-art="pixel-chunky" aria-pressed="false">Chunky</button>
+      <button class="demokit__btn" type="button" data-kit-art="pixel-16bit" aria-pressed="false">16-bit</button>
+    </div>
+  </div>
+  <button class="demokit__chip" type="button" aria-expanded="false" aria-controls="demokit-panel">DEMO</button>
+</div>
+<script>
+(function () {
+  var root = document.documentElement;
+  var chip = document.querySelector('.demokit__chip');
+  var panel = document.getElementById('demokit-panel');
+
+  function store(key, val) { try { val ? localStorage.setItem(key, val) : localStorage.removeItem(key); } catch (e) {} }
+  function sync() {
+    var fp = root.getAttribute('data-fontpack') || '';
+    document.querySelectorAll('[data-kit-pack]').forEach(function (b) {
+      b.setAttribute('aria-pressed', String(b.getAttribute('data-kit-pack') === fp));
+    });
+    var ha = root.getAttribute('data-heroart') || 'pot';
+    document.querySelectorAll('[data-kit-art]').forEach(function (b) {
+      b.setAttribute('aria-pressed', String(b.getAttribute('data-kit-art') === ha));
+    });
+  }
+  document.querySelectorAll('[data-kit-pack]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var v = b.getAttribute('data-kit-pack');
+      v ? root.setAttribute('data-fontpack', v) : root.removeAttribute('data-fontpack');
+      store('sugo-demo-fontpack', v);
+      sync();
+    });
+  });
+  document.querySelectorAll('[data-kit-art]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var v = b.getAttribute('data-kit-art');
+      v === 'pot' ? root.removeAttribute('data-heroart') : root.setAttribute('data-heroart', v);
+      store('sugo-demo-heroart', v === 'pot' ? '' : v);
+      sync();
+    });
+  });
+  chip.addEventListener('click', function () {
+    var open = chip.getAttribute('aria-expanded') === 'true';
+    chip.setAttribute('aria-expanded', String(!open));
+    panel.hidden = open;
+  });
+  sync();
+})();
+</script>
+<!-- SUGO-DEMO-KIT END -->
+</body>
+</html>

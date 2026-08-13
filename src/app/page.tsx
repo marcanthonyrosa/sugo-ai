@@ -1,266 +1,240 @@
-import { CAL_URL } from "@/components/ui/CalModal";
+import type { CSSProperties } from "react";
+import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
+import { Footer } from "@/components/layout/Footer";
+import { ProcessSwitcher } from "@/components/home/ProcessSwitcher";
+import "./pages-core.css";
+
+export const metadata: Metadata = {
+  title:
+    "Sugo AI — Modern product development for companies that aren’t software companies",
+  description:
+    "Modern product development for companies that aren’t software companies. Sugo AI builds internal tools, AI agents, and customer products.",
+};
+
+const stagger = (i: number) => ({ "--i": i }) as CSSProperties;
 
 export default function HomePage() {
   return (
-    <main className="memo">
-      {/* Memo · macrostructure: long-document · genre: editorial position paper */}
-
-      <section className="memo__hero">
-        <div className="wrap">
-          <h1 className="memo__thesis fade-in">
-            AI strategy is cheap. <br />
-            <span className="accent">Working software is rare.</span>
-          </h1>
-          <p className="memo__intro fade-in fade-in-2">
-            Sugo AI is a product development and consulting practice helping
-            enterprises bring AI to market &mdash; agents inside the business,
-            AI-native features inside the product.
-          </p>
-          <p className="memo__credit fade-in fade-in-3">
-            Run from Houston by Marc Rosa &middot; senior product partner
-            &middot; 15 years &middot; 2 exits
-          </p>
-        </div>
-      </section>
-
-      <section className="memo__section">
-        <div className="wrap">
-          <h2 className="memo__h">What Sugo does.</h2>
-          <p className="memo__lede">
-            Two engagements. Both end in software a team can use Monday
-            morning.
-          </p>
-
-          <div className="memo__engagements">
-            <article className="engagement engagement--ops">
-              <div className="engagement__body">
-                <span className="engagement__label">Inside the business</span>
-                <h3 className="engagement__h">
-                  Agents that take manual work off the team.
-                </h3>
-                <p className="engagement__prose">
-                  Back-office workflows where humans copy-paste between
-                  systems &mdash; operations, customer service, sales ops,
-                  finance. I find the one with the clearest waste and ship
-                  the agent that owns it.
-                </p>
-                <div className="engagement__timing">
-                  6&ndash;12 weeks &middot; scope to handoff
+    <>
+      <main id="main">
+        {/* Hero */}
+        <section className="hero">
+          <div className="wrap">
+            <article className="hero__panel">
+              <div className="hero__grid">
+                <div className="hero__copy">
+                  <h1 className="hero__title reveal" style={stagger(0)}>
+                    Modern product development for companies that aren’t
+                    software companies.
+                  </h1>
+                  <p className="hero__sub reveal" style={stagger(1)}>
+                    We help traditional businesses ship internal tools,
+                    AI&nbsp;agents, and customer products with the discipline of
+                    a modern software company.
+                  </p>
+                  <div className="hero__ctas reveal" style={stagger(2)}>
+                    <Link className="btn btn--primary" href="/contact">
+                      Start a conversation
+                    </Link>
+                    <Link className="btn btn--ghost" href="/how-we-work">
+                      How we work
+                    </Link>
+                  </div>
+                </div>
+                <div className="hero__art reveal" style={stagger(3)}>
+                  <Image
+                    className="art-hop"
+                    src="/brand/tomato-a.png"
+                    alt="The Sugo AI mark — a chunky pixel tomato"
+                    width={372}
+                    height={398}
+                    priority
+                  />
                 </div>
               </div>
-              <div className="engagement__diagram" aria-hidden="true">
-                <svg viewBox="0 0 600 180" xmlns="http://www.w3.org/2000/svg">
-                  <rect x="20" y="40" width="140" height="56" rx="4" fill="none" stroke="currentColor" strokeWidth="1.5" opacity="0.55" />
-                  <text x="90" y="73" fontFamily="var(--font-sans)" fontSize="15" fill="currentColor" textAnchor="middle">Tickets in</text>
-
-                  <line x1="168" y1="68" x2="222" y2="68" stroke="currentColor" strokeWidth="1.5" opacity="0.55" />
-                  <polygon points="218,64 226,68 218,72" fill="currentColor" opacity="0.55" />
-
-                  <rect x="230" y="32" width="140" height="72" rx="4" fill="currentColor" />
-                  <text x="300" y="65" fontFamily="var(--font-sans)" fontSize="15" fill="var(--color-basil-50)" textAnchor="middle" fontWeight="500">Triage agent</text>
-                  <text x="300" y="86" fontFamily="var(--font-mono)" fontSize="9" fill="var(--color-basil-50)" textAnchor="middle" opacity="0.8" letterSpacing="1.2">SUGO</text>
-
-                  <line x1="378" y1="68" x2="432" y2="68" stroke="currentColor" strokeWidth="1.5" opacity="0.55" />
-                  <polygon points="428,64 436,68 428,72" fill="currentColor" opacity="0.55" />
-
-                  <rect x="440" y="40" width="140" height="56" rx="4" fill="none" stroke="currentColor" strokeWidth="1.5" opacity="0.55" />
-                  <text x="510" y="73" fontFamily="var(--font-sans)" fontSize="15" fill="currentColor" textAnchor="middle">Routed to pod</text>
-
-                  <text x="90" y="128" fontFamily="var(--font-mono)" fontSize="10" fill="currentColor" textAnchor="middle" opacity="0.55">unrouted backlog</text>
-                  <text x="300" y="128" fontFamily="var(--font-mono)" fontSize="10" fill="currentColor" textAnchor="middle" opacity="0.55">drafts &middot; picks pod</text>
-                  <text x="510" y="128" fontFamily="var(--font-mono)" fontSize="10" fill="currentColor" textAnchor="middle" opacity="0.55">human owner</text>
-
-                  <line x1="40" y1="148" x2="560" y2="148" stroke="currentColor" strokeWidth="1" opacity="0.18" />
-                  <text x="300" y="164" fontFamily="var(--font-mono)" fontSize="9" fill="currentColor" textAnchor="middle" opacity="0.55" letterSpacing="1.4">PRODUCTION &middot; MONITORED &middot; HANDED BACK</text>
-                </svg>
-              </div>
-            </article>
-
-            <article className="engagement engagement--feat">
-              <div className="engagement__body">
-                <span className="engagement__label">Inside the product</span>
-                <h3 className="engagement__h">
-                  AI-native features customers feel.
-                </h3>
-                <p className="engagement__prose">
-                  A real user, a real job, a real outcome metric. I take the
-                  first feature from discovery through launch &mdash; close
-                  enough to engineering to make the calls that matter.
+              <div className="hero__strip reveal" style={stagger(4)}>
+                <strong>
+                  Sugo AI is a product studio for traditional businesses
+                  building serious software.
+                </strong>
+                <p>
+                  We partner with teams that know their business deeply but have
+                  not historically operated like software companies. We bring
+                  the product, design, and engineering discipline needed to
+                  build software that is modern, usable, and worth rolling out.
                 </p>
-                <div className="engagement__timing">
-                  8&ndash;16 weeks &middot; concept to launch
-                </div>
-              </div>
-              <div className="engagement__diagram" aria-hidden="true">
-                <svg viewBox="0 0 280 240" xmlns="http://www.w3.org/2000/svg">
-                  <rect x="8" y="8" width="264" height="224" rx="6" fill="none" stroke="currentColor" strokeWidth="1.5" opacity="0.35" />
-                  <rect x="8" y="8" width="264" height="28" fill="currentColor" opacity="0.06" />
-                  <circle cx="22" cy="22" r="2.5" fill="currentColor" opacity="0.4" />
-                  <circle cx="32" cy="22" r="2.5" fill="currentColor" opacity="0.4" />
-                  <circle cx="42" cy="22" r="2.5" fill="currentColor" opacity="0.4" />
-                  <line x1="20" y1="58" x2="78" y2="58" stroke="currentColor" strokeWidth="2" opacity="0.5" />
-                  <line x1="92" y1="58" x2="138" y2="58" stroke="currentColor" strokeWidth="2" opacity="0.18" />
-                  <line x1="152" y1="58" x2="198" y2="58" stroke="currentColor" strokeWidth="2" opacity="0.18" />
-                  <rect x="20" y="76" width="240" height="14" rx="2" fill="none" stroke="currentColor" strokeWidth="1" opacity="0.25" />
-                  <rect x="20" y="100" width="180" height="12" rx="2" fill="none" stroke="currentColor" strokeWidth="1" opacity="0.25" />
-                  <rect x="20" y="120" width="220" height="12" rx="2" fill="none" stroke="currentColor" strokeWidth="1" opacity="0.25" />
-                  <rect x="20" y="150" width="240" height="64" rx="4" fill="var(--color-viola-500)" opacity="0.38" />
-                  <rect x="20" y="150" width="240" height="64" rx="4" fill="none" stroke="currentColor" strokeWidth="1.5" />
-                  <text x="32" y="172" fontFamily="var(--font-mono)" fontSize="9" fill="currentColor" opacity="0.85" letterSpacing="1.2">AI · SUGGESTED ACTION</text>
-                  <line x1="32" y1="184" x2="200" y2="184" stroke="currentColor" strokeWidth="1" opacity="0.32" />
-                  <line x1="32" y1="196" x2="160" y2="196" stroke="currentColor" strokeWidth="1" opacity="0.32" />
-                </svg>
               </div>
             </article>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section className="memo__section">
-        <div className="wrap">
-          <h2 className="memo__h">Why most pilots fail.</h2>
-          <div className="memo__stat-block">
-            <div
-              className="memo__stat-figure"
-              aria-label="Ninety-five percent"
-            >
-              95<span className="pct">%</span>
-            </div>
-            <div className="memo__stat-prose">
-              <p>
-                of enterprise AI pilots never move a P&amp;L line. MIT put
-                the number at <strong>ninety-five percent</strong> in their
-                August 2025 report. The pattern underneath is consistent:
-                the people who can make the call about what to build
-                aren&rsquo;t close enough to the build to make it. Strategy
-                from one room, engineering from another, integration from a
-                third. The work sits between rooms.
+        {/* Evidence */}
+        <section className="evidence" aria-labelledby="evidence-title">
+          <div className="wrap">
+            <article className="evidence__panel">
+              <div className="evidence__grid">
+                <div className="evidence__stat">
+                  <p className="evidence__num">≈5%</p>
+                  <p className="evidence__qual">
+                    of enterprise GenAI pilots show measurable P&amp;L impact¹
+                  </p>
+                </div>
+                <div className="evidence__body">
+                  <h2 id="evidence-title">
+                    Most AI pilots don’t stall because the model is weak.
+                  </h2>
+                  <p>
+                    A widely cited MIT NANDA report from August 2025 found that
+                    only a small minority of enterprise GenAI pilots showed
+                    measurable P&amp;L impact. In our experience, the issue is
+                    usually ownership: the team shaping the opportunity is too
+                    far from the team building the product, and no one is
+                    accountable end to end.
+                  </p>
+                  <p className="lead">
+                    We work differently. We embed closely, shape the product
+                    with the business, and stay responsible for what actually
+                    ships.
+                  </p>
+                </div>
+              </div>
+              <p className="evidence__foot">
+                1 — MIT NANDA, “The GenAI Divide: State of AI in Business,”
+                August 2025.
               </p>
-              <div
-                className="memo__dot-grid"
-                role="img"
-                aria-label="Visualization: 95 of 100 pilots fail to ship"
-              >
-                {Array.from({ length: 100 }, (_, i) => {
-                  const successPositions = [16, 42, 58, 74, 91];
-                  return (
-                    <span
-                      key={i}
-                      className={
-                        successPositions.includes(i) ? "success" : undefined
-                      }
-                    />
-                  );
-                })}
-              </div>
-              <div className="memo__stat-source">
-                Source &middot; MIT NANDA &middot;{" "}
-                <em>State of AI in Business 2025</em> &middot; Aug 2025
-              </div>
+            </article>
+          </div>
+        </section>
+
+        {/* Two buckets */}
+        <section className="buckets" aria-labelledby="buckets-title">
+          <div className="wrap">
+            <h2 className="section-title" id="buckets-title">
+              The work falls into two buckets.
+            </h2>
+            <div className="buckets__grid">
+              <article className="bucket bucket--tools">
+                <h3>Internal tools &amp; AI agents</h3>
+                <p>
+                  Software for operations, workflows, decision support, and team
+                  productivity. We help businesses replace manual work,
+                  disconnected systems, and shallow pilots with tools that fit
+                  how the organization actually runs.
+                </p>
+              </article>
+              <article className="bucket bucket--customer">
+                <h3>Customer products</h3>
+                <p>
+                  Portals, platforms, and digital experiences for customers,
+                  members, partners, and policyholders. We build products that
+                  are clear, trustworthy, and easy to use, especially when the
+                  business behind them is operationally complex.
+                </p>
+              </article>
             </div>
           </div>
-          <p className="memo__stat-outro">
-            Sugo is built for the in-between.
-          </p>
-        </div>
-      </section>
+        </section>
 
-      <section className="memo__section memo__section--tinted">
-        <div className="wrap">
-          <h2 className="memo__h">How Sugo works.</h2>
-          <div className="memo__prose">
-            <p>
-              <strong>Software, not decks.</strong> The deliverable is
-              working code in production, not a deck about working code.
-              Frameworks and templates are tools, not artifacts.
+        {/* Process */}
+        <section className="process" aria-labelledby="process-title">
+          <div className="wrap">
+            <h2 className="section-title" id="process-title">
+              We run like a software company. That’s where we come from.
+            </h2>
+            <p className="process__intro">
+              Traditional businesses often have strong operators, strong
+              constraints, and strong domain knowledge. What they usually lack
+              is a product-development system built for fast learning, tight
+              iteration, and high-quality shipping. That’s what we bring.
             </p>
-            <p>
-              <strong>Sit beside the work.</strong> Two weeks of paired
-              sessions beats six weeks of interviews. The team doing the
-              workflow knows where it breaks.
-            </p>
-            <p>
-              <strong>Genuine ROI.</strong> Every build has a baseline
-              metric set in the audit and a target measured at 30 / 60 / 90
-              days. No vanity dashboards.
-            </p>
-            <p>
-              <strong>Leave a clean handoff.</strong> Your team owns the
-              software after launch. Documentation, monitoring, and a
-              written brief on what to build next &mdash; delivered on
-              launch day.
-            </p>
+
+            <ProcessSwitcher />
+
+            <div className="process__own">
+              <p className="big">
+                We own the full product lifecycle. We do not stop at
+                recommendations, specs, or prototypes. We stay close to the
+                work until the product is live, stable, usable, and working
+                inside the real constraints of the business.
+              </p>
+              <p className="supporting">
+                That includes the parts many firms avoid: production readiness,
+                accessibility, implementation detail, coordination with
+                internal teams, and the practical work required to get software
+                standing up in the real world.
+              </p>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section className="memo__section">
-        <div className="wrap">
-          <h2 className="memo__h">The shape of the practice.</h2>
-          <div className="memo__prose">
-            <p>
-              Most AI consulting hands you a deck. Most platform AI hands
-              you a bolt-on. Sugo is built for what&rsquo;s in between
-              &mdash; close enough to your business to make the call about
-              what&rsquo;s worth building, and close enough to engineering
-              to ship it.
-            </p>
-            <p>
-              <strong>Best fit:</strong> mid-to-large enterprises and
-              traditional companies in operations, finance, healthcare,
-              services, industrial &mdash; sectors where off-the-shelf AI
-              tools don&rsquo;t fit and there isn&rsquo;t a deep engineering
-              bench standing by to build the alternative.
-            </p>
-            <p>
-              <strong>Best buyer:</strong> the executive personally
-              accountable for whether the AI strategy actually delivers
-              &mdash; a head of innovation, COO, or VP of product carrying a
-              roadmap with AI commitments the organization hasn&rsquo;t yet
-              shipped.
-            </p>
+        {/* Manifesto */}
+        <section className="manifesto" aria-labelledby="manifesto-title">
+          <div className="wrap">
+            <div className="manifesto__panel on-flood">
+              <h2 id="manifesto-title">Why Sugo AI</h2>
+              <ul className="manifesto__lines">
+                <li>
+                  We are not a <em className="key">strategy shop</em> that
+                  disappears after the deck.
+                </li>
+                <li>
+                  We are not a <em className="key">dev shop</em> waiting for
+                  tickets.
+                </li>
+                <li>
+                  We are a <em className="key">product studio</em> that helps
+                  traditional businesses build and ship software to a much
+                  higher standard.
+                </li>
+              </ul>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section className="memo__close memo__close--dark">
-        <div className="wrap">
-          <h2 className="memo__close-h">
-            Start a <span className="accent">conversation.</span>
-          </h2>
-          <p className="memo__close-sub">
-            Tell me what you&rsquo;re working on. I&rsquo;ll tell you
-            whether it&rsquo;s a workflow, a product feature, or not a fit
-            yet.
-          </p>
-          <div className="memo__actions">
-            <a
-              className="btn-primary"
-              href={CAL_URL}
-              target="_blank"
-              rel="noopener"
-            >
-              Book 30 minutes{" "}
-              <span className="arrow" aria-hidden="true">
-                &rarr;
-              </span>
-            </a>
-            <a className="memo__secondary" href="mailto:marc@sugoai.com">
-              marc@sugoai.com
-            </a>
+        {/* Plain terms */}
+        <section className="terms" aria-labelledby="terms-title">
+          <div className="wrap">
+            <div className="terms__card">
+              <h2 id="terms-title">Plain terms.</h2>
+              <p className="intro">
+                The jargon, translated. For operators, not engineers.
+              </p>
+              <dl>
+                <div>
+                  <dt>AI agent</dt>
+                  <dd>
+                    Software that can carry out a multi-step task on its own,
+                    with your rules and your data. Not magic — a diligent junior
+                    teammate that never sleeps.
+                  </dd>
+                </div>
+                <div>
+                  <dt>Pilot</dt>
+                  <dd>
+                    A trial run. Useful when someone owns getting it into real
+                    work; shelf-ware when nobody does.
+                  </dd>
+                </div>
+                <div>
+                  <dt>Production</dt>
+                  <dd>
+                    When software stops being a demo and starts being how the
+                    work gets done.
+                  </dd>
+                </div>
+              </dl>
+              {/* Re-enable when essays are written:
+              <Link className="link terms__more" href="/writing">
+                More terms, plainly →
+              </Link> */}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </main>
 
-      <section className="memo__ps">
-        <div className="wrap">
-          <p>
-            <em>P.S.</em> &mdash; <em>Sugo</em> is the Italian word for
-            sauce. A long, slow reduction; a few ingredients done well.
-            That&rsquo;s the practice.
-          </p>
-        </div>
-      </section>
-    </main>
+      <Footer />
+    </>
   );
 }

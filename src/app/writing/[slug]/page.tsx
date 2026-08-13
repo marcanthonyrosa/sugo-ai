@@ -1,19 +1,39 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import { Footer } from "@/components/layout/Footer";
 import { MdxContent } from "@/components/writing/MdxContent";
 import { getArticleBySlug, getAllSlugs } from "@/lib/mdx";
+import "../../pages-sub.css";
 
 interface WritingPostPageProps {
   params: Promise<{ slug: string }>;
 }
 
+/* Temporarily gated — placeholder essay bodies; flip to true to re-enable. */
+const WRITING_ENABLED = false;
+
 export function generateStaticParams() {
+  if (!WRITING_ENABLED) return [];
   return getAllSlugs().map((slug) => ({ slug }));
 }
 
-export default async function WritingPostPage({ params }: WritingPostPageProps) {
-  if (process.env.NODE_ENV !== "development") notFound();
+export async function generateMetadata({
+  params,
+}: WritingPostPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const article = getArticleBySlug(slug);
+  if (!article) return {};
+  return {
+    title: `Sugo AI — ${article.title}`,
+    description: article.standfirst,
+  };
+}
 
+export default async function WritingPostPage({
+  params,
+}: WritingPostPageProps) {
+  if (!WRITING_ENABLED) notFound();
   const { slug } = await params;
   const article = getArticleBySlug(slug);
 
@@ -22,36 +42,30 @@ export default async function WritingPostPage({ params }: WritingPostPageProps) 
   }
 
   return (
-    <main>
-      <section className="py-[100px] pt-[140px] max-[767px]:py-[56px] max-[767px]:pt-[100px]">
-        <div className="max-w-[1180px] mx-auto px-8 max-[1024px]:px-6">
-          <div className="max-w-[680px]">
-            <p className="type-mono-meta uppercase">
-              {article.date} &nbsp; &middot; &nbsp; {article.readTime} &nbsp;
-              &middot; &nbsp; {article.category}
+    <>
+      <main id="main" className="pg-post">
+        <article className="post">
+          <div className="wrap">
+            <p className="post__meta">
+              {article.date} · {article.readTime} · {article.category}
             </p>
-            <h1 className="type-h1 mt-4">{article.title}</h1>
-            <p className="type-post-lead">{article.standfirst}</p>
+            <h1>{article.title}</h1>
+            <p className="post__standfirst">{article.standfirst}</p>
 
             <MdxContent source={article.content} />
 
-            <div
-              className="mt-20 pt-8 font-sans text-[15px] flex flex-col gap-2"
-              style={{
-                borderTop: "1px solid var(--color-rule-soft)",
-                color: "var(--color-ink-700)",
-              }}
-            >
-              <span>Written by Marc Anthony Rosa.</span>
+            <div className="post__close">
+              <span>Written by Marc Rosa.</span>
               <span>If this is useful, forward it to one person.</span>
-              <Link className="link-text mt-2" href="/contact">
-                Start a conversation
-                <span className="arrow" aria-hidden="true">→</span>
+              <Link className="link" href="/contact">
+                Start a conversation →
               </Link>
             </div>
           </div>
-        </div>
-      </section>
-    </main>
+        </article>
+      </main>
+
+      <Footer />
+    </>
   );
 }

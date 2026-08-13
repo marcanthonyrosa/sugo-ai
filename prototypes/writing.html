@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sugo AI — Writing</title>
+<meta name="description" content="Notes from the work for operators and leaders building software inside traditional businesses.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,600&display=swap" rel="stylesheet">
+<style>
+/* Hallmark · genre: playful-editorial · macrostructure: Index-First editorial · nav: N7 slab · footer: Ft5 action-row
+ * theme: LOCKED Sugo system (viola-light · Red Hat Display 700/500 · General Sans · JetBrains Mono · chunky tomato mark)
+ * page: Writing — notes index (featured row + draft list + Plain terms fixture). Zero scroll motion; the page is just there.
+ * honest: pass (56) — NO fabricated publish dates: unpublished pieces carry a mono “Draft” tag, not dates; no invented
+ *   newsletter infrastructure (closing note is a plain mailto). copy: FINAL (SITE_PAGE_COPY.md filled verbatim).
+ * tokens: pass (58) · contrast: pass (46–50, inherited from verified E2 pairs) · mobile: pass (36, 59, 61–68)
+ * pre-emit critique: P4 H4 E4 S4 R5 V4
+ */
+:root {
+  --color-paper:      oklch(96% 0.014 95);
+  --color-paper-2:    oklch(94% 0.020 95);
+  --color-card:       oklch(98.5% 0.008 100);
+  --color-ink:        oklch(24% 0.065 265);
+  --color-ink-2:      oklch(34% 0.055 262);
+  --color-muted:      oklch(46% 0.04 262);
+  --color-rule:       oklch(90% 0.012 258);
+  --color-viola-50:   oklch(95.5% 0.015 310);
+  --color-viola:      oklch(89% 0.04 310);
+  --color-viola-500:  oklch(72% 0.09 305);
+  --color-underline:  oklch(55% 0.12 308);
+  --color-blush:      oklch(88% 0.035 40);
+  --color-accent:       var(--color-ink);
+  --color-accent-hover: oklch(30% 0.07 262);
+  --color-accent-ink:   var(--color-paper);
+  --color-focus: oklch(46% 0.13 310);
+
+  --font-display: "Red Hat Display", ui-sans-serif, system-ui, sans-serif;
+  --font-body:    "General Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-outlier: "JetBrains Mono", ui-monospace, monospace;
+  --display-tracking: -0.02em;
+  --display-lh: 1.12;
+  --display-weight: 700;
+  --display-weight-md: 500;
+
+  --text-sm:   0.875rem;
+  --text-base: 1.0625rem;
+  --text-md:   1.25rem;
+  --text-lg:   1.5625rem;
+  --text-xl:   1.953rem;
+  --text-display-s: clamp(2.3rem, 3.6vw + 1rem, 3.8rem);
+  --text-statement: clamp(2rem, 3vw + 1rem, 3.25rem);
+
+  --space-2xs: 0.25rem;
+  --space-xs:  0.5rem;
+  --space-sm:  0.75rem;
+  --space-md:  1rem;
+  --space-lg:  1.5rem;
+  --space-xl:  2.5rem;
+  --space-2xl: 4rem;
+  --space-3xl: 6rem;
+
+  --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-micro: 120ms;
+  --dur-long:  420ms;
+
+  --border-panel: 2px solid var(--color-ink);
+  --radius-panel: 10px;
+  --radius-card: 8px;
+  --radius-btn: 4px;
+  --radius-micro: 2px;
+  --shadow-stack-viola: 4px 4px 0 var(--color-viola-500);
+  --shadow-stack-viola-lift: 5px 5px 0 var(--color-viola-500);
+  --shadow-stack-viola-press: 2px 2px 0 var(--color-viola-500);
+
+  --z-sticky-nav: 300;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body { overflow-x: clip; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.6;
+  padding-inline: max(0px, env(safe-area-inset-left)) max(0px, env(safe-area-inset-right));
+}
+h1, h2, h3 { font-family: var(--font-display); font-weight: var(--display-weight); line-height: var(--display-lh); letter-spacing: var(--display-tracking); margin: 0; overflow-wrap: anywhere; min-width: 0; }
+p { margin: 0; }
+::selection { background: var(--color-viola); color: var(--color-ink); }
+
+.wrap { max-width: 74rem; margin-inline: auto; padding-inline: clamp(1rem, 4vw, 2rem); }
+
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; border-radius: var(--radius-micro); }
+
+.skip {
+  position: absolute; left: var(--space-md); top: -100px;
+  background: var(--color-ink); color: var(--color-paper);
+  padding: var(--space-sm) var(--space-md); border-radius: var(--radius-btn);
+  z-index: var(--z-sticky-nav); transition: none;
+}
+.skip:focus-visible { top: var(--space-md); }
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.5em;
+  min-height: 48px; padding: var(--space-sm) var(--space-lg);
+  border-radius: var(--radius-btn); border: 2px solid var(--color-ink);
+  font-family: var(--font-body); font-weight: 600; font-size: var(--text-base);
+  text-decoration: none; white-space: nowrap; cursor: pointer; line-height: 1;
+  transition: transform var(--dur-micro) var(--ease-out),
+              box-shadow var(--dur-micro) var(--ease-out),
+              background-color var(--dur-micro) var(--ease-out);
+}
+.btn--primary { background: var(--color-accent); color: var(--color-accent-ink); box-shadow: var(--shadow-stack-viola); }
+.btn--primary:hover { background: var(--color-accent-hover); transform: translate(-1px, -1px); box-shadow: var(--shadow-stack-viola-lift); }
+.btn--primary:active { transform: translate(1px, 1px); box-shadow: var(--shadow-stack-viola-press); }
+.btn--ghost { background: transparent; color: var(--color-ink); }
+.btn--ghost:hover { background: var(--color-paper-2); }
+.btn--ghost:active { transform: translateY(1px); }
+.btn:disabled, .btn[aria-disabled="true"] { opacity: 0.55; cursor: not-allowed; box-shadow: none; transform: none; }
+
+.link {
+  font-weight: 600; color: var(--color-ink); text-decoration: underline;
+  text-decoration-thickness: 1px; text-underline-offset: 3px; white-space: nowrap;
+}
+.link:hover { text-decoration-thickness: 2px; text-decoration-color: var(--color-underline); }
+.link:active { color: var(--color-ink-2); }
+
+/* ---------- Nav (N7 slab) ---------- */
+.nav { border-bottom: var(--border-panel); background: var(--color-paper); }
+.nav__row { display: flex; align-items: center; gap: var(--space-lg); padding-block: var(--space-sm); }
+.wordmark {
+  font-family: var(--font-display); font-weight: var(--display-weight); font-size: var(--text-md);
+  text-decoration: none; letter-spacing: 0.01em; display: inline-flex; align-items: center; gap: 0.35em;
+  min-height: 44px;
+}
+.navmark { display: inline-flex; align-items: center; line-height: 1; transform: translateY(-1px); }
+.navmark img { display: block; }
+.nav__links { display: flex; align-items: center; gap: var(--space-lg); margin-left: auto; list-style: none; padding: 0; margin-block: 0; }
+.nav__link {
+  text-transform: uppercase; letter-spacing: 0.08em; font-size: var(--text-sm); font-weight: 600;
+  text-decoration: none; white-space: nowrap; padding-block: var(--space-sm); display: inline-block;
+}
+.nav__link:hover { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 6px; text-decoration-color: var(--color-underline); }
+.nav__link[aria-current="page"] { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 6px; }
+.nav__cta { margin-left: var(--space-xs); }
+.nav__toggle { display: none; }
+.nav__drawer { display: grid; grid-template-rows: 0fr; transition: grid-template-rows var(--dur-long) var(--ease-in-out); }
+.nav__drawer > div { overflow: hidden; min-height: 0; }
+.nav__drawer.is-open { grid-template-rows: 1fr; }
+.nav__drawer ul { list-style: none; margin: 0; padding: var(--space-md) 0 var(--space-lg); display: grid; gap: var(--space-xs); }
+@media (max-width: 59.99rem) {
+  .nav__links { display: none; }
+  .nav__toggle { display: inline-flex; margin-left: auto; background: transparent; color: var(--color-ink); }
+}
+@media (min-width: 60rem) { .nav__drawer { display: none; } }
+
+/* ---------- Intro ---------- */
+.intro { padding-block: var(--space-3xl) var(--space-2xl); }
+.intro h1 { font-size: var(--text-display-s); max-width: 18ch; }
+.intro__body { margin-top: var(--space-lg); font-size: var(--text-md); color: var(--color-ink-2); max-width: 52ch; }
+
+/* ---------- Featured piece ---------- */
+.featured { padding-block-end: var(--space-2xl); }
+.featured__row {
+  border: 1px solid var(--color-rule); border-radius: var(--radius-card);
+  padding: clamp(var(--space-lg), 3.5vw, var(--space-xl));
+  display: grid; gap: var(--space-sm); max-width: 60rem;
+  background: var(--color-card);
+}
+.featured__tag { font-family: var(--font-outlier); font-size: var(--text-sm); color: var(--color-muted); text-transform: uppercase; letter-spacing: 0.04em; }
+.featured__row h2 { font-size: var(--text-xl); max-width: 26ch; }
+.featured__row .dek { color: var(--color-ink-2); max-width: 62ch; }
+.featured__row .link { justify-self: start; margin-top: var(--space-xs); }
+
+/* ---------- Article list ---------- */
+.list { padding-block-end: var(--space-3xl); }
+.list__rows { list-style: none; margin: 0; padding: 0; max-width: 60rem; }
+.list__rows li {
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: var(--space-lg); row-gap: var(--space-2xs);
+  align-items: baseline;
+  padding-block: var(--space-lg); border-top: 1px solid var(--color-rule);
+}
+.list__rows li:last-child { border-bottom: 1px solid var(--color-rule); }
+.list__rows h3 { font-size: var(--text-lg); font-weight: var(--display-weight-md); max-width: 30ch; }
+.list__rows .dek { grid-column: 1; color: var(--color-ink-2); max-width: 58ch; }
+.list__tag { font-family: var(--font-outlier); font-size: var(--text-sm); color: var(--color-muted); white-space: nowrap; }
+@media (max-width: 40rem) {
+  .list__rows li { grid-template-columns: minmax(0, 1fr); }
+  .list__tag { order: -1; }
+}
+
+/* ---------- Plain terms (permanent fixture) ---------- */
+.terms { padding-block-end: var(--space-3xl); }
+.terms__card {
+  background: var(--color-blush); border: var(--border-panel); border-radius: var(--radius-panel);
+  padding: var(--space-xl); max-width: 46rem;
+}
+.terms__card h2 { font-size: var(--text-xl); }
+.terms__card .intro-line { margin-top: var(--space-xs); color: var(--color-ink-2); }
+.terms__card dl { margin: var(--space-lg) 0 0; display: grid; gap: var(--space-md); }
+.terms__card dt { font-family: var(--font-display); font-weight: var(--display-weight-md); font-size: var(--text-md); }
+.terms__card dd { margin: var(--space-2xs) 0 0; color: var(--color-ink-2); max-width: 58ch; }
+
+/* ---------- Closing note ---------- */
+.note { padding-block-end: var(--space-3xl); }
+.note p { max-width: 56ch; color: var(--color-ink-2); }
+
+/* ---------- Footer (Ft5 action-row) ---------- */
+.foot { border-top: var(--border-panel); background: var(--color-paper); padding-block: var(--space-2xl) var(--space-xl); }
+.foot__statement { font-family: var(--font-display); font-weight: var(--display-weight); font-size: var(--text-statement); line-height: var(--display-lh); letter-spacing: var(--display-tracking); max-width: 24ch; overflow-wrap: anywhere; min-width: 0; }
+.foot__statement em { font-style: italic; }
+.foot__body { margin-top: var(--space-lg); max-width: 56ch; color: var(--color-ink-2); }
+.foot__actionrow { display: flex; align-items: center; justify-content: space-between; gap: var(--space-xl); flex-wrap: wrap; margin-top: var(--space-xl); margin-bottom: var(--space-xl); }
+@media (max-width: 40rem) { }
+.foot__brandmark { display: inline-flex; align-items: center; transform: translateY(-1px); }
+.foot__brandmark img { height: 22px; width: auto; display: block; }
+.foot__meta {
+  padding-top: var(--space-md); border-top: 1px solid var(--color-rule); margin-top: var(--space-lg);
+  display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-md) var(--space-lg);
+  font-size: var(--text-sm); color: var(--color-muted);
+}
+.foot__meta a { text-decoration: none; white-space: nowrap; }
+.foot__meta a:hover { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 4px; }
+.foot__note { font-family: var(--font-outlier); margin-left: auto; }
+@media (max-width: 40rem) { .foot__note { margin-left: 0; } }
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 150ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 150ms !important;
+  }
+  html { scroll-behavior: auto; }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav">
+  <div class="wrap">
+    <div class="nav__row">
+      <a class="wordmark" href="/">Sugo AI<span class="navmark" aria-hidden="true"><img src="art/tomato-a.png" alt="" width="24" height="22" decoding="async"></span></a>
+      <ul class="nav__links">
+        <li><a class="nav__link" href="/how-we-work">How we work</a></li>
+        <li><a class="nav__link" href="/writing" aria-current="page">Writing</a></li>
+        <li><a class="nav__link" href="/about">About</a></li>
+        <li><a class="btn btn--primary nav__cta" href="/contact">Contact us</a></li>
+      </ul>
+      <button class="btn btn--ghost nav__toggle" aria-expanded="false" aria-controls="nav-drawer">Menu</button>
+    </div>
+    <div class="nav__drawer" id="nav-drawer">
+      <div>
+        <ul>
+          <li><a class="nav__link" href="/how-we-work">How we work</a></li>
+          <li><a class="nav__link" href="/writing" aria-current="page">Writing</a></li>
+          <li><a class="nav__link" href="/about">About</a></li>
+          <li><a class="btn btn--primary" href="/contact">Contact us</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- Intro -->
+  <section class="intro">
+    <div class="wrap">
+      <h1>Notes from the work.</h1>
+      <!-- §WR-1 -->
+      <p class="intro__body">This writing is for operators, product owners, and leaders trying to make better software decisions inside real businesses. The goal is plain-English thinking from the work — not commentary from a distance.</p>
+    </div>
+  </section>
+
+  <!-- Featured piece -->
+  <section class="featured" aria-labelledby="featured-title">
+    <div class="wrap">
+      <!-- §WR-2 -->
+      <article class="featured__row">
+        <p class="featured__tag">Featured · Draft — in progress</p>
+        <h2 id="featured-title">The pilot is not the product</h2>
+        <p class="dek">Most AI pilots fail because they are asked to prove too much while owning too little. This essay argues for treating the pilot as a way to learn where software can hold inside the business — and what comes next if it matters.</p>
+        <span class="link" aria-hidden="true">Read →</span>
+      </article>
+    </div>
+  </section>
+
+  <!-- Article list -->
+  <section class="list" aria-label="More notes in progress">
+    <div class="wrap">
+      <!-- §WR-3a–d -->
+      <ul class="list__rows">
+        <li>
+          <h3>Rollout is part of the product</h3>
+          <span class="list__tag">Draft — in progress</span>
+          <p class="dek">Launch is not where the work ends — it is where the product meets the organization that has to carry it.</p>
+        </li>
+        <li>
+          <h3>Plain terms: AI agent</h3>
+          <span class="list__tag">Draft — in progress</span>
+          <p class="dek">What people usually mean, what they should mean, and what matters when one has to do work that counts.</p>
+        </li>
+        <li>
+          <h3>Why internal tools decay</h3>
+          <span class="list__tag">Draft — in progress</span>
+          <p class="dek">Internal software rarely fails because no one cared; it fails because no one owned it like a product once it was live.</p>
+        </li>
+        <li>
+          <h3>Production is a habit</h3>
+          <span class="list__tag">Draft — in progress</span>
+          <p class="dek">Good software teams do not “arrive” at production — they build the habits that let software survive there.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Plain terms -->
+  <section class="terms" aria-labelledby="terms-title">
+    <div class="wrap">
+      <div class="terms__card">
+        <h2 id="terms-title">Plain terms.</h2>
+        <p class="intro-line">The jargon, translated. For operators, not engineers.</p>
+        <!-- §WR-4 -->
+        <dl>
+          <div>
+            <dt>AI agent</dt>
+            <dd>Software that can carry out a multi-step task on its own, with your rules and your data. Not magic — a diligent junior teammate that never sleeps.</dd>
+          </div>
+          <div>
+            <dt>Pilot</dt>
+            <dd>A trial run. Useful when someone owns getting it into real work; shelf-ware when nobody does.</dd>
+          </div>
+          <div>
+            <dt>Production</dt>
+            <dd>When software stops being a demo and starts being how the work gets done.</dd>
+          </div>
+          <div>
+            <dt>Internal tool</dt>
+            <dd>Software built for the people inside the business, not the customers outside it. “Internal” does not make it easier — it usually just hides the mess better.</dd>
+          </div>
+          <div>
+            <dt>Rollout</dt>
+            <dd>The part where software stops being a launch event and starts becoming part of how the work gets done. If the rollout is weak, the product usually gets blamed for problems the process created.</dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- Closing note -->
+  <section class="note">
+    <div class="wrap">
+      <p>Want these as they’re written? Email <a class="link" href="mailto:marc@sugoai.com">marc@sugoai.com</a> and we’ll send them along.</p>
+    </div>
+  </section>
+
+</main>
+
+<!-- Footer -->
+<footer class="foot">
+  <div class="wrap">
+    <p class="foot__statement">If the software matters, <em>the product work</em> should too.</p>
+    <p class="foot__body">Sugo AI helps traditional businesses build internal tools, AI&nbsp;agents, and customer products with more rigor, better taste, and end-to-end ownership.</p>
+    <div class="foot__actionrow">
+      <div class="foot__cta">
+        <a class="btn btn--primary" href="/contact">Start a conversation</a>
+      </div>
+    </div>
+    <div class="foot__meta">
+      <a class="wordmark" href="/">Sugo AI</a> <span class="foot__brandmark" aria-hidden="true"><img src="art/tomato-a.png" alt="" width="372" height="398"></span>
+      <a href="/how-we-work">How we work</a>
+      <a href="/writing" aria-current="page">Writing</a>
+      <a href="/about">About</a>
+      <a href="/contact">Contact</a>
+      <span>© 2026 Sugo Product Company, LLC d/b/a Sugo AI</span>
+      <span class="foot__note">sugo (n.) — Italian for sauce. The good ones are made slowly, with real ingredients.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Mobile nav disclosure
+  const toggle = document.querySelector('.nav__toggle');
+  const drawer = document.getElementById('nav-drawer');
+  toggle.addEventListener('click', () => {
+    const open = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!open));
+    drawer.classList.toggle('is-open', !open);
+  });
+</script>
+</body>
+</html>

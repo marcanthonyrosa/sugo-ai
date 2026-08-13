@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sugo AI — The production floor</title>
+<meta name="description" content="Sugo AI is a product studio for traditional businesses building serious software — from discovery through design, engineering, production, and iteration.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,600&display=swap" rel="stylesheet">
+<!-- SUGO-DEMO-KIT START · pre-paint state restore + font-pack faces (strip before integration) -->
+<script>(function(){try{var f=localStorage.getItem("sugo-demo-fontpack");if(f&&/^[1-5]$/.test(f))document.documentElement.setAttribute("data-fontpack",f);var a=localStorage.getItem("sugo-demo-heroart");if(a==="pixel-chunky"||a==="pixel-16bit")document.documentElement.setAttribute("data-heroart",a);}catch(e){}})();</script>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@500;700&family=Familjen+Grotesk:wght@500;700&family=Bricolage+Grotesque:wght@600;700&family=IBM+Plex+Sans:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=switzer@400,600&f[]=cabinet-grotesk@500,700&display=swap" rel="stylesheet">
+<!-- SUGO-DEMO-KIT END -->
+<style>
+/* Hallmark · genre: playful · macrostructure: Narrative Workflow · hero: H9 custom-illustration
+ * H9 knobs: build=Tier-B-hand-SVG, animation=loop-dot (SMIL, hidden under reduced-motion), scale=dominant
+ * nav: N3 side-rail (wordmark vertical + 5 stage dots; top bar <60rem) · footer: Ft8 marquee (48s · left · middot)
+ * theme: custom · vibe: "production floor, color-blocked, kinetic precision"
+ * paper: oklch(95% 0.012 85) · accent: oklch(52% 0.16 255) cobalt · axes: light-with-dark-floods / geometric-sans / cool
+ * display: Space Grotesk · body: General Sans · outlier: JetBrains Mono (roles: ordinal/data register + wordmark)
+ * studied: no · context: inferred from WEBSITE_HANDOFF_BRIEF.md · concept 3 of 3 (siblings: Split Studio, Long Document)
+ * pre-emit critique: P5 H4 E4 S5 R4 V5
+ * contrast: pass (46–50) · nav: N3 · footer: Ft8 · slop: pass (51–55) · honest: pass (56, MIT NANDA figure footnoted)
+ * chrome: pass (57) · tokens: pass (58) · responsive: pass (59) · icons: pass (60) · mobile: pass (36, 59, 61–69)
+ * SUGO-DEMO-KIT (demo chrome, strip before integration): font-pack switcher only (Native + 5 packs, headers ≤700 in all;
+ *   Native = Space Grotesk/General Sans, identical to pack 1 — kept for cross-page consistency). No hero-art toggle —
+ *   this page's hero is the production-line diagram. Chip sits above the marquee (z 400 > rail/nav 300); footer meta
+ *   row gains bottom padding <60rem so the chip never covers its links.
+ */
+:root {
+  --color-paper: oklch(95% 0.012 85);
+  --color-paper-2: oklch(92% 0.014 85);
+  --color-ink: oklch(23% 0.025 150);
+  --color-ink-2: oklch(36% 0.02 150);
+  --color-muted: oklch(46% 0.016 150);
+  --color-rule: oklch(80% 0.012 85);
+  --color-deep: oklch(28% 0.04 155);
+  --color-deep-2: oklch(33% 0.04 155);
+  --color-sand-ink: oklch(94% 0.012 85);
+  --color-sand-ink-2: oklch(84% 0.014 85);
+  --color-accent: oklch(52% 0.16 255);
+  --color-accent-deep: oklch(44% 0.15 255);
+  --color-accent-hover: oklch(38% 0.14 255);
+  --color-accent-ink: oklch(96% 0.010 85);
+  --color-error: oklch(44% 0.15 30);
+  --color-success: oklch(40% 0.09 155);
+  --color-deep-line: oklch(42% 0.04 155);
+  --color-gold: oklch(84% 0.11 90);
+  --color-focus: oklch(46% 0.19 255);
+  --color-focus-flip: oklch(84% 0.11 90);
+
+  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "General Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-outlier: "JetBrains Mono", ui-monospace, monospace;
+
+  /* display tuning vars — consumed below, overridable by SUGO-DEMO-KIT font packs.
+     Native: Space Grotesk 700 throughout (md unused natively, defined for pack parity). */
+  --display-tracking: -0.02em;
+  --display-lh: 1.12;
+  --display-weight: 700;
+  --display-weight-md: 500;
+
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-md: 1.1875rem;
+  --text-lg: 1.5rem;
+  --text-xl: 1.9375rem;
+  --text-2xl: 2.4375rem;
+  --text-display: clamp(2.125rem, 3.4vw + 1rem, 3.75rem);
+  --text-numeral: clamp(2.75rem, 6vw, 5rem);
+
+  --space-2xs: 0.25rem;
+  --space-xs: 0.5rem;
+  --space-sm: 0.75rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2.5rem;
+  --space-2xl: 4rem;
+  --space-3xl: 6rem;
+  --space-4xl: 9rem;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in: cubic-bezier(0.7, 0, 0.84, 0);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-micro: 120ms;
+  --dur-short: 220ms;
+  --dur-long: 420ms;
+
+  --rule-hair: 1px;
+  --rule-stage: 3px;
+  --radius: 10px;
+  --rail-w: 3.5rem;
+  --gutter: clamp(1.25rem, 5vw, 4.5rem);
+
+  --z-base: 1;
+  --z-raised: 10;
+  --z-sticky: 200;
+  --z-sticky-nav: 300;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { overflow-x: clip; scroll-behavior: smooth; }
+body {
+  overflow-x: clip;
+  margin: 0;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.6;
+  padding-inline: 0;
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+@media (min-width: 60rem) { body { padding-left: var(--rail-w); } }
+
+h1, h2, h3 { font-family: var(--font-display); line-height: var(--display-lh); letter-spacing: var(--display-tracking); overflow-wrap: anywhere; min-width: 0; margin: 0; }
+p { margin: 0; }
+p + p { margin-top: var(--space-md); }
+::selection { background: var(--color-gold); color: var(--color-ink); }
+
+a { color: var(--color-accent-deep); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+a:hover { text-decoration-thickness: 2px; }
+:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; border-radius: 2px; }
+.on-deep :focus-visible, .rail-dots a:focus-visible { outline-color: var(--color-focus-flip); }
+
+.skip {
+  position: absolute; left: var(--space-md); top: var(--space-md);
+  transform: translateY(-300%);
+  background: var(--color-ink); color: var(--color-sand-ink);
+  padding: var(--space-sm) var(--space-md); border-radius: var(--radius);
+  font-family: var(--font-display); font-weight: var(--display-weight); z-index: var(--z-sticky-nav);
+  white-space: nowrap;
+}
+.skip:focus-visible { transform: none; }
+
+/* ---------- N3 side rail ---------- */
+.rail { display: none; }
+@media (min-width: 60rem) {
+  .rail {
+    display: flex; flex-direction: column; align-items: center; justify-content: space-between;
+    position: fixed; inset: 0 auto 0 0; width: var(--rail-w);
+    border-right: var(--rule-hair) solid var(--color-rule);
+    background: var(--color-paper);
+    padding-block: var(--space-lg);
+    z-index: var(--z-sticky-nav);
+  }
+}
+.rail-mark {
+  writing-mode: vertical-rl;
+  font-family: var(--font-outlier); font-weight: 700; font-size: var(--text-sm);
+  letter-spacing: 0.12em; color: var(--color-ink); text-decoration: none;
+  padding: var(--space-sm) 0; min-height: 44px; display: inline-flex; align-items: center;
+}
+.rail-dots { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--space-2xs); }
+.rail-dots a {
+  display: flex; align-items: center; justify-content: center;
+  width: 44px; height: 44px; text-decoration: none;
+  font-family: var(--font-outlier); font-size: 0.75rem; font-weight: 400;
+  color: var(--color-muted); font-variant-numeric: tabular-nums;
+}
+.rail-dots a::before {
+  content: ""; position: absolute; width: 8px; height: 8px; border-radius: 50%;
+  border: 1.5px solid currentColor; transform: translateY(-14px);
+}
+.rail-dots a span { transform: translateY(8px); }
+.rail-dots a:hover { color: var(--color-ink); }
+.rail-dots a[aria-current="true"] { color: var(--color-accent-deep); font-weight: 700; }
+.rail-dots a[aria-current="true"]::before { background: currentColor; }
+.rail-year { font-family: var(--font-outlier); font-size: 0.6875rem; color: var(--color-muted); writing-mode: vertical-rl; }
+
+/* mobile top bar */
+.topbar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: var(--space-md) var(--gutter);
+  border-bottom: var(--rule-hair) solid var(--color-rule);
+}
+.topbar .mark {
+  font-family: var(--font-outlier); font-weight: 700; letter-spacing: 0.12em;
+  font-size: var(--text-sm); color: var(--color-ink); text-decoration: none;
+  min-height: 44px; display: inline-flex; align-items: center; white-space: nowrap;
+}
+@media (min-width: 60rem) { .topbar { display: none; } }
+
+/* fixed contact chip (desktop) */
+.contact-chip {
+  position: fixed; top: var(--space-md); right: var(--space-md); z-index: var(--z-sticky-nav);
+  display: none;
+}
+@media (min-width: 60rem) { .contact-chip { display: inline-flex; } }
+
+/* ---------- buttons ---------- */
+.btn {
+  display: inline-flex; align-items: center; gap: 0.45em;
+  min-height: 44px; padding: 0.65rem 1.25rem;
+  font-family: var(--font-display); font-weight: var(--display-weight); font-size: var(--text-base);
+  line-height: 1; text-decoration: none; white-space: nowrap;
+  border-radius: var(--radius); border: 2px solid transparent;
+  transition: background-color var(--dur-micro) var(--ease-out), color var(--dur-micro) var(--ease-out), transform var(--dur-micro) var(--ease-out);
+}
+.btn-fill { background: var(--color-accent-deep); color: var(--color-accent-ink); }
+.btn-fill:hover { background: var(--color-accent-hover); transform: translateY(-1px); }
+.btn-fill:active { transform: translateY(1px); }
+.btn-gold { background: var(--color-gold); color: var(--color-ink); }
+.btn-gold:hover { transform: translateY(-1px); }
+.btn-gold:active { transform: translateY(1px); }
+.btn-outline { border-color: var(--color-ink); color: var(--color-ink); background: transparent; }
+.btn-outline:hover { background: var(--color-paper-2); }
+.btn-outline:active { transform: translateY(1px); }
+.btn[aria-disabled="true"], .btn:disabled { opacity: 0.55; cursor: not-allowed; pointer-events: none; }
+.btn[data-state="loading"] { opacity: 0.75; cursor: progress; }
+.btn[data-state="error"] { background: var(--color-error); color: var(--color-accent-ink); }
+.btn[data-state="success"] { background: var(--color-success); color: var(--color-accent-ink); }
+.link-arrow {
+  display: inline-flex; align-items: center; min-height: 44px;
+  font-family: var(--font-display); font-weight: var(--display-weight); white-space: nowrap;
+  color: var(--color-ink); text-decoration-thickness: 2px; text-underline-offset: 4px;
+}
+.link-arrow:hover { color: var(--color-accent-deep); }
+.link-arrow:active { transform: translateY(1px); }
+
+/* ---------- hero ---------- */
+.hero {
+  display: grid; grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-2xl);
+  padding: var(--space-2xl) var(--gutter) calc(var(--space-2xl) * 1.4);
+  align-items: center;
+}
+@media (min-width: 60rem) {
+  .hero { grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); padding-top: var(--space-3xl); }
+}
+.hero h1 { font-size: var(--text-display); font-weight: var(--display-weight); max-width: 16ch; }
+.hero .lede { font-size: var(--text-md); color: var(--color-ink-2); max-width: 52ch; margin-top: var(--space-lg); }
+.hero .cta-row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-md) var(--space-lg); margin-top: var(--space-xl); }
+.hero-art { width: 100%; }
+.hero-art svg { display: block; width: 100%; height: auto; }
+@media (max-width: 59.99rem) { .hero-art { max-height: 40vh; } .hero-art svg { max-height: 40vh; } }
+
+/* SVG line-work */
+.flow-path { stroke: var(--color-ink); stroke-width: 3; fill: none; }
+.flow-loop { stroke: var(--color-accent-deep); stroke-width: 2.5; fill: none; stroke-dasharray: 7 6; }
+.node { stroke: var(--color-ink); stroke-width: 3; }
+.node-gold { fill: var(--color-gold); }
+.node-sand { fill: var(--color-paper-2); }
+.node-cobalt { fill: var(--color-accent-deep); }
+.node-label { font-family: var(--font-outlier); font-weight: 700; font-size: 14px; letter-spacing: 0.08em; fill: var(--color-ink); }
+.node-label-flip { fill: var(--color-accent-ink); }
+.loop-label { font-family: var(--font-outlier); font-weight: 400; font-size: 12.5px; letter-spacing: 0.1em; fill: var(--color-accent-deep); }
+.flow-dot { fill: var(--color-accent-deep); }
+@media (prefers-reduced-motion: reduce) { .flow-dot { display: none; } }
+
+/* ---------- positioning strip ---------- */
+.positioning {
+  background: var(--color-paper-2);
+  border-top: var(--rule-hair) solid var(--color-rule);
+  border-bottom: var(--rule-hair) solid var(--color-rule);
+  padding: var(--space-xl) var(--gutter);
+}
+.positioning h2 { font-size: var(--text-lg); font-weight: var(--display-weight); max-width: 30ch; }
+.positioning p { margin-top: var(--space-md); max-width: 62ch; color: var(--color-ink-2); }
+
+/* ---------- stages ---------- */
+.stage { border-top: var(--rule-stage) solid var(--color-ink); padding: var(--space-2xl) var(--gutter) var(--space-3xl); }
+.stage-inner { max-width: 68rem; }
+.stage-num {
+  display: block; font-family: var(--font-outlier); font-weight: 700;
+  font-size: var(--text-numeral); line-height: 1; font-variant-numeric: tabular-nums;
+  color: var(--color-accent); letter-spacing: -0.01em;
+}
+.stage h2 { font-size: clamp(1.5rem, 2.6vw, 2.25rem); margin-top: var(--space-sm); max-width: 26ch; }
+.stage .body { margin-top: var(--space-lg); max-width: 60ch; color: var(--color-ink-2); }
+.you-get { margin-top: var(--space-xl); max-width: 60ch; border-top: var(--rule-hair) solid var(--color-rule); padding-top: var(--space-md); }
+.you-get b {
+  font-family: var(--font-body); font-weight: 600; font-size: var(--text-sm);
+  text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-muted);
+  display: block; margin-bottom: var(--space-2xs);
+}
+
+/* dark zone */
+.on-deep { background: var(--color-deep); color: var(--color-sand-ink); border-top-color: var(--color-sand-ink); }
+.on-deep .stage-num { color: var(--color-gold); }
+.on-deep .body, .on-deep p { color: var(--color-sand-ink-2); }
+.on-deep h2, .on-deep h3 { color: var(--color-sand-ink); }
+.on-deep .you-get { border-top-color: var(--color-deep-2); }
+.on-deep .you-get b { color: var(--color-sand-ink-2); }
+.on-deep a { color: var(--color-gold); }
+.lifecycle-note {
+  margin-top: var(--space-xl); max-width: 56ch;
+  background: var(--color-deep-2); border-left: none;
+  border: var(--rule-hair) solid var(--color-deep-line);
+  border-radius: var(--radius); padding: var(--space-lg);
+}
+.lifecycle-note p { color: var(--color-sand-ink); font-size: var(--text-md); }
+
+/* ---------- interludes ---------- */
+.interlude-a { background: var(--color-paper-2); border-top: var(--rule-stage) solid var(--color-ink); padding: var(--space-2xl) var(--gutter); }
+.interlude-a h2 { font-size: clamp(1.5rem, 2.6vw, 2.25rem); max-width: 24ch; }
+.buckets { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-xl); margin-top: var(--space-xl); }
+@media (min-width: 60rem) {
+  .buckets { grid-template-columns: minmax(0, 6.5fr) minmax(0, 5.5fr); gap: 0; }
+  .bucket + .bucket { border-left: var(--rule-hair) solid var(--color-ink); padding-left: var(--space-xl); }
+  .bucket:first-child { padding-right: var(--space-xl); }
+}
+@media (max-width: 59.99rem) { .bucket + .bucket { border-top: var(--rule-hair) solid var(--color-ink); padding-top: var(--space-xl); } }
+.bucket h3 { font-size: var(--text-lg); }
+.bucket p { margin-top: var(--space-md); color: var(--color-ink-2); max-width: 52ch; }
+
+.interlude-b { background: var(--color-deep-2); border-top: var(--rule-stage) solid var(--color-sand-ink); padding: var(--space-2xl) var(--gutter) var(--space-3xl); }
+.stat-figure {
+  font-family: var(--font-outlier); font-weight: 700; line-height: 1;
+  font-size: clamp(3rem, 9vw, 6.5rem); font-variant-numeric: tabular-nums;
+  color: var(--color-gold); letter-spacing: -0.02em; overflow-wrap: anywhere; min-width: 0;
+}
+.stat-qualifier { font-family: var(--font-display); font-weight: var(--display-weight); font-size: var(--text-lg); margin-top: var(--space-md); max-width: 30ch; }
+.interlude-b .body { margin-top: var(--space-lg); max-width: 58ch; }
+.footnote { margin-top: var(--space-xl); font-family: var(--font-outlier); font-size: 0.8125rem; color: var(--color-sand-ink-2); max-width: 60ch; }
+
+/* ---------- why sugo ---------- */
+.why { border-top: var(--rule-stage) solid var(--color-ink); padding: var(--space-2xl) var(--gutter) var(--space-3xl); }
+.why h2 { font-size: var(--text-md); font-weight: var(--display-weight); text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-muted); }
+.why-lines { list-style: none; margin: var(--space-lg) 0 0; padding: 0; max-width: 62rem; }
+.why-lines li {
+  font-family: var(--font-display); font-weight: var(--display-weight); line-height: 1.2;
+  font-size: clamp(1.375rem, 2.4vw, 2.125rem); letter-spacing: var(--display-tracking);
+  border-top: var(--rule-hair) solid var(--color-rule); padding: var(--space-lg) 0;
+  overflow-wrap: anywhere; min-width: 0;
+}
+.why-lines li:last-child { border-bottom: var(--rule-hair) solid var(--color-rule); color: var(--color-accent-deep); }
+
+/* ---------- closing ---------- */
+.closing { background: var(--color-deep); border-top: var(--rule-stage) solid var(--color-ink); padding: var(--space-3xl) var(--gutter); }
+.closing h2 { font-size: clamp(1.75rem, 3.2vw, 3rem); max-width: 22ch; }
+.closing p { margin-top: var(--space-lg); max-width: 56ch; }
+.closing .cta-row { margin-top: var(--space-xl); }
+
+/* ---------- Ft8 marquee footer ---------- */
+.foot { border-top: var(--rule-stage) solid var(--color-ink); background: var(--color-paper); }
+.marquee { overflow: hidden; padding-block: var(--space-lg); border-bottom: var(--rule-hair) solid var(--color-rule); }
+.marquee-track { display: flex; gap: 0; width: max-content; animation: ticker 48s linear infinite; }
+.marquee:hover .marquee-track, .marquee:focus-within .marquee-track { animation-play-state: paused; }
+.marquee-track span {
+  font-family: var(--font-display); font-weight: var(--display-weight); font-size: clamp(1.25rem, 2.4vw, 2rem);
+  letter-spacing: 0.02em; white-space: nowrap; padding-right: 0.6em; color: var(--color-ink);
+}
+@keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; width: auto; flex-wrap: wrap; }
+  .marquee-track span { white-space: normal; }
+  .marquee-copy { display: none; }
+}
+.foot-meta {
+  display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-xs) var(--space-lg);
+  padding: var(--space-lg) var(--gutter) max(var(--space-lg), env(safe-area-inset-bottom));
+  font-size: var(--text-sm); color: var(--color-muted);
+}
+.foot-meta a { color: var(--color-ink-2); white-space: nowrap; min-height: 44px; display: inline-flex; align-items: center; }
+.foot-meta a:hover { color: var(--color-accent-deep); }
+
+/* ---------- reveals ---------- */
+.reveal { opacity: 0; transform: translateY(14px); }
+.reveal.is-in { animation: rise var(--dur-long) var(--ease-out) forwards; animation-delay: calc(var(--i, 0) * 90ms); }
+@keyframes rise { to { opacity: 1; transform: none; } }
+.hero .reveal { opacity: 0; transform: translateY(14px); animation: rise var(--dur-long) var(--ease-out) forwards; animation-delay: calc(var(--i, 0) * 90ms); }
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .hero .reveal { transform: none; animation: fade 150ms linear forwards; }
+  @keyframes fade { to { opacity: 1; } }
+}
+@media (scripting: none) { .reveal { opacity: 1; transform: none; } }
+.no-js .reveal { opacity: 1; transform: none; }
+
+/* SUGO-DEMO-KIT START — demo chrome: font packs + control panel (TYPE only; no hero art on this page).
+   Strip this block (and the matching HTML/JS blocks) before integration. */
+[data-fontpack="1"] { --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif; --font-body: "General Sans", ui-sans-serif, system-ui, sans-serif; --display-tracking: -0.02em; --display-lh: 1.08; --display-weight: 700; --display-weight-md: 500; }
+[data-fontpack="2"] { --font-display: "Schibsted Grotesk", ui-sans-serif, system-ui, sans-serif; --font-body: "Switzer", ui-sans-serif, system-ui, sans-serif; --display-tracking: -0.015em; --display-lh: 1.08; --display-weight: 700; --display-weight-md: 500; }
+[data-fontpack="3"] { --font-display: "Familjen Grotesk", ui-sans-serif, system-ui, sans-serif; --font-body: "General Sans", ui-sans-serif, system-ui, sans-serif; --display-tracking: -0.015em; --display-lh: 1.08; --display-weight: 700; --display-weight-md: 500; }
+[data-fontpack="4"] { --font-display: "Cabinet Grotesk", ui-sans-serif, system-ui, sans-serif; --font-body: "Switzer", ui-sans-serif, system-ui, sans-serif; --display-tracking: -0.02em; --display-lh: 1.08; --display-weight: 700; --display-weight-md: 500; }
+[data-fontpack="5"] { --font-display: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif; --font-body: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif; --display-tracking: -0.015em; --display-lh: 1.14; --display-weight: 700; --display-weight-md: 600; }
+
+/* Control panel — adapted to this page's hairline + flood language (no stacked shadows). */
+:root { --z-demokit: 400; }
+.demokit {
+  position: fixed;
+  right: max(var(--space-md), env(safe-area-inset-right));
+  bottom: max(var(--space-md), env(safe-area-inset-bottom));
+  z-index: var(--z-demokit);
+  display: grid; justify-items: end; gap: var(--space-xs);
+  font-family: var(--font-outlier);
+}
+.demokit__chip, .demokit__btn {
+  min-height: 44px; padding: 0 var(--space-sm);
+  border: var(--rule-hair) solid var(--color-ink); border-radius: var(--radius);
+  background: var(--color-paper); color: var(--color-ink);
+  font-family: var(--font-outlier); font-size: 12px; letter-spacing: 0.06em;
+  white-space: nowrap; cursor: pointer;
+}
+.demokit__chip { font-weight: 700; border-width: 2px; }
+.demokit__chip:hover, .demokit__btn:hover { background: var(--color-paper-2); }
+.demokit__chip:active, .demokit__btn:active { transform: translateY(1px); }
+.demokit__btn[aria-pressed="true"] { background: var(--color-ink); color: var(--color-sand-ink); }
+.demokit__panel {
+  background: var(--color-paper); border: var(--rule-hair) solid var(--color-ink); border-radius: var(--radius);
+  padding: var(--space-sm); display: grid; gap: var(--space-xs);
+  max-width: min(92vw, 34rem);
+}
+.demokit__row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2xs); }
+.demokit__lab { font-size: 11px; letter-spacing: 0.1em; color: var(--color-muted); min-width: 4.5ch; }
+@media (max-width: 60rem) { .foot-meta { padding-block-end: 6rem; } } /* keep the chip clear of the footer links */
+@media print { .demokit { display: none; } }
+/* SUGO-DEMO-KIT END */
+</style>
+</head>
+<body class="no-js">
+<script>document.body.classList.remove('no-js');</script>
+<a class="skip" href="#main">Skip to content</a>
+
+<nav class="rail" aria-label="Sections">
+  <a class="rail-mark" href="/">SUGO&nbsp;AI</a>
+  <ul class="rail-dots">
+    <li><a href="#stage-1" aria-label="Stage 1 — Discover" style="position:relative"><span>1</span></a></li>
+    <li><a href="#stage-2" aria-label="Stage 2 — Map" style="position:relative"><span>2</span></a></li>
+    <li><a href="#stage-3" aria-label="Stage 3 — Design" style="position:relative"><span>3</span></a></li>
+    <li><a href="#stage-4" aria-label="Stage 4 — Build" style="position:relative"><span>4</span></a></li>
+    <li><a href="#stage-5" aria-label="Stage 5 — Iterate" style="position:relative"><span>5</span></a></li>
+  </ul>
+  <span class="rail-year" aria-hidden="true">2026</span>
+</nav>
+
+<header class="topbar">
+  <a class="mark" href="/">SUGO&nbsp;AI</a>
+  <a class="btn btn-outline" href="/contact">Contact us</a>
+</header>
+<a class="btn btn-outline contact-chip" href="/contact">Contact us</a>
+
+<main id="main">
+
+  <section class="hero" aria-label="Introduction">
+    <div>
+      <h1 class="reveal is-in" style="--i:0">Modern product development for companies that aren’t software companies.</h1>
+      <p class="lede reveal is-in" style="--i:1">We help traditional businesses ship internal tools, AI&nbsp;agents, and customer products with the discipline of a modern software company.</p>
+      <div class="cta-row reveal is-in" style="--i:2">
+        <a class="btn btn-fill" href="/contact">Start a conversation</a>
+        <a class="link-arrow" href="#stage-1">See how we run →</a>
+      </div>
+    </div>
+    <figure class="hero-art reveal is-in" style="--i:2; margin:0">
+      <svg viewBox="0 0 660 310" role="img" aria-label="Sugo’s production line — five stations from discovery to production, with a loop back from run to design labeled iterate">
+        <!-- conveyor path (dot travels beneath the stations) -->
+        <path id="flowpath" class="flow-path" d="M 90 70 L 570 70 L 570 230 L 330 230"/>
+        <!-- direction chevrons -->
+        <path class="flow-path" d="M 205 62 L 215 70 L 205 78" stroke-width="2.5"/>
+        <path class="flow-path" d="M 445 62 L 455 70 L 445 78" stroke-width="2.5"/>
+        <path class="flow-path" d="M 562 145 L 570 155 L 578 145" stroke-width="2.5"/>
+        <path class="flow-path" d="M 462 238 L 452 230 L 462 222" stroke-width="2.5"/>
+        <!-- traveling work item -->
+        <circle class="flow-dot" r="6">
+          <animateMotion dur="14s" repeatCount="indefinite" rotate="0">
+            <mpath href="#flowpath"/>
+          </animateMotion>
+        </circle>
+        <!-- iterate loop -->
+        <path class="flow-loop" d="M 330 192 C 330 138 420 118 488 96"/>
+        <path class="flow-loop" d="M 476 90 L 490 95 L 484 108" stroke-dasharray="none"/>
+        <text class="loop-label" x="352" y="136">ITERATE</text>
+        <!-- stations -->
+        <g>
+          <rect class="node node-gold" x="15" y="38" width="150" height="64" rx="10"/>
+          <text class="node-label" x="90" y="75" text-anchor="middle">DISCOVER</text>
+        </g>
+        <g>
+          <rect class="node node-sand" x="255" y="38" width="150" height="64" rx="10"/>
+          <text class="node-label" x="330" y="75" text-anchor="middle">MAP</text>
+        </g>
+        <g>
+          <rect class="node node-cobalt" x="495" y="38" width="150" height="64" rx="10"/>
+          <text class="node-label node-label-flip" x="570" y="75" text-anchor="middle">DESIGN</text>
+        </g>
+        <g>
+          <rect class="node node-gold" x="495" y="198" width="150" height="64" rx="10"/>
+          <text class="node-label" x="570" y="235" text-anchor="middle">BUILD</text>
+        </g>
+        <g>
+          <rect class="node node-sand" x="255" y="198" width="150" height="64" rx="10"/>
+          <text class="node-label" x="330" y="235" text-anchor="middle">RUN</text>
+        </g>
+      </svg>
+    </figure>
+  </section>
+
+  <section class="positioning">
+    <h2>Sugo AI is a product studio for traditional businesses building serious software.</h2>
+    <p>We partner with teams that know their business deeply but have not historically operated like software companies. We bring the product, design, and engineering discipline needed to build software that is modern, usable, and worth rolling out.</p>
+  </section>
+
+  <section class="stage" id="stage-1" aria-labelledby="s1h">
+    <div class="stage-inner reveal">
+      <span class="stage-num" aria-hidden="true">1.0</span>
+      <h2 id="s1h">Discover — find the real operational pain.</h2>
+      <p class="body">We start inside the operation, not in a slide deck. We sit with the people who do the work, trace where time and money actually leak, and name the problem worth building for — in the operators’ own words.</p>
+      <p class="you-get"><b>You get</b>a named problem worth building for, validated with the people who live it.</p>
+    </div>
+  </section>
+
+  <section class="stage" id="stage-2" aria-labelledby="s2h">
+    <div class="stage-inner reveal">
+      <span class="stage-num" aria-hidden="true">2.0</span>
+      <h2 id="s2h">Map — the workflow, end to end.</h2>
+      <p class="body">Before designing screens, we map how work really moves — systems, handoffs, exceptions, and the workarounds nobody wrote down. The product has to fit the business, not the other way around.</p>
+      <p class="you-get"><b>You get</b>a map of how work actually flows — systems, handoffs, and exceptions included.</p>
+    </div>
+  </section>
+
+  <section class="interlude-a" aria-labelledby="bucketsh">
+    <div class="reveal">
+      <h2 id="bucketsh">The work usually falls into two buckets.</h2>
+      <div class="buckets">
+        <div class="bucket">
+          <h3>Internal tools &amp; AI agents</h3>
+          <p>Software for operations, workflows, decision support, and team productivity. We help businesses replace manual work, disconnected systems, and shallow pilots with tools that fit how the organization actually runs.</p>
+        </div>
+        <div class="bucket">
+          <h3>Customer products</h3>
+          <p>Portals, platforms, and digital experiences for customers, members, partners, and policyholders. We build products that are clear, trustworthy, and easy to use, especially when the business behind them is operationally complex.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="stage on-deep" id="stage-3" aria-labelledby="s3h">
+    <div class="stage-inner reveal">
+      <span class="stage-num" aria-hidden="true">3.0</span>
+      <h2 id="s3h">Design — for regulated, complex environments.</h2>
+      <p class="body">We design for the way regulated businesses actually operate: audit trails, permissions, edge cases, and review cycles. Clear enough for daily use on the front line, rigorous enough to pass compliance.</p>
+      <p class="you-get"><b>You get</b>a product design the compliance team and the front line can both sign off on.</p>
+    </div>
+  </section>
+
+  <section class="stage on-deep" id="stage-4" aria-labelledby="s4h">
+    <div class="stage-inner reveal">
+      <span class="stage-num" aria-hidden="true">4.0</span>
+      <h2 id="s4h">Build — engineering ownership through production.</h2>
+      <p class="body">Our engineers own the build all the way into production — not a handoff, not a spec thrown over the wall.</p>
+      <div class="lifecycle-note">
+        <p>We do not stop at recommendations, specs, or prototypes. We stay close to the work until the product is live, stable, usable, and working inside the real constraints of the business — including the parts many firms avoid: production readiness, accessibility, implementation detail, and coordination with internal teams.</p>
+      </div>
+      <p class="you-get"><b>You get</b>working software in production — not a prototype in a deck.</p>
+    </div>
+  </section>
+
+  <section class="interlude-b on-deep" aria-labelledby="stath">
+    <div class="reveal">
+      <h2 id="stath" class="stat-figure">≈ 1 in 20<sup aria-hidden="true">1</sup></h2>
+      <p class="stat-qualifier">enterprise GenAI pilots show measurable P&amp;L impact.<span style="position:absolute;width:1px;height:1px;overflow:clip;clip-path:inset(50%)">See footnote one for the source.</span></p>
+      <p class="body">Most AI pilots do not stall because the model is weak. The issue is usually ownership — the team shaping the opportunity is too far from the team building it, and no one is accountable end to end. We embed closely, shape the product with the business, and stay responsible for what actually ships.</p>
+      <p class="footnote">1 — MIT NANDA, “The GenAI Divide: State of AI in Business,” August 2025.</p>
+    </div>
+  </section>
+
+  <section class="stage" id="stage-5" aria-labelledby="s5h">
+    <div class="stage-inner reveal">
+      <span class="stage-num" aria-hidden="true">5.0</span>
+      <h2 id="s5h">Iterate — version one is the start.</h2>
+      <p class="body">Rollout is not the finish line. We watch how the product behaves in real use, keep shipping, and loop back through design when the work asks for it — that’s the loop in the diagram.</p>
+      <p class="you-get"><b>You get</b>a product that keeps earning its rollout, version after version.</p>
+    </div>
+  </section>
+
+  <section class="why" aria-labelledby="whyh">
+    <div class="reveal">
+      <h2 id="whyh">Why Sugo AI</h2>
+      <ul class="why-lines">
+        <li>We are not a strategy shop that disappears after the deck.</li>
+        <li>We are not a dev shop waiting for tickets.</li>
+        <li>We are a product studio that helps traditional businesses build and ship software to a much higher standard.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="closing on-deep" aria-labelledby="closeh">
+    <div class="reveal">
+      <h2 id="closeh">If the software matters, the product work should too.</h2>
+      <p>Sugo AI helps traditional businesses build internal tools, AI&nbsp;agents, and customer products with more rigor, better taste, and end-to-end ownership.</p>
+      <div class="cta-row" style="margin-top: var(--space-xl)">
+        <a class="btn btn-gold" href="/contact">Start a conversation</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>SUGO AI · A PRODUCT STUDIO FOR TRADITIONAL BUSINESSES · SHIPPED, NOT SLIDEWARE ·&nbsp;</span>
+      <span class="marquee-copy">SUGO AI · A PRODUCT STUDIO FOR TRADITIONAL BUSINESSES · SHIPPED, NOT SLIDEWARE ·&nbsp;</span>
+    </div>
+  </div>
+  <div class="foot-meta">
+    <span>© 2026 Sugo Product Company, LLC d/b/a Sugo AI</span>
+    <a href="/how-we-work">How we work</a>
+    <a href="/writing">Writing</a>
+    <a href="/about">About</a>
+    <a href="/contact">Contact</a>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var reveals = document.querySelectorAll('.reveal:not(.is-in)');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
+      });
+    }, { rootMargin: '0px 0px -10% 0px' });
+    reveals.forEach(function (el) { io.observe(el); });
+
+    var dots = document.querySelectorAll('.rail-dots a');
+    var stages = ['stage-1', 'stage-2', 'stage-3', 'stage-4', 'stage-5']
+      .map(function (id) { return document.getElementById(id); });
+    var spy = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        var i = stages.indexOf(e.target);
+        if (i < 0) return;
+        if (e.isIntersecting) {
+          dots.forEach(function (d) { d.removeAttribute('aria-current'); });
+          dots[i].setAttribute('aria-current', 'true');
+        }
+      });
+    }, { rootMargin: '-40% 0px -50% 0px' });
+    stages.forEach(function (s) { if (s) spy.observe(s); });
+  } else {
+    reveals.forEach(function (el) { el.classList.add('is-in'); });
+  }
+  if (prefersReduced) {
+    document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('is-in'); });
+  }
+})();
+</script>
+
+<!-- SUGO-DEMO-KIT START · control panel (demo chrome — strip before integration) -->
+<div class="demokit">
+  <div class="demokit__panel" id="demokit-panel" hidden>
+    <div class="demokit__row" role="group" aria-label="Type pack">
+      <span class="demokit__lab" aria-hidden="true">TYPE</span>
+      <button class="demokit__btn" type="button" data-kit-pack="" aria-pressed="true">Native</button>
+      <button class="demokit__btn" type="button" data-kit-pack="1" aria-pressed="false">1 Space</button>
+      <button class="demokit__btn" type="button" data-kit-pack="2" aria-pressed="false">2 Schibsted</button>
+      <button class="demokit__btn" type="button" data-kit-pack="3" aria-pressed="false">3 Familjen</button>
+      <button class="demokit__btn" type="button" data-kit-pack="4" aria-pressed="false">4 Cabinet</button>
+      <button class="demokit__btn" type="button" data-kit-pack="5" aria-pressed="false">5 Bricolage</button>
+    </div>
+  </div>
+  <button class="demokit__chip" type="button" aria-expanded="false" aria-controls="demokit-panel">DEMO</button>
+</div>
+<script>
+(function () {
+  var root = document.documentElement;
+  var chip = document.querySelector('.demokit__chip');
+  var panel = document.getElementById('demokit-panel');
+  function store(key, val) { try { val ? localStorage.setItem(key, val) : localStorage.removeItem(key); } catch (e) {} }
+  function sync() {
+    var fp = root.getAttribute('data-fontpack') || '';
+    document.querySelectorAll('[data-kit-pack]').forEach(function (b) {
+      b.setAttribute('aria-pressed', String(b.getAttribute('data-kit-pack') === fp));
+    });
+    var ha = root.getAttribute('data-heroart') || 'pot';
+    document.querySelectorAll('[data-kit-art]').forEach(function (b) {
+      b.setAttribute('aria-pressed', String(b.getAttribute('data-kit-art') === ha));
+    });
+  }
+  document.querySelectorAll('[data-kit-pack]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var v = b.getAttribute('data-kit-pack');
+      v ? root.setAttribute('data-fontpack', v) : root.removeAttribute('data-fontpack');
+      store('sugo-demo-fontpack', v);
+      sync();
+    });
+  });
+  document.querySelectorAll('[data-kit-art]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var v = b.getAttribute('data-kit-art');
+      v === 'pot' ? root.removeAttribute('data-heroart') : root.setAttribute('data-heroart', v);
+      store('sugo-demo-heroart', v === 'pot' ? '' : v);
+      sync();
+    });
+  });
+  chip.addEventListener('click', function () {
+    var open = chip.getAttribute('aria-expanded') === 'true';
+    chip.setAttribute('aria-expanded', String(!open));
+    panel.hidden = open;
+  });
+  sync();
+})();
+</script>
+<!-- SUGO-DEMO-KIT END -->
+</body>
+</html>

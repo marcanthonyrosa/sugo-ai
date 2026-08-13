@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sugo AI — Panel Press · Viola Light</title>
+<meta name="description" content="Sugo AI is a product studio for traditional businesses building serious software — internal tools, AI agents, and customer products, shipped with the discipline of a modern software company.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=switzer@400,600&display=swap" rel="stylesheet">
+<!-- SUGO-DEMO-KIT START · pre-paint state restore + font-pack faces (strip before integration) -->
+<script>(function(){try{var f=localStorage.getItem("sugo-demo-fontpack");if(f&&/^[1-9]$/.test(f))document.documentElement.setAttribute("data-fontpack",f);var a=localStorage.getItem("sugo-demo-heroart");if(a==="chunky"||a==="16bit"||a==="chunky-viola"||a==="16bit-viola"||a==="jar"||a==="spoon"){document.documentElement.setAttribute("data-heroart",a);}else if(a){localStorage.removeItem("sugo-demo-heroart");}var m=localStorage.getItem("sugo-demo-motion");if(m==="bob"||m==="sway"||m==="breathe"||m==="hop"){document.documentElement.setAttribute("data-motion",m);}else if(m){localStorage.removeItem("sugo-demo-motion");}}catch(e){}})();</script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Schibsted+Grotesk:wght@500;700&family=Familjen+Grotesk:wght@500;700&family=Bricolage+Grotesque:wght@600;700&family=IBM+Plex+Sans:wght@400;600&family=Hanken+Grotesk:wght@500;700&family=Instrument+Sans:wght@500;700&family=Red+Hat+Display:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600&f[]=cabinet-grotesk@500,700&display=swap" rel="stylesheet">
+<!-- SUGO-DEMO-KIT END -->
+<style>
+/* Hallmark · genre: playful · macrostructure: Split Studio · H2 knobs: ratio=7/5, right=illustration-flood, divider=2px-ink-border
+ * nav: N7 brutal slab · footer: Ft5 statement · theme: custom (variant E2 · viola-light) · source: main branch Viola system rebalanced to the light ramp
+ * vibe: “light viola atmosphere, navy carpentry, printed warmth” · paper: oklch(96% 0.014 95) [#F7F4EA] · ink/carpentry/action: oklch(24% 0.065 265) [#112240 navy]
+ * accent story: viola-50/viola/viola-500 as atmosphere + decoration · navy is the only dark AND the action color · saffron = the one warm panel
+ * flood: viola #E6D4F0 (hero, ink-on-lavender linework) + navy (manifesto — the page's ONLY dark moment) · panels: saffron / viola-50 / blush
+ * display: Fraunces 600/500 (one italic moment, footer statement) · body: Switzer · outlier: JetBrains Mono (numerals + meta)
+ * axes: light / roman-serif / chromatic-viola-light · enrichment: E-hand-SVG Tier B (sugo pot, navy linework on lavender)
+ * deviations (deliberate): stacked hard offset shadows — navy on panels, VIOLA-500 under navy primary CTAs (two-layer press effect) ·
+ *   bounded color-flood panels · slow subtle steam loop (stops under reduced motion) · 2px navy border-carpentry · sage dropped (two-hue story)
+ * viola-900 #4A2E6B: removed as a literal token; the focus ring is a viola-600-class derivation oklch(46% 0.13 310) — functional only
+ * contrast: glossary intro moved muted→ink-2 (muted on blush ≈3.8:1 fails); hover underlines use viola-550 oklch(55% 0.12 308) ≈3.4:1 decoration
+ *   (true viola-500 ≈2.4:1 kept only for wordmark dot / bullets / pot band — pure decoration); focus token verified ≥3:1 on paper, card,
+ *   saffron (≈3.3:1), viola flood (≈3.9:1), viola-50; cream ring retained for the navy manifesto band (defensive — no focusables there)
+ * pre-emit critique: P4 H5 E4 S5 R4 V4 · contrast: pass (46–50) · nav/footer/hero: pass (51–55) · honest: pass (56) · chrome: pass (57)
+ * tokens: pass (58) · responsive: pass (59) · icons: pass (60) · mobile: pass (36, 59, 61–68) · studied: informed by dodonut.com (structure only)
+  * SUGO-DEMO-KIT (demo chrome, strip before integration): font-pack switcher (Native + 9 packs, headers ≤700 in all)
+ *   + hero-art toggle v5 (pot | chunky | 16bit | chunky-viola | 16bit-viola | jar | spoon) + MOTION row
+ *   (none | bob | sway | breathe | hop — PNG states only) · footer stove + nav logo mark MIRROR the art selection
+ *   · chip is a true open/close toggle (Escape closes; [hidden] display fix) · localStorage-persisted, open state not persisted
+ * art system v5 (user convictions): vector tomato REMOVED (bad) · footer pixel-steam REMOVED (disliked) ·
+ *   chunky + 16bit = user PNGs (art/tomato-a.png, art/tomato-b.png) · chunky-viola + 16bit-viola = palette
+ *   recolors (viola-500 body / viola-900 shade / viola-50 glints / green stems — heirloom-purple read) ·
+ *   jar + spoon = new vector concepts in the pot's linework (pot = process, jar = shipped product, spoon = craft)
+ * motion states are opt-in (default none): bob = 2-frame sprite idle · sway = stepped rocking · breathe = stepped scale ·
+ * hop = mostly-still periodic hop every ~3.4s · footer tomatoes lifted to CTA band (v5.1)
+ *   all steps()-based, transform/opacity only, fully static under reduced motion; pot steam independent
+ * nav mark: 22px glyph right of the wordmark, follows the art state (mini-pot / mini-jar / mini-spoon / PNGs);
+ *   supersedes the viola wordmark dot. red strategy unchanged: the tomato mark is the page's only red-family
+ *   element (≤3% viewport); viola recolors are zero-red
+ * iter-3 (Dodonut study): radii squared (btn 4 / card 8 / panel 10) · process rebuilt as a persistent tablist switcher
+ *   (no collapse — left stage list, right always-visible panel, ticket-stack outputs on viola-50) · footer stove-pot sits on
+ *   the meta rule, steam rising (Dodonut-bird personality moment) · packs 6–9 added: General Sans / Hanken / Instrument / Red Hat Display
+ * iter-3 judgment call: geo leaves use the deeper viola underline token, not viola-500 — viola-500 at 72% L computes ≈2.3:1
+ *   on the lavender flood and fails the 3:1 graphic bar; the 55% L token clears it (≈3.6:1)
+*/
+:root {
+  --color-paper:      oklch(96% 0.014 95);
+  --color-paper-2:    oklch(94% 0.020 95);
+  --color-card:       oklch(98.5% 0.008 100);
+  --color-ink:        oklch(24% 0.065 265);
+  --color-ink-2:      oklch(34% 0.055 262);
+  --color-muted:      oklch(46% 0.04 262);
+  --color-rule:       oklch(90% 0.012 258);
+  --color-rule-flood: oklch(46% 0.04 262);
+  --color-viola-50:   oklch(95.5% 0.015 310);
+  --color-viola:      oklch(89% 0.04 310);
+  --color-viola-500:  oklch(72% 0.09 305);
+  --color-underline:  oklch(55% 0.12 308);
+  --color-flood:      var(--color-viola);
+  --color-flood-shade: oklch(81% 0.055 310);
+  --color-saffron:    oklch(83% 0.11 85);
+  --color-sky:        oklch(86% 0.015 240);
+  --color-blush:      oklch(88% 0.035 40);
+  --color-pomodoro:   oklch(70% 0.12 35);
+  --color-accent:     var(--color-ink);
+  --color-accent-hover: oklch(30% 0.07 262);
+  --color-accent-ink: var(--color-paper);
+  --color-focus:      oklch(46% 0.13 310);
+  --color-focus-on-flood: oklch(95% 0.032 95);
+
+  --font-display: "Fraunces", ui-serif, Georgia, serif;
+  --font-body:    "Switzer", ui-sans-serif, system-ui, sans-serif;
+  --font-outlier: "JetBrains Mono", ui-monospace, monospace;
+
+  /* display tuning vars — consumed below, overridable by SUGO-DEMO-KIT font packs */
+  --display-tracking: -0.02em;
+  --display-lh: 1.12;
+  --display-weight: 600;
+  --display-weight-md: 500;
+
+  --text-sm:   0.875rem;
+  --text-base: 1.0625rem;
+  --text-md:   1.25rem;
+  --text-lg:   1.5625rem;
+  --text-xl:   1.953rem;
+  --text-2xl:  2.441rem;
+  --text-3xl:  3.052rem;
+  --text-display-s: clamp(2.4rem, 3.7vw + 1rem, 3.9rem);
+  --text-statement: clamp(2rem, 3vw + 1rem, 3.25rem);
+  --text-stat: clamp(3.5rem, 6vw + 1rem, 6rem);
+
+  --space-2xs: 0.25rem;
+  --space-xs:  0.5rem;
+  --space-sm:  0.75rem;
+  --space-md:  1rem;
+  --space-lg:  1.5rem;
+  --space-xl:  2.5rem;
+  --space-2xl: 4rem;
+  --space-3xl: 6rem;
+
+  --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in:     cubic-bezier(0.7, 0, 0.84, 0);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-micro: 120ms;
+  --dur-short: 220ms;
+  --dur-long:  420ms;
+
+  --border-panel: 2px solid var(--color-ink);
+  --radius-panel: 10px;
+  --radius-card: 8px;
+  --radius-btn: 4px;
+  --radius-micro: 2px;
+  --shadow-stack: 4px 4px 0 var(--color-ink);
+  --shadow-stack-lift: 5px 5px 0 var(--color-ink);
+  --shadow-stack-press: 2px 2px 0 var(--color-ink);
+  --shadow-stack-viola: 4px 4px 0 var(--color-viola-500);
+  --shadow-stack-viola-lift: 5px 5px 0 var(--color-viola-500);
+  --shadow-stack-viola-press: 2px 2px 0 var(--color-viola-500);
+
+  --z-raised: 10;
+  --z-sticky-nav: 300;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body { overflow-x: clip; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.6;
+  padding-inline: max(0px, env(safe-area-inset-left)) max(0px, env(safe-area-inset-right));
+}
+h1, h2, h3 { font-family: var(--font-display); font-weight: var(--display-weight); line-height: var(--display-lh); letter-spacing: var(--display-tracking); margin: 0; overflow-wrap: anywhere; min-width: 0; }
+p { margin: 0; }
+::selection { background: var(--color-viola); color: var(--color-ink); }
+
+.wrap { max-width: 74rem; margin-inline: auto; padding-inline: clamp(1rem, 4vw, 2rem); }
+
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; border-radius: var(--radius-micro); }
+.manifesto__panel :focus-visible { outline-color: var(--color-focus-on-flood); }
+
+.skip {
+  position: absolute; left: var(--space-md); top: -100px;
+  background: var(--color-ink); color: var(--color-paper);
+  padding: var(--space-sm) var(--space-md); border-radius: var(--radius-btn);
+  z-index: var(--z-sticky-nav); transition: none;
+}
+.skip:focus-visible { top: var(--space-md); }
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.5em;
+  min-height: 48px; padding: var(--space-sm) var(--space-lg);
+  border-radius: var(--radius-btn); border: 2px solid var(--color-ink);
+  font-family: var(--font-body); font-weight: 600; font-size: var(--text-base);
+  text-decoration: none; white-space: nowrap; cursor: pointer; line-height: 1;
+  transition: transform var(--dur-micro) var(--ease-out),
+              box-shadow var(--dur-micro) var(--ease-out),
+              background-color var(--dur-micro) var(--ease-out);
+}
+.btn--primary { background: var(--color-accent); color: var(--color-accent-ink); box-shadow: var(--shadow-stack-viola); }
+.btn--primary:hover { background: var(--color-accent-hover); transform: translate(-1px, -1px); box-shadow: var(--shadow-stack-viola-lift); }
+.btn--primary:active { transform: translate(1px, 1px); box-shadow: var(--shadow-stack-viola-press); }
+.btn--ghost { background: transparent; color: var(--color-ink); }
+.btn--ghost:hover { background: var(--color-paper-2); }
+.btn--ghost:active { transform: translateY(1px); }
+.btn:disabled, .btn[aria-disabled="true"] { opacity: 0.55; cursor: not-allowed; box-shadow: none; transform: none; }
+
+/* ---------- Nav (N7 brutal slab) ---------- */
+.nav { border-bottom: var(--border-panel); background: var(--color-paper); }
+.nav__row { display: flex; align-items: center; gap: var(--space-lg); padding-block: var(--space-sm); }
+.wordmark {
+  font-family: var(--font-display); font-weight: var(--display-weight); font-size: var(--text-md);
+  text-decoration: none; letter-spacing: 0.01em; display: inline-flex; align-items: center; gap: 0.35em;
+  min-height: 44px;
+}
+/* wordmark dot superseded by the SUGO-DEMO-KIT nav mark (art v4) */
+.nav__links { display: flex; align-items: center; gap: var(--space-lg); margin-left: auto; list-style: none; padding: 0; margin-block: 0; }
+.nav__link {
+  text-transform: uppercase; letter-spacing: 0.08em; font-size: var(--text-sm); font-weight: 600;
+  text-decoration: none; white-space: nowrap; padding-block: var(--space-sm); display: inline-block;
+}
+.nav__link:hover { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 6px; text-decoration-color: var(--color-underline); }
+.nav__cta { margin-left: var(--space-xs); }
+.nav__toggle { display: none; }
+
+.nav__drawer { display: grid; grid-template-rows: 0fr; transition: grid-template-rows var(--dur-long) var(--ease-in-out); }
+.nav__drawer > div { overflow: hidden; min-height: 0; }
+.nav__drawer.is-open { grid-template-rows: 1fr; }
+.nav__drawer ul { list-style: none; margin: 0; padding: var(--space-md) 0 var(--space-lg); display: grid; gap: var(--space-xs); }
+
+@media (max-width: 59.99rem) {
+  .nav__links { display: none; }
+  .nav__toggle {
+    display: inline-flex; margin-left: auto;
+    background: transparent; color: var(--color-ink);
+  }
+}
+@media (min-width: 60rem) { .nav__drawer { display: none; } }
+
+/* ---------- Hero ---------- */
+.hero { padding-block-start: var(--space-xl); padding-block-end: var(--space-3xl); }
+.hero__panel {
+  border: var(--border-panel); border-radius: var(--radius-panel);
+  overflow: hidden; background: var(--color-paper);
+}
+.hero__grid { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); }
+.hero__copy { padding: clamp(var(--space-lg), 4vw, var(--space-2xl)); align-self: center; }
+.hero__title { font-size: var(--text-display-s); font-weight: var(--display-weight); max-width: 16ch; }
+.hero__sub { margin-top: var(--space-lg); font-size: var(--text-md); color: var(--color-ink-2); max-width: 48ch; }
+.hero__ctas { margin-top: var(--space-xl); display: flex; flex-wrap: wrap; gap: var(--space-md); align-items: center; }
+.hero__art {
+  background: var(--color-flood); border-left: var(--border-panel);
+  display: grid; place-items: center; padding: clamp(var(--space-lg), 3vw, var(--space-xl));
+}
+.hero__art svg { width: 100%; max-width: 420px; height: auto; display: block; }
+.hero__strip {
+  border-top: var(--border-panel); background: var(--color-paper-2);
+  padding: var(--space-lg) clamp(var(--space-lg), 4vw, var(--space-2xl));
+}
+.hero__strip strong { font-family: var(--font-display); font-weight: var(--display-weight-md); font-size: var(--text-md); display: block; }
+.hero__strip p { color: var(--color-ink-2); max-width: 70ch; margin-top: var(--space-xs); }
+
+@media (max-width: 59.99rem) {
+  .hero__grid { grid-template-columns: minmax(0, 1fr); }
+  .hero__art { border-left: none; border-top: var(--border-panel); }
+  .hero__art svg { max-width: 340px; }
+}
+
+/* steam — navy at low opacity on the lavender flood */
+.steam { animation: steam 7s var(--ease-in-out) infinite; opacity: 0.3; }
+.steam--2 { animation-delay: 2.2s; }
+.steam--3 { animation-delay: 4.1s; }
+@keyframes steam {
+  0%   { transform: translateY(4px); opacity: 0.12; }
+  50%  { transform: translateY(-4px); opacity: 0.35; }
+  100% { transform: translateY(4px); opacity: 0.12; }
+}
+
+/* entrance (one orchestrated moment) */
+.reveal { opacity: 0; transform: translateY(8px); animation: reveal var(--dur-long) var(--ease-out) forwards; animation-delay: calc(var(--i, 0) * 90ms); }
+@keyframes reveal { to { opacity: 1; transform: none; } }
+
+/* ---------- Evidence panel ---------- */
+.evidence { padding-block-end: var(--space-3xl); }
+.evidence__panel { border: var(--border-panel); border-radius: var(--radius-panel); overflow: hidden; background: var(--color-paper); }
+.evidence__grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); }
+.evidence__stat {
+  background: var(--color-saffron); border-right: var(--border-panel);
+  padding: clamp(var(--space-lg), 4vw, var(--space-2xl));
+  display: grid; align-content: center; gap: var(--space-sm);
+}
+.evidence__num { font-family: var(--font-outlier); font-weight: 700; font-size: var(--text-stat); line-height: 1; font-variant-numeric: tabular-nums; letter-spacing: -0.03em; }
+.evidence__qual { max-width: 26ch; font-weight: 600; }
+.evidence__body { padding: clamp(var(--space-lg), 4vw, var(--space-2xl)); display: grid; gap: var(--space-md); align-content: center; }
+.evidence__body h2 { font-size: var(--text-xl); font-weight: var(--display-weight); max-width: 24ch; }
+.evidence__body p { max-width: 62ch; color: var(--color-ink-2); }
+.evidence__body .lead { color: var(--color-ink); font-weight: 600; }
+.evidence__foot {
+  border-top: var(--border-panel); padding: var(--space-sm) clamp(var(--space-lg), 4vw, var(--space-2xl));
+  font-family: var(--font-outlier); font-size: var(--text-sm); color: var(--color-muted);
+}
+@media (max-width: 59.99rem) {
+  .evidence__grid { grid-template-columns: minmax(0, 1fr); }
+  .evidence__stat { border-right: none; border-bottom: var(--border-panel); }
+}
+
+/* ---------- Two buckets ---------- */
+.buckets { padding-block-end: var(--space-3xl); }
+.section-title { font-size: var(--text-2xl); font-weight: var(--display-weight); max-width: 22ch; }
+.buckets__grid { display: grid; grid-template-columns: minmax(0, 6.5fr) minmax(0, 5.5fr); gap: var(--space-lg); margin-top: var(--space-xl); }
+.bucket { border: var(--border-panel); border-radius: var(--radius-panel); padding: var(--space-xl); display: grid; gap: var(--space-md); align-content: start; }
+.bucket h3 { font-size: var(--text-lg); font-weight: var(--display-weight-md); }
+.bucket p { color: var(--color-ink-2); max-width: 55ch; }
+.bucket--tools { background: var(--color-card); box-shadow: var(--shadow-stack); }
+.bucket--customer { background: var(--color-viola-50); }
+.bucket--customer p { color: var(--color-ink); }
+@media (max-width: 59.99rem) { .buckets__grid { grid-template-columns: minmax(0, 1fr); } }
+
+/* ---------- Process ---------- */
+.process { padding-block-end: var(--space-3xl); }
+.process__intro { margin-top: var(--space-md); max-width: 62ch; color: var(--color-ink-2); }
+/* Persistent stage switcher (Dodonut-style: no collapse — pick a number, the panel is always on the page) */
+.proc {
+  margin-top: var(--space-xl);
+  border: var(--border-panel); border-radius: var(--radius-panel);
+  background: var(--color-card); overflow: hidden;
+  display: grid; grid-template-columns: minmax(0, 4.5fr) minmax(0, 7.5fr);
+}
+.proc__tabs {
+  display: flex; flex-direction: column; align-items: stretch;
+  padding: var(--space-lg); gap: var(--space-2xs);
+  border-right: var(--border-panel);
+}
+.proc__tab {
+  display: flex; align-items: center; gap: var(--space-md);
+  min-height: 44px; padding: var(--space-xs) var(--space-sm);
+  background: transparent; border: none; border-radius: var(--radius-btn);
+  font-family: var(--font-display); font-weight: var(--display-weight-md);
+  font-size: var(--text-md); color: var(--color-muted);
+  text-align: left; cursor: pointer; white-space: nowrap;
+  transition: color var(--dur-micro) var(--ease-out), background-color var(--dur-micro) var(--ease-out);
+}
+.proc__tab:hover { color: var(--color-ink); background: var(--color-viola-50); }
+.proc__tab:active { background: var(--color-paper); }
+.proc__tab:disabled { opacity: 0.55; cursor: not-allowed; }
+.proc__num { font-family: var(--font-outlier); font-weight: 400; font-size: var(--text-sm); font-variant-numeric: tabular-nums; }
+.proc__name { border-bottom: 2px solid transparent; padding-bottom: 2px; }
+.proc__tab[aria-selected="true"] { color: var(--color-ink); }
+.proc__tab[aria-selected="true"] .proc__name { border-bottom-color: var(--color-ink); }
+.proc__view { padding: var(--space-xl); min-height: 26rem; }
+.proc__panel { display: none; }
+.proc__panel.is-active { display: grid; gap: var(--space-md); align-content: start; animation: procfade 160ms var(--ease-out); }
+@keyframes procfade { from { opacity: 0; } to { opacity: 1; } }
+.proc__panel h3 { font-size: var(--text-lg); font-weight: var(--display-weight-md); }
+.proc__panel > p { max-width: 62ch; color: var(--color-ink-2); }
+.proc__label { font-weight: 600; font-size: var(--text-sm); text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-ink); margin-top: var(--space-xs); }
+.proc__tickets {
+  list-style: none; margin: 0; padding: var(--space-lg) var(--space-lg) var(--space-lg) var(--space-md);
+  background: var(--color-viola-50); border-radius: var(--radius-card);
+  display: flex; flex-wrap: wrap; align-items: flex-start; row-gap: var(--space-sm);
+}
+.ticket {
+  background: var(--color-card); border: 2px solid var(--color-ink); border-radius: var(--radius-card);
+  padding: var(--space-xs) var(--space-md); font-weight: 600; font-size: var(--text-sm);
+  color: var(--color-ink); margin-inline-end: -0.4rem; max-width: 100%;
+}
+.ticket:nth-child(odd) { transform: rotate(-1.2deg); }
+.ticket:nth-child(even) { transform: rotate(1.2deg) translateY(3px); }
+@media (max-width: 59.99rem) {
+  .proc { grid-template-columns: minmax(0, 1fr); }
+  .proc__tabs {
+    flex-direction: row; border-right: none; border-bottom: var(--border-panel);
+    overflow-x: auto; padding: var(--space-sm) var(--space-md); gap: var(--space-xs);
+  }
+  .proc__view { padding: var(--space-lg); min-height: 0; }
+}
+.process__own { margin-top: var(--space-2xl); display: grid; gap: var(--space-md); }
+.process__own .big { font-family: var(--font-display); font-weight: var(--display-weight-md); font-size: var(--text-lg); line-height: 1.3; max-width: 34ch; letter-spacing: -0.01em; }
+.process__own .supporting { color: var(--color-muted); max-width: 68ch; }
+
+/* ---------- Manifesto (the page's only dark moment) ---------- */
+.manifesto { padding-block-end: var(--space-3xl); }
+.manifesto__panel {
+  background: var(--color-ink); color: var(--color-paper);
+  border: var(--border-panel); border-radius: var(--radius-panel);
+  padding: clamp(var(--space-xl), 5vw, var(--space-2xl));
+}
+.manifesto__panel h2 { font-size: var(--text-md); font-weight: var(--display-weight-md); color: var(--color-rule); letter-spacing: 0.02em; }
+.manifesto__lines { list-style: none; margin: var(--space-lg) 0 0; padding: 0; }
+.manifesto__lines li {
+  font-family: var(--font-display); font-weight: var(--display-weight); letter-spacing: var(--display-tracking);
+  font-size: clamp(var(--text-lg), 2.5vw + 0.5rem, var(--text-2xl)); line-height: 1.2;
+  padding-block: var(--space-lg); border-top: 1px solid var(--color-rule-flood);
+  max-width: 30ch; overflow-wrap: anywhere; min-width: 0;
+}
+.manifesto__lines li:first-child { border-top: none; padding-top: 0; }
+.manifesto__lines li:last-child { padding-bottom: 0; }
+.manifesto__lines .key { font-style: normal; color: var(--color-viola); }
+
+/* ---------- Plain terms ---------- */
+.terms { padding-block-end: var(--space-3xl); }
+.terms__card {
+  background: var(--color-blush); border: var(--border-panel); border-radius: var(--radius-panel);
+  padding: var(--space-xl); max-width: 46rem;
+}
+.terms__card h2 { font-size: var(--text-xl); font-weight: var(--display-weight); }
+.terms__card .intro { margin-top: var(--space-xs); color: var(--color-ink-2); }
+.terms__card dl { margin: var(--space-lg) 0 0; display: grid; gap: var(--space-md); }
+.terms__card dt { font-family: var(--font-display); font-weight: var(--display-weight-md); font-size: var(--text-md); }
+.terms__card dd { margin: var(--space-2xs) 0 0; color: var(--color-ink-2); max-width: 58ch; }
+.link {
+  font-weight: 600; color: var(--color-ink); text-decoration: underline;
+  text-decoration-thickness: 1px; text-underline-offset: 3px; white-space: nowrap;
+}
+.link:hover { text-decoration-thickness: 2px; text-decoration-color: var(--color-underline); }
+.link:active { color: var(--color-ink-2); }
+.terms__more { display: inline-block; margin-top: var(--space-lg); }
+
+/* ---------- Footer (Ft5 statement) ---------- */
+.foot { border-top: var(--border-panel); background: var(--color-paper); padding-block: var(--space-2xl) var(--space-xl); }
+.foot__statement { font-family: var(--font-display); font-weight: var(--display-weight); font-size: var(--text-statement); line-height: var(--display-lh); letter-spacing: var(--display-tracking); max-width: 24ch; overflow-wrap: anywhere; min-width: 0; }
+.foot__statement em { font-style: italic; }
+.foot__body { margin-top: var(--space-lg); max-width: 56ch; color: var(--color-ink-2); }
+.foot__cta { margin-top: var(--space-xl); }
+/* The stove: a compact pot sitting on the meta rule, steam rising — the page's personality signoff */
+.foot__actionrow { display: flex; align-items: center; justify-content: space-between; gap: var(--space-xl); flex-wrap: wrap; margin-bottom: var(--space-xl); }
+.foot__stove { display: flex; align-items: center; pointer-events: none; margin: 0; padding: 0; }
+.foot__stove .stove--pot { display: block; width: 140px; height: auto; }
+
+@media (max-width: 40rem) { .foot__stove .stove--pot { width: 104px; } }
+.foot__meta {
+  margin-top: 0; padding-top: var(--space-md); border-top: 1px solid var(--color-rule);
+  display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-md) var(--space-lg);
+  font-size: var(--text-sm); color: var(--color-muted);
+}
+.foot__meta a { text-decoration: none; white-space: nowrap; }
+.foot__meta a:hover { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 4px; }
+.foot__note { font-family: var(--font-outlier); margin-left: auto; }
+@media (max-width: 40rem) { .foot__note { margin-left: 0; } }
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 150ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 150ms !important;
+  }
+  html { scroll-behavior: auto; }
+  .steam { animation: none; opacity: 0.3; }
+  .reveal { animation: reveal-reduced 150ms linear forwards; }
+  .proc__panel.is-active { animation: none; }
+  /* art v5.1 — every motion state fully static under reduced motion */
+  .hero__art .artwrap { animation: none !important; }
+  @keyframes reveal-reduced { to { opacity: 1; transform: none; } }
+}
+/* SUGO-DEMO-KIT START — demo chrome: font packs + hero-art states + control panel.
+   Strip this block (and the matching HTML/JS blocks) before integration. */
+
+/* Font packs — override display/body faces + tuning via data-fontpack on <html>.
+   Native state = attribute absent (this page's Fraunces system). Headers stay ≤700 in every pack. */
+[data-fontpack="1"] { --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif; --font-body: "General Sans", ui-sans-serif, system-ui, sans-serif; --display-tracking: -0.02em; --display-lh: 1.08; --display-weight: 700; --display-weight-md: 500; }
+[data-fontpack="2"] { --font-display: "Schibsted Grotesk", ui-sans-serif, system-ui, sans-serif; --font-body: "Switzer", ui-sans-serif, system-ui, sans-serif; --display-tracking: -0.015em; --display-lh: 1.08; --display-weight: 700; --display-weight-md: 500; }
+[data-fontpack="3"] { --font-display: "Familjen Grotesk", ui-sans-serif, system-ui, sans-serif; --font-body: "General Sans", ui-sans-serif, system-ui, sans-serif; --display-tracking: -0.015em; --display-lh: 1.08; --display-weight: 700; --display-weight-md: 500; }
+[data-fontpack="4"] { --font-display: "Cabinet Grotesk", ui-sans-serif, system-ui, sans-serif; --font-body: "Switzer", ui-sans-serif, system-ui, sans-serif; --display-tracking: -0.02em; --display-lh: 1.08; --display-weight: 700; --display-weight-md: 500; }
+[data-fontpack="5"] { --font-display: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif; --font-body: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif; --display-tracking: -0.015em; --display-lh: 1.14; --display-weight: 700; --display-weight-md: 600; }
+[data-fontpack="6"] { --font-display: "General Sans", ui-sans-serif, system-ui, sans-serif; --font-body: "Switzer", ui-sans-serif, system-ui, sans-serif; --display-tracking: -0.02em; --display-lh: 1.1; --display-weight: 600; --display-weight-md: 500; }
+[data-fontpack="7"] { --font-display: "Hanken Grotesk", ui-sans-serif, system-ui, sans-serif; --font-body: "General Sans", ui-sans-serif, system-ui, sans-serif; --display-tracking: -0.015em; --display-lh: 1.08; --display-weight: 700; --display-weight-md: 500; }
+[data-fontpack="8"] { --font-display: "Instrument Sans", ui-sans-serif, system-ui, sans-serif; --font-body: "Switzer", ui-sans-serif, system-ui, sans-serif; --display-tracking: -0.02em; --display-lh: 1.08; --display-weight: 700; --display-weight-md: 500; }
+[data-fontpack="9"] { --font-display: "Red Hat Display", ui-sans-serif, system-ui, sans-serif; --font-body: "General Sans", ui-sans-serif, system-ui, sans-serif; --display-tracking: -0.015em; --display-lh: 1.1; --display-weight: 700; --display-weight-md: 500; }
+
+/* The packs are grotesks with no italic loaded — keep the footer statement's Fraunces italic moment from
+   rendering a faux-oblique under a pack. */
+[data-fontpack] .foot__statement em { font-style: normal; }
+
+/* Hero-art states v5 via data-heroart on <html>:
+   (absent|"pot") | "chunky" | "16bit" | "chunky-viola" | "16bit-viola" | "jar" | "spoon".
+   PNG states live in .artwrap wrappers (the motion-animation target).
+   Jar + spoon = vector concepts in the pot's linework (shared #art-jar / #art-spoon defs).
+   Footer stove + nav logo mark MIRROR the selection — one attribute drives all three slots.
+   Discipline: sizing rules never set display; only the state show/hide rules do. */
+.artdefs { position: absolute; width: 0; height: 0; overflow: hidden; }
+.hero__art .artwrap { position: relative; width: 54%; max-width: 320px; margin-inline: auto; margin-block: var(--space-lg); }
+.hero__art .artwrap .artimg { width: 100%; height: auto; display: block; }
+.hero__art .art--chunky, .hero__art .art--16bit,
+.hero__art .art--chunky-viola, .hero__art .art--16bit-viola,
+.hero__art .art--jar, .hero__art .art--spoon { display: none; }
+[data-heroart="chunky"] .hero__art .art--pot { display: none; }
+[data-heroart="chunky"] .hero__art .art--chunky { display: block; }
+[data-heroart="16bit"] .hero__art .art--pot { display: none; }
+[data-heroart="16bit"] .hero__art .art--16bit { display: block; }
+[data-heroart="chunky-viola"] .hero__art .art--pot { display: none; }
+[data-heroart="chunky-viola"] .hero__art .art--chunky-viola { display: block; }
+[data-heroart="16bit-viola"] .hero__art .art--pot { display: none; }
+[data-heroart="16bit-viola"] .hero__art .art--16bit-viola { display: block; }
+[data-heroart="jar"] .hero__art .art--pot { display: none; }
+[data-heroart="jar"] .hero__art .art--jar { display: block; }
+[data-heroart="spoon"] .hero__art .art--pot { display: none; }
+[data-heroart="spoon"] .hero__art .art--spoon { display: block; }
+
+/* Nav logo mark — 22px, right of the wordmark text, follows the art state. */
+.navmark { display: inline-flex; align-items: center; line-height: 1; transform: translateY(-1px); }
+.navmark .mk { height: 22px; width: auto; }
+.navmark .mk--chunky, .navmark .mk--16bit,
+.navmark .mk--chunky-viola, .navmark .mk--16bit-viola,
+.navmark .mk--jar, .navmark .mk--spoon { display: none; }
+[data-heroart="chunky"] .navmark .mk--pot { display: none; }
+[data-heroart="chunky"] .navmark .mk--chunky { display: block; }
+[data-heroart="16bit"] .navmark .mk--pot { display: none; }
+[data-heroart="16bit"] .navmark .mk--16bit { display: block; }
+[data-heroart="chunky-viola"] .navmark .mk--pot { display: none; }
+[data-heroart="chunky-viola"] .navmark .mk--chunky-viola { display: block; }
+[data-heroart="16bit-viola"] .navmark .mk--pot { display: none; }
+[data-heroart="16bit-viola"] .navmark .mk--16bit-viola { display: block; }
+[data-heroart="jar"] .navmark .mk--pot { display: none; }
+[data-heroart="jar"] .navmark .mk--jar { display: block; }
+[data-heroart="spoon"] .navmark .mk--pot { display: none; }
+[data-heroart="spoon"] .navmark .mk--spoon { display: block; }
+
+/* Footer stove mirror — the selected mark sits on the meta rule (all decorative, aria-hidden).
+   No pixel steam here anymore (removed on user feedback); PNG + vector states sit static. */
+.foot__stove { position: relative; }
+.foot__stove .stove--chunky, .foot__stove .stove--16bit,
+.foot__stove .stove--chunky-viola, .foot__stove .stove--16bit-viola,
+.foot__stove .stove--jar, .foot__stove .stove--spoon { display: none; }
+.foot__stove img.stove { width: 88px; height: auto; }
+.foot__stove svg.stove--jar, .foot__stove svg.stove--spoon { width: 120px; height: auto; }
+[data-heroart="chunky"] .foot__stove .stove--pot { display: none; }
+[data-heroart="chunky"] .foot__stove .stove--chunky { display: block; }
+[data-heroart="16bit"] .foot__stove .stove--pot { display: none; }
+[data-heroart="16bit"] .foot__stove .stove--16bit { display: block; }
+[data-heroart="chunky-viola"] .foot__stove .stove--pot { display: none; }
+[data-heroart="chunky-viola"] .foot__stove .stove--chunky-viola { display: block; }
+[data-heroart="16bit-viola"] .foot__stove .stove--pot { display: none; }
+[data-heroart="16bit-viola"] .foot__stove .stove--16bit-viola { display: block; }
+[data-heroart="jar"] .foot__stove .stove--pot { display: none; }
+[data-heroart="jar"] .foot__stove .stove--jar { display: block; }
+[data-heroart="spoon"] .foot__stove .stove--pot { display: none; }
+[data-heroart="spoon"] .foot__stove .stove--spoon { display: block; }
+
+/* MOTION states via data-motion on <html> — apply ONLY to the PNG wrappers (jar/spoon/pot stay static;
+   pot steam is its own thing). Default (attribute absent) = None. All stepped, transform/opacity only. */
+@keyframes sprite-idle { 0%, 49.9% { transform: translateY(0); } 50%, 100% { transform: translateY(-4px); } }
+[data-motion="bob"] .hero__art .artwrap { animation: sprite-idle 1.1s steps(1) infinite; }
+
+[data-motion="sway"] .hero__art .artwrap { animation: sprite-sway 2.2s linear infinite; transform-origin: 50% 92%; }
+@keyframes sprite-sway { 0%, 24% { transform: rotate(-2.5deg); } 25%, 49% { transform: rotate(0deg); } 50%, 74% { transform: rotate(2.5deg); } 75%, 100% { transform: rotate(0deg); } }
+
+[data-motion="breathe"] .hero__art .artwrap { animation: sprite-breathe 1.5s linear infinite; transform-origin: 50% 100%; }
+@keyframes sprite-breathe { 0%, 54% { transform: scale(1); } 55%, 100% { transform: scale(1.04, 1.055); } }
+
+@keyframes sprite-hop {
+  0%, 78% { transform: translateY(0); }
+  80%, 85% { transform: translateY(-9px); }
+  86%, 90% { transform: translateY(-3px); }
+  91%, 100% { transform: translateY(0); }
+}
+[data-motion="hop"] .hero__art .artwrap { animation: sprite-hop 3.4s linear infinite; }
+
+@media (max-width: 40rem) {
+  .foot__stove img.stove { width: 68px; }
+  .foot__stove svg.stove--jar, .foot__stove svg.stove--spoon { width: 92px; }
+  .hero__art .artwrap { width: 56%; max-width: 240px; }
+}
+
+/* Control panel — demo chrome, not site design. */
+.demokit {
+  position: fixed;
+  right: max(var(--space-md), env(safe-area-inset-right));
+  bottom: max(var(--space-md), env(safe-area-inset-bottom));
+  z-index: 400;
+  display: grid; justify-items: end; gap: var(--space-xs);
+  font-family: var(--font-outlier);
+}
+.demokit__chip, .demokit__btn {
+  min-height: 44px; padding: 0 var(--space-sm);
+  border: 2px solid var(--color-ink); border-radius: var(--radius-btn);
+  background: var(--color-card); color: var(--color-ink);
+  font-family: var(--font-outlier); font-size: 12px; letter-spacing: 0.06em;
+  white-space: nowrap; cursor: pointer;
+}
+.demokit__chip { box-shadow: var(--shadow-stack); font-weight: 700; }
+.demokit__chip:hover, .demokit__btn:hover { background: var(--color-paper-2); }
+.demokit__chip:active, .demokit__btn:active { transform: translateY(1px); }
+.demokit__btn[aria-pressed="true"] { background: var(--color-ink); color: var(--color-paper); }
+.demokit__btn[aria-pressed="true"]:hover { background: var(--color-ink-2); }
+.demokit__chip { border-radius: var(--radius-card); }
+.demokit__panel {
+  background: var(--color-card); border: 2px solid var(--color-ink); border-radius: var(--radius-card);
+  padding: var(--space-sm); display: grid; gap: var(--space-xs);
+  max-width: min(92vw, 34rem); box-shadow: var(--shadow-stack);
+}
+/* the chip is a true toggle — author display:grid must not defeat the hidden attribute */
+.demokit__panel[hidden] { display: none; }
+.demokit__row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2xs); }
+.demokit__lab { font-size: 11px; letter-spacing: 0.1em; color: var(--color-muted); min-width: 4.5ch; }
+@media print { .demokit { display: none; } }
+/* SUGO-DEMO-KIT END */
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- SUGO-DEMO-KIT START · shared art defs (#art-jar / #art-spoon — vector concepts in the pot's linework, used by hero and footer) -->
+<svg class="artdefs" aria-hidden="true" focusable="false">
+  <defs>
+    <g id="art-jar">
+      <!-- the shipped product: a preserved jar of finished sugo. Pot conventions: 4px ink outline, flat fills. -->
+      <ellipse cx="260" cy="330" rx="120" ry="12" fill="var(--color-flood-shade)"/>
+      <!-- glass body -->
+      <path d="M190 138 C 178 148, 172 164, 172 184 L 172 292 C 172 314, 186 326, 208 326 L 312 326 C 334 326, 348 314, 348 292 L 348 184 C 348 164, 342 148, 330 138 Z"
+            fill="var(--color-card)" stroke="var(--color-ink)" stroke-width="4" stroke-linejoin="round"/>
+      <!-- sauce visible through the glass, to a fill line -->
+      <path d="M177 196 C 205 188, 315 188, 343 196 L 343 292 C 343 310, 331 321, 312 321 L 208 321 C 189 321, 177 310, 177 292 Z"
+            fill="var(--color-pomodoro)"/>
+      <!-- glass highlight -->
+      <path d="M196 206 L 196 296" stroke="var(--color-viola-50)" stroke-width="10" stroke-linecap="round"/>
+      <!-- lid: saffron band -->
+      <rect x="180" y="106" width="160" height="34" rx="8" fill="var(--color-saffron)" stroke="var(--color-ink)" stroke-width="4"/>
+      <path d="M188 140 L 332 140" stroke="var(--color-ink)" stroke-width="3"/>
+      <!-- small tilted label with a navy dot -->
+      <g transform="rotate(-6 260 250)">
+        <rect x="216" y="222" width="88" height="56" rx="6" fill="var(--color-card)" stroke="var(--color-ink)" stroke-width="3"/>
+        <circle cx="260" cy="250" r="7" fill="var(--color-ink)"/>
+      </g>
+    </g>
+    <g id="art-spoon">
+      <!-- hands-on craft: a wooden spoon at a gentle diagonal, one drop of sugo falling. -->
+      <ellipse cx="264" cy="330" rx="110" ry="11" fill="var(--color-flood-shade)"/>
+      <g transform="rotate(-24 260 200)">
+        <rect x="248" y="52" width="20" height="164" rx="10" fill="var(--color-saffron)" stroke="var(--color-ink)" stroke-width="4"/>
+        <ellipse cx="258" cy="252" rx="50" ry="64" fill="var(--color-saffron)" stroke="var(--color-ink)" stroke-width="4"/>
+        <!-- sauce pooled in the bowl -->
+        <ellipse cx="258" cy="258" rx="32" ry="42" fill="var(--color-pomodoro)" stroke="var(--color-ink)" stroke-width="3"/>
+      </g>
+      <!-- the detached drop, below the bowl's edge -->
+      <path d="M330 296 C 322 306, 322 316, 330 320 C 338 316, 338 306, 330 296 Z"
+            fill="var(--color-pomodoro)" stroke="var(--color-ink)" stroke-width="3" stroke-linejoin="round"/>
+    </g>
+  </defs>
+</svg>
+<!-- SUGO-DEMO-KIT END -->
+
+<header class="nav">
+  <div class="wrap">
+    <div class="nav__row">
+      <a class="wordmark" href="/">Sugo AI<!-- SUGO-DEMO-KIT START · nav logo mark follows the art state --><span class="navmark" aria-hidden="true"><svg class="mk mk--pot" viewBox="0 0 48 44" focusable="false"><path d="M24 13 C 21 9, 27 6, 24 2" fill="none" stroke="var(--color-ink)" stroke-width="2.5" stroke-linecap="round"/><path d="M10 20 L38 20 C 38.5 32, 36 40, 30 42 L18 42 C 12 40, 9.5 32, 10 20 Z" fill="var(--color-card)" stroke="var(--color-ink)" stroke-width="3" stroke-linejoin="round"/><path d="M10 20 L38 20 L38 23.5 C 30 25.5, 18 25.5, 10 23.5 Z" fill="var(--color-saffron)" stroke="var(--color-ink)" stroke-width="2.5" stroke-linejoin="round"/><path d="M10 23 C 5 23, 5 28, 10.5 27.5" fill="none" stroke="var(--color-ink)" stroke-width="2.5" stroke-linecap="round"/><path d="M38 23 C 43 23, 43 28, 37.5 27.5" fill="none" stroke="var(--color-ink)" stroke-width="2.5" stroke-linecap="round"/></svg><img class="mk mk--chunky" src="art/tomato-a.png" alt="" width="21" height="22" loading="lazy" decoding="async"><img class="mk mk--16bit" src="art/tomato-b.png" alt="" width="24" height="22" loading="lazy" decoding="async"><img class="mk mk--chunky-viola" src="art/tomato-a-viola.png" alt="" width="21" height="22" loading="lazy" decoding="async"><img class="mk mk--16bit-viola" src="art/tomato-b-viola.png" alt="" width="24" height="22" loading="lazy" decoding="async"><svg class="mk mk--jar" viewBox="0 0 48 44" focusable="false"><path d="M15 14 C 12 16, 11 19, 11 23 L 11 36 C 11 40, 13 42, 17 42 L 31 42 C 35 42, 37 40, 37 36 L 37 23 C 37 19, 36 16, 33 14 Z" fill="var(--color-card)" stroke="var(--color-ink)" stroke-width="3" stroke-linejoin="round"/><path d="M13 26 C 18 24, 30 24, 35 26 L 35 36 C 35 39, 33.5 40.5, 31 40.5 L 17 40.5 C 14.5 40.5, 13 39, 13 36 Z" fill="var(--color-pomodoro)"/><rect x="12" y="6" width="24" height="9" rx="3" fill="var(--color-saffron)" stroke="var(--color-ink)" stroke-width="2.5"/></svg><svg class="mk mk--spoon" viewBox="0 0 48 44" focusable="false"><g transform="rotate(-24 24 22)"><rect x="21.5" y="2" width="5" height="22" rx="2.5" fill="var(--color-saffron)" stroke="var(--color-ink)" stroke-width="2.5"/><ellipse cx="24" cy="31" rx="9" ry="11" fill="var(--color-saffron)" stroke="var(--color-ink)" stroke-width="2.5"/></g></svg></span><!-- SUGO-DEMO-KIT END --></a>
+      <ul class="nav__links">
+        <li><a class="nav__link" href="/how-we-work">How we work</a></li>
+        <li><a class="nav__link" href="/writing">Writing</a></li>
+        <li><a class="nav__link" href="/about">About</a></li>
+        <li><a class="btn btn--primary nav__cta" href="/contact">Contact us</a></li>
+      </ul>
+      <button class="btn btn--ghost nav__toggle" aria-expanded="false" aria-controls="nav-drawer">Menu</button>
+    </div>
+    <div class="nav__drawer" id="nav-drawer">
+      <div>
+        <ul>
+          <li><a class="nav__link" href="/how-we-work">How we work</a></li>
+          <li><a class="nav__link" href="/writing">Writing</a></li>
+          <li><a class="nav__link" href="/about">About</a></li>
+          <li><a class="btn btn--primary" href="/contact">Contact us</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="wrap">
+      <article class="hero__panel">
+        <div class="hero__grid">
+          <div class="hero__copy">
+            <h1 class="hero__title reveal" style="--i: 0">Modern product development for companies that aren’t software companies.</h1>
+            <p class="hero__sub reveal" style="--i: 1">We help traditional businesses ship internal tools, AI&nbsp;agents, and customer products with the discipline of a modern software company.</p>
+            <div class="hero__ctas reveal" style="--i: 2">
+              <a class="btn btn--primary" href="/contact">Start a conversation</a>
+              <a class="btn btn--ghost" href="/how-we-work">How we work</a>
+            </div>
+          </div>
+          <div class="hero__art reveal" style="--i: 3">
+            <svg class="art art--pot" viewBox="0 0 520 360" role="img" aria-label="A simmering pot of sugo — slow-made, with care">
+              <!-- steam: navy linework, low opacity -->
+              <g fill="none" stroke="var(--color-ink)" stroke-width="6" stroke-linecap="round">
+                <path class="steam" d="M215 96 C 205 76, 225 62, 215 42"/>
+                <path class="steam steam--2" d="M262 88 C 252 66, 274 52, 264 30"/>
+                <path class="steam steam--3" d="M310 96 C 300 76, 320 62, 310 42"/>
+              </g>
+              <!-- pot shadow -->
+              <ellipse cx="260" cy="320" rx="150" ry="14" fill="var(--color-flood-shade)"/>
+              <!-- pot body -->
+              <path d="M150 150 L370 150 C 372 220, 360 290, 300 308 L220 308 C 160 290, 148 220, 150 150 Z"
+                    fill="var(--color-card)" stroke="var(--color-ink)" stroke-width="4"/>
+              <!-- sauce at the rim -->
+              <path d="M150 150 L370 150 L370 168 C 320 178, 200 178, 150 168 Z" fill="var(--color-saffron)" stroke="var(--color-ink)" stroke-width="4" stroke-linejoin="round"/>
+              <!-- handles: navy linework -->
+              <path d="M150 168 C 118 168, 118 200, 152 198" fill="none" stroke="var(--color-ink)" stroke-width="4" stroke-linecap="round"/>
+              <path d="M370 168 C 402 168, 402 200, 368 198" fill="none" stroke="var(--color-ink)" stroke-width="4" stroke-linecap="round"/>
+              <!-- pot band: a light-viola detail -->
+              <path d="M156 218 L364 218" stroke="var(--color-viola-500)" stroke-width="4" stroke-linecap="round"/>
+              <!-- wooden spoon -->
+              <g transform="rotate(-14 300 140)">
+                <rect x="286" y="30" width="14" height="120" rx="7" fill="var(--color-sky)" stroke="var(--color-ink)" stroke-width="3"/>
+                <ellipse cx="293" cy="160" rx="24" ry="30" fill="var(--color-sky)" stroke="var(--color-ink)" stroke-width="3"/>
+              </g>
+              <!-- tomato (pomodoro, from the Viola garnish ramp) -->
+              <g>
+                <circle cx="122" cy="292" r="26" fill="var(--color-pomodoro)" stroke="var(--color-ink)" stroke-width="3"/>
+                <path d="M122 268 C 118 260, 126 258, 122 252" fill="none" stroke="var(--color-ink)" stroke-width="3" stroke-linecap="round"/>
+                <path d="M112 266 L122 270 L132 266" fill="none" stroke="var(--color-ink)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+              </g>
+            </svg>
+            <!-- SUGO-DEMO-KIT START · alternate hero art v5 (user PNGs + viola recolors in motion-capable wrappers; jar + spoon vector concepts) -->
+            <span class="art artwrap art--chunky" aria-hidden="true" style="--gx: 22%; --gy: 26%;">
+              <img class="artimg" src="art/tomato-a.png" alt="" width="372" height="398" loading="lazy" decoding="async">
+            </span>
+            <span class="art artwrap art--16bit" aria-hidden="true" style="--gx: 19%; --gy: 29%;">
+              <img class="artimg" src="art/tomato-b.png" alt="" width="482" height="449" loading="lazy" decoding="async">
+            </span>
+            <span class="art artwrap art--chunky-viola" aria-hidden="true" style="--gx: 22%; --gy: 26%;">
+              <img class="artimg" src="art/tomato-a-viola.png" alt="" width="372" height="398" loading="lazy" decoding="async">
+            </span>
+            <span class="art artwrap art--16bit-viola" aria-hidden="true" style="--gx: 19%; --gy: 29%;">
+              <img class="artimg" src="art/tomato-b-viola.png" alt="" width="482" height="449" loading="lazy" decoding="async">
+            </span>
+            <svg class="art art--jar" viewBox="0 0 520 360" role="img" aria-label="A jar of finished sugo — shipped.">
+              <use href="#art-jar"/>
+            </svg>
+            <svg class="art art--spoon" viewBox="0 0 520 360" role="img" aria-label="A wooden spoon with a drop of sugo.">
+              <use href="#art-spoon"/>
+            </svg>
+            <!-- SUGO-DEMO-KIT END -->
+          </div>
+        </div>
+        <div class="hero__strip reveal" style="--i: 4">
+          <strong>Sugo AI is a product studio for traditional businesses building serious software.</strong>
+          <p>We partner with teams that know their business deeply but have not historically operated like software companies. We bring the product, design, and engineering discipline needed to build software that is modern, usable, and worth rolling out.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Evidence -->
+  <section class="evidence" aria-labelledby="evidence-title">
+    <div class="wrap">
+      <article class="evidence__panel">
+        <div class="evidence__grid">
+          <div class="evidence__stat">
+            <p class="evidence__num">≈5%</p>
+            <p class="evidence__qual">of enterprise GenAI pilots show measurable P&amp;L impact¹</p>
+          </div>
+          <div class="evidence__body">
+            <h2 id="evidence-title">Most AI pilots don’t stall because the model is weak.</h2>
+            <p>A widely cited MIT NANDA report from August 2025 found that only a small minority of enterprise GenAI pilots showed measurable P&amp;L impact. In our experience, the issue is usually ownership: the team shaping the opportunity is too far from the team building the product, and no one is accountable end to end.</p>
+            <p class="lead">We work differently. We embed closely, shape the product with the business, and stay responsible for what actually ships.</p>
+          </div>
+        </div>
+        <p class="evidence__foot">1 — MIT NANDA, “The GenAI Divide: State of AI in Business,” August 2025.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- Two buckets -->
+  <section class="buckets" aria-labelledby="buckets-title">
+    <div class="wrap">
+      <h2 class="section-title" id="buckets-title">The work falls into two buckets.</h2>
+      <div class="buckets__grid">
+        <article class="bucket bucket--tools">
+          <h3>Internal tools &amp; AI agents</h3>
+          <p>Software for operations, workflows, decision support, and team productivity. We help businesses replace manual work, disconnected systems, and shallow pilots with tools that fit how the organization actually runs.</p>
+        </article>
+        <article class="bucket bucket--customer">
+          <h3>Customer products</h3>
+          <p>Portals, platforms, and digital experiences for customers, members, partners, and policyholders. We build products that are clear, trustworthy, and easy to use, especially when the business behind them is operationally complex.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section class="process" aria-labelledby="process-title">
+    <div class="wrap">
+      <h2 class="section-title" id="process-title">We run like a software company. That’s where we come from.</h2>
+      <p class="process__intro">Traditional businesses often have strong operators, strong constraints, and strong domain knowledge. What they usually lack is a product-development system built for fast learning, tight iteration, and high-quality shipping. That’s what we bring.</p>
+
+      <div class="proc">
+        <div class="proc__tabs" role="tablist" aria-label="How we work — the five stages">
+          <button class="proc__tab" role="tab" id="tab-1" aria-selected="true" aria-controls="stage-1" tabindex="0"><span class="proc__num">01</span><span class="proc__name">Discovery</span></button>
+          <button class="proc__tab" role="tab" id="tab-2" aria-selected="false" aria-controls="stage-2" tabindex="-1"><span class="proc__num">02</span><span class="proc__name">Workflow mapping</span></button>
+          <button class="proc__tab" role="tab" id="tab-3" aria-selected="false" aria-controls="stage-3" tabindex="-1"><span class="proc__num">03</span><span class="proc__name">Product design</span></button>
+          <button class="proc__tab" role="tab" id="tab-4" aria-selected="false" aria-controls="stage-4" tabindex="-1"><span class="proc__num">04</span><span class="proc__name">Engineering</span></button>
+          <button class="proc__tab" role="tab" id="tab-5" aria-selected="false" aria-controls="stage-5" tabindex="-1"><span class="proc__num">05</span><span class="proc__name">Iteration</span></button>
+        </div>
+        <div class="proc__view">
+          <div class="proc__panel is-active" role="tabpanel" id="stage-1" aria-labelledby="tab-1" tabindex="0">
+            <h3>Discovery</h3>
+            <p>Deep discovery to find the real operational pain. We start inside the work, not in a slide deck — sitting with the operators who live the process, tracing where time and money actually leak, and naming the constraint that matters.</p>
+            <p class="proc__label">What you get</p>
+            <ul class="proc__tickets">
+              <li class="ticket">A named problem worth building for</li>
+              <li class="ticket">A clear picture of how the work moves today</li>
+              <li class="ticket">A scoped first release with a reason to exist</li>
+            </ul>
+          </div>
+          <div class="proc__panel" role="tabpanel" id="stage-2" aria-labelledby="tab-2" tabindex="0">
+            <h3>Workflow mapping</h3>
+            <p>End-to-end workflow mapping so the product fits the business. Software fails in the seams — handoffs, exceptions, approvals, the spreadsheet nobody admits to. We map the full path from intake to done before we design a single screen.</p>
+            <p class="proc__label">What you get</p>
+            <ul class="proc__tickets">
+              <li class="ticket">An end-to-end map of the workflow, seams included</li>
+              <li class="ticket">The exception cases named up front</li>
+              <li class="ticket">A plan for the systems the product must talk to</li>
+            </ul>
+          </div>
+          <div class="proc__panel" role="tabpanel" id="stage-3" aria-labelledby="tab-3" tabindex="0">
+            <h3>Product design</h3>
+            <p>Product design shaped around regulated, operationally complex environments. We design for the people who will use the product every day — clear states, honest edge cases, accessibility from the start. Compliance and audit needs are design inputs, not afterthoughts.</p>
+            <p class="proc__label">What you get</p>
+            <ul class="proc__tickets">
+              <li class="ticket">Working prototypes tested with the people who’ll use them</li>
+              <li class="ticket">Interfaces the team can actually run the business on</li>
+              <li class="ticket">Accessibility built in, not bolted on</li>
+            </ul>
+          </div>
+          <div class="proc__panel" role="tabpanel" id="stage-4" aria-labelledby="tab-4" tabindex="0">
+            <h3>Engineering through production</h3>
+            <p>Hands-on engineering ownership until it’s live. We write the code, integrate the systems, and carry the product through security review, data migration, and rollout — accountable until it is standing up in the real world.</p>
+            <p class="proc__label">What you get</p>
+            <ul class="proc__tickets">
+              <li class="ticket">Production-grade code, shipped</li>
+              <li class="ticket">Integration with the systems you already run</li>
+              <li class="ticket">A rollout your teams can actually follow</li>
+            </ul>
+          </div>
+          <div class="proc__panel" role="tabpanel" id="stage-5" aria-labelledby="tab-5" tabindex="0">
+            <h3>Iteration</h3>
+            <p>Ongoing iteration after version one. Launch is the beginning of the learning, not the end of the engagement — we watch how the product is used, fix what the real world reveals, and keep improving what matters.</p>
+            <p class="proc__label">What you get</p>
+            <ul class="proc__tickets">
+              <li class="ticket">Improvements driven by real usage, not opinions</li>
+              <li class="ticket">A steady cadence of releases</li>
+              <li class="ticket">A product that keeps earning its place</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="process__own">
+        <p class="big">We own the full product lifecycle. We do not stop at recommendations, specs, or prototypes. We stay close to the work until the product is live, stable, usable, and working inside the real constraints of the business.</p>
+        <p class="supporting">That includes the parts many firms avoid: production readiness, accessibility, implementation detail, coordination with internal teams, and the practical work required to get software standing up in the real world.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Manifesto -->
+  <section class="manifesto" aria-labelledby="manifesto-title">
+    <div class="wrap">
+      <div class="manifesto__panel">
+        <h2 id="manifesto-title">Why Sugo AI</h2>
+        <ul class="manifesto__lines">
+          <li>We are not a <em class="key">strategy shop</em> that disappears after the deck.</li>
+          <li>We are not a <em class="key">dev shop</em> waiting for tickets.</li>
+          <li>We are a <em class="key">product studio</em> that helps traditional businesses build and ship software to a much higher standard.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Plain terms -->
+  <section class="terms" aria-labelledby="terms-title">
+    <div class="wrap">
+      <div class="terms__card">
+        <h2 id="terms-title">Plain terms.</h2>
+        <p class="intro">The jargon, translated. For operators, not engineers.</p>
+        <dl>
+          <div>
+            <dt>AI agent</dt>
+            <dd>Software that can carry out a multi-step task on its own, with your rules and your data. Not magic — a diligent junior teammate that never sleeps.</dd>
+          </div>
+          <div>
+            <dt>Pilot</dt>
+            <dd>A trial run. Useful when someone owns getting it into real work; shelf-ware when nobody does.</dd>
+          </div>
+          <div>
+            <dt>Production</dt>
+            <dd>When software stops being a demo and starts being how the work gets done.</dd>
+          </div>
+        </dl>
+        <a class="link terms__more" href="/writing">More terms, plainly →</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- Footer -->
+<footer class="foot">
+  <div class="wrap">
+    <p class="foot__statement">If the software matters, <em>the product work</em> should too.</p>
+    <p class="foot__body">Sugo AI helps traditional businesses build internal tools, AI&nbsp;agents, and customer products with more rigor, better taste, and end-to-end ownership.</p>
+    <div class="foot__actionrow">
+      <div class="foot__cta">
+      <a class="btn btn--primary" href="/contact">Start a conversation</a>
+    </div>
+    <div class="foot__stove" aria-hidden="true">
+      <svg class="stove stove--pot" viewBox="0 0 260 210">
+        <g fill="none" stroke="var(--color-ink)" stroke-width="4" stroke-linecap="round">
+          <path class="steam" d="M100 84 C 92 66, 108 54, 100 36"/>
+          <path class="steam steam--2" d="M130 78 C 122 58, 140 46, 132 26"/>
+          <path class="steam steam--3" d="M160 84 C 152 66, 168 54, 160 36"/>
+        </g>
+        <path d="M62 120 L198 120 C 199 162, 192 200, 158 210 L102 210 C 68 200, 61 162, 62 120 Z" fill="var(--color-card)" stroke="var(--color-ink)" stroke-width="3"/>
+        <path d="M62 120 L198 120 L198 131 C 168 137, 92 137, 62 131 Z" fill="var(--color-saffron)" stroke="var(--color-ink)" stroke-width="3" stroke-linejoin="round"/>
+        <path d="M62 131 C 42 131, 42 151, 63 150" fill="none" stroke="var(--color-ink)" stroke-width="3" stroke-linecap="round"/>
+        <path d="M198 131 C 218 131, 218 151, 197 150" fill="none" stroke="var(--color-ink)" stroke-width="3" stroke-linecap="round"/>
+      </svg>
+      <!-- SUGO-DEMO-KIT START · footer stove mirrors the selected art (static — pixel steam removed on user feedback) -->
+      <img class="stove stove--chunky" src="art/tomato-a.png" alt="" width="372" height="398" loading="lazy" decoding="async">
+      <img class="stove stove--16bit" src="art/tomato-b.png" alt="" width="482" height="449" loading="lazy" decoding="async">
+      <img class="stove stove--chunky-viola" src="art/tomato-a-viola.png" alt="" width="372" height="398" loading="lazy" decoding="async">
+      <img class="stove stove--16bit-viola" src="art/tomato-b-viola.png" alt="" width="482" height="449" loading="lazy" decoding="async">
+      <svg class="stove stove--jar" viewBox="150 90 220 252" focusable="false"><use href="#art-jar"/></svg>
+      <svg class="stove stove--spoon" viewBox="140 40 240 302" focusable="false"><use href="#art-spoon"/></svg>
+      <!-- SUGO-DEMO-KIT END -->
+    </div>
+    </div><!-- /actionrow -->
+    <div class="foot__meta">
+      <a class="wordmark" href="/">Sugo AI</a>
+      <a href="/how-we-work">How we work</a>
+      <a href="/writing">Writing</a>
+      <a href="/about">About</a>
+      <a href="/contact">Contact</a>
+      <span>© 2026 Sugo Product Company, LLC d/b/a Sugo AI</span>
+      <span class="foot__note">sugo (n.) — Italian for sauce. The good ones are made slowly, with real ingredients.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Mobile nav disclosure
+  const toggle = document.querySelector('.nav__toggle');
+  const drawer = document.getElementById('nav-drawer');
+  toggle.addEventListener('click', () => {
+    const open = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!open));
+    drawer.classList.toggle('is-open', !open);
+  });
+
+  // Process stage switcher — tablist, roving tabindex, arrow keys on both axes, no scroll-jump
+  (function () {
+    const tabs = Array.from(document.querySelectorAll('.proc__tab'));
+    function select(tab, moveFocus) {
+      tabs.forEach((t) => {
+        const on = t === tab;
+        t.setAttribute('aria-selected', String(on));
+        t.tabIndex = on ? 0 : -1;
+        document.getElementById(t.getAttribute('aria-controls')).classList.toggle('is-active', on);
+      });
+      if (moveFocus) tab.focus({ preventScroll: true });
+    }
+    tabs.forEach((t, i) => {
+      t.addEventListener('click', () => select(t, false));
+      t.addEventListener('keydown', (e) => {
+        let j = null;
+        if (e.key === 'ArrowDown' || e.key === 'ArrowRight') j = (i + 1) % tabs.length;
+        else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') j = (i - 1 + tabs.length) % tabs.length;
+        else if (e.key === 'Home') j = 0;
+        else if (e.key === 'End') j = tabs.length - 1;
+        if (j !== null) { e.preventDefault(); select(tabs[j], true); }
+      });
+    });
+  })();
+</script>
+
+<!-- SUGO-DEMO-KIT START · control panel (demo chrome — strip before integration) -->
+<div class="demokit">
+  <div class="demokit__panel" id="demokit-panel" hidden>
+    <div class="demokit__row" role="group" aria-label="Type pack">
+      <span class="demokit__lab" aria-hidden="true">TYPE</span>
+      <button class="demokit__btn" type="button" data-kit-pack="" aria-pressed="true">Native</button>
+      <button class="demokit__btn" type="button" data-kit-pack="1" aria-pressed="false">1 Space</button>
+      <button class="demokit__btn" type="button" data-kit-pack="2" aria-pressed="false">2 Schibsted</button>
+      <button class="demokit__btn" type="button" data-kit-pack="3" aria-pressed="false">3 Familjen</button>
+      <button class="demokit__btn" type="button" data-kit-pack="4" aria-pressed="false">4 Cabinet</button>
+      <button class="demokit__btn" type="button" data-kit-pack="5" aria-pressed="false">5 Bricolage</button>
+      <button class="demokit__btn" type="button" data-kit-pack="6" aria-pressed="false">6 General</button>
+      <button class="demokit__btn" type="button" data-kit-pack="7" aria-pressed="false">7 Hanken</button>
+      <button class="demokit__btn" type="button" data-kit-pack="8" aria-pressed="false">8 Instrument</button>
+      <button class="demokit__btn" type="button" data-kit-pack="9" aria-pressed="false">9 RedHat</button>
+    </div>
+    <div class="demokit__row" role="group" aria-label="Hero art">
+      <span class="demokit__lab" aria-hidden="true">ART</span>
+      <button class="demokit__btn" type="button" data-kit-art="pot" aria-pressed="true">Pot</button>
+      <button class="demokit__btn" type="button" data-kit-art="chunky" aria-pressed="false">Chunky</button>
+      <button class="demokit__btn" type="button" data-kit-art="16bit" aria-pressed="false">16-bit</button>
+      <button class="demokit__btn" type="button" data-kit-art="chunky-viola" aria-pressed="false">Viola-C</button>
+      <button class="demokit__btn" type="button" data-kit-art="16bit-viola" aria-pressed="false">Viola-16</button>
+      <button class="demokit__btn" type="button" data-kit-art="jar" aria-pressed="false">Jar</button>
+      <button class="demokit__btn" type="button" data-kit-art="spoon" aria-pressed="false">Spoon</button>
+    </div>
+    <div class="demokit__row" role="group" aria-label="Pixel-art motion">
+      <span class="demokit__lab" aria-hidden="true">MOTION</span>
+      <button class="demokit__btn" type="button" data-kit-motion="" aria-pressed="true">None</button>
+      <button class="demokit__btn" type="button" data-kit-motion="bob" aria-pressed="false">Bob</button>
+      <button class="demokit__btn" type="button" data-kit-motion="sway" aria-pressed="false">Sway</button>
+      <button class="demokit__btn" type="button" data-kit-motion="breathe" aria-pressed="false">Breathe</button>
+      <button class="demokit__btn" type="button" data-kit-motion="hop" aria-pressed="false">Hop</button>
+    </div>
+  </div>
+  <button class="demokit__chip" type="button" aria-expanded="false" aria-controls="demokit-panel">DEMO</button>
+</div>
+<script>
+(function () {
+  var root = document.documentElement;
+  var chip = document.querySelector('.demokit__chip');
+  var panel = document.getElementById('demokit-panel');
+
+  function store(key, val) { try { val ? localStorage.setItem(key, val) : localStorage.removeItem(key); } catch (e) {} }
+  function sync() {
+    var fp = root.getAttribute('data-fontpack') || '';
+    document.querySelectorAll('[data-kit-pack]').forEach(function (b) {
+      b.setAttribute('aria-pressed', String(b.getAttribute('data-kit-pack') === fp));
+    });
+    var ha = root.getAttribute('data-heroart') || 'pot';
+    document.querySelectorAll('[data-kit-art]').forEach(function (b) {
+      b.setAttribute('aria-pressed', String(b.getAttribute('data-kit-art') === ha));
+    });
+    var mo = root.getAttribute('data-motion') || '';
+    document.querySelectorAll('[data-kit-motion]').forEach(function (b) {
+      b.setAttribute('aria-pressed', String(b.getAttribute('data-kit-motion') === mo));
+    });
+  }
+  document.querySelectorAll('[data-kit-pack]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var v = b.getAttribute('data-kit-pack');
+      v ? root.setAttribute('data-fontpack', v) : root.removeAttribute('data-fontpack');
+      store('sugo-demo-fontpack', v);
+      sync();
+    });
+  });
+  document.querySelectorAll('[data-kit-art]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var v = b.getAttribute('data-kit-art');
+      v === 'pot' ? root.removeAttribute('data-heroart') : root.setAttribute('data-heroart', v);
+      store('sugo-demo-heroart', v === 'pot' ? '' : v);
+      sync();
+    });
+  });
+  document.querySelectorAll('[data-kit-motion]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var v = b.getAttribute('data-kit-motion');
+      v ? root.setAttribute('data-motion', v) : root.removeAttribute('data-motion');
+      store('sugo-demo-motion', v);
+      sync();
+    });
+  });
+  
+  chip.addEventListener('click', function () {
+    var open = chip.getAttribute('aria-expanded') === 'true';
+    chip.setAttribute('aria-expanded', String(!open));
+    panel.hidden = open;
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && !panel.hidden) {
+      panel.hidden = true;
+      chip.setAttribute('aria-expanded', 'false');
+      chip.focus();
+    }
+  });
+  sync();
+})();
+</script>
+<!-- SUGO-DEMO-KIT END -->
+</body>
+</html>

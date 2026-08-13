@@ -1,66 +1,153 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { PotMark } from "@/components/ui/PotMark";
+import { Footer } from "@/components/layout/Footer";
 import { getAllArticles } from "@/lib/mdx";
+import "../pages-sub.css";
+
+export const metadata: Metadata = {
+  title: "Sugo AI — Writing",
+  description:
+    "Notes from the work for operators and leaders building software inside traditional businesses.",
+};
+
+/* Temporarily gated — the three MDX posts have placeholder (lorem) bodies.
+   Set WRITING_ENABLED = true to re-enable once real essays are written. */
+const WRITING_ENABLED = false;
 
 export default function WritingPage() {
-  if (process.env.NODE_ENV !== "development") notFound();
+  if (!WRITING_ENABLED) notFound();
   const articles = getAllArticles();
+  const [featured, ...rest] = articles;
 
   return (
-    <main>
-      <section className="py-[100px] pt-[140px] max-[767px]:py-[56px] max-[767px]:pt-[100px]">
-        <div className="max-w-[1180px] mx-auto px-8 max-[1024px]:px-6">
-          <div className="max-w-[680px]">
-            <div className="mb-10">
-              <PotMark />
-            </div>
-            <h1 className="type-h1">On the <span className="italic-accent">record.</span></h1>
-            <p className="type-lead" style={{ marginTop: "16px" }}>
-              A monthly essay on what&rsquo;s actually happening at the edge of
-              enterprise AI{"\u200A—\u200A"}research, patterns from the field,
-              and opinions worth disagreeing with.
+    <>
+      <main id="main" className="pg-writing">
+        {/* Intro */}
+        <section className="intro">
+          <div className="wrap">
+            <h1>Notes from the work.</h1>
+            {/* §WR-1 */}
+            <p className="intro__body">
+              This writing is for operators, product owners, and leaders trying
+              to make better software decisions inside real businesses. The
+              goal is plain-English thinking from the work — not commentary
+              from a distance.
             </p>
+          </div>
+        </section>
 
-            <div className="callout-viola mt-12">
-              <span className="eyebrow">First essay</span>
-              <p>&ldquo;Why 95% of enterprise AI pilots fail.&rdquo; Dropping April 2026.</p>
-            </div>
-
-            <p className="mt-6">
-              <a
-                className="link-text"
-                href="mailto:marc@sugoai.com?subject=Sugo%20essays"
-              >
-                Get essays by email
-                <span className="arrow" aria-hidden="true">→</span>
-              </a>
-            </p>
-
-            <div className="mt-20">
-              <div className="fig" style={{ color: "var(--color-ink-300)" }}>
-                Preview &middot; placeholder titles
-              </div>
-            </div>
-            <div className="mt-6" style={{ borderTop: "1px solid var(--color-rule-soft)" }}>
-              {articles.map((article) => (
-                <Link
-                  key={article.slug}
-                  className="writing-row-link"
-                  href={`/writing/${article.slug}`}
-                  style={{ border: "none" }}
-                >
-                  <span className="type-mono-meta block mb-2">
-                    {article.date.toUpperCase()} &nbsp; &middot; &nbsp;{" "}
-                    {article.readTime.toUpperCase()}
-                  </span>
-                  <h3 className="type-writing-title">{article.title}</h3>
+        {/* Featured piece — the newest post */}
+        {featured && (
+          <section className="featured" aria-labelledby="featured-title">
+            <div className="wrap">
+              <article className="featured__row">
+                <p className="featured__tag">
+                  Featured · {featured.date} · {featured.readTime}
+                </p>
+                <h2 id="featured-title">{featured.title}</h2>
+                <p className="dek">{featured.standfirst}</p>
+                <Link className="link" href={`/writing/${featured.slug}`}>
+                  Read →
                 </Link>
-              ))}
+              </article>
+            </div>
+          </section>
+        )}
+
+        {/* Article list */}
+        {rest.length > 0 && (
+          <section className="list" aria-label="More writing">
+            <div className="wrap">
+              <ul className="list__rows">
+                {rest.map((article) => (
+                  <li key={article.slug}>
+                    <Link
+                      className="list__row-link"
+                      href={`/writing/${article.slug}`}
+                    >
+                      <h3>{article.title}</h3>
+                      <span className="list__tag">
+                        {article.date} · {article.readTime}
+                      </span>
+                      <p className="dek">{article.standfirst}</p>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </section>
+        )}
+
+        {/* Plain terms */}
+        <section className="terms" aria-labelledby="terms-title">
+          <div className="wrap">
+            <div className="terms__card">
+              <h2 id="terms-title">Plain terms.</h2>
+              <p className="intro-line">
+                The jargon, translated. For operators, not engineers.
+              </p>
+              {/* §WR-4 */}
+              <dl>
+                <div>
+                  <dt>AI agent</dt>
+                  <dd>
+                    Software that can carry out a multi-step task on its own,
+                    with your rules and your data. Not magic — a diligent
+                    junior teammate that never sleeps.
+                  </dd>
+                </div>
+                <div>
+                  <dt>Pilot</dt>
+                  <dd>
+                    A trial run. Useful when someone owns getting it into real
+                    work; shelf-ware when nobody does.
+                  </dd>
+                </div>
+                <div>
+                  <dt>Production</dt>
+                  <dd>
+                    When software stops being a demo and starts being how the
+                    work gets done.
+                  </dd>
+                </div>
+                <div>
+                  <dt>Internal tool</dt>
+                  <dd>
+                    Software built for the people inside the business, not the
+                    customers outside it. &ldquo;Internal&rdquo; does not make
+                    it easier — it usually just hides the mess better.
+                  </dd>
+                </div>
+                <div>
+                  <dt>Rollout</dt>
+                  <dd>
+                    The part where software stops being a launch event and
+                    starts becoming part of how the work gets done. If the
+                    rollout is weak, the product usually gets blamed for
+                    problems the process created.
+                  </dd>
+                </div>
+              </dl>
             </div>
           </div>
-        </div>
-      </section>
-    </main>
+        </section>
+
+        {/* Closing note */}
+        <section className="note">
+          <div className="wrap">
+            <p>
+              Want these as they&rsquo;re written?{" "}
+              <a className="link" href="mailto:marc@sugoai.com">
+                Email marc@sugoai.com
+              </a>
+              .
+            </p>
+          </div>
+        </section>
+      </main>
+
+      <Footer />
+    </>
   );
 }

@@ -1,0 +1,459 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sugo AI — Illustration lab</title>
+<meta name="description" content="Round-two brand imagery exploration for Sugo AI: geometric assemblies, marks, and character linework, tested on the Viola Light system.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,600&display=swap" rel="stylesheet">
+<style>
+/* Hallmark · genre: playful · macrostructure: Catalogue (specimen board) · internal lab artifact — round 2 imagery
+ * theme: studied E2 Viola Light system · paper oklch(96% 0.014 95) · ink navy oklch(24% 0.065 265) · flood lavender
+ * display: Familjen Grotesk 600/500 (lab's own — user leaning direction) · body: General Sans · outlier: JetBrains Mono (labels/captions)
+ * art: 5 directions, all hand-built SVG (Tier A/B primitives + linework) · red strategy: coral appears mark-scope only, labeled
+ * pre-emit critique: P4 H4 E4 S5 R4 V4 · contrast: pass 46–50 · tokens: pass 58 · chrome: pass 57 (no fake browser UI)
+ * mobile: clip + minmax(0,1fr), 1-col at 40rem · no JS, no animation (reduced-motion trivial)
+ */
+:root {
+  --color-paper:      oklch(96% 0.014 95);
+  --color-paper-2:    oklch(94% 0.020 95);
+  --color-card:       oklch(98.5% 0.008 100);
+  --color-ink:        oklch(24% 0.065 265);
+  --color-ink-2:      oklch(34% 0.055 262);
+  --color-muted:      oklch(46% 0.04 262);
+  --color-rule:       oklch(90% 0.012 258);
+  --color-viola-50:   oklch(95.5% 0.015 310);
+  --color-viola:      oklch(89% 0.04 310);
+  --color-viola-500:  oklch(72% 0.09 305);
+  --color-flood:      var(--color-viola);
+  --color-flood-shade: oklch(81% 0.055 310);
+  --color-saffron:    oklch(83% 0.11 85);
+  --color-sky:        oklch(86% 0.015 240);
+  --color-blush:      oklch(88% 0.035 40);
+  --color-pomodoro:   oklch(70% 0.12 35);
+  --color-basil:      oklch(52% 0.09 145);
+  --color-paper-on-ink: oklch(96% 0.014 95);
+
+  --font-display: "Familjen Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-body:    "General Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-outlier: "JetBrains Mono", ui-monospace, monospace;
+
+  --text-xs:   0.75rem;
+  --text-sm:   0.875rem;
+  --text-base: 1.0625rem;
+  --text-md:   1.25rem;
+  --text-lg:   1.5rem;
+  --text-xl:   1.9rem;
+  --text-2xl:  2.4rem;
+
+  --space-2xs: 0.25rem;
+  --space-xs:  0.5rem;
+  --space-sm:  0.75rem;
+  --space-md:  1rem;
+  --space-lg:  1.5rem;
+  --space-xl:  2.5rem;
+  --space-2xl: 4rem;
+
+  --border-panel: 2px solid var(--color-ink);
+  --radius-panel: 12px;
+  --radius-tile: 8px;
+  --page-gutter: clamp(1rem, 4vw, 2.5rem);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; overflow-x: clip; }
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.6;
+  padding-inline: max(var(--page-gutter), env(safe-area-inset-left));
+  padding-block-end: max(var(--space-2xl), env(safe-area-inset-bottom));
+}
+main { max-width: 72rem; margin-inline: auto; display: grid; gap: var(--space-xl); }
+
+h1, h2, h3 { font-family: var(--font-display); letter-spacing: -0.015em; line-height: 1.15; margin: 0; overflow-wrap: anywhere; min-width: 0; }
+h1 { font-size: var(--text-2xl); font-weight: 600; }
+h2 { font-size: var(--text-lg); font-weight: 600; }
+h3 { font-size: var(--text-md); font-weight: 500; }
+p { margin: 0; max-width: 62ch; }
+
+.mono { font-family: var(--font-outlier); font-size: var(--text-xs); letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-muted); }
+.mono--onink { color: var(--color-paper-on-ink); opacity: 0.85; }
+
+.lab-head { padding-block: var(--space-2xl) 0; display: grid; gap: var(--space-sm); }
+.lab-head p { color: var(--color-ink-2); }
+
+.panel {
+  border: var(--border-panel);
+  border-radius: var(--radius-panel);
+  background: var(--color-card);
+  padding: var(--space-lg);
+  display: grid;
+  gap: var(--space-lg);
+}
+.panel > header { display: grid; gap: var(--space-2xs); }
+.panel > header p { color: var(--color-ink-2); font-size: var(--text-sm); }
+
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(15rem, 100%), 1fr)); gap: var(--space-md); }
+.tile { border: var(--border-panel); border-radius: var(--radius-tile); padding: var(--space-md); display: grid; gap: var(--space-sm); align-content: start; }
+.tile svg { width: 100%; height: auto; display: block; max-width: 17.5rem; margin-inline: auto; }
+.tile--lav   { background: var(--color-flood); }
+.tile--navy  { background: var(--color-ink); }
+.tile--paper { background: var(--color-paper); }
+.tile--card  { background: var(--color-card); }
+.tile figcaption { font-size: var(--text-sm); color: var(--color-ink-2); }
+.tile--navy figcaption { color: var(--color-paper-on-ink); }
+.tile--navy .mono { color: var(--color-paper-on-ink); opacity: 0.8; }
+figure { margin: 0; display: grid; gap: var(--space-sm); }
+
+/* colorway variable rigs */
+.cw-a { --gt-body: var(--color-ink); --gt-leaf: var(--color-viola-500); --gt-leaf2: var(--color-viola-50); --gt-glint: var(--color-viola); }
+.cw-b { --gt-body: var(--color-saffron); --gt-leaf: var(--color-viola); --gt-leaf2: var(--color-viola-500); --gt-glint: var(--color-ink); }
+.cw-c { --gt-body: var(--color-pomodoro); --gt-leaf: var(--color-basil); --gt-leaf2: var(--color-basil); --gt-glint: var(--color-card); }
+.pw-a { --gp-body: var(--color-ink); --gp-lid: var(--color-saffron); --gp-steam: var(--color-card); --gp-shadow: var(--color-flood-shade); }
+.pw-b { --gp-body: var(--color-viola); --gp-lid: var(--color-saffron); --gp-steam: var(--color-paper-on-ink); --gp-shadow: oklch(30% 0.06 265); }
+
+.scale-row { display: flex; flex-wrap: wrap; gap: var(--space-lg); align-items: flex-end; }
+.scale-step { display: grid; gap: var(--space-xs); justify-items: center; }
+.scale-step svg { display: block; height: auto; }
+
+.peek-wrap { position: relative; padding-top: 4.25rem; }
+.peek-art { position: absolute; top: 0; right: 10%; width: 8.75rem; z-index: 0; }
+.peek-art svg { width: 100%; height: auto; display: block; }
+.peek-panel { position: relative; z-index: 1; background: var(--color-card); border: var(--border-panel); border-radius: var(--radius-tile); padding: var(--space-lg); display: grid; gap: var(--space-sm); }
+.peek-panel .statement { font-family: var(--font-display); font-weight: 600; font-size: var(--text-lg); letter-spacing: -0.015em; line-height: 1.2; max-width: 24ch; }
+.peek-rule { border: 0; border-top: 1px solid var(--color-rule); margin: 0; }
+.stove-row { display: flex; justify-content: flex-end; padding-inline-end: 12%; }
+.stove-row svg { display: block; width: 7.5rem; height: auto; margin-bottom: -2px; }
+
+.hero-mock { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); border: var(--border-panel); border-radius: var(--radius-panel); overflow: hidden; background: var(--color-card); }
+.hero-mock__copy { padding: var(--space-lg); display: grid; gap: var(--space-sm); align-content: center; }
+.hero-mock__copy .chip { display: inline-flex; width: fit-content; border: var(--border-panel); border-radius: var(--radius-tile); padding: 0.45rem 0.9rem; font-family: var(--font-display); font-weight: 600; font-size: var(--text-sm); white-space: nowrap; background: var(--color-ink); color: var(--color-paper-on-ink); box-shadow: 4px 4px 0 var(--color-viola-500); }
+.hero-mock__art { background: var(--color-flood); border-left: var(--border-panel); display: grid; place-items: center; padding: var(--space-lg); }
+.hero-mock__art svg { width: 100%; max-width: 15rem; height: auto; }
+.hero-mock__copy p { font-size: var(--text-sm); color: var(--color-ink-2); }
+
+.notes ul { margin: 0; padding-left: 1.2rem; display: grid; gap: var(--space-sm); max-width: 70ch; }
+.notes li::marker { color: var(--color-viola-500); }
+
+@media (max-width: 40rem) {
+  .hero-mock { grid-template-columns: minmax(0, 1fr); }
+  .hero-mock__art { border-left: none; border-top: var(--border-panel); }
+  .peek-art { right: 4%; width: 7rem; }
+  .stove-row { padding-inline-end: 4%; }
+}
+</style>
+</head>
+<body>
+<main>
+
+  <section class="lab-head">
+    <p class="mono">Sugo AI · Illustration lab · Round 2 · August 2026</p>
+    <h1>Illustration lab — beyond the pot.</h1>
+    <p>Dodonut’s bird works because it isn’t a drawing — it’s an assembly of flat primitives in panel colors: a circle, a quarter-circle beak, a half-round crest. This lab applies that grammar to Sugo’s kitchen, then tests marks, character, and placement — on the Viola Light system, set in Familjen Grotesk.</p>
+  </section>
+
+  <!-- ── Direction 1 · Geo-tomato ───────────────────────────── -->
+  <section class="panel">
+    <header>
+      <p class="mono">Direction 1 · Geo-tomato</p>
+      <h2>The bird-language, applied to the tomato.</h2>
+      <p>Circle body, two quarter-disc leaves at different sizes, a wedge stem, one glint. No outlines — the shapes carry it.</p>
+    </header>
+    <div class="tiles">
+      <figure class="tile tile--lav cw-a">
+        <svg viewBox="0 0 240 240" role="img" aria-label="Geometric tomato — navy body with viola leaves on lavender">
+          <circle cx="120" cy="146" r="90" fill="var(--gt-body)"/>
+          <path d="M120 92 L76 92 A44 44 0 0 1 120 48 Z" transform="rotate(-18 120 92)" fill="var(--gt-leaf)"/>
+          <path d="M120 92 L120 56 A36 36 0 0 1 156 92 Z" transform="rotate(14 120 92)" fill="var(--gt-leaf2)"/>
+          <path d="M113 42 L127 42 L120 72 Z" fill="var(--gt-leaf)"/>
+          <circle cx="86" cy="112" r="12" fill="var(--gt-glint)"/>
+        </svg>
+        <figcaption><span class="mono">A · navy / viola</span><br>Reads as a handsome fruit-form — but honestly closer to a plum than a tomato. The palette does zero identifying work here; the leaves have to do all of it.</figcaption>
+      </figure>
+      <figure class="tile tile--navy cw-b">
+        <svg viewBox="0 0 240 240" role="img" aria-label="Geometric tomato — saffron body with viola leaves on navy">
+          <circle cx="120" cy="146" r="90" fill="var(--gt-body)"/>
+          <path d="M120 92 L76 92 A44 44 0 0 1 120 48 Z" transform="rotate(-18 120 92)" fill="var(--gt-leaf)"/>
+          <path d="M120 92 L120 56 A36 36 0 0 1 156 92 Z" transform="rotate(14 120 92)" fill="var(--gt-leaf2)"/>
+          <path d="M113 42 L127 42 L120 72 Z" fill="var(--gt-leaf)"/>
+          <circle cx="86" cy="112" r="12" fill="var(--gt-glint)"/>
+        </svg>
+        <figcaption><span class="mono mono--onink">B · saffron / navy</span><br>The most graphic of the three — strong poster energy on the flood. But saffron-round-with-leaves reads “peach” or “sun” before it reads tomato.</figcaption>
+      </figure>
+      <figure class="tile tile--paper cw-c">
+        <svg viewBox="0 0 240 240" role="img" aria-label="Geometric tomato — coral body with basil leaves on paper">
+          <circle cx="120" cy="146" r="90" fill="var(--gt-body)"/>
+          <path d="M120 92 L76 92 A44 44 0 0 1 120 48 Z" transform="rotate(-18 120 92)" fill="var(--gt-leaf)"/>
+          <path d="M120 92 L120 56 A36 36 0 0 1 156 92 Z" transform="rotate(14 120 92)" fill="var(--gt-leaf2)"/>
+          <path d="M113 42 L127 42 L120 72 Z" fill="var(--gt-leaf)"/>
+          <circle cx="86" cy="112" r="12" fill="var(--gt-glint)"/>
+        </svg>
+        <figcaption><span class="mono">C · pomodoro / basil (only red-family colorway)</span><br>Unambiguously a tomato. The lesson is blunt: with a circle this pure, redness is the identity — remove it and the mark needs its meaning carried elsewhere.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ── Direction 2 · Geo-pot ──────────────────────────────── -->
+  <section class="panel">
+    <header>
+      <p class="mono">Direction 2 · Geo-pot</p>
+      <h2>The pot as flat assembly.</h2>
+      <p>Round-bottomed vessel, lid bar with a dot knob, half-round handles, steam as ascending dots. Shape does the identifying — no color dependence, no outline.</p>
+    </header>
+    <div class="tiles">
+      <figure class="tile tile--lav pw-a">
+        <svg viewBox="0 0 240 200" role="img" aria-label="Geometric pot — navy vessel, saffron lid, rising steam dots, on lavender">
+          <circle cx="96" cy="44" r="7.5" fill="var(--gp-steam)"/>
+          <circle cx="120" cy="26" r="6" fill="var(--gp-steam)"/>
+          <circle cx="146" cy="42" r="7" fill="var(--gp-steam)"/>
+          <ellipse cx="120" cy="182" rx="86" ry="8" fill="var(--gp-shadow)"/>
+          <path d="M52 86 L188 86 L188 128 A46 46 0 0 1 142 174 L98 174 A46 46 0 0 1 52 128 Z" fill="var(--gp-body)"/>
+          <path d="M52 98 A16 16 0 0 0 52 130 Z" fill="var(--gp-body)"/>
+          <path d="M188 98 A16 16 0 0 1 188 130 Z" fill="var(--gp-body)"/>
+          <rect x="46" y="66" width="148" height="15" rx="7.5" fill="var(--gp-lid)"/>
+          <circle cx="120" cy="54" r="9" fill="var(--gp-lid)"/>
+        </svg>
+        <figcaption><span class="mono">A · navy vessel on lavender</span><br>Steam dots in card-white read instantly. The silhouette says “pot” without any red in sight.</figcaption>
+      </figure>
+      <figure class="tile tile--navy pw-b">
+        <svg viewBox="0 0 240 200" role="img" aria-label="Geometric pot — viola vessel, saffron lid, on navy">
+          <circle cx="96" cy="44" r="7.5" fill="var(--gp-steam)"/>
+          <circle cx="120" cy="26" r="6" fill="var(--gp-steam)"/>
+          <circle cx="146" cy="42" r="7" fill="var(--gp-steam)"/>
+          <ellipse cx="120" cy="182" rx="86" ry="8" fill="var(--gp-shadow)"/>
+          <path d="M52 86 L188 86 L188 128 A46 46 0 0 1 142 174 L98 174 A46 46 0 0 1 52 128 Z" fill="var(--gp-body)"/>
+          <path d="M52 98 A16 16 0 0 0 52 130 Z" fill="var(--gp-body)"/>
+          <path d="M188 98 A16 16 0 0 1 188 130 Z" fill="var(--gp-body)"/>
+          <rect x="46" y="66" width="148" height="15" rx="7.5" fill="var(--gp-lid)"/>
+          <circle cx="120" cy="54" r="9" fill="var(--gp-lid)"/>
+        </svg>
+        <figcaption><span class="mono mono--onink">B · viola vessel on navy</span><br>Quieter, more nocturne. Works as a section accent where the navy manifesto band needs a single soft object.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ── Direction 3 · The Simmer mark ──────────────────────── -->
+  <section class="panel">
+    <header>
+      <p class="mono">Direction 3 · The Simmer mark</p>
+      <h2>A logo candidate: shallow pan, three curls of steam.</h2>
+      <p>Filled silhouette plus round-capped strokes and a lot of negative space. Built to survive from footer sign-off down to favicon.</p>
+    </header>
+    <div class="scale-row" role="img" aria-label="The Simmer mark shown at four sizes, from large to 16 pixels">
+      <div class="scale-step">
+        <svg width="220" height="128" viewBox="0 0 240 140" aria-hidden="true">
+          <g stroke="var(--color-ink)" stroke-width="9" stroke-linecap="round" fill="none">
+            <path d="M84 66 C 76 56, 92 46, 84 34"/>
+            <path d="M120 70 C 111 57, 129 46, 120 28"/>
+            <path d="M156 66 C 148 56, 164 46, 156 34"/>
+          </g>
+          <path d="M58 86 L182 86 L182 100 A22 22 0 0 1 160 122 L80 122 A22 22 0 0 1 58 100 Z" fill="var(--color-ink)"/>
+          <line x1="182" y1="93" x2="210" y2="93" stroke="var(--color-ink)" stroke-width="10" stroke-linecap="round"/>
+        </svg>
+        <span class="mono">Large</span>
+      </div>
+      <div class="scale-step">
+        <svg width="64" height="37" viewBox="0 0 240 140" aria-hidden="true">
+          <g stroke="var(--color-ink)" stroke-width="12" stroke-linecap="round" fill="none">
+            <path d="M84 66 C 76 56, 92 46, 84 34"/>
+            <path d="M120 70 C 111 57, 129 46, 120 28"/>
+            <path d="M156 66 C 148 56, 164 46, 156 34"/>
+          </g>
+          <path d="M58 86 L182 86 L182 100 A22 22 0 0 1 160 122 L80 122 A22 22 0 0 1 58 100 Z" fill="var(--color-ink)"/>
+          <line x1="182" y1="93" x2="210" y2="93" stroke="var(--color-ink)" stroke-width="13" stroke-linecap="round"/>
+        </svg>
+        <span class="mono">64px</span>
+      </div>
+      <div class="scale-step">
+        <svg width="32" height="19" viewBox="0 0 240 140" aria-hidden="true">
+          <g stroke="var(--color-ink)" stroke-width="18" stroke-linecap="round" fill="none">
+            <path d="M120 70 C 111 57, 129 46, 120 28"/>
+          </g>
+          <path d="M58 86 L182 86 L182 100 A22 22 0 0 1 160 122 L80 122 A22 22 0 0 1 58 100 Z" fill="var(--color-ink)"/>
+          <line x1="182" y1="93" x2="212" y2="93" stroke="var(--color-ink)" stroke-width="18" stroke-linecap="round"/>
+        </svg>
+        <span class="mono">32px · one curl</span>
+      </div>
+      <div class="scale-step">
+        <svg width="16" height="10" viewBox="0 0 240 150" aria-hidden="true">
+          <g stroke="var(--color-ink)" stroke-width="26" stroke-linecap="round" fill="none">
+            <path d="M120 74 C 111 58, 129 46, 120 26"/>
+          </g>
+          <path d="M50 92 L190 92 L190 104 A24 24 0 0 1 166 128 L74 128 A24 24 0 0 1 50 104 Z" fill="var(--color-ink)"/>
+        </svg>
+        <span class="mono">16px · pan + curl</span>
+      </div>
+    </div>
+    <p style="font-size: var(--text-sm); color: var(--color-ink-2); max-width: 62ch;">The mark simplifies honestly as it shrinks: three curls → one curl → pan-plus-curl. That stepped reduction is a system, not a compromise — same move Dodonut makes when the bird becomes a beak glyph.</p>
+  </section>
+
+  <!-- ── Direction 4 · Character pot ────────────────────────── -->
+  <section class="panel">
+    <header>
+      <p class="mono">Direction 4 · Character pot</p>
+      <h2>The current linework pot — with more life, no face.</h2>
+      <p>Same 4px navy language the hero already speaks. Added: an S-curve of steam, two bubbles breaking the sauce line, a lid leaning against the pot, one falling basil leaf.</p>
+    </header>
+    <figure class="tile tile--lav" style="max-width: 36rem;">
+      <svg viewBox="0 0 520 360" role="img" aria-label="A simmering pot with bubbles, a leaning lid, and a falling basil leaf — clean navy linework on lavender" style="max-width: 100%;">
+        <g fill="none" stroke="var(--color-ink)" stroke-width="6" stroke-linecap="round">
+          <path d="M236 100 C 222 78, 252 66, 240 44 C 232 30, 250 24, 246 10"/>
+          <path d="M298 92 C 290 74, 306 64, 300 46"/>
+        </g>
+        <g transform="rotate(-32 96 74)">
+          <ellipse cx="96" cy="74" rx="15" ry="7.5" fill="var(--color-basil)" stroke="var(--color-ink)" stroke-width="3"/>
+          <line x1="111" y1="74" x2="120" y2="74" stroke="var(--color-ink)" stroke-width="3" stroke-linecap="round"/>
+        </g>
+        <path d="M60 96 L70 104 M56 116 L66 122" stroke="var(--color-ink)" stroke-width="3" stroke-linecap="round" opacity="0.5"/>
+        <ellipse cx="260" cy="320" rx="150" ry="14" fill="var(--color-flood-shade)"/>
+        <path d="M150 150 L370 150 C 372 220, 360 290, 300 308 L220 308 C 160 290, 148 220, 150 150 Z"
+              fill="var(--color-card)" stroke="var(--color-ink)" stroke-width="4"/>
+        <path d="M150 150 L370 150 L370 168 C 320 178, 200 178, 150 168 Z" fill="var(--color-saffron)" stroke="var(--color-ink)" stroke-width="4" stroke-linejoin="round"/>
+        <circle cx="212" cy="150" r="9" fill="var(--color-saffron)" stroke="var(--color-ink)" stroke-width="3.5"/>
+        <circle cx="330" cy="146" r="6" fill="var(--color-saffron)" stroke="var(--color-ink)" stroke-width="3.5"/>
+        <path d="M150 168 C 118 168, 118 200, 152 198" fill="none" stroke="var(--color-ink)" stroke-width="4" stroke-linecap="round"/>
+        <path d="M370 168 C 402 168, 402 200, 368 198" fill="none" stroke="var(--color-ink)" stroke-width="4" stroke-linecap="round"/>
+        <path d="M156 218 L364 218" stroke="var(--color-viola-500)" stroke-width="4" stroke-linecap="round"/>
+        <g transform="rotate(-14 300 140)">
+          <rect x="286" y="30" width="14" height="120" rx="7" fill="var(--color-sky)" stroke="var(--color-ink)" stroke-width="3"/>
+          <ellipse cx="293" cy="160" rx="24" ry="30" fill="var(--color-sky)" stroke="var(--color-ink)" stroke-width="3"/>
+        </g>
+        <g transform="rotate(24 452 268)">
+          <rect x="446" y="196" width="12" height="128" rx="6" fill="var(--color-card)" stroke="var(--color-ink)" stroke-width="4"/>
+        </g>
+        <circle cx="470" cy="196" r="9" fill="var(--color-viola-500)" stroke="var(--color-ink)" stroke-width="3.5"/>
+        <g>
+          <circle cx="112" cy="292" r="26" fill="var(--color-pomodoro)" stroke="var(--color-ink)" stroke-width="3"/>
+          <path d="M112 268 C 108 260, 116 258, 112 252" fill="none" stroke="var(--color-ink)" stroke-width="3" stroke-linecap="round"/>
+          <path d="M102 266 L112 270 L122 266" fill="none" stroke="var(--color-ink)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+      </svg>
+      <figcaption><span class="mono">Hero scale · lavender</span><br>Answers the “boring” note without changing language: the story got richer (something is actively simmering; the lid is off because someone is tending it) while every stroke stays in the existing system.</figcaption>
+    </figure>
+  </section>
+
+  <!-- ── Direction 5 · The peek ─────────────────────────────── -->
+  <section class="panel">
+    <header>
+      <p class="mono">Direction 5 · The peek</p>
+      <h2>Placement personality — the Dodonut-bird move.</h2>
+      <p>Not a different mark: the same objects, placed with intent. The bird’s charm is that it interrupts the layout politely.</p>
+    </header>
+    <div class="tiles" style="grid-template-columns: repeat(auto-fit, minmax(min(20rem, 100%), 1fr));">
+      <figure class="tile tile--paper">
+        <div class="peek-wrap">
+          <div class="peek-art cw-b" aria-hidden="true">
+            <svg viewBox="0 0 240 240">
+              <circle cx="120" cy="146" r="90" fill="var(--color-saffron)"/>
+              <path d="M120 92 L76 92 A44 44 0 0 1 120 48 Z" transform="rotate(-18 120 92)" fill="var(--color-viola-500)"/>
+              <path d="M120 92 L120 56 A36 36 0 0 1 156 92 Z" transform="rotate(14 120 92)" fill="var(--color-viola)"/>
+              <path d="M113 42 L127 42 L120 72 Z" fill="var(--color-viola-500)"/>
+              <circle cx="86" cy="112" r="12" fill="var(--color-card)"/>
+            </svg>
+          </div>
+          <div class="peek-panel">
+            <p class="statement">If the software matters, the product work should too.</p>
+            <hr class="peek-rule">
+            <p class="mono">Sugo AI · © 2026 · sugo (n.) — Italian for sauce</p>
+          </div>
+        </div>
+        <figcaption><span class="mono">Peek-over — geo-tomato behind the closing panel</span><br>The crop hides the shape’s ambiguity: you only see leaves and a rising curve, and the brain fills in the rest. The weakest mark becomes charming when it’s half-hidden.</figcaption>
+      </figure>
+      <figure class="tile tile--paper">
+        <div class="stove-row" aria-hidden="true">
+          <svg viewBox="0 0 240 200">
+            <circle cx="96" cy="44" r="7.5" fill="var(--color-viola-500)"/>
+            <circle cx="120" cy="26" r="6" fill="var(--color-viola-500)"/>
+            <circle cx="146" cy="42" r="7" fill="var(--color-viola-500)"/>
+            <path d="M52 86 L188 86 L188 128 A46 46 0 0 1 142 174 L98 174 A46 46 0 0 1 52 128 Z" fill="var(--color-ink)"/>
+            <path d="M52 98 A16 16 0 0 0 52 130 Z" fill="var(--color-ink)"/>
+            <path d="M188 98 A16 16 0 0 1 188 130 Z" fill="var(--color-ink)"/>
+            <rect x="46" y="66" width="148" height="15" rx="7.5" fill="var(--color-saffron)"/>
+            <circle cx="120" cy="54" r="9" fill="var(--color-saffron)"/>
+          </svg>
+        </div>
+        <hr class="peek-rule" style="border-top-width: 2px; border-color: var(--color-ink);">
+        <div style="display: grid; gap: var(--space-2xs); padding-top: var(--space-sm);">
+          <p class="statement" style="font-family: var(--font-display); font-weight: 600; font-size: var(--text-lg); letter-spacing: -0.015em; line-height: 1.2;">Start a conversation.</p>
+          <p class="mono">marc@sugoai.com · The pot sits on the rule like a stove</p>
+        </div>
+        <figcaption><span class="mono">On-the-line — geo-pot resting on the footer rule</span><br>The rule stops being a divider and becomes a surface. Cheapest personality trick in the set — one line of CSS once the mark exists.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ── In-context hero test ───────────────────────────────── -->
+  <section class="panel">
+    <header>
+      <p class="mono">In-context test</p>
+      <h2>Does it carry a hero?</h2>
+      <p>The E2 hero panel, abbreviated, with each assembly in the flood slot.</p>
+    </header>
+    <div style="display: grid; gap: var(--space-md);">
+      <div class="hero-mock">
+        <div class="hero-mock__copy">
+          <h3>Modern product development for companies that aren’t software companies.</h3>
+          <p>Internal tools, AI agents, and customer products — shipped with the discipline of a modern software company.</p>
+          <span class="chip" aria-hidden="true">Start a conversation</span>
+        </div>
+        <div class="hero-mock__art cw-a">
+          <svg viewBox="0 0 240 240" role="img" aria-label="Geo-tomato in the hero flood">
+            <circle cx="120" cy="146" r="90" fill="var(--gt-body)"/>
+            <path d="M120 92 L76 92 A44 44 0 0 1 120 48 Z" transform="rotate(-18 120 92)" fill="var(--gt-leaf)"/>
+            <path d="M120 92 L120 56 A36 36 0 0 1 156 92 Z" transform="rotate(14 120 92)" fill="var(--gt-leaf2)"/>
+            <path d="M113 42 L127 42 L120 72 Z" fill="var(--gt-leaf)"/>
+            <circle cx="86" cy="112" r="12" fill="var(--gt-glint)"/>
+          </svg>
+        </div>
+      </div>
+      <div class="hero-mock">
+        <div class="hero-mock__copy">
+          <h3>Modern product development for companies that aren’t software companies.</h3>
+          <p>Internal tools, AI agents, and customer products — shipped with the discipline of a modern software company.</p>
+          <span class="chip" aria-hidden="true">Start a conversation</span>
+        </div>
+        <div class="hero-mock__art pw-a">
+          <svg viewBox="0 0 240 200" role="img" aria-label="Geo-pot in the hero flood">
+            <circle cx="96" cy="44" r="7.5" fill="var(--gp-steam)"/>
+            <circle cx="120" cy="26" r="6" fill="var(--gp-steam)"/>
+            <circle cx="146" cy="42" r="7" fill="var(--gp-steam)"/>
+            <ellipse cx="120" cy="182" rx="86" ry="8" fill="var(--gp-shadow)"/>
+            <path d="M52 86 L188 86 L188 128 A46 46 0 0 1 142 174 L98 174 A46 46 0 0 1 52 128 Z" fill="var(--gp-body)"/>
+            <path d="M52 98 A16 16 0 0 0 52 130 Z" fill="var(--gp-body)"/>
+            <path d="M188 98 A16 16 0 0 1 188 130 Z" fill="var(--gp-body)"/>
+            <rect x="46" y="66" width="148" height="15" rx="7.5" fill="var(--gp-lid)"/>
+            <circle cx="120" cy="54" r="9" fill="var(--gp-lid)"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Notes ──────────────────────────────────────────────── -->
+  <section class="panel notes">
+    <header>
+      <p class="mono">Notes</p>
+      <h2>Read before choosing.</h2>
+    </header>
+    <ul>
+      <li><strong>The Simmer mark scales best.</strong> It has a designed reduction path (three curls → one curl → pan-glyph) and it pairs naturally with squared-radius carpentry — strokes and slab silhouette, no soft blobs. Favicon, wordmark neighbor, and footer sign-off in one asset.</li>
+      <li><strong>The geo-tomato needs red to be a tomato.</strong> In navy or saffron it’s a lovely fruit-form, not a tomato — the circle is too pure to identify itself. Use it only if the coral colorway (mark-scope, ≤2–3% viewport) is acceptable, or use it deliberately cropped (the peek), where ambiguity becomes charm.</li>
+      <li><strong>The geo-pot is the honest bird-equivalent.</strong> Its silhouette carries meaning with zero color dependence, it holds the hero, and it miniaturizes to section accents. If you want one geometric assembly in the system, it’s this one.</li>
+      <li><strong>The character pot answers “boring” without a rebrand.</strong> Bubbles, the leaning lid, and the falling basil add narrative (someone is cooking) inside the exact linework the hero already uses. Lowest risk, highest continuity.</li>
+      <li><strong>Memphis-drift warning.</strong> Flat primitives go generic fast when angles and radii are arbitrary. This lab keeps leaf rotations at ±14–18° and reuses two radii families; whichever direction wins should lock those numbers as tokens, the way colors already are.</li>
+      <li><strong>Recommendation:</strong> character pot in the hero · Simmer mark as logo/favicon/footer sign-off · peek placements for footer personality · geo-pot as the section-accent miniature. The geo-tomato retires to the peek slot, where it’s at its best.</li>
+    </ul>
+  </section>
+
+  <p class="mono" style="padding-block: var(--space-md) 0;">Internal artifact · not a site page · Sugo AI illustration lab</p>
+
+</main>
+</body>
+</html>

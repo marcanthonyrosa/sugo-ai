@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SUGO DEMO KIT — porting reference</title>
+<style>
+  body { font-family: ui-monospace, monospace; max-width: 60rem; margin: 2rem auto; padding: 0 1rem; line-height: 1.5; color: #222; background: #fafaf7; }
+  h1 { font-size: 1.4rem; } h2 { font-size: 1.1rem; margin-top: 2.5rem; border-top: 2px solid #222; padding-top: 1rem; }
+  textarea { width: 100%; font-family: ui-monospace, monospace; font-size: 12px; border: 1px solid #999; background: #fff; padding: 0.75rem; box-sizing: border-box; }
+  li { margin-block: 0.4rem; }
+  .note { background: #fbf1d9; padding: 0.75rem 1rem; border: 1px solid #b90; }
+</style>
+</head>
+<body>
+<h1>SUGO DEMO KIT — porting reference</h1>
+<p>This documents the demo kit installed in <strong>concept-1a-cobalt-gold.html</strong> (the reference implementation): a font-pack switcher (Native + 5 packs) and a hero-art toggle (pot | pixel-chunky | pixel-16bit), persisted across pages via <code>localStorage</code> (<code>sugo-demo-fontpack</code> / <code>sugo-demo-heroart</code>). Every injected block in 1A is delimited by <code>&lt;!-- SUGO-DEMO-KIT START --&gt;</code> … <code>&lt;!-- SUGO-DEMO-KIT END --&gt;</code> (HTML) and <code>/* SUGO-DEMO-KIT START */</code> … <code>/* SUGO-DEMO-KIT END */</code> (CSS). Strip those blocks at integration time. The blocks below are the exact payloads; a porting agent may also copy them straight out of 1A between the markers.</p>
+
+<div class="note"><strong>Porting model:</strong> the kit is three verbatim blocks (HEAD, CSS, PANEL+JS) plus one refactor pass (the target page's display styles must flow through the four tuning vars) plus per-page token mapping for the pixel art (checklist at the bottom).</div>
+
+<h2>1 · HEAD block — pre-paint restore + pack font faces</h2>
+<p>Insert immediately after the page's existing font <code>&lt;link&gt;</code>s. Dedupe: remove any <code>family=</code> / <code>f[]=</code> entries the page already loads (e.g. the butter page already loads cabinet-grotesk and switzer; the moss page already loads Bricolage and IBM Plex Sans).</p>
+<textarea rows="9" readonly>
+<!-- SUGO-DEMO-KIT START · pre-paint state restore + font-pack faces (strip before integration) -->
+<script>(function(){try{var f=localStorage.getItem("sugo-demo-fontpack");if(f&&/^[1-5]$/.test(f))document.documentElement.setAttribute("data-fontpack",f);var a=localStorage.getItem("sugo-demo-heroart");if(a==="pixel-chunky"||a==="pixel-16bit")document.documentElement.setAttribute("data-heroart",a);}catch(e){}})();</script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Schibsted+Grotesk:wght@500;700&family=Familjen+Grotesk:wght@500;700&family=Bricolage+Grotesque:wght@600;700&family=IBM+Plex+Sans:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,600&f[]=switzer@400,600&f[]=cabinet-grotesk@500,700&display=swap" rel="stylesheet">
+<!-- SUGO-DEMO-KIT END -->
+</textarea>
+<p>(The Google URL above includes Space Grotesk and the Fontshare URL includes General Sans for pages that don't already load them — 1A's own copy omits those two because they're native there.)</p>
+
+<h2>2 · Refactor pass — display styles must flow through tuning vars</h2>
+<p>Before the CSS block works, the target page needs four vars in <code>:root</code> and its display rules rewired to consume them. In 1A this meant:</p>
+<ul>
+  <li>Add to <code>:root</code>: <code>--display-tracking</code> (page's native display letter-spacing), <code>--display-lh</code> (native display line-height), <code>--display-weight</code> (native strong display weight, e.g. 700 — Fraunces pages use 600), <code>--display-weight-md</code> (native medium display weight, e.g. 500).</li>
+  <li><code>h1, h2, h3</code> rule: <code>line-height: var(--display-lh); letter-spacing: var(--display-tracking);</code></li>
+  <li>Every display-face rule with the strong weight → <code>font-weight: var(--display-weight)</code>. In the Panel Press pages that is: <code>.wordmark · .hero__title · .section-title · .evidence__body h2 · .manifesto__lines li · .foot__statement · .terms__card h2</code> (the manifesto li and foot__statement also take <code>letter-spacing: var(--display-tracking)</code>, and foot__statement takes <code>line-height: var(--display-lh)</code>).</li>
+  <li>Every display-face rule with the medium weight → <code>font-weight: var(--display-weight-md)</code>: <code>.hero__strip strong · .bucket h3 · .acc__trigger · .process__own .big · .manifesto__panel h2 · .terms__card dt</code>.</li>
+  <li>The page's mono/outlier face is NEVER switched by the kit.</li>
+</ul>
+
+<h2>3 · CSS block — font packs + pixel-art tokens + art states + panel</h2>
+<p>Insert before <code>&lt;/style&gt;</code>. The <code>--px-*</code> token values shown are 1A's navy-flood mapping — REMAP PER PAGE (checklist below). Native state = no <code>data-fontpack</code> attribute; headers stay ≤700 in every pack.</p>
+<textarea rows="46" readonly>
+/* SUGO-DEMO-KIT START — demo chrome: font packs + hero-art states + control panel.
+   Strip this block (and the matching HTML/JS blocks) before integration. */
+[data-fontpack="1"] { --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif; --font-body: "General Sans", ui-sans-serif, system-ui, sans-serif; --display-tracking: -0.02em; --display-lh: 1.08; --display-weight: 700; --display-weight-md: 500; }
+[data-fontpack="2"] { --font-display: "Schibsted Grotesk", ui-sans-serif, system-ui, sans-serif; --font-body: "Switzer", ui-sans-serif, system-ui, sans-serif; --display-tracking: -0.015em; --display-lh: 1.08; --display-weight: 700; --display-weight-md: 500; }
+[data-fontpack="3"] { --font-display: "Familjen Grotesk", ui-sans-serif, system-ui, sans-serif; --font-body: "General Sans", ui-sans-serif, system-ui, sans-serif; --display-tracking: -0.015em; --display-lh: 1.08; --display-weight: 700; --display-weight-md: 500; }
+[data-fontpack="4"] { --font-display: "Cabinet Grotesk", ui-sans-serif, system-ui, sans-serif; --font-body: "Switzer", ui-sans-serif, system-ui, sans-serif; --display-tracking: -0.02em; --display-lh: 1.08; --display-weight: 700; --display-weight-md: 500; }
+[data-fontpack="5"] { --font-display: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif; --font-body: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif; --display-tracking: -0.015em; --display-lh: 1.14; --display-weight: 700; --display-weight-md: 600; }
+
+/* Pixel-tomato tokens — REMAP PER PAGE (see porting checklist). 1A values shown (navy flood). */
+:root {
+  --px-body:  oklch(70% 0.12 30);  /* pomodoro coral — the page's ONLY red-family element, <=3% viewport */
+  --px-shade: oklch(52% 0.10 20);
+  --px-glint: oklch(90% 0.04 40);
+  --px-stem:  oklch(72% 0.09 145); /* light basil for dark floods; darken ~oklch(42% 0.06 150) on light floods */
+  --px-outline: var(--color-card); /* dark floods: light "sticker" outline; light floods: use the page's ink token */
+}
+
+.hero__art .art--chunky, .hero__art .art--16bit { display: none; }
+[data-heroart="pixel-chunky"] .hero__art .art--pot { display: none; }
+[data-heroart="pixel-16bit"] .hero__art .art--pot { display: none; }
+[data-heroart="pixel-chunky"] .hero__art .art--chunky { display: block; }
+[data-heroart="pixel-16bit"] .hero__art .art--16bit { display: block; }
+.hero__art svg.art--chunky, .hero__art svg.art--16bit { max-width: 300px; image-rendering: pixelated; }
+@media (max-width: 59.99rem) { .hero__art svg.art--chunky, .hero__art svg.art--16bit { max-width: 240px; } }
+
+.demokit { position: fixed; right: max(var(--space-md), env(safe-area-inset-right)); bottom: max(var(--space-md), env(safe-area-inset-bottom)); z-index: 400; display: grid; justify-items: end; gap: var(--space-xs); font-family: var(--font-outlier); }
+.demokit__chip, .demokit__btn { min-height: 44px; padding: 0 var(--space-sm); border: 2px solid var(--color-ink); border-radius: var(--radius-btn); background: var(--color-card); color: var(--color-ink); font-family: var(--font-outlier); font-size: 12px; letter-spacing: 0.06em; white-space: nowrap; cursor: pointer; }
+.demokit__chip { box-shadow: var(--shadow-stack); font-weight: 700; }
+.demokit__chip:hover, .demokit__btn:hover { background: var(--color-paper-2); }
+.demokit__chip:active, .demokit__btn:active { transform: translateY(1px); }
+.demokit__btn[aria-pressed="true"] { background: var(--color-ink); color: var(--color-paper); }
+.demokit__btn[aria-pressed="true"]:hover { background: var(--color-ink-2); }
+.demokit__panel { background: var(--color-card); border: 2px solid var(--color-ink); border-radius: var(--radius-panel); padding: var(--space-sm); display: grid; gap: var(--space-xs); max-width: min(92vw, 34rem); box-shadow: var(--shadow-stack); }
+.demokit__row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2xs); }
+.demokit__lab { font-size: 11px; letter-spacing: 0.1em; color: var(--color-muted); min-width: 4.5ch; }
+@media print { .demokit { display: none; } }
+/* SUGO-DEMO-KIT END */
+</textarea>
+<p>Pages whose token names differ (e.g. no <code>--shadow-stack</code>): map to that page's equivalents; the panel should always use the page's own card/ink/border language. Pages without a <code>--radius-panel</code>/<code>--radius-btn</code>: use their radii tokens.</p>
+
+<h2>4 · Hero-art SVGs</h2>
+<p>Add <code>class="art art--pot"</code> to the existing pot <code>&lt;svg&gt;</code>, then insert these two after it inside <code>.hero__art</code> (or that page's flood container). Both are hand-built rect grids — no external assets. The pot's steam animation is unaffected (it hides with the pot).</p>
+<textarea rows="24" readonly>
+<!-- SUGO-DEMO-KIT START · alternate hero art (pixel tomatoes, hand-built rect grids) -->
+<svg class="art art--chunky" viewBox="0 0 14 14" role="img" aria-label="A chunky pixel tomato — the Sugo mark">
+  <g shape-rendering="crispEdges">
+    <rect x="6" y="0" width="2" height="2" fill="var(--px-stem)"/>
+    <rect x="5" y="2" width="4" height="2" fill="var(--px-stem)"/>
+    <rect x="3" y="1" width="1" height="1" fill="var(--px-stem)"/>
+    <rect x="10" y="1" width="1" height="1" fill="var(--px-stem)"/>
+    <rect x="6" y="4" width="2" height="1" fill="var(--px-stem)"/>
+    <rect x="3" y="4" width="3" height="1" fill="var(--px-body)"/>
+    <rect x="8" y="4" width="3" height="1" fill="var(--px-body)"/>
+    <rect x="2" y="5" width="10" height="1" fill="var(--px-body)"/>
+    <rect x="1" y="6" width="12" height="4" fill="var(--px-body)"/>
+    <rect x="2" y="10" width="10" height="1" fill="var(--px-body)"/>
+    <rect x="3" y="11" width="8" height="1" fill="var(--px-body)"/>
+    <rect x="4" y="12" width="6" height="1" fill="var(--px-body)"/>
+    <rect x="4" y="5" width="1" height="1" fill="var(--color-card)"/>
+    <rect x="3" y="6" width="1" height="1" fill="var(--color-card)"/>
+  </g>
+</svg>
+</textarea>
+<textarea rows="42" readonly>
+<svg class="art art--16bit" viewBox="0 0 20 20" role="img" aria-label="A 16-bit pixel tomato">
+  <g shape-rendering="crispEdges">
+    <rect x="6" y="6" width="8" height="1" fill="var(--px-outline)"/>
+    <rect x="4" y="7" width="12" height="1" fill="var(--px-outline)"/>
+    <rect x="3" y="8" width="14" height="1" fill="var(--px-outline)"/>
+    <rect x="2" y="9" width="16" height="5" fill="var(--px-outline)"/>
+    <rect x="3" y="14" width="14" height="1" fill="var(--px-outline)"/>
+    <rect x="4" y="15" width="12" height="1" fill="var(--px-outline)"/>
+    <rect x="6" y="16" width="8" height="1" fill="var(--px-outline)"/>
+    <rect x="8" y="17" width="4" height="1" fill="var(--px-outline)"/>
+    <rect x="5" y="7" width="10" height="1" fill="var(--px-body)"/>
+    <rect x="4" y="8" width="12" height="1" fill="var(--px-body)"/>
+    <rect x="3" y="9" width="14" height="5" fill="var(--px-body)"/>
+    <rect x="4" y="14" width="12" height="1" fill="var(--px-body)"/>
+    <rect x="5" y="15" width="10" height="1" fill="var(--px-body)"/>
+    <rect x="7" y="16" width="6" height="1" fill="var(--px-body)"/>
+    <rect x="14" y="10" width="3" height="1" fill="var(--px-shade)"/>
+    <rect x="12" y="11" width="5" height="1" fill="var(--px-shade)"/>
+    <rect x="11" y="12" width="6" height="1" fill="var(--px-shade)"/>
+    <rect x="10" y="13" width="7" height="1" fill="var(--px-shade)"/>
+    <rect x="10" y="14" width="6" height="1" fill="var(--px-shade)"/>
+    <rect x="9" y="15" width="5" height="1" fill="var(--px-shade)"/>
+    <rect x="8" y="16" width="4" height="1" fill="var(--px-shade)"/>
+    <rect x="5" y="8" width="2" height="1" fill="var(--px-glint)"/>
+    <rect x="4" y="9" width="2" height="1" fill="var(--px-glint)"/>
+    <rect x="5" y="10" width="1" height="1" fill="var(--px-glint)"/>
+    <rect x="9" y="2" width="2" height="1" fill="var(--px-outline)"/>
+    <rect x="9" y="3" width="2" height="3" fill="var(--px-stem)"/>
+    <rect x="6" y="3" width="1" height="1" fill="var(--px-stem)"/>
+    <rect x="6" y="4" width="3" height="1" fill="var(--px-stem)"/>
+    <rect x="13" y="3" width="1" height="1" fill="var(--px-stem)"/>
+    <rect x="11" y="4" width="3" height="1" fill="var(--px-stem)"/>
+    <rect x="6" y="5" width="1" height="1" fill="var(--px-outline)"/>
+    <rect x="13" y="5" width="1" height="1" fill="var(--px-outline)"/>
+  </g>
+</svg>
+<!-- SUGO-DEMO-KIT END -->
+</textarea>
+
+<h2>5 · Control panel HTML + JS</h2>
+<p>Insert before <code>&lt;/body&gt;</code>, after the page's existing script.</p>
+<textarea rows="26" readonly>
+<!-- SUGO-DEMO-KIT START · control panel (demo chrome — strip before integration) -->
+<div class="demokit">
+  <div class="demokit__panel" id="demokit-panel" hidden>
+    <div class="demokit__row" role="group" aria-label="Type pack">
+      <span class="demokit__lab" aria-hidden="true">TYPE</span>
+      <button class="demokit__btn" type="button" data-kit-pack="" aria-pressed="true">Native</button>
+      <button class="demokit__btn" type="button" data-kit-pack="1" aria-pressed="false">1 Space</button>
+      <button class="demokit__btn" type="button" data-kit-pack="2" aria-pressed="false">2 Schibsted</button>
+      <button class="demokit__btn" type="button" data-kit-pack="3" aria-pressed="false">3 Familjen</button>
+      <button class="demokit__btn" type="button" data-kit-pack="4" aria-pressed="false">4 Cabinet</button>
+      <button class="demokit__btn" type="button" data-kit-pack="5" aria-pressed="false">5 Bricolage</button>
+    </div>
+    <div class="demokit__row" role="group" aria-label="Hero art">
+      <span class="demokit__lab" aria-hidden="true">ART</span>
+      <button class="demokit__btn" type="button" data-kit-art="pot" aria-pressed="true">Pot</button>
+      <button class="demokit__btn" type="button" data-kit-art="pixel-chunky" aria-pressed="false">Chunky</button>
+      <button class="demokit__btn" type="button" data-kit-art="pixel-16bit" aria-pressed="false">16-bit</button>
+    </div>
+  </div>
+  <button class="demokit__chip" type="button" aria-expanded="false" aria-controls="demokit-panel">DEMO</button>
+</div>
+</textarea>
+<textarea rows="34" readonly>
+<script>
+(function () {
+  var root = document.documentElement;
+  var chip = document.querySelector('.demokit__chip');
+  var panel = document.getElementById('demokit-panel');
+  function store(key, val) { try { val ? localStorage.setItem(key, val) : localStorage.removeItem(key); } catch (e) {} }
+  function sync() {
+    var fp = root.getAttribute('data-fontpack') || '';
+    document.querySelectorAll('[data-kit-pack]').forEach(function (b) {
+      b.setAttribute('aria-pressed', String(b.getAttribute('data-kit-pack') === fp));
+    });
+    var ha = root.getAttribute('data-heroart') || 'pot';
+    document.querySelectorAll('[data-kit-art]').forEach(function (b) {
+      b.setAttribute('aria-pressed', String(b.getAttribute('data-kit-art') === ha));
+    });
+  }
+  document.querySelectorAll('[data-kit-pack]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var v = b.getAttribute('data-kit-pack');
+      v ? root.setAttribute('data-fontpack', v) : root.removeAttribute('data-fontpack');
+      store('sugo-demo-fontpack', v);
+      sync();
+    });
+  });
+  document.querySelectorAll('[data-kit-art]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var v = b.getAttribute('data-kit-art');
+      v === 'pot' ? root.removeAttribute('data-heroart') : root.setAttribute('data-heroart', v);
+      store('sugo-demo-heroart', v === 'pot' ? '' : v);
+      sync();
+    });
+  });
+  chip.addEventListener('click', function () {
+    var open = chip.getAttribute('aria-expanded') === 'true';
+    chip.setAttribute('aria-expanded', String(!open));
+    panel.hidden = open;
+  });
+  sync();
+})();
+</script>
+<!-- SUGO-DEMO-KIT END -->
+</textarea>
+
+<h2>6 · PORTING CHECKLIST (per page)</h2>
+<ol>
+  <li><strong>Keep the page's native fonts as the "Native" state.</strong> The kit never changes the mono/outlier face.</li>
+  <li><strong>Dedupe font links.</strong> Remove pack faces the page already loads from the kit's two link tags (e.g. butter page: cabinet-grotesk + switzer already present; moss page: Bricolage + IBM Plex Sans already present; viola pages: switzer already present).</li>
+  <li><strong>Run the refactor pass (section 2)</strong> with that page's native values as the <code>:root</code> defaults (e.g. viola pages: <code>--display-weight: 600; --display-weight-md: 500</code> for Fraunces; moss page: <code>--display-lh: 1.14; --display-weight-md: 600</code>).</li>
+  <li><strong>Remap the <code>--px-*</code> tokens to the page's palette and verify art-vs-flood contrast ≥3:1:</strong>
+    <ul>
+      <li><em>1B butter flood (light):</em> coral body works on butter — verify; stem DARK green (~oklch(42% 0.06 150)); 16-bit outline = the page's ink token (classic look).</li>
+      <li><em>1C moss flood (dark):</em> coral vs moss ≈ check ~3:1, lighten body a step if short; stem must NOT be green-on-green — use the page's gold or cream; outline = cream/card.</li>
+      <li><em>1D indigo flood (dark):</em> coral vs indigo — verify hue clash by eye at demo; stem light basil; outline = card. Flag if coral-on-indigo vibrates.</li>
+      <li><em>1E viola-900 flood (dark):</em> coral vs deep viola ≈3.5:1 — verify; stem light basil; outline = card/cream.</li>
+      <li><em>1E2 lavender flood (light):</em> coral vs lavender — likely low ΔL, darken body toward pomodoro-ink if needed; stem dark green; outline = the page's navy ink.</li>
+    </ul>
+  </li>
+  <li><strong>Red strategy (stamp-note it):</strong> the tomato is the ONLY red-family element on the page (mark-scope license, like Dodonut's bird); pomodoro coral, never pure red; footprint ≤3% of viewport.</li>
+  <li><strong>Verify:</strong> all five packs render headers ≤700 with no clickable-text wrap at 320–1920px; localStorage round-trips across pages; no FOUC (head script BEFORE stylesheets); no horizontal scroll; kit hidden in print; gate 58 (new colors only as tokens); update the page's stamp comment with a SUGO-DEMO-KIT line.</li>
+</ol>
+</body>
+</html>
