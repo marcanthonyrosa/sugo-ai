@@ -1,95 +1,103 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+const LINKS = [
+  { href: "/how-we-work", label: "How we work" },
+  // { href: "/writing", label: "Writing" }, // Re-enable when essays are written
+  { href: "/about", label: "About" },
+] as const;
+
 export function Nav() {
   const pathname = usePathname();
-  const [mobileOpen, setMobileOpen] = useState(false);
-
-  if (pathname === "/") {
-    return null;
-  }
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    document.body.classList.toggle("no-scroll", mobileOpen);
-    return () => document.body.classList.remove("no-scroll");
-  }, [mobileOpen]);
+    setOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [open]);
+
+  const current = (href: string) =>
+    pathname === href || pathname.startsWith(`${href}/`) ? "page" : undefined;
 
   return (
-    <>
-      <nav className="nav" aria-label="Primary">
-        <Link className="nav__wordmark" href="/">
-          <Image
-            src="/sugo-logo.png"
-            alt=""
-            width={22}
-            height={22}
-            className="nav__logo"
-            aria-hidden="true"
-          />
-          <span>Sugo AI</span>
-        </Link>
-        <div className="nav__links">
-          <Link
-            className="nav__link"
-            href="/how-we-work"
-            aria-current={pathname === "/how-we-work" ? "page" : undefined}
-          >
-            How we work
+    <header className="nav">
+      <div className="wrap">
+        <div className="nav__row">
+          <Link className="wordmark" href="/">
+            Sugo AI
+            <span className="navmark" aria-hidden="true">
+              <Image
+                src="/brand/tomato-a.png"
+                alt=""
+                width={372}
+                height={398}
+                priority
+              />
+            </span>
           </Link>
-          <Link
-            className="nav__link"
-            href="/about"
-            aria-current={pathname === "/about" ? "page" : undefined}
-          >
-            About
-          </Link>
-          <Link
-            className="nav__link"
-            href="/contact"
-            aria-current={pathname === "/contact" ? "page" : undefined}
-          >
-            Contact
-          </Link>
-        </div>
-        <button
-          className="nav__menu-toggle"
-          onClick={() => setMobileOpen(true)}
-          aria-label="Open menu"
-        >
-          Menu
-        </button>
-      </nav>
-
-      {mobileOpen && (
-        <div className="nav-overlay" role="dialog" aria-label="Navigation">
+          <ul className="nav__links">
+            {LINKS.map((l) => (
+              <li key={l.href}>
+                <Link
+                  className="nav__link"
+                  href={l.href}
+                  aria-current={current(l.href)}
+                >
+                  {l.label}
+                </Link>
+              </li>
+            ))}
+            <li>
+              <Link className="btn btn--primary nav__cta" href="/contact">
+                Contact us
+              </Link>
+            </li>
+          </ul>
           <button
-            className="nav-overlay__close"
-            onClick={() => setMobileOpen(false)}
-            aria-label="Close menu"
+            className="btn btn--ghost nav__toggle"
+            type="button"
+            aria-expanded={open}
+            aria-controls="nav-drawer"
+            onClick={() => setOpen((v) => !v)}
           >
-            Close
+            Menu
           </button>
-          {[
-            { href: "/", label: "Home" },
-            { href: "/how-we-work", label: "How we work" },
-            { href: "/about", label: "About" },
-            { href: "/contact", label: "Contact" },
-          ].map(({ href, label }) => (
-            <Link
-              key={href}
-              className="nav-overlay__link"
-              href={href}
-              onClick={() => setMobileOpen(false)}
-            >
-              {label}
-            </Link>
-          ))}
         </div>
-      )}
-    </>
+        <div className={`nav__drawer${open ? " is-open" : ""}`} id="nav-drawer">
+          <div>
+            <ul>
+              {LINKS.map((l) => (
+                <li key={l.href}>
+                  <Link
+                    className="nav__link"
+                    href={l.href}
+                    aria-current={current(l.href)}
+                  >
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
+              <li>
+                <Link className="btn btn--primary" href="/contact">
+                  Contact us
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </header>
   );
 }

@@ -50,40 +50,40 @@
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
 
-  /* --- Sugo AI · Viola palette --- */
-  --color-navy: #112240;
-  --color-paper: #F7F4EA;
-  --color-cream: #F5EFD6;
+  /* --- Sugo AI · locked "Viola Light" palette (see /design.md) --- */
+  --color-navy: oklch(24% 0.065 265);
+  --color-paper: oklch(96% 0.014 95);
+  --color-cream: oklch(94% 0.020 95);
   --color-sage: #4A7C59;
   --color-slate: #8FA3B1;
-  --color-offwhite: #FAFAF7;
+  --color-offwhite: oklch(98.5% 0.008 100);
 
   /* Ink scale */
-  --color-ink-900: #112240;
-  --color-ink-700: #2A3A56;
-  --color-ink-500: #4E5C74;
+  --color-ink-900: oklch(24% 0.065 265);
+  --color-ink-700: oklch(34% 0.055 262);
+  --color-ink-500: oklch(46% 0.04 262);
   --color-ink-300: #8A93A4;
   --color-ink-200: #B5BCC8;
-  --color-ink-100: #DCE0E8;
+  --color-ink-100: oklch(90% 0.012 258);
 
   /* Surface scale */
-  --color-surface-0: #FAFAF7;
-  --color-surface-1: #F7F4EA;
-  --color-surface-2: #F0ECDC;
-  --color-surface-3: #FDFBF4;
-  --color-surface-ink: #112240;
+  --color-surface-0: oklch(98.5% 0.008 100);
+  --color-surface-1: oklch(96% 0.014 95);
+  --color-surface-2: oklch(94% 0.020 95);
+  --color-surface-3: oklch(98.5% 0.008 100);
+  --color-surface-ink: oklch(24% 0.065 265);
 
   /* Viola accent */
-  --color-viola-50: #F5EDFA;
-  --color-viola: #E6D4F0;
-  --color-viola-500: #B59AD4;
-  --color-viola-900: #4A2E6B;
+  --color-viola-50: oklch(95.5% 0.015 310);
+  --color-viola: oklch(89% 0.04 310);
+  --color-viola-500: oklch(72% 0.09 305);
+  --color-viola-900: oklch(55% 0.12 308);
 
   /* Decorative garnishes */
-  --color-pomodoro: #E8806B;
+  --color-pomodoro: oklch(70% 0.12 30);
   --color-pomodoro-50: #FBEBE4;
   --color-pomodoro-ink: #8a3a27;
-  --color-saffron: #E8C26B;
+  --color-saffron: oklch(83% 0.11 85);
   --color-saffron-50: #FBF1D9;
   --color-basil: #C4D4B9;
   --color-basil-50: #ECF1E7;
@@ -91,16 +91,16 @@
   --color-sky: #CAD5DE;
   --color-sky-50: #EBEFF3;
   --color-sky-ink: #3b4c5a;
-  --color-blush: #EAD0C8;
+  --color-blush: oklch(88% 0.035 40);
 
   /* Borders */
-  --color-rule: rgba(17, 34, 64, 0.10);
+  --color-rule: oklch(90% 0.012 258);
   --color-rule-soft: rgba(17, 34, 64, 0.06);
   --color-rule-strong: rgba(17, 34, 64, 0.18);
 
-  /* Sugo AI fonts */
-  --font-sans: var(--font-switzer), 'Switzer', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
-  --font-serif: var(--font-fraunces), 'Fraunces', Georgia, serif;
+  /* Sugo AI fonts (locked: display Red Hat · body General Sans · mono JetBrains) */
+  --font-sans: 'General Sans', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  --font-serif: var(--font-redhat), 'Red Hat Display', ui-sans-serif, sans-serif;
   --font-mono: var(--font-jb-mono), 'JetBrains Mono', ui-monospace, 'SF Mono', monospace;
 }
 
@@ -233,83 +233,7 @@
   body.no-scroll { overflow: hidden; }
 }
 
-/* ==========================================================================
-   LAYOUT
-   ========================================================================== */
-
-.wrap { max-width: 1180px; margin: 0 auto; padding: 0 40px; }
-@media (max-width: 767px) { .wrap { padding: 0 22px; } }
-
-/* ==========================================================================
-   ARCHETYPE A · NAV (N9)
-   ========================================================================== */
-
-.nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 80;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 22px 40px;
-  background: rgba(247, 244, 234, 0.85);
-  -webkit-backdrop-filter: blur(10px);
-          backdrop-filter: blur(10px);
-}
-.nav__wordmark {
-  display: inline-flex; align-items: center; gap: 10px;
-  font-family: var(--font-serif); font-size: 21px;
-  color: var(--color-ink-900);
-}
-.nav__dot {
-  width: 22px; height: 22px; border-radius: 6px;
-  background: linear-gradient(135deg, var(--color-pomodoro) 0%, var(--color-saffron) 100%);
-  flex-shrink: 0;
-}
-.nav__logo {
-  width: 22px; height: 22px;
-  flex-shrink: 0;
-}
-.nav__links { display: flex; gap: 28px; }
-.nav__link {
-  font-size: 14px; font-weight: 500; color: var(--color-ink-500);
-  transition: color 160ms var(--ease-out);
-}
-.nav__link:hover, .nav__link[aria-current="page"] { color: var(--color-ink-900); }
-.nav__menu-toggle {
-  display: none;
-  font-family: var(--font-sans); font-size: 14px; font-weight: 500;
-  color: var(--color-ink-500);
-  background: none; border: none; padding: 0; cursor: pointer;
-  transition: color 160ms var(--ease-out);
-}
-.nav__menu-toggle:hover { color: var(--color-ink-900); }
-@media (max-width: 640px) {
-  .nav { padding: 18px 22px; }
-  .nav__links { display: none; }
-  .nav__menu-toggle { display: block; }
-}
-
-/* Mobile nav overlay */
-.nav-overlay {
-  position: fixed; inset: 0; z-index: 90;
-  background: var(--color-surface-1);
-  display: flex; flex-direction: column;
-  padding: 96px 32px 48px;
-  gap: 8px;
-}
-.nav-overlay__close {
-  position: absolute; top: 20px; right: 22px;
-  font-family: var(--font-sans); font-size: 14px; font-weight: 500;
-  color: var(--color-ink-500);
-  background: none; border: none; cursor: pointer;
-  transition: color 160ms var(--ease-out);
-}
-.nav-overlay__close:hover { color: var(--color-ink-900); }
-.nav-overlay__link {
-  font-family: var(--font-serif);
-  font-size: clamp(36px, 10vw, 52px);
-  font-weight: 400;
-  line-height: 1.15;
-  letter-spacing: -0.015em;
-  color: var(--color-ink-900);
-}
+/* [removed — replaced by site.css locked chrome: old .wrap + ARCHETYPE A nav/overlay] */
 
 /* ==========================================================================
    BUTTONS & LINKS
@@ -1317,71 +1241,7 @@
   .next-step__grid { grid-template-columns: minmax(0, 1fr); gap: 40px; }
 }
 
-/* ==========================================================================
-   ARCHETYPE H · FOOTER (indexed)
-   ========================================================================== */
-
-.footer {
-  background: var(--color-surface-2);
-  padding: 72px 0 56px;
-}
-.footer__grid {
-  display: grid;
-  grid-template-columns: 1.4fr auto auto;
-  gap: 64px;
-}
-.footer__brand-row {
-  display: flex; align-items: center; gap: 10px;
-  margin-bottom: 16px;
-}
-.footer__brand-dot {
-  width: 22px; height: 22px; border-radius: 6px;
-  background: linear-gradient(135deg, var(--color-pomodoro) 0%, var(--color-saffron) 100%);
-  flex-shrink: 0;
-}
-.footer__brand-logo {
-  width: 22px; height: 22px;
-  flex-shrink: 0;
-}
-.footer__brand-name {
-  font-family: var(--font-serif); font-size: 19px;
-  color: var(--color-ink-900);
-}
-.footer__tagline {
-  font-size: 14px; color: var(--color-ink-500);
-  max-width: 30ch; line-height: 1.5;
-}
-.footer__col-label {
-  font-family: var(--font-sans);
-  font-size: 11px; font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--color-ink-500);
-  margin-bottom: 16px;
-}
-.footer__col-links { display: flex; flex-direction: column; gap: 10px; }
-.footer__col-links a, .footer__col-links span {
-  font-size: 14px; color: var(--color-ink-700);
-  transition: color 160ms var(--ease-out);
-}
-.footer__col-links a:hover { color: var(--color-ink-900); }
-.footer__bottom {
-  display: flex; justify-content: space-between; align-items: center;
-  gap: 24px; flex-wrap: wrap;
-  margin-top: 56px; padding-top: 24px;
-  border-top: 1px solid var(--color-rule-soft);
-}
-.footer__bottom span {
-  font-family: var(--font-mono);
-  font-size: 11px; letter-spacing: 0.04em;
-  color: var(--color-ink-300);
-}
-@media (max-width: 900px) {
-  .footer__grid { grid-template-columns: 1fr 1fr; gap: 40px; }
-}
-@media (max-width: 600px) {
-  .footer__grid { grid-template-columns: 1fr; gap: 32px; }
-}
+/* [removed — replaced by site.css locked chrome: old .footer__* block] */
 
 /* ==========================================================================
    ENTRANCE MOTION (one orchestrated, on load)

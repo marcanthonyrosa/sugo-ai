@@ -1,41 +1,59 @@
 import Image from "next/image";
 import Link from "next/link";
 
-export function Footer() {
+function MetaRow() {
   return (
-    <footer className="footer">
+    <div className="foot__meta">
+      <Link className="wordmark" href="/">
+        Sugo AI
+      </Link>
+      <span className="foot__brandmark" aria-hidden="true">
+        <Image src="/brand/tomato-a.png" alt="" width={372} height={398} />
+      </span>
+      <Link href="/how-we-work">How we work</Link>
+      {/* <Link href="/writing">Writing</Link> — re-enable when essays are written */}
+      <Link href="/about">About</Link>
+      <Link href="/contact">Contact</Link>
+      <span>&copy; 2026 Sugo Product Company, LLC d/b/a Sugo AI</span>
+      <span className="foot__note">
+        sugo (n.) — Italian for sauce. The good ones are made slowly, with real
+        ingredients.
+      </span>
+    </div>
+  );
+}
+
+export function Footer({ variant }: { variant?: "compact" }) {
+  if (variant === "compact") {
+    return (
+      <footer className="foot">
+        <div className="wrap">
+          <MetaRow />
+        </div>
+      </footer>
+    );
+  }
+
+  return (
+    <footer className="foot">
       <div className="wrap">
-        <div className="footer__grid">
-          <div>
-            <div className="footer__brand-row">
-              <Image src="/sugo-logo.png" alt="" width={22} height={22} className="footer__brand-logo" aria-hidden="true" />
-              <span className="footer__brand-name">Sugo AI</span>
-            </div>
-            <p className="footer__tagline">
-              Where AI strategy becomes working software. A small firm, built
-              slowly.
-            </p>
-          </div>
-          <div>
-            <div className="footer__col-label">Practice</div>
-            <div className="footer__col-links">
-              <Link href="/how-we-work">How we work</Link>
-              <Link href="/about">About</Link>
-              <Link href="/contact">Contact</Link>
-            </div>
-          </div>
-          <div>
-            <div className="footer__col-label">Connect</div>
-            <div className="footer__col-links">
-              <a href="mailto:marc@sugoai.com">marc@sugoai.com</a>
-              <span>Houston, TX</span>
-            </div>
-          </div>
+        <p className="foot__statement">
+          If the software matters, the product work should too.
+        </p>
+        <p className="foot__body">
+          Sugo AI helps traditional businesses build internal tools,
+          AI&nbsp;agents, and customer products with more rigor, better taste,
+          and end-to-end ownership.
+        </p>
+        <div className="foot__actionrow">
+          <Link className="btn btn--primary" href="/contact">
+            Start a conversation
+          </Link>
+          <span className="foot__art" aria-hidden="true">
+            <Image src="/brand/tomato-a.png" alt="" width={372} height={398} />
+          </span>
         </div>
-        <div className="footer__bottom">
-          <span>&copy; 2026 Sugo Product Company, LLC</span>
-          <span>Small firm, built slowly.</span>
-        </div>
+        <MetaRow />
       </div>
     </footer>
   );

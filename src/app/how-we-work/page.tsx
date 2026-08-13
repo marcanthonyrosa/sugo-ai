@@ -1,256 +1,269 @@
-import { NextStep } from "@/components/layout/NextStep";
+import type { CSSProperties } from "react";
+import type { Metadata } from "next";
 import { Footer } from "@/components/layout/Footer";
+import { Faq } from "@/components/how-we-work/Faq";
+import "../pages-core.css";
+
+export const metadata: Metadata = {
+  title: "Sugo AI — How we work",
+  description:
+    "How Sugo AI works from discovery through production rollout for traditional businesses building serious software.",
+};
+
+const stagger = (i: number) => ({ "--i": i }) as CSSProperties;
+
+type Stage = {
+  num: string;
+  title: string;
+  body: string;
+  tickets: [string, string, string];
+};
+
+const STAGES: Stage[] = [
+  {
+    num: "01",
+    title: "Discovery",
+    body: "We start by getting close to the work. That means sitting with the people inside the workflow, tracing where time, judgment, and money are leaking, and deciding which problem to build for.",
+    tickets: [
+      "A problem to build for",
+      "A clear operating constraint",
+      "A first decision on where to start",
+    ],
+  },
+  {
+    num: "02",
+    title: "Workflow mapping",
+    body: "Once the pain is clear, we map the workflow around it. We look at handoffs, approvals, edge cases, and dependencies so the product fits the business, not the meeting-room version of it.",
+    tickets: [
+      "A working map of the flow",
+      "The points of friction",
+      "A product shape that fits the business",
+    ],
+  },
+  {
+    num: "03",
+    title: "Product design",
+    body: "Design starts from the conditions the software has to survive in. The goal is not to impress a demo room; it is to make something clear enough for staff to use, trustworthy enough to adopt, and durable enough for regulated, operationally complex environments.",
+    tickets: [
+      "A clear user path",
+      "Interfaces built for real staff",
+      "Design choices shaped by constraints",
+    ],
+  },
+  {
+    num: "04",
+    title: "Engineering through production",
+    body: "We do not stop at concepts, specs, or handoff files. We stay responsible through implementation, work directly in the product, coordinate with internal teams, and carry the software into production.",
+    tickets: [
+      "Code in the production system",
+      "Coordination with internal teams",
+      "Ownership through launch",
+    ],
+  },
+  {
+    num: "05",
+    title: "Iteration",
+    body: "Version one is not the end of the work. We watch how people use it, fix what is unclear, and make the next product decisions from adoption, not theory.",
+    tickets: [
+      "Feedback in use",
+      "A stronger second version",
+      "Iteration tied to real use",
+    ],
+  },
+];
+
+const AVOIDED: Array<{ term: string; gloss: string }> = [
+  {
+    term: "Production readiness",
+    gloss: "The work required to make the product dependable outside a demo.",
+  },
+  {
+    term: "Accessibility",
+    gloss: "Making the software usable by the people who need it.",
+  },
+  {
+    term: "Implementation detail",
+    gloss:
+      "The unglamorous product and engineering decisions that determine whether the thing works.",
+  },
+  {
+    term: "Internal coordination",
+    gloss:
+      "Getting design, engineering, security, IT, and operators aligned around the same build.",
+  },
+  {
+    term: "Real rollout",
+    gloss:
+      "Putting the product into use inside the business, not just announcing that it exists.",
+  },
+];
+
+const SHAPES: Array<{ variant: string; title: string; body: string }> = [
+  {
+    variant: "shape--first",
+    title: "A first product",
+    body: "This fits when the business knows something important should exist, but the first version is still unclear. We define the product, cut the scope, and carry it through to something usable.",
+  },
+  {
+    variant: "shape--embed",
+    title: "An embedded build",
+    body: "This fits when the need is already clear and the business wants a small, senior team working close to operators and internal stakeholders. We plug into the work, not around it, and stay accountable for what ships.",
+  },
+  {
+    variant: "shape--pilot",
+    title: "Pilot to production",
+    body: "This fits when something has already been explored, demoed, or half-built, but is still stuck before production. We close the gap between a promising idea and software the business can run on.",
+  },
+];
+
+const ASKS = [
+  "Access to the operators who know where the work breaks down",
+  "A real decision-maker who can help keep the work moving",
+  "Honesty about the constraints, systems, and politics around the product",
+  "A willingness to ship, learn, and adjust",
+];
 
 export default function HowWeWorkPage() {
   return (
-    <main>
-      {/* THESIS (inner) */}
-      <section className="thesis thesis--inner">
-        <div className="wrap">
-          <h1 className="thesis__lede fade-in">
-            Small scope. Senior attention.{" "}
-            <span className="accent">Fast cycles.</span>
-          </h1>
-          <div className="thesis__byline fade-in fade-in-2">
-            <span className="thesis__byline-rule" aria-hidden="true" />
-            <span>How an engagement actually runs, end to end.</span>
+    <>
+      <main id="main">
+        {/* Page hero */}
+        <section className="pagehero">
+          <div className="wrap">
+            <h1 className="reveal" style={stagger(0)}>
+              We run like a software company. That’s where we come from.
+            </h1>
+            <p className="lede reveal" style={stagger(1)}>
+              Traditional businesses have strong operators, real constraints,
+              and deep domain knowledge. What they often do not have is a
+              product-development system that turns those realities into
+              software that ships, gets adopted, and holds up in production.
+            </p>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* ARCHETYPE F · NUMBERED CHAPTERS */}
-      <section className="phases">
-        <div className="wrap">
-          {/* Phase 01 */}
-          <div className="phase">
-            <div className="phase__index">
-              <span className="phase__num">01</span>
-              <span className="phase__when">2&ndash;3 weeks</span>
-            </div>
-            <div className="phase__body">
-              <h2 className="phase__name">Opportunity Audit</h2>
-              <p className="phase__lede">
-                Sort signal from noise. Find the one painful workflow or one
-                promising feature worth shipping first.
-              </p>
-              <p>
-                Most teams arrive with five candidate use cases and no honest
-                ranking. The audit puts each on the table &mdash; workflow fit,
-                integration depth, last-mile owner, expected hours saved or
-                revenue moved &mdash; and produces a short written assessment.
-              </p>
-              <p>
-                No deck. No 40-page deliverable. A ranked list, a
-                recommendation, and an honest read on whether Sugo is the right
-                partner for the build that follows.
-              </p>
-              <div className="phase__deliverables">
-                <div>
-                  <div className="phase__deliverable-label">What you get</div>
-                  <div className="phase__deliverable-value">
-                    Ranked use cases &middot; written recommendation &middot;
-                    scoped pilot proposal
-                  </div>
-                </div>
-                <div>
-                  <div className="phase__deliverable-label">Good fit when</div>
-                  <div className="phase__deliverable-value">
-                    AI energy is high, clarity is low, and the org needs to pick.
-                  </div>
-                </div>
+        {/* The five stages */}
+        <section className="stages" aria-labelledby="stages-title">
+          <div className="wrap">
+            <h2 className="stages__title" id="stages-title">
+              The shape of an engagement.
+            </h2>
+          </div>
+
+          {STAGES.map((s) => (
+            <article className="stage" key={s.num}>
+              <div className="wrap">
+                <span className="stage__num" aria-hidden="true">
+                  {s.num}
+                </span>
+                <h3>{s.title}</h3>
+                <p className="stage__body">{s.body}</p>
+                <p className="stage__label">What you get</p>
+                <ul className="tickets">
+                  {s.tickets.map((t) => (
+                    <li className="ticket" key={t}>
+                      {t}
+                    </li>
+                  ))}
+                </ul>
               </div>
+            </article>
+          ))}
+        </section>
+
+        {/* Full lifecycle — navy band */}
+        <section className="own" aria-labelledby="own-title">
+          <div className="wrap">
+            <div className="own__panel on-flood">
+              <h2 id="own-title">We own the full product lifecycle.</h2>
+              <p className="own__intro">
+                We do not stop at recommendations, specs, or prototypes. We
+                stay close to the work until the product is live, stable,
+                usable, and working inside the real constraints of the business
+                — including the parts many firms avoid:
+              </p>
+              <ul className="own__list">
+                {AVOIDED.map((item) => (
+                  <li key={item.term}>
+                    <strong>{item.term}</strong> <span>{item.gloss}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
+        </section>
 
-          {/* Phase 02 */}
-          <div className="phase">
-            <div className="phase__index">
-              <span className="phase__num">02</span>
-              <span className="phase__when">6&ndash;12 weeks</span>
-            </div>
-            <div className="phase__body">
-              <h2 className="phase__name">Operations Build</h2>
-              <p className="phase__lede">
-                Agents inside the business. One workflow, one owner, one outcome
-                metric.
-              </p>
-              <p>
-                Two weeks of paired sessions with the team that owns the
-                workflow. A scoped agent or integration that handles the manual
-                work, ships in production, and is measured against the
-                hours-saved baseline established in the audit.
-              </p>
-              <p>
-                Not a platform. Not a roadmap. A working piece of software your
-                operations lead uses on Monday.
-              </p>
-              <div className="phase__deliverables">
-                <div>
-                  <div className="phase__deliverable-label">What ships</div>
-                  <div className="phase__deliverable-value">
-                    A production agent or integration &middot; monitoring
-                    &middot; handoff documentation
-                  </div>
-                </div>
-                <div>
-                  <div className="phase__deliverable-label">Good fit when</div>
-                  <div className="phase__deliverable-value">
-                    There&rsquo;s a workflow with obvious waste and an owner
-                    who&rsquo;ll keep it.
-                  </div>
-                </div>
-              </div>
+        {/* Engagement shapes */}
+        <section className="shapes" aria-labelledby="shapes-title">
+          <div className="wrap">
+            <h2 className="section-title" id="shapes-title">
+              How engagements are shaped.
+            </h2>
+            <div className="shapes__grid">
+              {SHAPES.map((s) => (
+                <article className={`shape ${s.variant}`} key={s.title}>
+                  <h3>{s.title}</h3>
+                  <p>{s.body}</p>
+                </article>
+              ))}
             </div>
           </div>
+        </section>
 
-          {/* Phase 03 */}
-          <div className="phase">
-            <div className="phase__index">
-              <span className="phase__num">03</span>
-              <span className="phase__when">8&ndash;16 weeks</span>
-            </div>
-            <div className="phase__body">
-              <h2 className="phase__name">Product Build</h2>
-              <p className="phase__lede">
-                AI-native features your customers feel. Discovery through
-                launch, measured against real outcomes.
-              </p>
-              <p>
-                Embedded with the product and engineering team. The wedge is
-                shaped, instrumented, shipped behind a flag, and measured. Sugo
-                stays close enough to make the trade-offs that decide whether
-                the feature drives usage or just shipped.
-              </p>
-              <p>
-                The handoff is a launched feature with an outcome dashboard your
-                team owns &mdash; and a written brief on what to build next.
-              </p>
-              <div className="phase__deliverables">
-                <div>
-                  <div className="phase__deliverable-label">What ships</div>
-                  <div className="phase__deliverable-value">
-                    A launched feature &middot; outcome instrumentation &middot;
-                    next-step recommendations
+        {/* What we ask of you */}
+        <section className="ask" aria-labelledby="ask-title">
+          <div className="wrap">
+            <h2 className="section-title" id="ask-title">
+              What we ask of you.
+            </h2>
+            <ol>
+              {ASKS.map((a) => (
+                <li key={a}>
+                  <div>
+                    <strong>{a}</strong>
                   </div>
-                </div>
-                <div>
-                  <div className="phase__deliverable-label">Good fit when</div>
-                  <div className="phase__deliverable-value">
-                    A real customer job needs an AI wedge &mdash; not a novelty
-                    bolt-on.
-                  </div>
-                </div>
-              </div>
-            </div>
+                </li>
+              ))}
+            </ol>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* PRINCIPLES */}
-      <section className="principles">
-        <div className="wrap">
-          <h2 className="principles__h">How I tend to work.</h2>
-          <div className="principles__list">
-            <div>
-              <h3 className="principle__name">Software before ceremony.</h3>
-              <p className="principle__body">
-                The deliverable is working code in production, not a deck about
-                working code. Frameworks and templates are tools, not artifacts.
+        {/* Why pilots stall — compact */}
+        <section className="stall" aria-labelledby="stall-title">
+          <div className="wrap">
+            <div className="stall__card">
+              <h2 id="stall-title">
+                Most AI pilots don’t stall because the model is weak.
+              </h2>
+              <p className="stall__stat">
+                <span className="stall__num">≈5%</span> of enterprise GenAI
+                pilots show measurable P&amp;L impact.
               </p>
-            </div>
-            <div>
-              <h3 className="principle__name">Sit beside the work.</h3>
-              <p className="principle__body">
-                Two weeks of paired sessions beats six weeks of interviews. The
-                team doing the workflow knows where it breaks.
+              <p>
+                Most pilots stall when ownership is split too many ways. The
+                team framing the opportunity is too far from the team building
+                the product, and no one owns what happens after the demo.
               </p>
-            </div>
-            <div>
-              <h3 className="principle__name">One thing, fully.</h3>
-              <p className="principle__body">
-                A scoped agent shipped in eight weeks beats a platform vision
-                shipped never. Pick one workflow, own its last mile.
-              </p>
-            </div>
-            <div>
-              <h3 className="principle__name">Measure honestly.</h3>
-              <p className="principle__body">
-                Every build has a baseline metric set in the audit and a target
-                measured at 30 / 60 / 90 days. No vanity dashboards.
-              </p>
-            </div>
-            <div>
-              <h3 className="principle__name">Stay small.</h3>
-              <p className="principle__body">
-                No subcontractors, no junior handoffs. The person scoping the
-                work is the person close to the build.
-              </p>
-            </div>
-            <div>
-              <h3 className="principle__name">Leave a clean handoff.</h3>
-              <p className="principle__body">
-                Your team owns the software after launch. Documentation,
-                monitoring, and a written brief on what to build next &mdash;
-                all on day one.
+              <p className="stall__foot">
+                Source: MIT NANDA, “The GenAI Divide: State of AI in Business,”
+                August 2025.
               </p>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* PRICING */}
-      <section className="pricing">
-        <div className="wrap">
-          <h2 className="pricing__h">
-            How engagements are scoped &amp; priced.
-          </h2>
-          <p className="pricing__lede">
-            Sugo prices by engagement, not by hour. Each phase is scoped against
-            a written outcome and paid in even biweekly invoices. No retainers,
-            no platform fees, no add-ons.
-          </p>
-          <div className="pricing__rows">
-            <div className="pricing__row">
-              <div className="pricing__row-label">Audit (Phase 01)</div>
-              <div className="pricing__row-value">
-                Fixed-fee, scoped against the use cases you want assessed.
-                Quoted after the first call.
-              </div>
-            </div>
-            <div className="pricing__row">
-              <div className="pricing__row-label">Build (Phase 02 / 03)</div>
-              <div className="pricing__row-value">
-                Engagement-fee with a fixed weekly burn. Scope and outcome are
-                written; the weeks are the variable.
-              </div>
-            </div>
-            <div className="pricing__row">
-              <div className="pricing__row-label">Invoicing</div>
-              <div className="pricing__row-value">
-                Biweekly. Net 15. Paid against the engagement, not the hour.
-              </div>
-            </div>
-            <div className="pricing__row">
-              <div className="pricing__row-label">What&rsquo;s included</div>
-              <div className="pricing__row-value">
-                All Marc&rsquo;s time. Tooling and infrastructure run on your
-                accounts; Sugo pays for nothing on your behalf.
-              </div>
-            </div>
-            <div className="pricing__row">
-              <div className="pricing__row-label">What&rsquo;s not</div>
-              <div className="pricing__row-value">
-                Travel, third-party software licenses, and any subcontracted
-                specialist work &mdash; all flagged and quoted before
-                they&rsquo;re incurred.
-              </div>
-            </div>
+        {/* Practical questions */}
+        <section className="faq" aria-labelledby="faq-title">
+          <div className="wrap">
+            <h2 className="section-title" id="faq-title">
+              Practical questions.
+            </h2>
+            <Faq />
           </div>
-        </div>
-      </section>
+        </section>
+      </main>
 
-      <NextStep />
       <Footer />
-    </main>
+    </>
   );
 }

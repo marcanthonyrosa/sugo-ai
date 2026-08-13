@@ -1,30 +1,25 @@
 import type { Metadata } from "next";
-import { Fraunces, JetBrains_Mono } from "next/font/google";
+import { Red_Hat_Display, JetBrains_Mono } from "next/font/google";
 import { Nav } from "@/components/layout/Nav";
 import "./globals.css";
+import "./site.css";
 
-const fraunces = Fraunces({
-  variable: "--font-fraunces",
+const redHat = Red_Hat_Display({
+  variable: "--font-redhat",
   subsets: ["latin"],
-  axes: ["opsz", "SOFT"],
+  weight: ["500", "700"],
 });
 
 const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jb-mono",
   subsets: ["latin"],
+  weight: ["400", "700"],
 });
 
 export const metadata: Metadata = {
-  title: "Sugo AI — Where AI strategy becomes working software.",
+  title: "Sugo AI — Modern product development for companies that aren't software companies",
   description:
-    "Sugo AI helps mid-to-large enterprises cross the gap between AI pilots and production — with agents inside the business and AI-native features inside the product.",
-  icons: {
-    icon: [
-      { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
-      { url: "/icon-512.png", sizes: "512x512", type: "image/png" },
-    ],
-    apple: "/apple-icon.png",
-  },
+    "Modern product development for companies that aren't software companies. Sugo AI builds internal tools, AI agents, and customer products.",
 };
 
 export default function RootLayout({
@@ -33,10 +28,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${fraunces.variable} ${jetbrainsMono.variable}`}
-    >
+    <html lang="en" className={`${redHat.variable} ${jetbrainsMono.variable}`}>
       <head>
         <link
           rel="preconnect"
@@ -44,11 +36,14 @@ export default function RootLayout({
           crossOrigin="anonymous"
         />
         <link
-          href="https://api.fontshare.com/v2/css?f[]=switzer@300,400,500,600,700&display=swap"
+          href="https://api.fontshare.com/v2/css?f[]=general-sans@400,600&display=swap"
           rel="stylesheet"
         />
       </head>
       <body>
+        <a className="skip" href="#main">
+          Skip to content
+        </a>
         <Nav />
         {children}
       </body>
