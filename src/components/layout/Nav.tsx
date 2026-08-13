@@ -9,6 +9,10 @@ export function Nav() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
 
+  if (pathname === "/") {
+    return null;
+  }
+
   useEffect(() => {
     document.body.classList.toggle("no-scroll", mobileOpen);
     return () => document.body.classList.remove("no-scroll");
