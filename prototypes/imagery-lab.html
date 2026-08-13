@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sugo AI — Imagery lab</title>
+<meta name="description" content="Internal exploration board: pixel-tomato brand imagery treatments for Sugo AI — colorways, scale tests, and in-context hero trials.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,600&display=swap" rel="stylesheet">
+<style>
+/* Hallmark · macrostructure: Catalogue (specimen board) · INTERNAL LAB ARTIFACT — not a marketing page
+ * purpose: compare pixel-tomato imagery treatments (user-supplied refs: chunky 14-grid + 16-bit 20-grid)
+ * chrome: borrowed from Panel Press Variant A (Cobalt & Gold) tokens · display: Space Grotesk · body: General Sans · outlier: JetBrains Mono (labels/meta — lab register)
+ * theme: custom (1A system + tomato specimen tokens) · axes: light / geometric-sans / cool + specimen reds scoped to marks
+ * enrichment: hand-built SVG rect-grid sprites (Tier B), shape-rendering crispEdges · no photos, no fake chrome, no icon libs
+ * honest: pass (56 — no metrics on page) · chrome: pass (57) · tokens: pass (58 — all fills via var()) · responsive: pass (36/59/61–68)
+ * contrast: pass (46–50 — muted 4.6:1 on paper · ink on gold 8:1+ · paper on flood 19:1) · pre-emit critique: P4 H4 E4 S5 R4 V4
+ */
+:root {
+  --color-paper:       oklch(96% 0.014 95);
+  --color-paper-2:     oklch(93% 0.016 95);
+  --color-card:        oklch(99% 0.005 95);
+  --color-ink:         oklch(23% 0.03 260);
+  --color-ink-2:       oklch(36% 0.025 260);
+  --color-muted:       oklch(45% 0.02 260);
+  --color-rule:        oklch(81% 0.014 95);
+  --color-flood:       oklch(31% 0.055 262);
+  --color-flood-shade: oklch(24% 0.05 262);
+  --color-gold:        oklch(86% 0.10 92);
+  --color-gold-shade:  oklch(74% 0.10 88);
+  --color-sky:         oklch(90% 0.035 240);
+  --color-accent:      oklch(52% 0.16 255);
+  --color-accent-ink:  oklch(97% 0.012 95);
+  --color-focus:       oklch(60% 0.19 255);
+
+  /* specimen tokens — the tomato reds under test, scoped to marks only */
+  --color-pomodoro:        oklch(70% 0.12 30);
+  --color-pomodoro-shade:  oklch(60% 0.115 28);
+  --color-tomato:          oklch(58% 0.16 30);
+  --color-maroon:          oklch(45% 0.11 20);
+  --color-blush-glint:     oklch(88% 0.05 25);
+  --color-stem:            oklch(38% 0.07 150);
+  --color-stem-deep:       oklch(28% 0.05 155);
+
+  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-body:    "General Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-outlier: "JetBrains Mono", ui-monospace, monospace;
+
+  --text-xs:   0.8125rem;
+  --text-sm:   0.875rem;
+  --text-base: 1.0625rem;
+  --text-md:   1.25rem;
+  --text-lg:   1.5625rem;
+  --text-xl:   1.953rem;
+  --text-2xl:  2.441rem;
+
+  --space-2xs: 0.25rem;
+  --space-xs:  0.5rem;
+  --space-sm:  0.75rem;
+  --space-md:  1rem;
+  --space-lg:  1.5rem;
+  --space-xl:  2.5rem;
+  --space-2xl: 4rem;
+  --space-3xl: 6rem;
+
+  --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-micro: 120ms;
+  --dur-short: 220ms;
+
+  --border-panel: 2px solid var(--color-ink);
+  --radius-panel: 12px;
+  --radius-btn: 8px;
+  --shadow-stack: 4px 4px 0 var(--color-ink);
+  --shadow-stack-lift: 5px 5px 0 var(--color-ink);
+  --shadow-stack-press: 2px 2px 0 var(--color-ink);
+  --z-sticky-nav: 300;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body { overflow-x: clip; }
+body {
+  margin: 0;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.6;
+  padding-inline: max(0px, env(safe-area-inset-left)) max(0px, env(safe-area-inset-right));
+}
+h1, h2, h3 { font-family: var(--font-display); line-height: 1.1; letter-spacing: -0.02em; margin: 0; overflow-wrap: anywhere; min-width: 0; }
+p { margin: 0; }
+::selection { background: var(--color-accent); color: var(--color-accent-ink); }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; border-radius: 2px; }
+
+.skip {
+  position: absolute; left: var(--space-md); top: -100px;
+  background: var(--color-ink); color: var(--color-paper);
+  padding: var(--space-sm) var(--space-md); border-radius: var(--radius-btn);
+  z-index: var(--z-sticky-nav);
+}
+.skip:focus-visible { top: var(--space-md); }
+
+.wrap { max-width: 68rem; margin-inline: auto; padding-inline: clamp(1rem, 4vw, 2rem); }
+
+.mono {
+  font-family: var(--font-outlier);
+  font-size: var(--text-xs);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+/* ---------- Lab header ---------- */
+.labhead { padding-block: var(--space-xl) var(--space-lg); display: grid; gap: var(--space-sm); }
+.labhead__row { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-md); flex-wrap: wrap; }
+.labhead h1 { font-size: var(--text-2xl); font-weight: 700; }
+.labhead__back { font-weight: 600; text-decoration: underline; text-underline-offset: 4px; white-space: nowrap; }
+.labhead__back:hover { text-decoration-thickness: 2px; text-decoration-color: var(--color-accent); }
+.labhead__frame { max-width: 62ch; color: var(--color-ink-2); }
+
+/* ---------- Panels ---------- */
+.panel {
+  border: var(--border-panel); border-radius: var(--radius-panel);
+  background: var(--color-card); overflow: hidden;
+  margin-block-end: var(--space-xl);
+}
+.panel__head { padding: var(--space-lg) clamp(var(--space-lg), 3vw, var(--space-xl)) 0; display: grid; gap: var(--space-2xs); }
+.panel__head h2 { font-size: var(--text-lg); font-weight: 700; }
+.panel__head p { color: var(--color-ink-2); max-width: 66ch; }
+.panel__body { padding: var(--space-lg) clamp(var(--space-lg), 3vw, var(--space-xl)) var(--space-xl); }
+
+/* ---------- Sprite display ---------- */
+.px { shape-rendering: crispEdges; display: block; }
+
+.showcase { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: var(--space-xl); align-items: start; }
+.showcase__hero {
+  border: var(--border-panel); border-radius: var(--radius-btn);
+  background: var(--color-paper); display: grid; place-items: center;
+  padding: var(--space-xl); box-shadow: var(--shadow-stack);
+}
+.showcase__hero svg { width: 100%; max-width: 280px; height: auto; }
+@media (max-width: 59.99rem) {
+  .showcase { grid-template-columns: minmax(0, 1fr); }
+  .showcase__hero { max-width: 22rem; margin-inline: auto; }
+}
+
+.treatments { display: grid; grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr)); gap: var(--space-md); }
+.tile { margin: 0; display: grid; gap: var(--space-sm); }
+.tile__art {
+  border: 2px solid var(--color-ink); border-radius: var(--radius-btn);
+  background: var(--color-paper); display: grid; place-items: center;
+  padding: var(--space-md); aspect-ratio: 1;
+}
+.tile__art svg { width: 100%; max-width: 150px; height: auto; }
+.tile__art--flood { background: var(--color-flood); }
+.tile figcaption { display: grid; gap: 2px; }
+.tile figcaption strong { font-family: var(--font-display); font-weight: 700; font-size: var(--text-sm); letter-spacing: -0.01em; }
+.tile figcaption span { font-size: var(--text-xs); color: var(--color-muted); line-height: 1.5; }
+
+/* colorway schemes — custom properties pierce <use> shadow trees */
+.scheme-coral   { --px-body: var(--color-pomodoro); --px-shade: var(--color-pomodoro-shade); --px-glint: var(--color-card); --px-stem: var(--color-stem); --px-stem-deep: var(--color-stem-deep); --px-outline: var(--color-ink); --px-dither: var(--color-pomodoro); }
+.scheme-red     { --px-body: var(--color-tomato); --px-shade: var(--color-maroon); --px-glint: var(--color-blush-glint); --px-stem: var(--color-stem); --px-stem-deep: var(--color-stem-deep); --px-outline: var(--color-ink); --px-dither: var(--color-tomato); }
+.scheme-duotone { --px-body: var(--color-paper); --px-shade: var(--color-gold); --px-glint: var(--color-gold); --px-stem: var(--color-sky); --px-stem-deep: var(--color-sky); --px-outline: var(--color-ink); --px-dither: var(--color-gold); }
+.scheme-gold    { --px-body: var(--color-gold); --px-shade: var(--color-gold-shade); --px-glint: var(--color-card); --px-stem: var(--color-stem); --px-stem-deep: var(--color-stem-deep); --px-outline: var(--color-ink); --px-dither: var(--color-gold); }
+
+/* ---------- Scale ladder ---------- */
+.ladder { display: flex; align-items: flex-end; gap: clamp(var(--space-md), 3vw, var(--space-xl)); flex-wrap: wrap; }
+.ladder__step { display: grid; gap: var(--space-xs); justify-items: center; }
+.ladder__step svg { height: auto; display: block; }
+.ladder__note { margin-top: var(--space-lg); font-size: var(--text-sm); color: var(--color-muted); max-width: 60ch; }
+
+/* ---------- Pixel pot ---------- */
+.pot { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--space-xl); align-items: center; }
+.pot__art {
+  border: var(--border-panel); border-radius: var(--radius-btn);
+  background: var(--color-paper); display: grid; place-items: center; padding: var(--space-xl);
+}
+.pot__art svg { width: 100%; max-width: 360px; height: auto; }
+.pot__copy { color: var(--color-ink-2); display: grid; gap: var(--space-md); max-width: 52ch; }
+@media (max-width: 59.99rem) { .pot { grid-template-columns: minmax(0, 1fr); } }
+
+.pot-steam { transform-box: fill-box; transform-origin: center; animation: pot-steam 2.4s steps(3, end) infinite; }
+.pot-steam--b { animation-delay: 0.8s; }
+.pot-steam--c { animation-delay: 1.6s; }
+@keyframes pot-steam {
+  0%   { transform: translateY(1px); opacity: 0.25; }
+  100% { transform: translateY(-2px); opacity: 0.9; }
+}
+
+/* ---------- In-context hero test ---------- */
+.ctx { border: var(--border-panel); border-radius: var(--radius-btn); overflow: hidden; background: var(--color-paper); }
+.ctx__grid { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); }
+.ctx__copy { padding: clamp(var(--space-lg), 3vw, var(--space-xl)); align-self: center; display: grid; gap: var(--space-md); }
+.ctx__title { font-size: clamp(1.5rem, 2.2vw + 0.5rem, 2.2rem); font-weight: 700; max-width: 18ch; }
+.ctx__sub { color: var(--color-ink-2); max-width: 44ch; font-size: var(--text-sm); }
+.ctx__art { background: var(--color-flood); border-left: var(--border-panel); display: grid; place-items: center; padding: var(--space-xl); }
+.ctx__art svg { width: 100%; max-width: 230px; height: auto; }
+@media (max-width: 59.99rem) {
+  .ctx__grid { grid-template-columns: minmax(0, 1fr); }
+  .ctx__art { border-left: none; border-top: var(--border-panel); }
+}
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.5em;
+  min-height: 48px; padding: var(--space-sm) var(--space-lg);
+  border-radius: var(--radius-btn); border: 2px solid var(--color-ink);
+  font-family: var(--font-body); font-weight: 600; font-size: var(--text-base);
+  text-decoration: none; white-space: nowrap; cursor: pointer; line-height: 1;
+  background: var(--color-accent); color: var(--color-accent-ink); box-shadow: var(--shadow-stack);
+  transition: transform var(--dur-micro) var(--ease-out), box-shadow var(--dur-micro) var(--ease-out);
+  justify-self: start;
+}
+.btn:hover { transform: translate(-1px, -1px); box-shadow: var(--shadow-stack-lift); }
+.btn:active { transform: translate(1px, 1px); box-shadow: var(--shadow-stack-press); }
+.btn:disabled, .btn[aria-disabled="true"] { opacity: 0.55; cursor: not-allowed; box-shadow: none; transform: none; }
+
+.ctx-compare { margin-top: var(--space-md); display: grid; grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr)); gap: var(--space-md); }
+.ctx-compare .tile__art { aspect-ratio: 4 / 3; }
+
+/* ---------- Notes ---------- */
+.notes ul { margin: 0; padding-left: 1.2em; display: grid; gap: var(--space-sm); color: var(--color-ink-2); max-width: 66ch; }
+.notes li::marker { color: var(--color-accent); }
+
+.foot { padding-block: var(--space-lg) var(--space-2xl); border-top: 1px solid var(--color-rule); margin-top: var(--space-xl); }
+.foot p { font-family: var(--font-outlier); font-size: var(--text-xs); color: var(--color-muted); letter-spacing: 0.04em; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 150ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 150ms !important;
+  }
+  .pot-steam, .pot-steam--b, .pot-steam--c { animation: none; opacity: 0.6; }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- Sprite symbol definitions (fills pierce <use> via custom properties) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <!-- Sprite I · Chunky — 14×13 grid, echoes ref image #1: flat body, plus-stem with side nubs, diagonal glint pair -->
+    <symbol id="px-chunky" viewBox="0 0 14 13">
+      <rect x="3"  y="4"  width="8"  height="1" style="fill:var(--px-body)"/>
+      <rect x="2"  y="5"  width="10" height="1" style="fill:var(--px-body)"/>
+      <rect x="1"  y="6"  width="12" height="1" style="fill:var(--px-body)"/>
+      <rect x="1"  y="7"  width="12" height="1" style="fill:var(--px-body)"/>
+      <rect x="1"  y="8"  width="12" height="1" style="fill:var(--px-body)"/>
+      <rect x="2"  y="9"  width="10" height="1" style="fill:var(--px-body)"/>
+      <rect x="3"  y="10" width="8"  height="1" style="fill:var(--px-body)"/>
+      <rect x="4"  y="11" width="6"  height="1" style="fill:var(--px-body)"/>
+      <rect x="9"  y="7"  width="1"  height="1" style="fill:var(--px-dither)"/>
+      <rect x="10" y="8"  width="1"  height="1" style="fill:var(--px-dither)"/>
+      <rect x="4"  y="5"  width="1"  height="1" style="fill:var(--px-glint)"/>
+      <rect x="3"  y="6"  width="1"  height="1" style="fill:var(--px-glint)"/>
+      <rect x="6"  y="0"  width="2"  height="5" style="fill:var(--px-stem)"/>
+      <rect x="5"  y="1"  width="4"  height="2" style="fill:var(--px-stem)"/>
+      <rect x="3"  y="1"  width="1"  height="1" style="fill:var(--px-stem)"/>
+      <rect x="10" y="1"  width="1"  height="1" style="fill:var(--px-stem)"/>
+    </symbol>
+
+    <!-- Sprite II · Sixteen-bit — 20×18 grid, echoes ref image #2: pixel outline, shade run lower-right, pale glint, multi-sprig stem -->
+    <symbol id="px-16bit" viewBox="0 0 20 18">
+      <!-- outline -->
+      <rect x="7"  y="5"  width="6" height="1" style="fill:var(--px-outline)"/>
+      <rect x="5"  y="6"  width="2" height="1" style="fill:var(--px-outline)"/>
+      <rect x="13" y="6"  width="2" height="1" style="fill:var(--px-outline)"/>
+      <rect x="4"  y="7"  width="1" height="1" style="fill:var(--px-outline)"/>
+      <rect x="15" y="7"  width="1" height="1" style="fill:var(--px-outline)"/>
+      <rect x="3"  y="8"  width="1" height="1" style="fill:var(--px-outline)"/>
+      <rect x="16" y="8"  width="1" height="1" style="fill:var(--px-outline)"/>
+      <rect x="2"  y="9"  width="1" height="4" style="fill:var(--px-outline)"/>
+      <rect x="17" y="9"  width="1" height="4" style="fill:var(--px-outline)"/>
+      <rect x="3"  y="13" width="1" height="1" style="fill:var(--px-outline)"/>
+      <rect x="16" y="13" width="1" height="1" style="fill:var(--px-outline)"/>
+      <rect x="4"  y="14" width="1" height="1" style="fill:var(--px-outline)"/>
+      <rect x="15" y="14" width="1" height="1" style="fill:var(--px-outline)"/>
+      <rect x="5"  y="15" width="1" height="1" style="fill:var(--px-outline)"/>
+      <rect x="14" y="15" width="1" height="1" style="fill:var(--px-outline)"/>
+      <rect x="6"  y="16" width="8" height="1" style="fill:var(--px-outline)"/>
+      <!-- body -->
+      <rect x="7"  y="6"  width="6"  height="1" style="fill:var(--px-body)"/>
+      <rect x="5"  y="7"  width="10" height="1" style="fill:var(--px-body)"/>
+      <rect x="4"  y="8"  width="12" height="1" style="fill:var(--px-body)"/>
+      <rect x="3"  y="9"  width="14" height="1" style="fill:var(--px-body)"/>
+      <rect x="3"  y="10" width="14" height="1" style="fill:var(--px-body)"/>
+      <rect x="3"  y="11" width="14" height="1" style="fill:var(--px-body)"/>
+      <rect x="3"  y="12" width="14" height="1" style="fill:var(--px-body)"/>
+      <rect x="4"  y="13" width="12" height="1" style="fill:var(--px-body)"/>
+      <rect x="5"  y="14" width="10" height="1" style="fill:var(--px-body)"/>
+      <rect x="6"  y="15" width="8"  height="1" style="fill:var(--px-body)"/>
+      <!-- shade run, lower-right -->
+      <rect x="15" y="10" width="2" height="1" style="fill:var(--px-shade)"/>
+      <rect x="13" y="11" width="4" height="1" style="fill:var(--px-shade)"/>
+      <rect x="12" y="12" width="5" height="1" style="fill:var(--px-shade)"/>
+      <rect x="11" y="13" width="5" height="1" style="fill:var(--px-shade)"/>
+      <rect x="10" y="14" width="5" height="1" style="fill:var(--px-shade)"/>
+      <rect x="9"  y="15" width="5" height="1" style="fill:var(--px-shade)"/>
+      <!-- glint -->
+      <rect x="6"  y="7"  width="2" height="1" style="fill:var(--px-glint)"/>
+      <rect x="5"  y="8"  width="2" height="1" style="fill:var(--px-glint)"/>
+      <!-- stem sprigs -->
+      <rect x="9"  y="2"  width="2" height="4" style="fill:var(--px-stem)"/>
+      <rect x="7"  y="3"  width="2" height="1" style="fill:var(--px-stem)"/>
+      <rect x="6"  y="4"  width="1" height="1" style="fill:var(--px-stem)"/>
+      <rect x="12" y="3"  width="2" height="1" style="fill:var(--px-stem)"/>
+      <rect x="14" y="4"  width="1" height="1" style="fill:var(--px-stem)"/>
+      <rect x="8"  y="1"  width="1" height="1" style="fill:var(--px-stem-deep)"/>
+      <rect x="12" y="1"  width="1" height="1" style="fill:var(--px-stem-deep)"/>
+    </symbol>
+  </defs>
+</svg>
+
+<main id="main" class="wrap">
+
+  <header class="labhead">
+    <p class="mono">Lab-01 · Pixel tomato · August 2026 · Internal</p>
+    <div class="labhead__row">
+      <h1>Imagery lab — the pixel tomato.</h1>
+      <a class="labhead__back" href="concept-1a-cobalt-gold.html">← Panel Press 1A</a>
+    </div>
+    <p class="labhead__frame">The mark says two things at once: sauce, and software heritage — the pixel grid carries the 80s/90s digital memory the studio’s discipline descends from. The open question isn’t the tomato; it’s how much red, and where it’s allowed to live.</p>
+  </header>
+
+  <!-- 1 · Sprite I -->
+  <section class="panel">
+    <div class="panel__head">
+      <h2>Sprite I — “Chunky.”</h2>
+      <p>A rebuild of your first reference: ~14-cell grid, flat body, plus-shaped stem with detached nubs, diagonal glint. No outline — the silhouette does the work, which is what lets it survive tiny sizes.</p>
+    </div>
+    <div class="panel__body">
+      <div class="showcase">
+        <div class="showcase__hero scheme-coral">
+          <svg class="px" viewBox="0 0 14 13" role="img" aria-label="Chunky pixel tomato in pomodoro coral"><use href="#px-chunky"/></svg>
+        </div>
+        <div class="treatments">
+          <figure class="tile scheme-coral">
+            <div class="tile__art"><svg class="px" viewBox="0 0 14 13" aria-hidden="true"><use href="#px-chunky"/></svg></div>
+            <figcaption><strong>Pomodoro coral</strong><span>Softened red from the live guide’s own garnish family. Warm, appetizing, never alarm-adjacent.</span></figcaption>
+          </figure>
+          <figure class="tile scheme-red">
+            <div class="tile__art"><svg class="px" viewBox="0 0 14 13" aria-hidden="true"><use href="#px-chunky"/></svg></div>
+            <figcaption><strong>Mark-scope red</strong><span>Truer tomato, under license: red lives only in the mark, ≤2–3% of any viewport, never on surfaces.</span></figcaption>
+          </figure>
+          <figure class="tile scheme-duotone">
+            <div class="tile__art tile__art--flood"><svg class="px" viewBox="0 0 14 13" aria-hidden="true"><use href="#px-chunky"/></svg></div>
+            <figcaption><strong>Duotone navy</strong><span>Zero red. Paper body, gold dither, sky stem — the dark-zone and red-sensitive fallback.</span></figcaption>
+          </figure>
+          <figure class="tile scheme-gold">
+            <div class="tile__art"><svg class="px" viewBox="0 0 14 13" aria-hidden="true"><use href="#px-chunky"/></svg></div>
+            <figcaption><strong>Gold harvest</strong><span>The yellow-tomato question — does it still read tomato, or does it become a pumpkin? Your call.</span></figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2 · Sprite II -->
+  <section class="panel">
+    <div class="panel__head">
+      <h2>Sprite II — “Sixteen-bit.”</h2>
+      <p>A rebuild of your second reference: ~20-cell grid, pixel outline, maroon shade run lower-right, pale glint, multi-sprig stem. More nostalgia, more rendering — a sprite from a game, not a glyph from a system.</p>
+    </div>
+    <div class="panel__body">
+      <div class="showcase">
+        <div class="showcase__hero scheme-red">
+          <svg class="px" viewBox="0 0 20 18" role="img" aria-label="Sixteen-bit pixel tomato with outline and shading, in tomato red"><use href="#px-16bit"/></svg>
+        </div>
+        <div class="treatments">
+          <figure class="tile scheme-coral">
+            <div class="tile__art"><svg class="px" viewBox="0 0 20 18" aria-hidden="true"><use href="#px-16bit"/></svg></div>
+            <figcaption><strong>Pomodoro coral</strong><span>The shade run keeps its depth even with the softened body red.</span></figcaption>
+          </figure>
+          <figure class="tile scheme-red">
+            <div class="tile__art"><svg class="px" viewBox="0 0 20 18" aria-hidden="true"><use href="#px-16bit"/></svg></div>
+            <figcaption><strong>Mark-scope red</strong><span>Closest to your reference — full red under the same mark-only license.</span></figcaption>
+          </figure>
+          <figure class="tile scheme-duotone">
+            <div class="tile__art tile__art--flood"><svg class="px" viewBox="0 0 20 18" aria-hidden="true"><use href="#px-16bit"/></svg></div>
+            <figcaption><strong>Duotone navy</strong><span>Paper body, gold shade run; the navy outline melts into the flood as a die-cut halo.</span></figcaption>
+          </figure>
+          <figure class="tile scheme-gold">
+            <div class="tile__art"><svg class="px" viewBox="0 0 20 18" aria-hidden="true"><use href="#px-16bit"/></svg></div>
+            <figcaption><strong>Gold harvest</strong><span>With the outline it holds “heirloom tomato” better than the chunky version does.</span></figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 · Scale ladder -->
+  <section class="panel">
+    <div class="panel__head">
+      <h2>Scale ladder.</h2>
+      <p>The chunky pomodoro sprite from favicon to hero. One asset, no redraws.</p>
+    </div>
+    <div class="panel__body scheme-coral">
+      <div class="ladder">
+        <div class="ladder__step">
+          <svg class="px" viewBox="0 0 14 13" width="256" role="img" aria-label="Chunky pixel tomato at 256 pixels"><use href="#px-chunky"/></svg>
+          <span class="mono">256</span>
+        </div>
+        <div class="ladder__step">
+          <svg class="px" viewBox="0 0 14 13" width="128" aria-hidden="true"><use href="#px-chunky"/></svg>
+          <span class="mono">128</span>
+        </div>
+        <div class="ladder__step">
+          <svg class="px" viewBox="0 0 14 13" width="64" aria-hidden="true"><use href="#px-chunky"/></svg>
+          <span class="mono">64</span>
+        </div>
+        <div class="ladder__step">
+          <svg class="px" viewBox="0 0 14 13" width="32" aria-hidden="true"><use href="#px-chunky"/></svg>
+          <span class="mono">32</span>
+        </div>
+        <div class="ladder__step">
+          <svg class="px" viewBox="0 0 14 13" width="16" aria-hidden="true"><use href="#px-chunky"/></svg>
+          <span class="mono">16</span>
+        </div>
+      </div>
+      <p class="ladder__note">The 14-cell grid keeps its silhouette at 16 px — each cell still gets better than a device pixel. The sixteen-bit sprite’s 20-cell grid with outline muddies below ~32 px; if that sprite wins, it needs a hand-reduced small cut for favicon duty.</p>
+    </div>
+  </section>
+
+  <!-- 4 · Pixel pot -->
+  <section class="panel">
+    <div class="panel__head">
+      <h2>The pixel pot.</h2>
+      <p>The hybrid: the Panel Press sauce pot rebuilt on the same grid language. One bridge between the hero art you have and the pixel direction you’re testing.</p>
+    </div>
+    <div class="panel__body">
+      <div class="pot">
+        <div class="pot__art">
+          <svg class="px" viewBox="0 0 24 16" role="img" aria-label="Pixel-art sauce pot with rising steam, a spoon, and a coral sauce line">
+            <rect class="pot-steam"          x="7"  y="1" width="1" height="1" style="fill:var(--color-muted)"/>
+            <rect class="pot-steam pot-steam--b" x="10" y="0" width="1" height="1" style="fill:var(--color-muted)"/>
+            <rect class="pot-steam pot-steam--c" x="13" y="1" width="1" height="1" style="fill:var(--color-muted)"/>
+            <rect x="17" y="1" width="1" height="1" style="fill:var(--color-ink)"/>
+            <rect x="16" y="2" width="1" height="1" style="fill:var(--color-ink)"/>
+            <rect x="15" y="3" width="1" height="1" style="fill:var(--color-ink)"/>
+            <rect x="14" y="4" width="2" height="1" style="fill:var(--color-gold)"/>
+            <rect x="8"  y="5" width="1" height="1" style="fill:var(--color-pomodoro)"/>
+            <rect x="11" y="5" width="1" height="1" style="fill:var(--color-pomodoro)"/>
+            <rect x="7"  y="6" width="11" height="1" style="fill:var(--color-pomodoro)"/>
+            <rect x="6"  y="7" width="13" height="6" style="fill:var(--color-ink)"/>
+            <rect x="6"  y="9" width="13" height="1" style="fill:var(--color-gold)"/>
+            <rect x="4"  y="8" width="2" height="1" style="fill:var(--color-ink)"/>
+            <rect x="19" y="8" width="2" height="1" style="fill:var(--color-ink)"/>
+            <rect x="8"  y="13" width="2" height="1" style="fill:var(--color-ink)"/>
+            <rect x="15" y="13" width="2" height="1" style="fill:var(--color-ink)"/>
+          </svg>
+        </div>
+        <div class="pot__copy">
+          <p>Navy vessel, gold band, one coral sauce line, steam that steps up the grid a cell at a time. The sauce line is the only red on the object — the mark-scope license applied to the pot.</p>
+          <p>If the pixel direction wins, this replaces the smooth-line pot in the hero and the tomato becomes the favicon and small-scale mark — one grid language across every size.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 · In-context test -->
+  <section class="panel">
+    <div class="panel__head">
+      <h2>In context.</h2>
+      <p>Does a 14-cell sprite carry a hero panel? The 1A layout, tomato in place of the pot.</p>
+    </div>
+    <div class="panel__body">
+      <div class="ctx scheme-coral">
+        <div class="ctx__grid">
+          <div class="ctx__copy">
+            <h3 class="ctx__title">Modern product development for companies that aren’t software companies.</h3>
+            <p class="ctx__sub">Internal tools, AI agents, and customer products — shipped with the discipline of a modern software company.</p>
+            <a class="btn" href="/contact">Start a conversation</a>
+          </div>
+          <div class="ctx__art">
+            <svg class="px" viewBox="0 0 14 13" role="img" aria-label="Chunky pomodoro pixel tomato on the navy hero flood"><use href="#px-chunky"/></svg>
+          </div>
+        </div>
+      </div>
+      <div class="ctx-compare">
+        <figure class="tile scheme-coral">
+          <div class="tile__art tile__art--flood"><svg class="px" viewBox="0 0 14 13" aria-hidden="true" style="max-width: 130px;"><use href="#px-chunky"/></svg></div>
+          <figcaption><strong>Coral on flood</strong><span>Warmest read; the coral holds its own against navy.</span></figcaption>
+        </figure>
+        <figure class="tile scheme-duotone">
+          <div class="tile__art tile__art--flood"><svg class="px" viewBox="0 0 14 13" aria-hidden="true" style="max-width: 130px;"><use href="#px-chunky"/></svg></div>
+          <figcaption><strong>Duotone on flood</strong><span>Quietest read; zero red, all system colors.</span></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 · Notes -->
+  <section class="panel notes">
+    <div class="panel__head">
+      <h2>What we’d recommend testing.</h2>
+    </div>
+    <div class="panel__body">
+      <ul>
+        <li><strong>Chunky is the system sprite.</strong> It survives 16 px, its blunt geometry matches the 2 px border-carpentry, and the plus-stem is distinctive enough to own.</li>
+        <li><strong>Pomodoro coral solves the red worry from inside the live guide</strong> — it’s already your garnish color. Full tomato red stays available under a mark-scope license: the mark only, a few percent of a viewport, never a surface.</li>
+        <li><strong>Duotone navy is the zero-red fallback</strong> for dark zones, report covers, and red-sensitive clients — and it doubles as a natural footer/ghost state of the same asset.</li>
+        <li><strong>Gold harvest is a maybe.</strong> Without the outline it drifts toward pumpkin; with the sixteen-bit outline it holds. Only worth pursuing if the palette lands gold-forward (judge it against 1B).</li>
+        <li><strong>Sixteen-bit is the poster asset, not the mark.</strong> More nostalgia, more charm at large sizes, but it muddies small and introduces a second outline language. Keep it for moments — a 404, a writing header — while the chunky sprite runs the system. The pixel grid can quietly extend (pot steam, a divider, the favicon) but should stay accent-scale, never theme-park.</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <p>Sugo AI · imagery lab · working document — not for publication · sprites are hand-built SVG rect grids, one asset per sprite, recolored via tokens</p>
+  </footer>
+
+</main>
+</body>
+</html>

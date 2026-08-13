@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sugo AI — A brief on modern product development</title>
+<meta name="description" content="Sugo AI is a product studio for traditional businesses building serious software. A brief on how we work: internal tools, AI agents, and customer products, shipped with the discipline of a modern software company.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+<link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@500,800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400;1,8..60,600&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
+<!-- SUGO-DEMO-KIT START · pre-paint state restore + font-pack faces (strip before integration) -->
+<script>(function(){try{var f=localStorage.getItem("sugo-demo-fontpack");if(f&&/^[1-5]$/.test(f))document.documentElement.setAttribute("data-fontpack",f);var a=localStorage.getItem("sugo-demo-heroart");if(a==="pixel-chunky"||a==="pixel-16bit")document.documentElement.setAttribute("data-heroart",a);}catch(e){}})();</script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Schibsted+Grotesk:wght@500;700&family=Familjen+Grotesk:wght@500;700&family=Bricolage+Grotesque:wght@600;700&family=IBM+Plex+Sans:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,600&f[]=switzer@400,600&f[]=cabinet-grotesk@700&display=swap" rel="stylesheet">
+<!-- SUGO-DEMO-KIT END -->
+<style>
+/* Hallmark · genre: editorial · macrostructure: Long Document · nav: N9 edge-aligned minimal · footer: Ft6 letter close
+ * theme: custom · vibe: "operator's memo, hand-set, calm authority" · paper: oklch(97% 0.010 95) · accent: oklch(44% 0.09 160)
+ * display: Cabinet Grotesk (500/800) · body: Source Serif 4 · outlier: IBM Plex Mono (memo metadata + footnote/colophon only)
+ * axes: light / display-grotesque / chromatic-green · enrichment: Tier-B hand-built SVG (authorship stamp only)
+ * H-knobs: memo-head title (no hero block) · S4 inline heads · C1 outlined chip + C3 typographic link · T1-style declaration block
+ * studied: no · context: user-brief (WEBSITE_HANDOFF_BRIEF.md) · concept 2 of 3
+ * pre-emit critique: P5 H5 E5 S5 R5 V5
+ * slop test: 69/69 pass · contrast: pass (46–50) · nav/footer/hero: pass (51–55) · honest: pass (56) · chrome: pass (57)
+ * tokens: pass (58) · responsive: pass (59) · icons: pass (60) · mobile: pass (36, 59, 61–69)
+ * deviation note: ordinal numerals in the "How we work" list are set in the display face, not mono —
+ * the outlier face is held to two slots (metadata line, footnote/colophon) per the 2+1 rule (gate 40).
+ * SUGO-DEMO-KIT (demo chrome, strip before integration): font-pack switcher only (Native + 5 packs, headers ≤700 in all packs;
+ *   native keeps Cabinet 800/500). No hero-art toggle — this page's enrichment is the authorship stamp, not the pot.
+ *   Pack bodies are sans while the native body is serif: that contrast IS the comparison the kit exists to surface.
+ */
+
+:root {
+  /* color */
+  --color-paper:      oklch(97% 0.010 95);
+  --color-paper-2:    oklch(94% 0.012 95);
+  --color-ink:        oklch(22% 0.020 160);
+  --color-ink-2:      oklch(34% 0.018 160);
+  --color-muted:      oklch(45% 0.015 160);
+  --color-rule:       oklch(84% 0.012 95);
+  --color-accent:     oklch(44% 0.09 160);
+  --color-accent-ink: oklch(97% 0.010 95);
+  --color-mark:       oklch(88% 0.11 95);
+  --color-focus:      oklch(48% 0.14 160);
+  --color-error:      oklch(46% 0.13 30);
+
+  /* type */
+  --font-display: "Cabinet Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-body:    "Source Serif 4", ui-serif, Georgia, serif;
+  --font-outlier: "IBM Plex Mono", ui-monospace, monospace;
+
+  /* display tuning vars — consumed below, overridable by SUGO-DEMO-KIT font packs.
+     Native: Cabinet Grotesk strong 800 · medium 500. */
+  --display-tracking: -0.02em;
+  --display-lh: 1.05;
+  --display-weight: 800;
+  --display-weight-md: 500;
+
+  --text-xs:   0.8125rem;
+  --text-sm:   0.9375rem;
+  --text-base: 1.0625rem;
+  --text-md:   1.25rem;
+  --text-lg:   1.5rem;
+  --text-xl:   1.875rem;
+  --text-title: clamp(2rem, 4.5vw + 0.5rem, 3.5rem);
+
+  /* space — 4pt scale */
+  --space-2xs: 0.25rem;
+  --space-xs:  0.5rem;
+  --space-sm:  0.75rem;
+  --space-md:  1rem;
+  --space-lg:  1.5rem;
+  --space-xl:  2.5rem;
+  --space-2xl: 4rem;
+  --space-3xl: 6rem;
+
+  /* rules + motion */
+  --rule-hair: 1px;
+  --dur-micro: 120ms;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --z-base: 1;
+}
+
+/* reset-ish */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { overflow-x: clip; }
+body {
+  overflow-x: clip;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.65;
+  font-variant-numeric: oldstyle-nums;
+  padding-inline: max(clamp(1rem, 4vw, 4rem), env(safe-area-inset-left));
+  padding-bottom: max(var(--space-md), env(safe-area-inset-bottom));
+}
+
+/* skip link */
+.skip {
+  position: absolute;
+  left: var(--space-md);
+  top: var(--space-md);
+  transform: translateY(-300%);
+  background: var(--color-ink);
+  color: var(--color-accent-ink);
+  font-family: var(--font-display);
+  font-weight: var(--display-weight-md);
+  padding: var(--space-sm) var(--space-md);
+  z-index: var(--z-base);
+  white-space: nowrap;
+}
+.skip:focus-visible { transform: none; outline: 2px solid var(--color-focus); outline-offset: 2px; }
+
+/* page column — content sits left-of-center; whitespace lives on the right */
+.page {
+  max-width: 70rem;
+  margin-inline: auto;
+}
+.doc {
+  max-width: 48rem;
+  margin-inline-start: clamp(0rem, 4vw, 5rem);
+}
+/* prose holds the 62ch measure; the diptych + declaration break out to the full 48rem document grid */
+.doc > p, .doc > ol.system { max-width: 62ch; }
+
+/* ---------- nav · N9 ---------- */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-block: var(--space-lg) var(--space-xl);
+}
+.wordmark {
+  font-family: var(--font-display);
+  font-weight: var(--display-weight);
+  font-size: var(--text-md);
+  letter-spacing: -0.01em;
+  color: var(--color-ink);
+  text-decoration: none;
+  line-height: 1;
+  white-space: nowrap;
+}
+.wordmark:hover { color: var(--color-accent); }
+.wordmark:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 3px; }
+.wordmark:active { opacity: 0.8; }
+
+/* chip CTA — full-state discipline */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  font-family: var(--font-display);
+  font-weight: var(--display-weight-md);
+  font-size: 1rem;
+  line-height: 1;
+  color: var(--color-ink);
+  background: transparent;
+  border: var(--rule-hair) solid var(--color-ink);
+  border-radius: 2px;
+  padding: var(--space-sm) var(--space-lg);
+  min-height: 44px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color var(--dur-micro) var(--ease-out), color var(--dur-micro) var(--ease-out);
+}
+.chip:hover, .chip.is-hover { background: var(--color-ink); color: var(--color-accent-ink); }
+.chip:focus-visible, .chip.is-focus { outline: 2px solid var(--color-focus); outline-offset: 2px; }
+.chip:active, .chip.is-active { transform: translateY(1px); }
+.chip:disabled, .chip[aria-disabled="true"], .chip.is-disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  border-color: var(--color-muted);
+  color: var(--color-muted);
+  background: transparent;
+}
+.chip[data-state="loading"] { cursor: progress; opacity: 0.7; }
+.chip[data-state="error"]   { border-color: var(--color-error); color: var(--color-error); }
+.chip[data-state="success"] { border-color: var(--color-accent); color: var(--color-accent); }
+
+/* ---------- memo head ---------- */
+.memo-head { padding-block-start: var(--space-lg); padding-block-end: var(--space-2xl); }
+.memo-head__rule { border: 0; border-top: var(--rule-hair) solid var(--color-rule); margin-block-end: var(--space-lg); }
+.memo-head__meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--space-lg);
+  margin-block-end: var(--space-xl);
+}
+.memo-head__line {
+  font-family: var(--font-outlier);
+  font-size: var(--text-xs);
+  color: var(--color-ink-2);
+  letter-spacing: 0.02em;
+  padding-block-start: var(--space-sm);
+}
+.stamp {
+  flex: 0 0 auto;
+  width: 92px;
+  height: 92px;
+  transform: rotate(-8deg);
+  color: var(--color-accent);
+}
+.stamp text { font-family: var(--font-outlier); }
+.memo-head h1 {
+  font-family: var(--font-display);
+  font-weight: var(--display-weight);
+  font-size: var(--text-title);
+  line-height: var(--display-lh);
+  letter-spacing: var(--display-tracking);
+  max-width: 18ch;
+  overflow-wrap: anywhere;
+  min-width: 0;
+  margin-block-end: var(--space-lg);
+}
+.lede {
+  font-size: var(--text-md);
+  line-height: 1.55;
+  color: var(--color-ink-2);
+  max-width: 52ch;
+}
+
+/* ---------- document body ---------- */
+.doc h2 {
+  font-family: var(--font-display);
+  font-weight: var(--display-weight);
+  font-size: 1.15rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  line-height: 1.2;
+  margin-block-start: var(--space-3xl);
+  margin-block-end: var(--space-lg);
+  padding-block-end: var(--space-sm);
+  border-bottom: var(--rule-hair) solid var(--color-rule);
+  overflow-wrap: anywhere;
+  min-width: 0;
+}
+.doc p + p { margin-block-start: var(--space-md); }
+
+mark {
+  background: linear-gradient(180deg, transparent 38%, var(--color-mark) 38%, var(--color-mark) 92%, transparent 92%);
+  color: inherit;
+  padding-inline: 0.05em;
+}
+
+/* links */
+.doc a:not(.chip), .foot a {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+  transition: color var(--dur-micro) var(--ease-out);
+}
+.doc a:not(.chip):hover, .foot a:hover { text-decoration-thickness: 2px; }
+.doc a:not(.chip):focus-visible, .foot a:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; border-radius: 1px; }
+.doc a:not(.chip):active, .foot a:active { opacity: 0.75; }
+
+/* diptych — slight breakout from the 62ch measure, an intentional grid-break */
+.diptych {
+  width: min(100%, 48rem);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 0 var(--space-xl);
+  margin-block: var(--space-xl);
+}
+.diptych > section:last-child {
+  border-inline-start: var(--rule-hair) solid var(--color-rule);
+  padding-inline-start: var(--space-xl);
+}
+.diptych h3 {
+  font-family: var(--font-display);
+  font-weight: var(--display-weight);
+  font-size: 1.05rem;
+  line-height: 1.25;
+  margin-block-end: var(--space-sm);
+}
+.diptych p { font-size: var(--text-sm); line-height: 1.6; color: var(--color-ink-2); }
+
+/* set-off block */
+.setoff {
+  margin-block: var(--space-xl);
+  margin-inline-start: var(--space-xl);
+  padding-block: var(--space-lg);
+  border-top: var(--rule-hair) solid var(--color-rule);
+  border-bottom: var(--rule-hair) solid var(--color-rule);
+  font-style: italic;
+  font-size: var(--text-md);
+  line-height: 1.5;
+  color: var(--color-ink);
+  max-width: 46ch;
+}
+
+/* how-we-work ordinal list */
+.system { list-style: none; margin-block: var(--space-xl); }
+.system li { padding-block: var(--space-lg); border-bottom: var(--rule-hair) solid var(--color-rule); }
+.system li:first-child { border-top: var(--rule-hair) solid var(--color-rule); }
+.system h3 {
+  font-family: var(--font-display);
+  font-weight: var(--display-weight);
+  font-size: var(--text-md);
+  line-height: 1.3;
+  margin-block-end: var(--space-2xs);
+}
+.system h3 .num {
+  font-weight: var(--display-weight-md);
+  color: var(--color-accent);
+  font-variant-numeric: lining-nums;
+  padding-inline-end: 0.35em;
+}
+.system p { font-size: var(--text-sm); color: var(--color-ink-2); max-width: 56ch; }
+
+/* declaration block (what we are not) */
+.declaration {
+  width: min(100%, 46rem);
+  margin-block: var(--space-xl) var(--space-2xl);
+}
+.declaration p {
+  font-family: var(--font-display);
+  font-weight: var(--display-weight-md);
+  font-size: clamp(1.35rem, 2.6vw, 1.7rem);
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  color: var(--color-ink-2);
+}
+.declaration p + p { margin-block-start: var(--space-md); }
+.declaration strong { font-weight: var(--display-weight); color: var(--color-ink); }
+
+/* closing CTA row */
+.cta-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-lg);
+  margin-block: var(--space-xl) var(--space-2xl);
+}
+.cta-row .link-more { white-space: nowrap; font-family: var(--font-display); font-weight: var(--display-weight-md); font-size: 1rem; }
+
+/* footnote */
+.footnote {
+  margin-block-start: var(--space-2xl);
+  padding-block-start: var(--space-md);
+  border-top: var(--rule-hair) solid var(--color-rule);
+  font-family: var(--font-outlier);
+  font-size: var(--text-xs);
+  color: var(--color-ink-2);
+  max-width: 56ch;
+}
+
+/* ---------- footer · Ft6 ---------- */
+.foot {
+  margin-block-start: var(--space-3xl);
+  padding-block: var(--space-2xl) var(--space-xl);
+  max-width: 62ch;
+}
+.foot__close {
+  font-family: var(--font-display);
+  font-weight: var(--display-weight-md);
+  font-size: var(--text-lg);
+  line-height: 1.4;
+}
+.foot__sign { font-weight: var(--display-weight); }
+.foot__ps { font-size: var(--text-sm); color: var(--color-ink-2); margin-block-start: var(--space-md); }
+.foot__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: var(--space-lg);
+  margin-block-start: var(--space-xl);
+  padding-block-start: var(--space-md);
+  border-top: var(--rule-hair) solid var(--color-rule);
+  font-family: var(--font-outlier);
+  font-size: var(--text-xs);
+  color: var(--color-muted);
+}
+.foot__meta a { color: var(--color-ink-2); white-space: nowrap; display: inline-block; padding-block: var(--space-sm); }
+
+/* sup */
+sup { line-height: 0; font-size: 0.7em; }
+sup a { text-decoration: none; }
+
+/* ---------- responsive ---------- */
+@media (max-width: 40rem) {
+  .doc { margin-inline-start: 0; }
+  .memo-head__meta { flex-direction: column-reverse; align-items: flex-start; gap: var(--space-md); }
+  .stamp { width: 76px; height: 76px; }
+  .diptych { grid-template-columns: minmax(0, 1fr); gap: var(--space-lg) 0; }
+  .diptych > section:last-child {
+    border-inline-start: 0;
+    padding-inline-start: 0;
+    border-top: var(--rule-hair) solid var(--color-rule);
+    padding-block-start: var(--space-lg);
+  }
+  .setoff { margin-inline-start: var(--space-md); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 150ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 150ms !important;
+  }
+}
+
+@media print {
+  .nav, .skip { display: none; }
+}
+
+/* SUGO-DEMO-KIT START — demo chrome: font packs + control panel (TYPE only; no hero art on this page).
+   Strip this block (and the matching HTML/JS blocks) before integration. */
+[data-fontpack="1"] { --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif; --font-body: "General Sans", ui-sans-serif, system-ui, sans-serif; --display-tracking: -0.02em; --display-lh: 1.08; --display-weight: 700; --display-weight-md: 500; }
+[data-fontpack="2"] { --font-display: "Schibsted Grotesk", ui-sans-serif, system-ui, sans-serif; --font-body: "Switzer", ui-sans-serif, system-ui, sans-serif; --display-tracking: -0.015em; --display-lh: 1.08; --display-weight: 700; --display-weight-md: 500; }
+[data-fontpack="3"] { --font-display: "Familjen Grotesk", ui-sans-serif, system-ui, sans-serif; --font-body: "General Sans", ui-sans-serif, system-ui, sans-serif; --display-tracking: -0.015em; --display-lh: 1.08; --display-weight: 700; --display-weight-md: 500; }
+[data-fontpack="4"] { --font-display: "Cabinet Grotesk", ui-sans-serif, system-ui, sans-serif; --font-body: "Switzer", ui-sans-serif, system-ui, sans-serif; --display-tracking: -0.02em; --display-lh: 1.08; --display-weight: 700; --display-weight-md: 500; }
+[data-fontpack="5"] { --font-display: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif; --font-body: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif; --display-tracking: -0.015em; --display-lh: 1.14; --display-weight: 700; --display-weight-md: 600; }
+
+/* Control panel — adapted to this page's hairline editorial language (no shadows, 2px radius). */
+:root { --z-demokit: 400; }
+.demokit {
+  position: fixed;
+  right: max(var(--space-md), env(safe-area-inset-right));
+  bottom: max(var(--space-md), env(safe-area-inset-bottom));
+  z-index: var(--z-demokit);
+  display: grid; justify-items: end; gap: var(--space-xs);
+  font-family: var(--font-outlier);
+}
+.demokit__chip, .demokit__btn {
+  min-height: 44px; padding: 0 var(--space-sm);
+  border: var(--rule-hair) solid var(--color-ink); border-radius: 2px;
+  background: var(--color-paper); color: var(--color-ink);
+  font-family: var(--font-outlier); font-size: 12px; letter-spacing: 0.06em;
+  white-space: nowrap; cursor: pointer;
+}
+.demokit__chip { font-weight: 700; }
+.demokit__chip:hover, .demokit__btn:hover { background: var(--color-paper-2); }
+.demokit__chip:active, .demokit__btn:active { transform: translateY(1px); }
+.demokit__btn[aria-pressed="true"] { background: var(--color-ink); color: var(--color-accent-ink); }
+.demokit__panel {
+  background: var(--color-paper); border: var(--rule-hair) solid var(--color-ink); border-radius: 2px;
+  padding: var(--space-sm); display: grid; gap: var(--space-xs);
+  max-width: min(92vw, 34rem);
+}
+.demokit__row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2xs); }
+.demokit__lab { font-size: 11px; letter-spacing: 0.1em; color: var(--color-muted); min-width: 4.5ch; }
+@media (max-width: 60rem) { .foot { padding-block-end: 6rem; } } /* keep the chip clear of the footer links */
+@media print { .demokit { display: none; } }
+/* SUGO-DEMO-KIT END */
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="page">
+
+  <header class="nav">
+    <a class="wordmark" href="/">Sugo AI</a>
+    <a class="chip" href="/contact">Contact us</a>
+  </header>
+
+  <main id="main">
+    <header class="memo-head doc">
+      <hr class="memo-head__rule" aria-hidden="true">
+      <div class="memo-head__meta">
+        <p class="memo-head__line">A brief from Sugo AI · Product studio · August 2026</p>
+        <svg class="stamp" viewBox="0 0 100 100" role="img" aria-label="Sugo AI studio stamp">
+          <defs>
+            <path id="stamp-circ" d="M 50,50 m -38,0 a 38,38 0 1,1 76,0 a 38,38 0 1,1 -76,0"/>
+          </defs>
+          <circle cx="50" cy="50" r="47" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          <text font-size="9.2" letter-spacing="2.1" fill="currentColor">
+            <textPath href="#stamp-circ">SUGO AI · PRODUCT STUDIO ·</textPath>
+          </text>
+          <!-- small pot glyph -->
+          <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <path d="M 40 48 L 60 48"/>
+            <path d="M 41 48 C 41 58, 44 62, 50 62 C 56 62, 59 58, 59 48 Z" fill="currentColor" stroke="none"/>
+            <path d="M 37 48 L 34 45 M 63 48 L 66 45"/>
+            <path d="M 46 42 C 45 40, 47 38, 46 36 M 54 42 C 53 40, 55 38, 54 36"/>
+          </g>
+        </svg>
+      </div>
+      <h1>Modern product development for companies that aren’t software companies.</h1>
+      <p class="lede">We help traditional businesses ship internal tools, AI&nbsp;agents, and customer products with the discipline of a modern software company.</p>
+    </header>
+
+    <article class="doc">
+
+      <h2>Who we are.</h2>
+      <p>Sugo AI is a product studio for traditional businesses building serious software. We partner with teams that know their business deeply but have not historically operated like software companies. We bring the product, design, and engineering discipline needed to build software that is modern, usable, and <mark>worth rolling out</mark>.</p>
+
+      <h2>What we build.</h2>
+      <p>The work falls into two buckets.</p>
+      <div class="diptych">
+        <section>
+          <h3>Internal tools &amp; AI&nbsp;agents</h3>
+          <p>Software for operations, workflows, decision support, and team productivity. We help businesses replace manual work, disconnected systems, and shallow pilots with tools that fit how the organization actually runs.</p>
+        </section>
+        <section>
+          <h3>Customer products</h3>
+          <p>Portals, platforms, and digital experiences for customers, members, partners, and policyholders. We build products that are clear, trustworthy, and easy to use, especially when the business behind them is operationally complex.</p>
+        </section>
+      </div>
+
+      <h2>Why pilots stall.</h2>
+      <p>Most AI pilots do not stall because the model is weak. A widely cited MIT NANDA report from August 2025 found that only a small minority of enterprise GenAI pilots — on the order of one in twenty<sup id="fnref1"><a href="#fn1" aria-label="Footnote 1">1</a></sup> — showed measurable P&amp;L impact. In our experience, the issue is usually ownership: the team shaping the opportunity is too far from the team building the product, and no one is accountable end to end.</p>
+      <p class="setoff">We work differently. We embed closely, shape the product with the business, and stay responsible for what actually ships.</p>
+
+      <h2>How we work.</h2>
+      <p>We run like a software company because that’s where we come from. Traditional businesses often have strong operators, strong constraints, and strong domain knowledge. What they usually lack is a product-development system built for fast learning, tight iteration, and high-quality shipping. That’s what we bring.</p>
+      <ol class="system">
+        <li>
+          <h3><span class="num" aria-hidden="true">1 ·</span> Deep discovery to find the real operational pain.</h3>
+          <p>Before anything is designed, we sit with the people doing the work until the actual problem — not the assumed one — is on the table.</p>
+        </li>
+        <li>
+          <h3><span class="num" aria-hidden="true">2 ·</span> End-to-end workflow mapping so the product fits the business.</h3>
+          <p>We trace how work really moves through the organization, so the software fits the operation instead of fighting it.</p>
+        </li>
+        <li>
+          <h3><span class="num" aria-hidden="true">3 ·</span> Product design shaped around regulated, operationally complex environments.</h3>
+          <p>Design that takes constraints seriously — compliance, legacy systems, and the people who have to trust the screen in front of them.</p>
+        </li>
+        <li>
+          <h3><span class="num" aria-hidden="true">4 ·</span> Hands-on engineering ownership through production.</h3>
+          <p>We write, ship, and stand behind real code — through launch, rollout, and the unglamorous work of making it hold up.</p>
+        </li>
+        <li>
+          <h3><span class="num" aria-hidden="true">5 ·</span> Ongoing iteration after version one.</h3>
+          <p>Version one is the beginning of the learning, not the end of the engagement.</p>
+        </li>
+      </ol>
+
+      <h2>The full lifecycle.</h2>
+      <p>We own the full product lifecycle. Sugo AI works from product strategy through design, engineering, launch, and production rollout. We do not stop at recommendations, specs, or prototypes. We stay close to the work until the product is live, stable, usable, and working inside the real constraints of the business.</p>
+      <p>That includes the parts many firms avoid: production readiness, accessibility, implementation detail, coordination with internal teams, and the practical work required to get software standing up in the real world.</p>
+
+      <h2>What we are not.</h2>
+      <div class="declaration">
+        <p>We are <strong>not a strategy shop</strong> that disappears after the deck.</p>
+        <p>We are <strong>not a dev shop</strong> waiting for tickets.</p>
+        <p>We are <strong>a product studio</strong> that helps traditional businesses build and ship software to a much higher standard.</p>
+      </div>
+
+      <p>If the software matters, the product work should too. Sugo AI helps traditional businesses build internal tools, AI&nbsp;agents, and customer products with more rigor, better taste, and end-to-end ownership.</p>
+      <div class="cta-row">
+        <a class="chip" href="/contact">Start a conversation</a>
+        <a class="link-more" href="/how-we-work">Read how we work →</a>
+      </div>
+
+      <p class="footnote" id="fn1">1 — MIT NANDA, “The GenAI Divide: State of AI in Business,” August 2025. <a href="#fnref1" aria-label="Back to reference">↩</a></p>
+
+    </article>
+  </main>
+
+  <footer class="foot">
+    <p class="foot__close">Yours in shipped software,<br><span class="foot__sign">— Sugo AI</span></p>
+    <p class="foot__ps">P.S. — Replies welcome at <a href="mailto:marc@sugoai.com">marc@sugoai.com</a>, or start with <a href="/contact">a short conversation</a>.</p>
+    <div class="foot__meta">
+      <span>© 2026 Sugo Product Company, LLC d/b/a Sugo AI</span>
+      <a href="/how-we-work">How we work</a>
+      <a href="/writing">Writing</a>
+      <a href="/about">About</a>
+    </div>
+  </footer>
+
+</div>
+
+<!-- SUGO-DEMO-KIT START · control panel (demo chrome — strip before integration) -->
+<div class="demokit">
+  <div class="demokit__panel" id="demokit-panel" hidden>
+    <div class="demokit__row" role="group" aria-label="Type pack">
+      <span class="demokit__lab" aria-hidden="true">TYPE</span>
+      <button class="demokit__btn" type="button" data-kit-pack="" aria-pressed="true">Native</button>
+      <button class="demokit__btn" type="button" data-kit-pack="1" aria-pressed="false">1 Space</button>
+      <button class="demokit__btn" type="button" data-kit-pack="2" aria-pressed="false">2 Schibsted</button>
+      <button class="demokit__btn" type="button" data-kit-pack="3" aria-pressed="false">3 Familjen</button>
+      <button class="demokit__btn" type="button" data-kit-pack="4" aria-pressed="false">4 Cabinet</button>
+      <button class="demokit__btn" type="button" data-kit-pack="5" aria-pressed="false">5 Bricolage</button>
+    </div>
+  </div>
+  <button class="demokit__chip" type="button" aria-expanded="false" aria-controls="demokit-panel">DEMO</button>
+</div>
+<script>
+(function () {
+  var root = document.documentElement;
+  var chip = document.querySelector('.demokit__chip');
+  var panel = document.getElementById('demokit-panel');
+  function store(key, val) { try { val ? localStorage.setItem(key, val) : localStorage.removeItem(key); } catch (e) {} }
+  function sync() {
+    var fp = root.getAttribute('data-fontpack') || '';
+    document.querySelectorAll('[data-kit-pack]').forEach(function (b) {
+      b.setAttribute('aria-pressed', String(b.getAttribute('data-kit-pack') === fp));
+    });
+    var ha = root.getAttribute('data-heroart') || 'pot';
+    document.querySelectorAll('[data-kit-art]').forEach(function (b) {
+      b.setAttribute('aria-pressed', String(b.getAttribute('data-kit-art') === ha));
+    });
+  }
+  document.querySelectorAll('[data-kit-pack]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var v = b.getAttribute('data-kit-pack');
+      v ? root.setAttribute('data-fontpack', v) : root.removeAttribute('data-fontpack');
+      store('sugo-demo-fontpack', v);
+      sync();
+    });
+  });
+  document.querySelectorAll('[data-kit-art]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var v = b.getAttribute('data-kit-art');
+      v === 'pot' ? root.removeAttribute('data-heroart') : root.setAttribute('data-heroart', v);
+      store('sugo-demo-heroart', v === 'pot' ? '' : v);
+      sync();
+    });
+  });
+  chip.addEventListener('click', function () {
+    var open = chip.getAttribute('aria-expanded') === 'true';
+    chip.setAttribute('aria-expanded', String(!open));
+    panel.hidden = open;
+  });
+  sync();
+})();
+</script>
+<!-- SUGO-DEMO-KIT END -->
+</body>
+</html>

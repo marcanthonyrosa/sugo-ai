@@ -1,0 +1,156 @@
+[
+  {
+    "date": "2026-08-13",
+    "macrostructure": "multi-page system",
+    "theme": "LOCKED \u2014 Viola Light / Red Hat / 16-bit tomato / Hop",
+    "theme_axes": "light / geometric-sans / chromatic-viola-light",
+    "vibe": "hardened master + four locked-system pages + copy brief",
+    "enrichment": "home-master.html (palette switcher, starred defaults) \u00b7 how-we-work \u00b7 contact \u00b7 about \u00b7 writing \u00b7 COPY_BRIEF.md",
+    "nav": "N7+mark",
+    "footer": "Ft5 action-row",
+    "brief": "System lock-in \u2014 user convictions hardened (CHUNKY default, corrected); site expansion + FINAL COPY filled from SITE_PAGE_COPY.md"
+  },
+  {
+    "date": "2026-08-13",
+    "macrostructure": "Split Studio",
+    "theme": "custom",
+    "theme_axes": "art system v4",
+    "vibe": "vector tomato in pot linework, nav logo mark, sprite-idle + stove steam",
+    "enrichment": "states Pot/Tomato/Chunky/16bit; dissolve+dither removed; chip toggle fixed",
+    "nav": "N7",
+    "footer": "Ft5",
+    "brief": "Art v4 on leaders \u2014 mark family unified around pot linework + user PNGs"
+  },
+  {
+    "date": "2026-08-13",
+    "macrostructure": "Split Studio",
+    "theme": "custom",
+    "theme_axes": "art system v3",
+    "vibe": "user pixel-tomato PNGs + Dissolve/Dither decay marks, footer mirroring",
+    "enrichment": "Pot/Chunky/16bit/Dissolve/Dither states on E2+1A; assets in prototypes/art/",
+    "nav": "N7",
+    "footer": "Ft5",
+    "brief": "Art v3 \u2014 decay-pixelation direction (tomato = iconic fruit + old-school tech)"
+  },
+  {
+    "date": "2026-08-13",
+    "macrostructure": "Split Studio",
+    "theme": "custom",
+    "theme_axes": "iteration-3 refinements",
+    "vibe": "squared radii, process switcher, stove-pot footer, geo/simmer art, packs 6-9",
+    "enrichment": "leader pages E2+1A upgraded; illustration-lab.html added",
+    "nav": "N7",
+    "footer": "Ft5",
+    "brief": "Iteration 3 \u2014 Dodonut refinements on leader pages (E2 leading, 1A second)"
+  },
+  {
+    "date": "2026-08-13",
+    "macrostructure": "Split Studio",
+    "theme": "custom",
+    "theme_axes": "light / roman-serif / chromatic-viola-light",
+    "vibe": "light viola atmosphere, navy sole dark+action",
+    "enrichment": "E-hand-SVG Tier B (navy-linework pot on lavender)",
+    "nav": "N7",
+    "footer": "Ft5",
+    "brief": "Panel Press variant E2 \u2014 Viola system rebalanced to light ramp"
+  },
+  {
+    "date": "2026-08-13",
+    "macrostructure": "Split Studio",
+    "theme": "custom",
+    "theme_axes": "light / roman-serif / chromatic-viola",
+    "vibe": "live-site Viola system on Panel Press (navy carpentry)",
+    "enrichment": "E-hand-SVG Tier B (sugo pot)",
+    "nav": "N7",
+    "footer": "Ft5",
+    "brief": "Panel Press variant E REDO \u2014 main-branch Viola system (sugoai.com) \u00b7 Fraunces/Switzer/JetBrains"
+  },
+  {
+    "date": "2026-08-13",
+    "macrostructure": "Split Studio",
+    "theme": "custom",
+    "theme_axes": "light / roman-serif / warm-clay+chromatic-moss",
+    "vibe": "legacy Studio Edition palette on Panel Press",
+    "enrichment": "E-hand-SVG Tier B (sugo pot)",
+    "nav": "N7",
+    "footer": "Ft5",
+    "brief": "Panel Press variant E v1 (superseded \u2014 wrong source: legacy/styles.css)"
+  },
+  {
+    "date": "2026-08-13",
+    "macrostructure": "Split Studio",
+    "theme": "custom",
+    "theme_axes": "light / display-heavy / cool-indigo+warm-lemon",
+    "vibe": "Dodonut-literal dare, Clash Display",
+    "enrichment": "E-hand-SVG Tier B (sugo pot)",
+    "nav": "N7",
+    "footer": "Ft5",
+    "brief": "Panel Press variant D \u2014 indigo/lemon \u00b7 Clash Display/Switzer"
+  },
+  {
+    "date": "2026-08-13",
+    "macrostructure": "Split Studio",
+    "theme": "custom",
+    "theme_axes": "light / display-heavy-tuned / warm-gold+chromatic-green",
+    "vibe": "original voice minus tomato, readability-tuned",
+    "enrichment": "E-hand-SVG Tier B (sugo pot)",
+    "nav": "N7",
+    "footer": "Ft5",
+    "brief": "Panel Press variant C \u2014 moss/gold \u00b7 Bricolage-tuned/IBM Plex Sans"
+  },
+  {
+    "date": "2026-08-13",
+    "macrostructure": "Split Studio",
+    "theme": "custom",
+    "theme_axes": "light / display-heavy / warm-yellow+cool-blue",
+    "vibe": "yellow-forward butter flood, ink linework",
+    "enrichment": "E-hand-SVG Tier B (sugo pot, ink-on-butter)",
+    "nav": "N7",
+    "footer": "Ft5",
+    "brief": "Panel Press variant B \u2014 butter/ink \u00b7 Cabinet Grotesk/Switzer"
+  },
+  {
+    "date": "2026-08-13",
+    "macrostructure": "Split Studio",
+    "theme": "custom",
+    "theme_axes": "light / geometric-sans / cool+warm-gold",
+    "vibe": "C3 typography on C1 structure, blue+yellow",
+    "enrichment": "E-hand-SVG Tier B (pot + process wayfinding strip)",
+    "nav": "N7",
+    "footer": "Ft5",
+    "brief": "Panel Press variant A \u2014 cobalt/gold \u00b7 Space Grotesk/General Sans (user-requested direction)"
+  },
+  {
+    "date": "2026-08-13",
+    "macrostructure": "Narrative Workflow",
+    "theme": "custom",
+    "theme_axes": "light-with-dark-floods / geometric-sans / cool",
+    "vibe": "production floor, color-blocked, kinetic precision",
+    "enrichment": "E-hand-SVG Tier B (production-line diagram)",
+    "nav": "N3",
+    "footer": "Ft8",
+    "brief": "Sugo AI homepage prototype \u2014 Concept 3 Production Floor"
+  },
+  {
+    "date": "2026-08-13",
+    "macrostructure": "Long Document",
+    "theme": "custom",
+    "theme_axes": "light / display-grotesque / chromatic-green",
+    "vibe": "operator's memo, hand-set, calm authority",
+    "enrichment": "E-hand-SVG Tier B (circular authorship stamp)",
+    "nav": "N9",
+    "footer": "Ft6",
+    "brief": "Sugo AI homepage prototype \u2014 Concept 2 Operator's Brief"
+  },
+  {
+    "date": "2026-08-13",
+    "macrostructure": "Split Studio",
+    "theme": "custom",
+    "theme_axes": "light / display-heavy / warm",
+    "vibe": "warm workshop, inked panels, quietly playful",
+    "enrichment": "E-hand-SVG Tier B (sugo pot illustration)",
+    "nav": "N7",
+    "footer": "Ft5",
+    "brief": "Sugo AI homepage prototype \u2014 Concept 1 Panel Press (WINNER \u2014 user-picked direction; variants A\u2013E explore type+palette)"
+  }
+]

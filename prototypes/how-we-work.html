@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sugo AI — How we work</title>
+<meta name="description" content="How Sugo AI works from discovery through production rollout for traditional businesses building serious software.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600&display=swap" rel="stylesheet">
+<style>
+/* Hallmark · genre: playful · macrostructure: Narrative Workflow (document spine) · nav: N7 slab · footer: Ft5 action-row
+ * theme: LOCKED Sugo system (Viola Light) · display: Red Hat Display 700/500 · body: General Sans · outlier: JetBrains Mono
+ * mark: chunky pixel tomato (art/tomato-a.png) — nav 22px, footer 88px (static; hop reserved for hero art slots, none here)
+ * carpentry: 2px navy borders · radii: btn 4 / card 8 / panel 10 · stacked shadows (viola under primary CTAs)
+ * locked-system page: NO demo kit, no data attributes. Copy = FINAL (filled from SITE_PAGE_COPY.md, slots marked §HW-n).
+ * honest copy: the only number on the page is the footnoted MIT NANDA figure.
+ * contrast: ink on paper/paper-2/card/viola-50/blush ≥7:1; paper on navy ≥12:1; viola keys on navy ≈10:1; muted only on paper/card.
+ * pre-emit critique: P4 H5 E4 S4 R4 V4 · gates: pass (numerals stacked above titles; accordion = real buttons, no scroll-jump)
+ */
+:root {
+  --color-paper:      oklch(96% 0.014 95);
+  --color-paper-2:    oklch(94% 0.020 95);
+  --color-card:       oklch(98.5% 0.008 100);
+  --color-ink:        oklch(24% 0.065 265);
+  --color-ink-2:      oklch(34% 0.055 262);
+  --color-muted:      oklch(46% 0.04 262);
+  --color-rule:       oklch(90% 0.012 258);
+  --color-rule-flood: oklch(46% 0.04 262);
+  --color-viola-50:   oklch(95.5% 0.015 310);
+  --color-viola:      oklch(89% 0.04 310);
+  --color-viola-500:  oklch(72% 0.09 305);
+  --color-underline:  oklch(55% 0.12 308);
+  --color-saffron:    oklch(83% 0.11 85);
+  --color-blush:      oklch(88% 0.035 40);
+  --color-accent:     var(--color-ink);
+  --color-accent-hover: oklch(30% 0.07 262);
+  --color-accent-ink: var(--color-paper);
+  --color-focus:      oklch(46% 0.13 310);
+  --color-focus-on-flood: oklch(95% 0.032 95);
+
+  --font-display: "Red Hat Display", ui-sans-serif, system-ui, sans-serif;
+  --font-body:    "General Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-outlier: "JetBrains Mono", ui-monospace, monospace;
+  --display-tracking: -0.015em;
+  --display-lh: 1.1;
+  --display-weight: 700;
+  --display-weight-md: 500;
+
+  --text-sm:   0.875rem;
+  --text-base: 1.0625rem;
+  --text-md:   1.25rem;
+  --text-lg:   1.5625rem;
+  --text-xl:   1.953rem;
+  --text-2xl:  2.441rem;
+  --text-display-s: clamp(2.4rem, 3.7vw + 1rem, 3.9rem);
+  --text-statement: clamp(2rem, 3vw + 1rem, 3.25rem);
+
+  --space-2xs: 0.25rem;
+  --space-xs:  0.5rem;
+  --space-sm:  0.75rem;
+  --space-md:  1rem;
+  --space-lg:  1.5rem;
+  --space-xl:  2.5rem;
+  --space-2xl: 4rem;
+  --space-3xl: 6rem;
+
+  --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in:     cubic-bezier(0.7, 0, 0.84, 0);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-micro: 120ms;
+  --dur-short: 220ms;
+  --dur-long:  420ms;
+
+  --border-panel: 2px solid var(--color-ink);
+  --radius-panel: 10px;
+  --radius-card: 8px;
+  --radius-btn: 4px;
+  --radius-micro: 2px;
+  --shadow-stack: 4px 4px 0 var(--color-ink);
+  --shadow-stack-viola: 4px 4px 0 var(--color-viola-500);
+  --shadow-stack-viola-lift: 5px 5px 0 var(--color-viola-500);
+  --shadow-stack-viola-press: 2px 2px 0 var(--color-viola-500);
+
+  --z-sticky-nav: 300;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body { overflow-x: clip; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.6;
+  padding-inline: max(0px, env(safe-area-inset-left)) max(0px, env(safe-area-inset-right));
+}
+h1, h2, h3 { font-family: var(--font-display); font-weight: var(--display-weight); line-height: var(--display-lh); letter-spacing: var(--display-tracking); margin: 0; overflow-wrap: anywhere; min-width: 0; }
+p { margin: 0; }
+::selection { background: var(--color-viola); color: var(--color-ink); }
+
+.wrap { max-width: 74rem; margin-inline: auto; padding-inline: clamp(1rem, 4vw, 2rem); }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; border-radius: var(--radius-micro); }
+.own__panel :focus-visible { outline-color: var(--color-focus-on-flood); }
+
+.skip {
+  position: absolute; left: var(--space-md); top: -100px;
+  background: var(--color-ink); color: var(--color-paper);
+  padding: var(--space-sm) var(--space-md); border-radius: var(--radius-btn);
+  z-index: var(--z-sticky-nav); transition: none;
+}
+.skip:focus-visible { top: var(--space-md); }
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.5em;
+  min-height: 48px; padding: var(--space-sm) var(--space-lg);
+  border-radius: var(--radius-btn); border: 2px solid var(--color-ink);
+  font-family: var(--font-body); font-weight: 600; font-size: var(--text-base);
+  text-decoration: none; white-space: nowrap; cursor: pointer; line-height: 1;
+  transition: transform var(--dur-micro) var(--ease-out),
+              box-shadow var(--dur-micro) var(--ease-out),
+              background-color var(--dur-micro) var(--ease-out);
+}
+.btn--primary { background: var(--color-accent); color: var(--color-accent-ink); box-shadow: var(--shadow-stack-viola); }
+.btn--primary:hover { background: var(--color-accent-hover); transform: translate(-1px, -1px); box-shadow: var(--shadow-stack-viola-lift); }
+.btn--primary:active { transform: translate(1px, 1px); box-shadow: var(--shadow-stack-viola-press); }
+.btn--ghost { background: transparent; color: var(--color-ink); }
+.btn--ghost:hover { background: var(--color-paper-2); }
+.btn--ghost:active { transform: translateY(1px); }
+.btn:disabled, .btn[aria-disabled="true"] { opacity: 0.55; cursor: not-allowed; box-shadow: none; transform: none; }
+
+.link {
+  font-weight: 600; color: var(--color-ink); text-decoration: underline;
+  text-decoration-thickness: 1px; text-underline-offset: 3px; white-space: nowrap;
+}
+.link:hover { text-decoration-thickness: 2px; text-decoration-color: var(--color-underline); }
+.link:active { color: var(--color-ink-2); }
+
+/* Nav (N7 slab) */
+.nav { border-bottom: var(--border-panel); background: var(--color-paper); }
+.nav__row { display: flex; align-items: center; gap: var(--space-lg); padding-block: var(--space-sm); }
+.wordmark {
+  font-family: var(--font-display); font-weight: var(--display-weight); font-size: var(--text-md);
+  text-decoration: none; letter-spacing: 0.01em; display: inline-flex; align-items: center; gap: 0.35em;
+  min-height: 44px;
+}
+.navmark { display: inline-flex; align-items: center; line-height: 1; transform: translateY(-1px); }
+.navmark .mk { height: 22px; width: auto; display: block; }
+.nav__links { display: flex; align-items: center; gap: var(--space-lg); margin-left: auto; list-style: none; padding: 0; margin-block: 0; }
+.nav__link {
+  text-transform: uppercase; letter-spacing: 0.08em; font-size: var(--text-sm); font-weight: 600;
+  text-decoration: none; white-space: nowrap; padding-block: var(--space-sm); display: inline-block;
+}
+.nav__link:hover { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 6px; text-decoration-color: var(--color-underline); }
+.nav__link[aria-current="page"] { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 6px; }
+.nav__cta { margin-left: var(--space-xs); }
+.nav__toggle { display: none; }
+.nav__drawer { display: grid; grid-template-rows: 0fr; transition: grid-template-rows var(--dur-long) var(--ease-in-out); }
+.nav__drawer > div { overflow: hidden; min-height: 0; }
+.nav__drawer.is-open { grid-template-rows: 1fr; }
+.nav__drawer ul { list-style: none; margin: 0; padding: var(--space-md) 0 var(--space-lg); display: grid; gap: var(--space-xs); }
+@media (max-width: 59.99rem) {
+  .nav__links { display: none; }
+  .nav__toggle { display: inline-flex; margin-left: auto; background: transparent; color: var(--color-ink); }
+}
+@media (min-width: 60rem) { .nav__drawer { display: none; } }
+
+/* Page hero — typographic */
+.pagehero { padding-block: var(--space-2xl) var(--space-xl); }
+.pagehero h1 { font-size: var(--text-display-s); max-width: 18ch; }
+.pagehero .lede { margin-top: var(--space-lg); font-size: var(--text-md); color: var(--color-ink-2); max-width: 52ch; }
+
+.reveal { opacity: 0; transform: translateY(8px); animation: reveal var(--dur-long) var(--ease-out) forwards; animation-delay: calc(var(--i, 0) * 90ms); }
+@keyframes reveal { to { opacity: 1; transform: none; } }
+
+/* Stages — full numbered scroll bands */
+.stages { padding-block-start: var(--space-lg); }
+.stages__title { font-size: var(--text-2xl); max-width: 22ch; }
+.stage { border-top: 3px solid var(--color-ink); margin-top: var(--space-xl); padding-block: var(--space-xl) var(--space-2xl); }
+.stage:nth-of-type(even) { background: var(--color-paper-2); }
+.stage:nth-of-type(even) .wrap { padding-block: 0; }
+.stage__num {
+  font-family: var(--font-outlier); font-weight: 700; font-size: var(--text-xl);
+  font-variant-numeric: tabular-nums; color: var(--color-muted); display: block;
+}
+.stage h3 { font-size: var(--text-xl); margin-top: var(--space-2xs); max-width: 24ch; }
+.stage__body { margin-top: var(--space-md); color: var(--color-ink-2); max-width: 62ch; }
+.stage__label { font-weight: 600; font-size: var(--text-sm); text-transform: uppercase; letter-spacing: 0.08em; margin-top: var(--space-lg); }
+.tickets {
+  list-style: none; margin: var(--space-sm) 0 0; padding: var(--space-lg) var(--space-lg) var(--space-lg) var(--space-md);
+  background: var(--color-viola-50); border-radius: var(--radius-card);
+  display: flex; flex-wrap: wrap; align-items: flex-start; row-gap: var(--space-sm);
+  max-width: 46rem;
+}
+.ticket {
+  background: var(--color-card); border: 2px solid var(--color-ink); border-radius: var(--radius-card);
+  padding: var(--space-xs) var(--space-md); font-weight: 600; font-size: var(--text-sm);
+  color: var(--color-ink); margin-inline-end: -0.4rem; max-width: 100%;
+}
+.ticket:nth-child(odd) { transform: rotate(-1.2deg); }
+.ticket:nth-child(even) { transform: rotate(1.2deg) translateY(3px); }
+
+/* Lifecycle — navy flood band */
+.own { padding-block: var(--space-3xl); }
+.own__panel {
+  background: var(--color-ink); color: var(--color-paper);
+  border: var(--border-panel); border-radius: var(--radius-panel);
+  padding: clamp(var(--space-xl), 5vw, var(--space-2xl));
+}
+.own__panel h2 { font-size: var(--text-2xl); max-width: 20ch; }
+.own__panel .own__intro { margin-top: var(--space-md); max-width: 60ch; color: var(--color-viola-50); }
+.own__list { list-style: none; margin: var(--space-xl) 0 0; padding: 0; }
+.own__list li { padding-block: var(--space-md); border-top: 1px solid var(--color-rule-flood); max-width: 62ch; }
+.own__list li:first-child { border-top: none; padding-top: 0; }
+.own__list strong { font-family: var(--font-display); font-weight: var(--display-weight-md); font-size: var(--text-md); color: var(--color-viola); display: block; }
+.own__list span { color: var(--color-viola-50); }
+
+/* Engagement shapes */
+.shapes { padding-block-end: var(--space-3xl); }
+.shapes__grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 4fr) minmax(0, 3.5fr); gap: var(--space-lg); margin-top: var(--space-xl); }
+.shape { border: var(--border-panel); border-radius: var(--radius-panel); padding: var(--space-xl); display: grid; gap: var(--space-sm); align-content: start; }
+.shape h3 { font-size: var(--text-lg); font-weight: var(--display-weight-md); }
+.shape p { color: var(--color-ink-2); }
+.shape--first { background: var(--color-card); box-shadow: var(--shadow-stack); }
+.shape--embed { background: var(--color-viola-50); }
+.shape--pilot { background: var(--color-blush); }
+@media (max-width: 59.99rem) { .shapes__grid { grid-template-columns: minmax(0, 1fr); } }
+
+/* What we ask of you */
+.ask { padding-block-end: var(--space-3xl); }
+.ask ol { list-style: none; margin: var(--space-xl) 0 0; padding: 0; max-width: 56rem; counter-reset: ask; }
+.ask li { display: grid; grid-template-columns: minmax(0, auto) minmax(0, 1fr); gap: var(--space-lg); padding-block: var(--space-lg); border-top: 1px solid var(--color-rule); align-items: baseline; }
+.ask li::before {
+  counter-increment: ask; content: counter(ask, decimal-leading-zero);
+  font-family: var(--font-outlier); color: var(--color-muted); font-variant-numeric: tabular-nums;
+}
+.ask strong { font-family: var(--font-display); font-weight: var(--display-weight-md); font-size: var(--text-md); display: block; }
+.ask span { color: var(--color-ink-2); }
+
+/* Why pilots stall — compact restatement */
+.stall { padding-block-end: var(--space-3xl); }
+.stall__card { border: var(--border-panel); border-radius: var(--radius-panel); background: var(--color-saffron); padding: var(--space-xl); max-width: 46rem; }
+.stall__card h2 { font-size: var(--text-lg); max-width: 26ch; }
+.stall__card p { margin-top: var(--space-sm); max-width: 58ch; }
+.stall__stat { margin: 0 0 var(--space-sm); font-weight: 600; }
+.stall__num { font-family: var(--font-outlier); font-weight: 700; font-size: var(--text-xl); font-variant-numeric: tabular-nums; margin-right: 0.15em; }
+.stall__foot { margin-top: var(--space-md); font-family: var(--font-outlier); font-size: var(--text-sm); }
+.stall__card .link { white-space: normal; }
+
+/* FAQ accordion */
+.faq { padding-block-end: var(--space-3xl); }
+.faq__list { margin-top: var(--space-xl); border: var(--border-panel); border-radius: var(--radius-panel); background: var(--color-card); overflow: hidden; }
+.faq__item + .faq__item { border-top: 1px solid var(--color-rule); }
+.faq__trigger {
+  display: flex; align-items: center; justify-content: space-between; gap: var(--space-md);
+  width: 100%; min-height: 44px; padding: var(--space-lg) var(--space-xl);
+  background: transparent; border: none; cursor: pointer; text-align: left;
+  font-family: var(--font-display); font-weight: var(--display-weight-md); font-size: var(--text-md);
+  color: var(--color-ink);
+  transition: background-color var(--dur-micro) var(--ease-out);
+}
+.faq__trigger:hover { background: var(--color-viola-50); }
+.faq__trigger:active { background: var(--color-paper-2); }
+.faq__trigger:disabled { opacity: 0.55; cursor: not-allowed; }
+.faq__chev { flex: none; transition: transform var(--dur-short) var(--ease-in-out); }
+.faq__trigger[aria-expanded="true"] .faq__chev { transform: rotate(180deg); }
+.faq__panel { display: grid; grid-template-rows: 0fr; transition: grid-template-rows var(--dur-long) var(--ease-in-out); }
+.faq__panel > div { overflow: hidden; min-height: 0; }
+.faq__panel.is-open { grid-template-rows: 1fr; }
+.faq__panel p { padding: 0 var(--space-xl) var(--space-lg); color: var(--color-ink-2); max-width: 62ch; }
+
+/* Footer (Ft5 action-row) */
+.foot { border-top: var(--border-panel); background: var(--color-paper); padding-block: var(--space-2xl) var(--space-xl); }
+.foot__statement { font-family: var(--font-display); font-weight: var(--display-weight); font-size: var(--text-statement); line-height: var(--display-lh); letter-spacing: var(--display-tracking); max-width: 24ch; overflow-wrap: anywhere; min-width: 0; }
+.foot__body { margin-top: var(--space-lg); max-width: 56ch; color: var(--color-ink-2); }
+.foot__actionrow { display: flex; align-items: center; justify-content: space-between; gap: var(--space-xl); flex-wrap: wrap; margin-top: var(--space-xl); margin-bottom: var(--space-xl); }
+@media (max-width: 40rem) { }
+.foot__brandmark { display: inline-flex; align-items: center; transform: translateY(-1px); }
+.foot__brandmark img { height: 22px; width: auto; display: block; }
+.foot__meta {
+  margin-top: var(--space-xl); padding-top: var(--space-md); border-top: 1px solid var(--color-rule);
+  display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-md) var(--space-lg);
+  font-size: var(--text-sm); color: var(--color-muted);
+}
+.foot__meta a { text-decoration: none; white-space: nowrap; }
+.foot__meta a:hover { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 4px; }
+.foot__note { font-family: var(--font-outlier); margin-left: auto; }
+@media (max-width: 40rem) { .foot__note { margin-left: 0; } }
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 150ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 150ms !important;
+  }
+  html { scroll-behavior: auto; }
+  .reveal { animation: reveal-reduced 150ms linear forwards; }
+  @keyframes reveal-reduced { to { opacity: 1; transform: none; } }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav">
+  <div class="wrap">
+    <div class="nav__row">
+      <a class="wordmark" href="/">Sugo AI<span class="navmark" aria-hidden="true"><img class="mk" src="art/tomato-a.png" alt="" width="24" height="22"></span></a>
+      <ul class="nav__links">
+        <li><a class="nav__link" href="/how-we-work" aria-current="page">How we work</a></li>
+        <li><a class="nav__link" href="/writing">Writing</a></li>
+        <li><a class="nav__link" href="/about">About</a></li>
+        <li><a class="btn btn--primary nav__cta" href="/contact">Contact us</a></li>
+      </ul>
+      <button class="btn btn--ghost nav__toggle" aria-expanded="false" aria-controls="nav-drawer">Menu</button>
+    </div>
+    <div class="nav__drawer" id="nav-drawer">
+      <div>
+        <ul>
+          <li><a class="nav__link" href="/how-we-work" aria-current="page">How we work</a></li>
+          <li><a class="nav__link" href="/writing">Writing</a></li>
+          <li><a class="nav__link" href="/about">About</a></li>
+          <li><a class="btn btn--primary" href="/contact">Contact us</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- Page hero -->
+  <section class="pagehero">
+    <div class="wrap">
+      <!-- §HW-1 -->
+      <h1 class="reveal" style="--i: 0">We run like a software company. That’s where we come from.</h1>
+      <p class="lede reveal" style="--i: 1">Traditional businesses have strong operators, real constraints, and deep domain knowledge. What they often do not have is a product-development system that turns those realities into software that ships, gets adopted, and holds up in production.</p>
+    </div>
+  </section>
+
+  <!-- The five stages -->
+  <section class="stages" aria-labelledby="stages-title">
+    <div class="wrap">
+      <h2 class="stages__title" id="stages-title">The shape of an engagement.</h2>
+    </div>
+
+    <article class="stage">
+      <div class="wrap">
+        <span class="stage__num" aria-hidden="true">01</span>
+        <h3>Discovery</h3>
+        <!-- §HW-2a -->
+        <p class="stage__body">We start by getting close to the work. That means sitting with the people inside the workflow, tracing where time, judgment, and money are leaking, and deciding which problem to build for.</p>
+        <p class="stage__label">What you get</p>
+        <ul class="tickets">
+          <li class="ticket">A problem to build for</li>
+          <li class="ticket">A clear operating constraint</li>
+          <li class="ticket">A first decision on where to start</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="stage">
+      <div class="wrap">
+        <span class="stage__num" aria-hidden="true">02</span>
+        <h3>Workflow mapping</h3>
+        <!-- §HW-2b -->
+        <p class="stage__body">Once the pain is clear, we map the workflow around it. We look at handoffs, approvals, edge cases, and dependencies so the product fits the business, not the meeting-room version of it.</p>
+        <p class="stage__label">What you get</p>
+        <ul class="tickets">
+          <li class="ticket">A working map of the flow</li>
+          <li class="ticket">The points of friction</li>
+          <li class="ticket">A product shape that fits the business</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="stage">
+      <div class="wrap">
+        <span class="stage__num" aria-hidden="true">03</span>
+        <h3>Product design</h3>
+        <!-- §HW-2c -->
+        <p class="stage__body">Design starts from the conditions the software has to survive in. The goal is not to impress a demo room; it is to make something clear enough for staff to use, trustworthy enough to adopt, and durable enough for regulated, operationally complex environments.</p>
+        <p class="stage__label">What you get</p>
+        <ul class="tickets">
+          <li class="ticket">A clear user path</li>
+          <li class="ticket">Interfaces built for real staff</li>
+          <li class="ticket">Design choices shaped by constraints</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="stage">
+      <div class="wrap">
+        <span class="stage__num" aria-hidden="true">04</span>
+        <h3>Engineering through production</h3>
+        <!-- §HW-2d -->
+        <p class="stage__body">We do not stop at concepts, specs, or handoff files. We stay responsible through implementation, work directly in the product, coordinate with internal teams, and carry the software into production.</p>
+        <p class="stage__label">What you get</p>
+        <ul class="tickets">
+          <li class="ticket">Code in the production system</li>
+          <li class="ticket">Coordination with internal teams</li>
+          <li class="ticket">Ownership through launch</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="stage">
+      <div class="wrap">
+        <span class="stage__num" aria-hidden="true">05</span>
+        <h3>Iteration</h3>
+        <!-- §HW-2e -->
+        <p class="stage__body">Version one is not the end of the work. We watch how people use it, fix what is unclear, and make the next product decisions from adoption, not theory.</p>
+        <p class="stage__label">What you get</p>
+        <ul class="tickets">
+          <li class="ticket">Feedback in use</li>
+          <li class="ticket">A stronger second version</li>
+          <li class="ticket">Iteration tied to real use</li>
+        </ul>
+      </div>
+    </article>
+  </section>
+
+  <!-- Full lifecycle — navy band -->
+  <section class="own" aria-labelledby="own-title">
+    <div class="wrap">
+      <div class="own__panel">
+        <h2 id="own-title">We own the full product lifecycle.</h2>
+        <!-- §HW-3 -->
+        <p class="own__intro">We do not stop at recommendations, specs, or prototypes. We stay close to the work until the product is live, stable, usable, and working inside the real constraints of the business — including the parts many firms avoid:</p>
+        <ul class="own__list">
+          <li><strong>Production readiness</strong> <span>The work required to make the product dependable outside a demo.</span></li>
+          <li><strong>Accessibility</strong> <span>Making the software usable by the people who need it.</span></li>
+          <li><strong>Implementation detail</strong> <span>The unglamorous product and engineering decisions that determine whether the thing works.</span></li>
+          <li><strong>Internal coordination</strong> <span>Getting design, engineering, security, IT, and operators aligned around the same build.</span></li>
+          <li><strong>Real rollout</strong> <span>Putting the product into use inside the business, not just announcing that it exists.</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Engagement shapes -->
+  <section class="shapes" aria-labelledby="shapes-title">
+    <div class="wrap">
+      <h2 class="section-title" id="shapes-title" style="font-size: var(--text-2xl); max-width: 22ch;">How engagements are shaped.</h2>
+      <div class="shapes__grid">
+        <article class="shape shape--first">
+          <h3>A first product</h3>
+          <!-- §HW-4 -->
+          <p>This fits when the business knows something important should exist, but the first version is still unclear. We define the product, cut the scope, and carry it through to something usable.</p>
+        </article>
+        <article class="shape shape--embed">
+          <h3>An embedded build</h3>
+          <p>This fits when the need is already clear and the business wants a small, senior team working close to operators and internal stakeholders. We plug into the work, not around it, and stay accountable for what ships.</p>
+        </article>
+        <article class="shape shape--pilot">
+          <h3>Pilot to production</h3>
+          <p>This fits when something has already been explored, demoed, or half-built, but is still stuck before production. We close the gap between a promising idea and software the business can run on.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- What we ask of you -->
+  <section class="ask" aria-labelledby="ask-title">
+    <div class="wrap">
+      <h2 id="ask-title" style="font-size: var(--text-2xl); max-width: 22ch;">What we ask of you.</h2>
+      <ol>
+        <!-- §HW-5 -->
+        <li><div><strong>Access to the operators who know where the work breaks down</strong></div></li>
+        <li><div><strong>A real decision-maker who can help keep the work moving</strong></div></li>
+        <li><div><strong>Honesty about the constraints, systems, and politics around the product</strong></div></li>
+        <li><div><strong>A willingness to ship, learn, and adjust</strong></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Why pilots stall — compact -->
+  <section class="stall" aria-labelledby="stall-title">
+    <div class="wrap">
+      <div class="stall__card">
+        <h2 id="stall-title">Most AI pilots don’t stall because the model is weak.</h2>
+        <!-- §HW-6 -->
+        <p class="stall__stat"><span class="stall__num">≈5%</span> of enterprise GenAI pilots show measurable P&amp;L impact.</p>
+          <p>Most pilots stall when ownership is split too many ways. The team framing the opportunity is too far from the team building the product, and no one owns what happens after the demo.</p>
+        <p class="stall__foot">Source: MIT NANDA, “The GenAI Divide: State of AI in Business,” August 2025.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Practical questions -->
+  <section class="faq" aria-labelledby="faq-title">
+    <div class="wrap">
+      <h2 id="faq-title" style="font-size: var(--text-2xl); max-width: 22ch;">Practical questions.</h2>
+      <div class="faq__list">
+        <!-- §HW-7a–e -->
+        <div class="faq__item">
+          <h3><button class="faq__trigger" aria-expanded="true" aria-controls="faq-p1" id="faq-t1">How long until something ships?<svg class="faq__chev" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 6 L8 11 L13 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></h3>
+          <div class="faq__panel is-open" id="faq-p1" role="region" aria-labelledby="faq-t1"><div><p>Sooner than most teams expect, if the problem is well chosen and the path to production is clear. We do not promise a fixed timeline before we understand the workflow, the constraints, and what “shipped” means in your environment.</p></div></div>
+        </div>
+        <div class="faq__item">
+          <h3><button class="faq__trigger" aria-expanded="false" aria-controls="faq-p2" id="faq-t2">Who actually does the work?<svg class="faq__chev" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 6 L8 11 L13 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></h3>
+          <div class="faq__panel" id="faq-p2" role="region" aria-labelledby="faq-t2"><div><p>The people who shape the work are the people doing the work. There is no sales handoff, no strategy layer disappearing after discovery, and no separate implementation team learning the problem from a document.</p></div></div>
+        </div>
+        <div class="faq__item">
+          <h3><button class="faq__trigger" aria-expanded="false" aria-controls="faq-p3" id="faq-t3">How do you handle regulated data?<svg class="faq__chev" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 6 L8 11 L13 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></h3>
+          <div class="faq__panel" id="faq-p3" role="region" aria-labelledby="faq-t3"><div><p>By treating it as a product constraint, not a footnote. We design and build with the assumption that data handling, approvals, access, and auditability are part of the work from day one.</p></div></div>
+        </div>
+        <div class="faq__item">
+          <h3><button class="faq__trigger" aria-expanded="false" aria-controls="faq-p4" id="faq-t4">What does it cost?<svg class="faq__chev" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 6 L8 11 L13 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></h3>
+          <div class="faq__panel" id="faq-p4" role="region" aria-labelledby="faq-t4"><div><p>It depends on the shape of the problem, the number of systems involved, and how much of the path to production already exists. We will tell you plainly what looks contained, what looks larger, and where the uncertainty is.</p></div></div>
+        </div>
+        <div class="faq__item">
+          <h3><button class="faq__trigger" aria-expanded="false" aria-controls="faq-p5" id="faq-t5">What happens after version one?<svg class="faq__chev" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 6 L8 11 L13 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></h3>
+          <div class="faq__panel" id="faq-p5" role="region" aria-labelledby="faq-t5"><div><p>We look at what changed once people started using it. Sometimes that means tightening the first version. Sometimes it means extending the product into the next workflow, decision, or user group.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- Footer -->
+<footer class="foot">
+  <div class="wrap">
+    <p class="foot__statement">If the software matters, the product work should too.</p>
+    <p class="foot__body">Sugo AI helps traditional businesses build internal tools, AI&nbsp;agents, and customer products with more rigor, better taste, and end-to-end ownership.</p>
+    <div class="foot__actionrow">
+      <a class="btn btn--primary" href="/contact">Start a conversation</a>
+    </div>
+    <div class="foot__meta">
+      <a class="wordmark" href="/" style="font-size: var(--text-base);">Sugo AI</a> <span class="foot__brandmark" aria-hidden="true"><img src="art/tomato-a.png" alt="" width="372" height="398"></span>
+      <a href="/how-we-work" aria-current="page">How we work</a>
+      <a href="/writing">Writing</a>
+      <a href="/about">About</a>
+      <a href="/contact">Contact</a>
+      <span>© 2026 Sugo Product Company, LLC d/b/a Sugo AI</span>
+      <span class="foot__note">sugo (n.) — Italian for sauce. The good ones are made slowly, with real ingredients.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  // Mobile nav drawer
+  var toggle = document.querySelector('.nav__toggle');
+  var drawer = document.getElementById('nav-drawer');
+  if (toggle && drawer) {
+    toggle.addEventListener('click', function () {
+      var open = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!open));
+      drawer.classList.toggle('is-open', !open);
+    });
+  }
+  // FAQ accordion
+  document.querySelectorAll('.faq__trigger').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var open = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!open));
+      var panel = document.getElementById(btn.getAttribute('aria-controls'));
+      if (panel) panel.classList.toggle('is-open', !open);
+    });
+  });
+})();
+</script>
+</body>
+</html>
