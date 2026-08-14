@@ -44,6 +44,20 @@ export function EmailCopy() {
       <p className="email-copy__status" role="status" aria-live="polite">
         {status}
       </p>
+      <div className="convo__or" aria-hidden="true">
+        <span>or</span>
+      </div>
+      <div className="convo__book">
+        <a
+          className="btn btn--primary"
+          href="https://calendar.app.google/ETJkxBw3QryczHKt8"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Book a call&nbsp;↗
+        </a>
+        <p className="convo__book-hint">Google Meet — pick a time that works.</p>
+      </div>
     </div>
   );
 }

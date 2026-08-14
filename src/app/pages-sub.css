@@ -93,6 +93,12 @@
 }
 
 .pg-contact .convo__email { display: flex; flex-direction: column; justify-content: center; gap: var(--space-sm); height: 100%; padding: var(--space-xl) clamp(var(--space-lg), 4vw, var(--space-2xl)); }
+.pg-contact .convo__or { display: flex; align-items: center; gap: var(--space-md); margin-block: var(--space-2xs) var(--space-xs); }
+.pg-contact .convo__or::before, .pg-contact .convo__or::after { content: ""; flex: 1; border-top: 1px solid var(--color-rule); }
+.pg-contact .convo__or span { font-family: var(--font-outlier); font-size: var(--text-sm); color: var(--color-muted); }
+.pg-contact .convo__book { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-xs); }
+.pg-contact .convo__book .btn { white-space: nowrap; }
+.pg-contact .convo__book-hint { font-family: var(--font-outlier); font-size: var(--text-sm); color: var(--color-muted); margin: 0; }
 .pg-contact .convo__email-kicker { font-family: var(--font-outlier); font-size: var(--text-sm); text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-muted); margin: 0; }
 .pg-contact .email-copy { display: inline-flex; flex-direction: column; align-items: flex-start; gap: var(--space-2xs); background: none; border: none; padding: var(--space-xs) 0; cursor: pointer; text-align: left; min-height: 44px; }
 .pg-contact .email-copy__addr { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.5rem, 5vw, 2.75rem); letter-spacing: -0.02em; color: var(--color-ink); border-bottom: 3px solid var(--color-underline); padding-bottom: 2px; overflow-wrap: anywhere; transition: color var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out); }
