@@ -98,14 +98,14 @@
 .pg-contact .convo__or span { font-family: var(--font-outlier); font-size: var(--text-sm); color: var(--color-muted); }
 .pg-contact .convo__book { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-xs); }
 .pg-contact .convo__book .btn { white-space: nowrap; }
-.pg-contact .convo__book-hint { font-family: var(--font-outlier); font-size: var(--text-sm); color: var(--color-muted); margin: 0; }
+.pg-contact .convo__book-hint { font-family: var(--font-outlier); font-size: var(--text-sm); color: var(--color-muted); margin: var(--space-sm) 0 0; }
 .pg-contact .convo__email-kicker { font-family: var(--font-outlier); font-size: var(--text-sm); text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-muted); margin: 0; }
 .pg-contact .email-copy { display: inline-flex; flex-direction: column; align-items: flex-start; gap: var(--space-2xs); background: none; border: none; padding: var(--space-xs) 0; cursor: pointer; text-align: left; min-height: 44px; }
 .pg-contact .email-copy__addr { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.5rem, 5vw, 2.75rem); letter-spacing: -0.02em; color: var(--color-ink); border-bottom: 3px solid var(--color-underline); padding-bottom: 2px; overflow-wrap: anywhere; transition: color var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out); }
 .pg-contact .email-copy:hover .email-copy__addr { color: var(--color-accent-hover); border-bottom-color: var(--color-ink); }
 .pg-contact .email-copy:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 3px; }
 .pg-contact .email-copy:active .email-copy__addr { transform: translateY(1px); }
-.pg-contact .email-copy__hint { font-family: var(--font-outlier); font-size: var(--text-sm); color: var(--color-muted); }
+.pg-contact .email-copy__hint { font-family: var(--font-outlier); font-size: var(--text-sm); color: var(--color-muted); margin-top: var(--space-sm); }
 .pg-contact .email-copy__status { font-family: var(--font-outlier); font-size: var(--text-sm); color: var(--color-ink); min-height: 1lh; margin: 0; }
 
 .pg-contact .convo__next h2 { font-size: var(--text-lg); font-weight: var(--display-weight-md); }
