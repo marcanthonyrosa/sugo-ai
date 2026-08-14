@@ -2,13 +2,16 @@ import type { CSSProperties } from "react";
 import type { Metadata } from "next";
 import { Footer } from "@/components/layout/Footer";
 import { Faq } from "@/components/how-we-work/Faq";
+import { createPageMetadata } from "@/lib/seo";
 import "../pages-core.css";
 
-export const metadata: Metadata = {
-  title: "Sugo AI — How we work",
+export const metadata: Metadata = createPageMetadata({
+  title: "Product Development From Discovery Through Production",
   description:
-    "How Sugo AI works from discovery through production rollout for traditional businesses building serious software.",
-};
+    "See how Sugo AI moves from discovery and workflow mapping through product design, engineering, production rollout, and iteration.",
+  path: "/how-we-work",
+  socialTitle: "We run like a software company. That’s where we come from.",
+});
 
 const stagger = (i: number) => ({ "--i": i }) as CSSProperties;
 

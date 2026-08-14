@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Footer } from "@/components/layout/Footer";
 import { MdxContent } from "@/components/writing/MdxContent";
 import { getArticleBySlug, getAllSlugs } from "@/lib/mdx";
+import { createPageMetadata } from "@/lib/seo";
 import "../../pages-sub.css";
 
 interface WritingPostPageProps {
@@ -24,10 +25,14 @@ export async function generateMetadata({
   const { slug } = await params;
   const article = getArticleBySlug(slug);
   if (!article) return {};
-  return {
-    title: `Sugo AI — ${article.title}`,
+  return createPageMetadata({
+    title: article.title,
     description: article.standfirst,
-  };
+    path: `/writing/${slug}`,
+    socialTitle: article.title,
+    type: "article",
+    noIndex: !WRITING_ENABLED,
+  });
 }
 
 export default async function WritingPostPage({

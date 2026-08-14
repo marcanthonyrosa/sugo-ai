@@ -1,13 +1,16 @@
 import type { Metadata } from "next";
 import { Footer } from "@/components/layout/Footer";
 import { EmailCopy } from "@/components/contact/EmailCopy";
+import { createPageMetadata } from "@/lib/seo";
 import "../pages-sub.css";
 
-export const metadata: Metadata = {
-  title: "Sugo AI — Start a conversation",
+export const metadata: Metadata = createPageMetadata({
+  title: "Start a Conversation",
   description:
-    "Start a conversation with Sugo AI about internal tools, AI agents, and customer products for traditional businesses.",
-};
+    "Talk with Sugo AI about an internal tool, AI agent, customer product, or pilot that needs a credible path to production.",
+  path: "/contact",
+  socialTitle: "If the work matters, the conversation is worth having.",
+});
 
 export default function ContactPage() {
   return (

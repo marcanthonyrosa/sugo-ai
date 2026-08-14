@@ -3,13 +3,17 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Footer } from "@/components/layout/Footer";
 import { getAllArticles } from "@/lib/mdx";
+import { createPageMetadata } from "@/lib/seo";
 import "../pages-sub.css";
 
-export const metadata: Metadata = {
-  title: "Sugo AI — Writing",
+export const metadata: Metadata = createPageMetadata({
+  title: "Product Thinking for Traditional Businesses",
   description:
     "Notes from the work for operators and leaders building software inside traditional businesses.",
-};
+  path: "/writing",
+  socialTitle: "Notes from the work.",
+  noIndex: true,
+});
 
 /* Temporarily gated — the three MDX posts have placeholder (lorem) bodies.
    Set WRITING_ENABLED = true to re-enable once real essays are written. */
