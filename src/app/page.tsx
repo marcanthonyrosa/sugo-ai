@@ -46,7 +46,7 @@ export default function HomePage() {
                 <div className="hero__art reveal" style={stagger(3)}>
                   <Image
                     className="art-hop"
-                    src="/brand/tomato-a.png"
+                    src="/brand/sugo-mark-simple-transparent.png"
                     alt="The Sugo AI mark — a chunky pixel tomato"
                     width={372}
                     height={398}
