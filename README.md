@@ -49,6 +49,7 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ```
 content/writing/        MDX essays — frontmatter: title, date, readTime, category, standfirst
+docs/                   Durable positioning, copy, and brand references
 src/app/                Route segments + globals.css design tokens
 src/components/
   home/                 Home-page sections (Hero, WhatWeDoCompact, Credibility, …)
@@ -62,6 +63,11 @@ src/contexts/           NavColorContext (lets sections retint the fixed nav)
 src/hooks/              useInView, useCountUp
 public/                 Static assets (icons, headshots, logos)
 ```
+
+## Product and brand references
+
+Start with [`docs/README.md`](docs/README.md) for the brand wiki, reference
+hierarchy, and logo inventory used across development environments.
 
 ## Adding an essay
 

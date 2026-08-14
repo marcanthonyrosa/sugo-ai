@@ -8,7 +8,7 @@ function MetaRow() {
         Sugo AI
       </Link>
       <span className="foot__brandmark" aria-hidden="true">
-        <Image src="/brand/tomato-a.png" alt="" width={372} height={398} />
+        <Image src="/brand/sugo-mark-simple-transparent.png" alt="" width={372} height={398} />
       </span>
       <Link href="/how-we-work">How we work</Link>
       {/* <Link href="/writing">Writing</Link> — re-enable when essays are written */}
@@ -50,7 +50,7 @@ export function Footer({ variant }: { variant?: "compact" }) {
             Start a conversation
           </Link>
           <span className="foot__art" aria-hidden="true">
-            <Image src="/brand/tomato-a.png" alt="" width={372} height={398} />
+            <Image src="/brand/sugo-mark-simple-transparent.png" alt="" width={372} height={398} />
           </span>
         </div>
         <MetaRow />

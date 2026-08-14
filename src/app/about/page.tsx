@@ -174,7 +174,7 @@ export default function AboutPage() {
               <div className="origin__art">
                 <Image
                   className="art-hop"
-                  src="/brand/tomato-a.png"
+                  src="/brand/sugo-mark-simple-transparent.png"
                   alt="A chunky pixel tomato — the Sugo AI mark"
                   width={372}
                   height={398}

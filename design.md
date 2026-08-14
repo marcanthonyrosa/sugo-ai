@@ -58,7 +58,7 @@ system. Amend intentionally — the file is the rule.
 - Quiet. One orchestrated hero entrance (fade-up stagger ≤500ms) per page maximum.
 - Reduced-motion: everything static / ≤150ms opacity. Focus rings instant, 2px, per-surface tokens.
 
-## Voice (summary — full rules in COPY_BRIEF.md)
+## Voice (summary — full rules in `docs/brand/MESSAGING_AND_VOICE.md`)
 - Plain, operator-sharp, production-oriented. No consulting filler, no startup clichés.
 - Honesty: no invented metrics/testimonials/dates. Only citable number: MIT NANDA (Aug 2025), footnoted.
 - Quietly playful: ≤1 wry beat per section; the sauce motif lives in About's origin story +

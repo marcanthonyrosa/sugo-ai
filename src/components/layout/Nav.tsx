@@ -39,7 +39,7 @@ export function Nav() {
             Sugo AI
             <span className="navmark" aria-hidden="true">
               <Image
-                src="/brand/tomato-a.png"
+                src="/brand/sugo-mark-simple-transparent.png"
                 alt=""
                 width={372}
                 height={398}
