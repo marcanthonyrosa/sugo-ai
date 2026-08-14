@@ -3,12 +3,15 @@ import Link from "next/link";
 import { Fade } from "@/components/ui/Fade";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { ProductTableToggle } from "@/components/tmc/ProductTableToggle";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "Product Benefits — TMC × Sugo AI",
   description:
     "Org-wide impact summary: 6 deployed software products, ~$1.5M equiv. headcount value automated, 3 teams benefiting across Innovation, Comms, and Fund.",
-};
+  path: "/tmc",
+  noIndex: true,
+});
 
 /* ── Data ──────────────────────────────────────────────────────────────── */
 

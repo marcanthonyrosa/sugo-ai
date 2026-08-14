@@ -4,20 +4,35 @@ import Image from "next/image";
 import Link from "next/link";
 import { Footer } from "@/components/layout/Footer";
 import { ProcessSwitcher } from "@/components/home/ProcessSwitcher";
+import {
+  createPageMetadata,
+  organizationStructuredData,
+} from "@/lib/seo";
 import "./pages-core.css";
 
-export const metadata: Metadata = {
-  title:
-    "Sugo AI — Modern product development for companies that aren’t software companies",
+export const metadata: Metadata = createPageMetadata({
+  title: "AI Product Development for Traditional Businesses",
   description:
-    "Modern product development for companies that aren’t software companies. Sugo AI builds internal tools, AI agents, and customer products.",
-};
+    "Sugo AI builds internal tools, AI agents, and customer products for traditional businesses—from product discovery through production rollout.",
+  path: "/",
+  socialTitle:
+    "Modern product development for companies that aren’t software companies.",
+});
 
 const stagger = (i: number) => ({ "--i": i }) as CSSProperties;
 
 export default function HomePage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(organizationStructuredData).replace(
+            /</g,
+            "\\u003c",
+          ),
+        }}
+      />
       <main id="main">
         {/* Hero */}
         <section className="hero">

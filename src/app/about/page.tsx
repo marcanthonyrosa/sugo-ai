@@ -2,13 +2,17 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { Footer } from "@/components/layout/Footer";
+import { createPageMetadata } from "@/lib/seo";
 import "../pages-sub.css";
 
-export const metadata: Metadata = {
-  title: "Sugo AI — About",
+export const metadata: Metadata = createPageMetadata({
+  title: "Product Studio for Traditional Businesses",
   description:
-    "Sugo AI is a product studio for traditional businesses building serious software with product, design, and engineering discipline.",
-};
+    "Meet Sugo AI, a senior product studio helping traditional businesses build serious software with product, design, and engineering discipline.",
+  path: "/about",
+  socialTitle:
+    "A product studio for traditional businesses building serious software.",
+});
 
 const BELIEFS = [
   {
