@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>{{ title }} — Sugo AI</title>
+<link rel="stylesheet" href="sugo-deck.css">
+</head>
+<body>
+{% for s in slides %}
+  {% if s.type == "title" %}
+  <section class="slide slide--title">
+    <div class="lockup">
+      <span class="wordmark">Sugo AI</span>
+      {% if mark_src %}<img src="{{ mark_src }}" alt="">{% endif %}
+    </div>
+    <h1>{{ s.title }}</h1>
+    <div class="meta">{{ s.meta }}</div>
+  </section>
+
+  {% elif s.type == "statement" %}
+  <section class="slide slide--statement">
+    <h2>{{ s.lead }}<span class="key">{{ s.key }}</span>{{ s.tail }}</h2>
+    <span class="slide__num">{{ loop.index }}</span>
+  </section>
+
+  {% elif s.type == "content" %}
+  <section class="slide slide--content">
+    {% if s.eyebrow %}<span class="eyebrow">{{ s.eyebrow }}</span>{% endif %}
+    <h2>{{ s.title }}</h2>
+    <div class="slide__body{% if s.two_col %} slide__body--2col{% endif %}">
+      {% if s.body %}<p>{{ s.body }}</p>{% endif %}
+      {% if s.bullets %}<ul>{% for b in s.bullets[:5] %}<li>{{ b }}</li>{% endfor %}</ul>{% endif %}
+    </div>
+    <span class="slide__num">{{ loop.index }}</span>
+  </section>
+
+  {% elif s.type == "evidence" %}
+  <section class="slide slide--evidence">
+    {% if s.eyebrow %}<span class="eyebrow">{{ s.eyebrow }}</span>{% endif %}
+    <div class="stat">
+      <span class="num">{{ s.number }}</span>
+      <span class="qual">{{ s.qualifier }}</span>
+    </div>
+    {% if s.note %}<p class="note">{{ s.note }}</p>{% endif %}
+    {% if s.cite %}<div class="cite">{{ s.cite }}</div>{% endif %}
+    <span class="slide__num">{{ loop.index }}</span>
+  </section>
+
+  {% elif s.type == "diagram" %}
+  <section class="slide slide--diagram">
+    {% if s.eyebrow %}<span class="eyebrow">{{ s.eyebrow }}</span>{% endif %}
+    <h2>{{ s.title }}</h2>
+    <figure>
+      <img src="{{ s.image }}" alt="{{ s.alt }}">
+      {% if s.caption %}<figcaption>{{ s.caption }}</figcaption>{% endif %}
+    </figure>
+    <span class="slide__num">{{ loop.index }}</span>
+  </section>
+
+  {% elif s.type == "close" %}
+  <section class="slide slide--close">
+    <h2>{{ s.title }}</h2>
+    <div class="action">{{ s.action }}</div>
+    {% if mark_src %}<div class="mark"><img src="{{ mark_src }}" alt=""></div>{% endif %}
+  </section>
+  {% endif %}
+{% endfor %}
+</body>
+</html>

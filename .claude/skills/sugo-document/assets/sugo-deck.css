@@ -1,0 +1,149 @@
+/* ==========================================================================
+   Sugo AI · sugo-deck.css
+   The deck system as print CSS. 16:9, 13.333 x 7.5in.
+   v1.0.0 · 2026-08-24 · Viola Light
+
+   Six slide types, and no others:
+     .slide--title      viola flood · lockup, title, mono meta
+     .slide--statement  ink flood   · one sentence, viola key words (max 1 in 5)
+     .slide--content    paper       · eyebrow, head, body on <=2 columns
+     .slide--evidence   paper       · one number in a saffron block, one footnote
+     .slide--diagram    paper/card  · full-bleed figure, mono caption
+     .slide--close      viola flood · one action, email, mark
+
+   Rules: no list over five items · no slide over 40 words · no transitions,
+   no builds, no animation.
+
+   Values live in sugo-print-tokens.css. Declare none here.
+   ========================================================================== */
+@import url("sugo-print-tokens.css");
+
+@page {
+  size: 13.333in 7.5in;
+  margin: 0;
+}
+
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: var(--f-body);
+  font-size: 18pt; font-weight: 400; line-height: 1.35;
+  color: var(--ink-2);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ---------- Slide shell ---------- */
+.slide {
+  width: 13.333in; height: 7.5in;
+  padding: 0.6in;
+  box-sizing: border-box;
+  background: var(--paper);
+  display: flex; flex-direction: column;
+  position: relative;
+  break-after: page;
+  overflow: hidden;
+}
+.slide:last-child { break-after: auto; }
+
+.slide h1, .slide h2 {
+  font-family: var(--f-display); font-weight: 700; color: var(--ink);
+  margin: 0; line-height: 1.05; letter-spacing: -0.02em;
+}
+.slide h1 { font-size: 36pt; max-width: 20ch; }
+.slide h2 { font-size: 36pt; max-width: 22ch; }
+.slide p  { margin: 0 0 var(--gap-md); max-width: 52ch; }
+.slide .eyebrow {
+  font-family: var(--f-mono); font-size: 11pt; font-weight: 400;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted);
+  display: block; margin-bottom: var(--gap-sm);
+}
+.slide--statement .eyebrow { color: var(--viola-500); }
+
+.slide__body { margin-top: var(--gap-lg); }
+.slide__body--2col { column-count: 2; column-gap: 0.5in; }
+
+.slide__num {
+  position: absolute; right: 0.6in; bottom: 0.45in;
+  font-family: var(--f-mono); font-size: 10pt; color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.slide ul { list-style: none; margin: var(--gap-lg) 0 0; padding: 0; }
+.slide ul > li {
+  position: relative; padding-left: 24pt;
+  margin-bottom: var(--gap-md); max-width: 46ch;
+}
+.slide ul > li::before {
+  content: ""; position: absolute; left: 0; top: 9pt;
+  width: 8pt; height: 8pt; background: var(--ink);
+}
+
+/* ---------- Title ---------- */
+.slide--title { background: var(--viola); justify-content: space-between; }
+.slide--title .lockup { display: flex; align-items: center; gap: 12pt; }
+.slide--title .wordmark {
+  font-family: var(--f-display); font-weight: 700; font-size: 28pt;
+  letter-spacing: 0.01em; color: var(--ink); line-height: 1;
+}
+.slide--title .lockup img { height: 31pt; width: auto; transform: translateY(-1.5pt); }
+.slide--title h1 { font-size: 48pt; max-width: 18ch; }
+.slide--title .meta {
+  font-family: var(--f-mono); font-size: 11pt; color: var(--ink-2);
+  letter-spacing: 0.06em;
+}
+
+/* ---------- Statement · the deck's only dark moments ---------- */
+.slide--statement {
+  background: var(--ink); color: var(--paper);
+  justify-content: center;
+}
+.slide--statement h2 { color: var(--paper); font-size: 44pt; max-width: 24ch; }
+.slide--statement .key { color: var(--viola); font-style: normal; }
+.slide--statement .slide__num { color: var(--viola-500); }
+
+/* ---------- Content ---------- */
+.slide--content { justify-content: flex-start; }
+
+/* ---------- Evidence ---------- */
+.slide--evidence { justify-content: center; }
+.slide--evidence .stat {
+  background: var(--saffron); border: 2.5pt solid var(--ink); border-radius: 8pt;
+  padding: 0.4in 0.5in; display: inline-block; align-self: flex-start;
+}
+.slide--evidence .stat .num {
+  font-family: var(--f-mono); font-weight: 700; font-size: 72pt; line-height: 1;
+  letter-spacing: -0.03em; color: var(--ink);
+  font-variant-numeric: tabular-nums; display: block;
+}
+.slide--evidence .stat .qual {
+  font-weight: 600; color: var(--ink); max-width: 26ch;
+  margin-top: var(--gap-md); display: block;
+}
+.slide--evidence .note { margin-top: var(--gap-lg); max-width: 60ch; }
+.slide--evidence .cite {
+  font-family: var(--f-mono); font-size: 10pt; color: var(--muted);
+  margin-top: var(--gap-md);
+}
+
+/* ---------- Diagram ---------- */
+.slide--diagram { background: var(--card); }
+.slide--diagram figure { margin: var(--gap-lg) 0 0; flex: 1; min-height: 0;
+                         display: flex; flex-direction: column; }
+.slide--diagram figure img {
+  flex: 1; min-height: 0; width: 100%; object-fit: contain;
+  border: 2.5pt solid var(--ink); border-radius: 8pt;
+}
+.slide--diagram figcaption {
+  font-family: var(--f-mono); font-size: 10pt; color: var(--muted);
+  margin-top: var(--gap-md);
+}
+
+/* ---------- Close ---------- */
+.slide--close { background: var(--viola); justify-content: space-between; }
+.slide--close h2 { font-size: 44pt; max-width: 20ch; }
+.slide--close .action {
+  font-family: var(--f-mono); font-size: 16pt; color: var(--ink);
+  letter-spacing: 0.04em;
+}
+.slide--close .mark { align-self: flex-end; }
+.slide--close .mark img { height: 0.9in; width: auto; display: block; }

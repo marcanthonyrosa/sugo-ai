@@ -1,0 +1,213 @@
+/* ==========================================================================
+   Sugo AI · sugo-document.css
+   The document system as print CSS. Letter format.
+   v1.0.0 · 2026-08-24 · Viola Light
+
+   Two page setups, selected by a class on <body>:
+     .setup-document  proposals, SOWs, contracts, reports, memos
+     .setup-sheet     invoices, one-pagers, covers
+
+   Values live in sugo-print-tokens.css. Declare none here.
+   ========================================================================== */
+@import url("sugo-print-tokens.css");
+
+/* ---------- Page ---------- */
+@page {
+  size: letter;
+  margin: 0.9in 0.75in 0.75in;
+  @bottom-left {
+    content: string(docfooter);
+    font-family: var(--f-mono); font-size: 8.5pt; color: var(--muted);
+  }
+  @bottom-right {
+    content: "Page " counter(page) " of " counter(pages);
+    font-family: var(--f-mono); font-size: 8.5pt; color: var(--muted);
+  }
+}
+body.setup-sheet { }
+@page sheet { size: letter; margin: 0.5in; }
+body.setup-sheet { page: sheet; }
+
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: var(--f-body);
+  font-size: 10.5pt; font-weight: 400; line-height: 1.45;
+  color: var(--ink-2);
+  background: #FFFFFF;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ---------- Type ---------- */
+h1, h2, h3 { font-family: var(--f-display); color: var(--ink); margin: 0; }
+h1 { font-size: 28pt; font-weight: 700; line-height: 1.05; letter-spacing: -0.02em; }
+h2 { font-size: 17pt; font-weight: 700; line-height: 1.15; letter-spacing: -0.015em;
+     margin-top: var(--gap-xl); padding-top: var(--gap-md);
+     border-top: var(--hair); break-after: avoid; }
+h3 { font-size: 13pt; font-weight: 500; line-height: 1.25;
+     margin-top: var(--gap-lg); break-after: avoid; }
+p  { margin: 0 0 var(--gap-md); max-width: 68ch; }
+strong { font-weight: 600; color: var(--ink); }
+em { font-style: normal; font-weight: 600; color: var(--ink); }  /* no italics */
+a  { color: var(--ink); text-decoration: none; border-bottom: 0.5pt solid var(--viola-900); }
+
+.eyebrow {
+  font-family: var(--f-mono); font-size: 8.5pt; font-weight: 400;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted);
+  display: block; margin-bottom: var(--gap-xs);
+}
+.mono { font-family: var(--f-mono); font-size: 8.5pt; color: var(--muted);
+        font-variant-numeric: tabular-nums; }
+.small { font-size: 9pt; }
+.figure { font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+
+/* ---------- Masthead ---------- */
+.masthead {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  gap: var(--gap-xl);
+  padding-bottom: var(--gap-md); border-bottom: var(--carpentry);
+  margin-bottom: var(--gap-lg);
+}
+.lockup { display: flex; align-items: center; gap: 8pt; white-space: nowrap; }
+.lockup .wordmark {
+  font-family: var(--f-display); font-weight: 700; font-size: 24pt;
+  letter-spacing: 0.01em; color: var(--ink); line-height: 1;
+}
+.lockup img { height: 26pt; width: auto; display: block; transform: translateY(-1pt); }
+.brand { flex: 0 0 auto; }
+.brand .eyebrow { margin-top: var(--gap-sm); margin-bottom: 0; white-space: nowrap; }
+.doc-title { text-align: right; max-width: 52%; }
+.doc-title h1 { margin-top: var(--gap-2xs); }
+.doc-title .ref { font-family: var(--f-mono); font-size: 9pt; color: var(--muted);
+                  margin-top: var(--gap-sm); display: block;
+                  font-variant-numeric: tabular-nums; }
+
+/* ---------- Parties / meta band ---------- */
+.parties {
+  display: flex; gap: var(--gap-2xl);
+  padding-bottom: var(--gap-md); border-bottom: var(--hair);
+  margin-bottom: var(--gap-lg);
+}
+.parties .col { flex: 1; }
+.parties .name { font-family: var(--f-display); font-weight: 500; font-size: 13pt;
+                 color: var(--ink); line-height: 1.2; margin-bottom: var(--gap-2xs); }
+.parties .line { font-size: 10.5pt; color: var(--ink-2); line-height: 1.45; }
+
+.meta {
+  display: flex; gap: var(--gap-2xl);
+  padding-bottom: var(--gap-md); border-bottom: var(--hair);
+  margin-bottom: var(--gap-lg);
+}
+.meta .cell { flex: 1; }
+.meta .value { font-family: var(--f-mono); font-size: 11pt; color: var(--ink);
+               font-variant-numeric: tabular-nums; }
+
+/* ---------- Lists ---------- */
+ol.numbered { list-style: none; margin: 0 0 var(--gap-md); padding: 0; counter-reset: n; }
+ol.numbered > li {
+  counter-increment: n; position: relative;
+  padding-left: 28pt; margin-bottom: var(--gap-sm); max-width: 68ch;
+}
+ol.numbered > li::before {
+  content: counter(n, decimal-leading-zero); position: absolute; left: 0;
+  font-family: var(--f-mono); font-size: 9pt; color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+ul.squares { list-style: none; margin: 0 0 var(--gap-md); padding: 0; }
+ul.squares > li {
+  position: relative; padding-left: 16pt;
+  margin-bottom: var(--gap-sm); max-width: 68ch;
+}
+ul.squares > li::before {
+  content: ""; position: absolute; left: 0; top: 6pt;
+  width: 5pt; height: 5pt; background: var(--ink);
+}
+
+/* ---------- Callouts · three only ---------- */
+.callout {
+  border: var(--carpentry); border-radius: 6pt;
+  padding: 14pt; margin: var(--gap-lg) 0;
+  break-inside: avoid;
+}
+.callout .eyebrow { color: var(--ink); }
+.callout p:last-child { margin-bottom: 0; }
+.callout--evidence { background: var(--saffron); }
+.callout--plain    { background: var(--blush); }
+.callout--note     { background: var(--viola-50); }
+.callout--evidence .figure-lead {
+  font-family: var(--f-mono); font-weight: 700; font-size: 30pt;
+  line-height: 1; letter-spacing: -0.03em; color: var(--ink);
+  font-variant-numeric: tabular-nums; display: block; margin-bottom: var(--gap-sm);
+}
+
+/* ---------- Tables ---------- */
+table { width: 100%; border-collapse: collapse; margin: var(--gap-md) 0 var(--gap-lg); }
+thead th {
+  font-family: var(--f-mono); font-size: 8.5pt; font-weight: 400;
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted);
+  background: var(--viola-50); text-align: left;
+  padding: 7pt 8pt; border-bottom: var(--carpentry);
+}
+tbody td { font-size: 10.5pt; color: var(--ink-2);
+           padding: 9pt 8pt; border-bottom: var(--hair); vertical-align: top; }
+td.r, th.r { text-align: right; font-family: var(--f-mono);
+             font-variant-numeric: tabular-nums; }
+tbody tr.total td { font-weight: 600; color: var(--ink); border-top: var(--hair);
+                    border-bottom: none; }
+table.zebra tbody tr:nth-child(even) td { background: var(--paper-2); }
+.line-title { font-family: var(--f-display); font-weight: 500; font-size: 12pt;
+              color: var(--ink); line-height: 1.3; margin-bottom: var(--gap-2xs); }
+.line-meta  { font-family: var(--f-mono); font-size: 8.5pt; color: var(--muted);
+              margin-bottom: var(--gap-sm); }
+
+/* ---------- Amount due ---------- */
+.due {
+  background: var(--viola-50); border: var(--carpentry); border-radius: 6pt;
+  padding: 10pt 14pt; display: flex; justify-content: space-between;
+  align-items: baseline; gap: var(--gap-lg); margin-top: var(--gap-sm);
+}
+.due .lbl { font-family: var(--f-mono); font-size: 8.5pt; letter-spacing: 0.16em;
+            text-transform: uppercase; color: var(--viola-900); }
+.due .val { font-family: var(--f-mono); font-weight: 700; font-size: 20pt;
+            color: var(--ink); font-variant-numeric: tabular-nums;
+            letter-spacing: -0.01em; }
+
+/* ---------- Figures ---------- */
+figure { margin: var(--gap-lg) 0; break-inside: avoid; }
+figure img { width: 100%; border: var(--carpentry); border-radius: 6pt; display: block; }
+figcaption { font-family: var(--f-mono); font-size: 8.5pt; color: var(--muted);
+             margin-top: var(--gap-sm); }
+
+/* ---------- Signature block ---------- */
+.signatures { display: flex; gap: var(--gap-2xl); margin-top: var(--gap-2xl);
+              break-inside: avoid; }
+.signatures .party { flex: 1; }
+.signatures .entity { font-family: var(--f-mono); font-size: 8.5pt;
+                      letter-spacing: 0.14em; text-transform: uppercase;
+                      color: var(--muted); margin-bottom: var(--gap-2xs); }
+.signatures .dba { font-size: 9pt; color: var(--muted); margin-bottom: var(--gap-xl); }
+.signatures .sigline { border-top: 0.5pt solid var(--ink); padding-top: var(--gap-sm); }
+.signatures .who { font-family: var(--f-display); font-weight: 500; font-size: 13pt;
+                   color: var(--ink); min-height: 16pt; }
+.signatures .role { font-size: 10.5pt; color: var(--ink-2); min-height: 13pt; }
+.signatures .date { font-family: var(--f-mono); font-size: 9pt; color: var(--muted);
+                    margin-top: var(--gap-md); }
+
+/* ---------- Footnotes ---------- */
+.footnotes { margin-top: var(--gap-xl); padding-top: var(--gap-md);
+             border-top: var(--hair); }
+.footnotes p { font-family: var(--f-mono); font-size: 8.5pt; color: var(--muted);
+               margin-bottom: var(--gap-xs); max-width: none; }
+
+/* ---------- Closing legal ---------- */
+.legal { margin-top: var(--gap-xl); padding-top: var(--gap-md);
+         border-top: var(--hair);
+         font-family: var(--f-mono); font-size: 8.5pt; color: var(--muted); }
+
+/* ---------- Footer string ---------- */
+.docfooter { string-set: docfooter content(); position: absolute;
+             left: -9999pt; height: 0; overflow: hidden; }
+
+/* ---------- Breaks ---------- */
+.page-break { break-before: page; }
+h2, h3, .callout, table, figure, .signatures { break-inside: avoid; }

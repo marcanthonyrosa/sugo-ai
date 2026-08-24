@@ -1,0 +1,173 @@
+{
+  "$schema": "https://tr.designtokens.org/format/",
+  "$description": "Sugo AI · Viola Light — canonical design tokens. Single source of truth for every surface: web, app, document, deck, social. Hex values are the authored sRGB result of the OKLCH source; use hex anywhere OKLCH is unavailable (Word, PowerPoint, Google Workspace, Figma, print).",
+  "$version": "1.0.0",
+  "$lastReviewed": "2026-08-24",
+
+  "color": {
+    "$type": "color",
+    "surface": {
+      "$description": "Grounds. Paper is the default page; card is the raised plane; ink is the only dark flood.",
+      "paper":   { "$value": "#F5F2E8", "$extensions": { "oklch": "oklch(96% 0.014 95)",    "role": "Default page ground." } },
+      "paper-2": { "$value": "#EFEBDD", "$extensions": { "oklch": "oklch(94% 0.020 95)",    "role": "Alternating band / secondary ground." } },
+      "card":    { "$value": "#FBFAF4", "$extensions": { "oklch": "oklch(98.5% 0.008 100)", "role": "Raised panel, table body, sheet stock." } },
+      "white":   { "$value": "#FFFFFF", "$extensions": { "role": "Print sheet stock only. Never a web page ground." } }
+    },
+    "ink": {
+      "$description": "Type and stroke. Navy is the principal ink, the action color, and the only dark flood.",
+      "900": { "$value": "#101D3E", "$extensions": { "oklch": "oklch(24% 0.065 265)", "role": "Primary type, 2px carpentry, primary button fill, dark flood." } },
+      "700": { "$value": "#283854", "$extensions": { "oklch": "oklch(34% 0.055 262)", "role": "Body copy on paper, secondary type." } },
+      "500": { "$value": "#4C586F", "$extensions": { "oklch": "oklch(46% 0.04 262)",  "role": "Meta, captions, footnotes, rules on flood." } },
+      "100": { "$value": "#D9DEE6", "$extensions": { "oklch": "oklch(90% 0.012 258)", "role": "Hairline rules on paper. Never type." } }
+    },
+    "viola": {
+      "$description": "The signature atmosphere. Viola is the brand's recognizable color, not an accent to be sprinkled.",
+      "50":  { "$value": "#F3EEF8", "$extensions": { "oklch": "oklch(95.5% 0.015 310)", "role": "Supporting tint surface, ticket trays, callout ground." } },
+      "300": { "$value": "#E3D4EF", "$extensions": { "oklch": "oklch(89% 0.04 310)",    "role": "Hero flood, social-card ground, theme-color. The brand viola." } },
+      "400": { "$value": "#CCB8DC", "$extensions": { "oklch": "oklch(81% 0.055 310)",   "role": "Flood shade / depth within a viola field." } },
+      "500": { "$value": "#B296D2", "$extensions": { "oklch": "oklch(72% 0.09 305)",    "role": "DECORATIVE ONLY — stacked button shadow, dividers, dots. 2.29:1 on paper: never type, never an icon carrying meaning." } },
+      "900": { "$value": "#855CA7", "$extensions": { "oklch": "oklch(55% 0.12 308)",    "role": "Link underline, emphasis type, document accent. 4.59:1 on paper — AA for normal text." } }
+    },
+    "accent": {
+      "$description": "One accent per composition, never two in the same section. Each carries a fixed meaning.",
+      "saffron": { "$value": "#E8C270", "$extensions": { "oklch": "oklch(83% 0.11 85)",  "role": "EVIDENCE. Numbers, stats, cited findings, the one figure you want read first." } },
+      "blush":   { "$value": "#EDD0C6", "$extensions": { "oklch": "oklch(88% 0.035 40)", "role": "HUMAN. Plain-language explainers, origin story, what-to-bring, warmth moments." } },
+      "sky":     { "$value": "#C9D3DA", "$extensions": { "oklch": "oklch(86% 0.015 240)", "role": "NEUTRAL DIAGRAM FILL. Reserved for architecture diagrams and system drawings. Not a marketing surface." } }
+    },
+    "mark": {
+      "$description": "Colors that exist inside the pixel tomato and nowhere else. The mark is the only red-family element in the system.",
+      "coral":     { "$value": "#EC705B", "$extensions": { "role": "Tomato body. Never used as a UI or document color." } },
+      "stem":      { "$value": "#264534", "$extensions": { "role": "Tomato stem. Never used as a UI or document color." } },
+      "highlight": { "$value": "#FFFFFF", "$extensions": { "role": "Tomato specular pixels." } }
+    },
+    "action": {
+      "default":     { "$value": "#101D3E", "$extensions": { "role": "Primary button fill = ink.900." } },
+      "hover":       { "$value": "#1A2D51", "$extensions": { "oklch": "oklch(30% 0.07 262)", "role": "Primary button hover." } },
+      "on-action":   { "$value": "#F5F2E8", "$extensions": { "role": "Type on the primary button = paper." } },
+      "shadow":      { "$value": "#B296D2", "$extensions": { "role": "Stacked hard shadow on primary button: 4px 4px 0." } }
+    },
+    "focus": {
+      "on-paper": { "$value": "#6E3F8D", "$extensions": { "oklch": "oklch(46% 0.13 310)",  "role": "2px focus ring on light surfaces." } },
+      "on-flood": { "$value": "#F5EFD7", "$extensions": { "oklch": "oklch(95% 0.032 95)",  "role": "2px focus ring on navy or viola floods." } }
+    },
+    "status": {
+      "$description": "FUNCTIONAL APPLICATION UI ONLY. Never appears in marketing, website chrome, or documents — the sole document exception is a past-due invoice stamp (danger).",
+      "success": { "surface": { "$value": "#D0EED5" }, "ink": { "$value": "#205335" } },
+      "warning": { "surface": { "$value": "#F9E6BF" }, "ink": { "$value": "#754B10" } },
+      "danger":  { "surface": { "$value": "#FBDCD9" }, "ink": { "$value": "#9B1E22" } },
+      "info":    { "surface": { "$value": "#DCEAF4" }, "ink": { "$value": "#385975" } }
+    },
+    "dataviz": {
+      "$description": "Ordered categorical series for charts and diagrams on a paper or card ground. Use in sequence — never reorder for prettiness. Every step clears 3:1 against paper (WCAG 2.2 §1.4.11 non-text contrast). Encode with shape, label, or pattern as well as hue; never by hue alone.",
+      "1": { "$value": "#101D3E", "$extensions": { "name": "ink" } },
+      "2": { "$value": "#9970C4", "$extensions": { "name": "viola-600" } },
+      "3": { "$value": "#B5820C", "$extensions": { "name": "saffron-700" } },
+      "4": { "$value": "#607F91", "$extensions": { "name": "slate" } },
+      "5": { "$value": "#5C8E67", "$extensions": { "name": "basil" } },
+      "6": { "$value": "#C0765D", "$extensions": { "name": "clay" } }
+    }
+  },
+
+  "font": {
+    "$type": "fontFamily",
+    "display": {
+      "$value": ["Red Hat Display", "Segoe UI", "Helvetica Neue", "Arial", "sans-serif"],
+      "$extensions": { "weights": [500, 700], "license": "SIL OFL 1.1", "selfHost": true, "role": "Headlines, panel titles, statements, button-adjacent emphasis." }
+    },
+    "body": {
+      "$value": ["General Sans", "Segoe UI", "Helvetica Neue", "Arial", "sans-serif"],
+      "$extensions": { "weights": [400, 600], "license": "ITF Free Font License", "selfHost": false, "role": "All running text, UI labels, buttons.", "note": "Free for commercial use. Self-hosting the webfont requires written ITF consent — load via api.fontshare.com. Desktop OTF may be installed for Word/PowerPoint; do not redistribute the font files." }
+    },
+    "outlier": {
+      "$value": ["JetBrains Mono", "Consolas", "Menlo", "Courier New", "monospace"],
+      "$extensions": { "weights": [400, 700], "license": "SIL OFL 1.1", "selfHost": true, "role": "Numerals, eyebrows, metadata, footnotes, code, table headers. Never running prose." }
+    }
+  },
+
+  "typography": {
+    "web": {
+      "$description": "1.25 modular scale from a 1.0625rem (17px) body.",
+      "sm":        { "$value": "0.875rem" },
+      "base":      { "$value": "1.0625rem" },
+      "md":        { "$value": "1.25rem" },
+      "lg":        { "$value": "1.5625rem" },
+      "xl":        { "$value": "1.953rem" },
+      "2xl":       { "$value": "2.441rem" },
+      "3xl":       { "$value": "3.052rem" },
+      "display-s": { "$value": "clamp(2.4rem, 3.7vw + 1rem, 3.9rem)" },
+      "statement": { "$value": "clamp(2rem, 3vw + 1rem, 3.25rem)" },
+      "stat":      { "$value": "clamp(3.5rem, 6vw + 1rem, 6rem)" }
+    },
+    "document": {
+      "$description": "Point sizes for Letter-format documents, decks, and PDFs. Leading given as multiplier.",
+      "doc-title":   { "$value": "28pt", "$extensions": { "font": "display", "weight": 700, "leading": 1.05, "tracking": "-0.02em" } },
+      "section":     { "$value": "17pt", "$extensions": { "font": "display", "weight": 700, "leading": 1.15, "tracking": "-0.015em" } },
+      "subsection":  { "$value": "13pt", "$extensions": { "font": "display", "weight": 500, "leading": 1.25 } },
+      "body":        { "$value": "10.5pt", "$extensions": { "font": "body", "weight": 400, "leading": 1.45 } },
+      "body-strong": { "$value": "10.5pt", "$extensions": { "font": "body", "weight": 600, "leading": 1.45 } },
+      "small":       { "$value": "9pt",   "$extensions": { "font": "body", "weight": 400, "leading": 1.4 } },
+      "eyebrow":     { "$value": "8.5pt", "$extensions": { "font": "outlier", "weight": 400, "case": "uppercase", "tracking": "0.14em" } },
+      "figure":      { "$value": "8.5pt", "$extensions": { "font": "outlier", "weight": 400, "role": "Table cells, amounts, dates, footnotes." } },
+      "slide-title": { "$value": "36pt", "$extensions": { "font": "display", "weight": 700, "leading": 1.05 } },
+      "slide-body":  { "$value": "18pt", "$extensions": { "font": "body", "weight": 400, "leading": 1.35 } }
+    }
+  },
+
+  "space": {
+    "$type": "dimension",
+    "$description": "4-pt base. Web values in rem; document equivalents in inches.",
+    "2xs": { "$value": "0.25rem", "$extensions": { "doc": "0.04in" } },
+    "xs":  { "$value": "0.5rem",  "$extensions": { "doc": "0.07in" } },
+    "sm":  { "$value": "0.75rem", "$extensions": { "doc": "0.10in" } },
+    "md":  { "$value": "1rem",    "$extensions": { "doc": "0.14in" } },
+    "lg":  { "$value": "1.5rem",  "$extensions": { "doc": "0.21in" } },
+    "xl":  { "$value": "2.5rem",  "$extensions": { "doc": "0.35in" } },
+    "2xl": { "$value": "4rem",    "$extensions": { "doc": "0.55in" } },
+    "3xl": { "$value": "6rem",    "$extensions": { "doc": "0.83in" } }
+  },
+
+  "geometry": {
+    "border-panel":  { "$value": "2px solid #101D3E", "$extensions": { "role": "The carpentry. Adjacent panels share a border." } },
+    "border-hair":   { "$value": "1px solid #D9DEE6", "$extensions": { "role": "Rules inside a panel." } },
+    "border-stage":  { "$value": "3px solid #101D3E", "$extensions": { "role": "Top rule on a numbered scroll band." } },
+    "radius-micro":  { "$value": "2px" },
+    "radius-btn":    { "$value": "4px" },
+    "radius-card":   { "$value": "8px" },
+    "radius-panel":  { "$value": "10px" },
+    "shadow-stack":       { "$value": "4px 4px 0 #101D3E" },
+    "shadow-stack-viola": { "$value": "4px 4px 0 #B296D2" },
+    "shadow-stack-lift":  { "$value": "5px 5px 0 #B296D2" },
+    "shadow-stack-press": { "$value": "2px 2px 0 #B296D2" }
+  },
+
+  "motion": {
+    "ease-out":    { "$value": "cubic-bezier(0.16, 1, 0.3, 1)" },
+    "ease-in":     { "$value": "cubic-bezier(0.7, 0, 0.84, 0)" },
+    "ease-in-out": { "$value": "cubic-bezier(0.65, 0, 0.35, 1)" },
+    "dur-micro":   { "$value": "120ms" },
+    "dur-short":   { "$value": "220ms" },
+    "dur-long":    { "$value": "420ms" },
+    "dur-reduced": { "$value": "150ms", "$extensions": { "role": "Ceiling under prefers-reduced-motion; opacity only." } }
+  },
+
+  "layout": {
+    "wrap-max":     { "$value": "74rem", "$extensions": { "role": "Site content measure." } },
+    "measure-body": { "$value": "62ch",  "$extensions": { "role": "Maximum line length for running text." } },
+    "measure-lede": { "$value": "52ch" },
+    "measure-head": { "$value": "22ch" },
+    "z-raised":     { "$value": 10 },
+    "z-sticky-nav": { "$value": 300 },
+    "page-document": { "$value": "8.5in x 11in", "$extensions": { "margins": "0.9in top, 0.75in sides, 0.75in bottom", "columns": 12, "gutter": "0.167in" } },
+    "page-sheet":    { "$value": "8.5in x 11in", "$extensions": { "margins": "0.5in all", "role": "Single-page instruments: invoices, statements of work cover, one-pagers." } },
+    "slide":         { "$value": "13.333in x 7.5in", "$extensions": { "margins": "0.6in", "role": "16:9 deck." } },
+    "social-card":   { "$value": "1200px x 630px", "$extensions": { "role": "Open Graph. Viola ground, 2px navy rules inset 42px, 62/74/56px padding." } }
+  },
+
+  "a11y": {
+    "target-standard":  { "$value": "WCAG 2.2 AA" },
+    "min-touch-target": { "$value": "44px" },
+    "min-body-contrast": { "$value": "4.5:1" },
+    "min-graphic-contrast": { "$value": "3:1" },
+    "focus-ring": { "$value": "2px solid, 2px offset, radius 2px" }
+  }
+}

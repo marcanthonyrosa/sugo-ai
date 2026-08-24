@@ -1,0 +1,42 @@
+{
+  "_comment": "Copy to .sugo-private.json and fill in. That file is gitignored and never leaves the machine. build.py loads it automatically from the skill root, the repo root, or ~/.sugo-private.json — first one found wins.",
+
+  "address_lines": [
+    "STREET",
+    "CITY, STATE ZIP"
+  ],
+
+  "remittance": "Payable by ACH or check. Bank details on file.",
+
+  "billing_profiles": {
+    "sugo": {
+      "_use": "Default. Every client unless a profile below says otherwise.",
+      "from_entity": "Sugo Product Company, LLC",
+      "from_name": "Sugo Product Company, LLC",
+      "from_lines": ["d/b/a Sugo AI", "marc@sugoai.com"],
+      "contact_email": "marc@sugoai.com",
+      "legal_line": "© {year} Sugo Product Company, LLC d/b/a Sugo AI"
+    },
+    "contractor": {
+      "_use": "Engagements where Marc is engaged personally as an independent contractor rather than through the LLC. Named per client in `clients` below — never assumed.",
+      "from_entity": "Independent Contractor",
+      "from_name": "Marc Anthony Rosa",
+      "from_lines": ["Independent Contractor", "EMAIL"],
+      "contact_email": "EMAIL",
+      "legal_line": "© {year} Marc Anthony Rosa"
+    }
+  },
+
+  "clients": {
+    "CLIENT_KEY": {
+      "billing_profile": "contractor",
+      "to_name": "CLIENT LEGAL ENTITY",
+      "to_lines": ["Attn: Accounts Payable", "CITY, STATE", "AP EMAIL"],
+      "terms": "Net 15",
+      "cadence": "biweekly",
+      "default_rate": "0.00",
+      "default_amount": "0.00",
+      "description": "Scope line that appears on every invoice for this client."
+    }
+  }
+}
