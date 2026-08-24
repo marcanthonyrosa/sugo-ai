@@ -8,9 +8,13 @@
 
 /* ---------- Fonts ----------
    Red Hat Display + JetBrains Mono are OFL — embed freely.
-   General Sans is ITF-licensed: load from Fontshare, do not self-host or
-   redistribute the files. WeasyPrint fetches and embeds it into the PDF. */
-@import url("https://api.fontshare.com/v2/css?f[]=general-sans@400,600&display=swap");
+   General Sans is ITF-licensed: never self-host or redistribute the files.
+
+   The General Sans @font-face rules are injected at render time by
+   scripts/build.py, which caches the two weights locally and repairs the 400
+   face's corrupt `name` table. Fontshare's own stylesheet is deliberately NOT
+   imported here: its 400 face carries a broken family name, which fontconfig
+   resolves to the 600 face, silently setting every paragraph in semibold. */
 @import url("https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@500;700&family=JetBrains+Mono:wght@400;700&display=swap");
 
 :root {

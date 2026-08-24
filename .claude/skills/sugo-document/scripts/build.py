@@ -36,6 +36,91 @@ SKILL_ROOT = Path(__file__).resolve().parent.parent
 ASSETS = SKILL_ROOT / "assets"
 
 
+# --- General Sans font cache -------------------------------------------------
+# Fontshare ships General Sans 400 with a corrupt `name` table (family reads
+# "false"). Browsers ignore internal names and honour the @font-face
+# descriptors, so the website is unaffected — but WeasyPrint resolves faces
+# through fontconfig, which reads the internal names, discards the 400 face and
+# renders every paragraph in the 600 weight. That silently destroys the
+# emphasis mechanism, since the brand has no italics and uses 600 for stress.
+#
+# The fix: fetch both weights at build time, repair the 400 name table in a
+# local cache, and hand WeasyPrint those files. The cache is gitignored — the
+# fonts are ITF-licensed and must not be redistributed, so they are never
+# committed and never leave this machine.
+
+FONT_CACHE = SKILL_ROOT / ".fontcache"
+FONTSHARE_CSS = "https://api.fontshare.com/v2/css?f[]=general-sans@400,600"
+
+
+def ensure_fonts() -> "Path | None":
+    """Return a directory holding usable General Sans 400/600, or None."""
+    f400 = FONT_CACHE / "general-sans-400.woff2"
+    f600 = FONT_CACHE / "general-sans-600.woff2"
+    if f400.exists() and f600.exists():
+        return FONT_CACHE
+    try:
+        import re
+        from urllib.request import urlopen, Request
+        from fontTools.ttLib import TTFont
+
+        def get(url: str) -> bytes:
+            req = Request(url, headers={"User-Agent": "Mozilla/5.0"})
+            return urlopen(req, timeout=30).read()
+
+        css = get(FONTSHARE_CSS).decode("utf-8", "replace")
+        urls = {}
+        for blk in css.split("@font-face"):
+            w = re.search(r"font-weight:\s*(400|600)", blk)
+            u = re.search(r"url\('(//cdn[^']+woff2)'", blk)
+            st = re.search(r"font-style:\s*(\w+)", blk)
+            if w and u and (st is None or st.group(1) == "normal"):
+                urls.setdefault(w.group(1), "https:" + u.group(1))
+        if "400" not in urls or "600" not in urls:
+            return None
+
+        FONT_CACHE.mkdir(parents=True, exist_ok=True)
+        raw = FONT_CACHE / ".raw-400.woff2"
+        raw.write_bytes(get(urls["400"]))
+        f600.write_bytes(get(urls["600"]))
+
+        t = TTFont(str(raw))
+        t["name"].setName("General Sans", 1, 3, 1, 0x409)
+        t["name"].setName("Regular", 2, 3, 1, 0x409)
+        t["name"].setName("General Sans Regular", 4, 3, 1, 0x409)
+        t.flavor = "woff2"
+        t.save(str(f400))
+        raw.unlink(missing_ok=True)
+        return FONT_CACHE
+    except Exception as exc:                      # offline, API change, etc.
+        print(f"  note: General Sans cache unavailable ({exc}); "
+              f"falling back to Fontshare", file=sys.stderr)
+        return None
+
+
+def font_css(cache: "Path | None") -> str:
+    if cache is None:
+        # Degrade to Fontshare. Renders, but body copy comes out in the 600
+        # weight — see the note above. Better than no General Sans at all.
+        return '@import url("https://api.fontshare.com/v2/css?f[]=general-sans@400,600");'
+    return f"""
+@font-face {{ font-family:"General Sans"; font-weight:400; font-style:normal;
+  src:url("{(cache / 'general-sans-400.woff2').as_uri()}") format("woff2"); }}
+@font-face {{ font-family:"General Sans"; font-weight:600; font-style:normal;
+  src:url("{(cache / 'general-sans-600.woff2').as_uri()}") format("woff2"); }}
+"""
+
+
+def stage_assets(dest: Path) -> None:
+    """Copy the stylesheets and images the templates reference into `dest`."""
+    dest.mkdir(parents=True, exist_ok=True)
+    for f in ASSETS.iterdir():
+        if f.is_file() and f.suffix.lower() in {".css", ".png", ".svg", ".jpg"}:
+            target = dest / f.name
+            if not target.exists() or target.read_bytes() != f.read_bytes():
+                shutil.copy(f, target)
+
+
 def die(msg: str) -> None:
     print(f"ERROR: {msg}", file=sys.stderr)
     raise SystemExit(1)
@@ -67,6 +152,14 @@ def to_pdf(html: str, base_url: Path, out: Path) -> None:
     except ImportError:
         die("weasyprint not installed. Run: pip install weasyprint --break-system-packages")
     out.parent.mkdir(parents=True, exist_ok=True)
+    extra = font_css(ensure_fonts())
+    if extra:
+        # Must go in the document head. WeasyPrint ignores @font-face rules in
+        # stylesheets passed via `stylesheets=`; only document-level ones
+        # register with the font engine.
+        block = f"<style>{extra}</style>"
+        html = (html.replace("</head>", block + "</head>", 1)
+                if "</head>" in html else block + html)
     HTML(string=html, base_url=str(base_url)).write_pdf(str(out))
 
 
@@ -157,10 +250,11 @@ def main() -> int:
             die(f"{args.html} not found")
         html = args.html.read_text(encoding="utf-8")
         base = args.html.parent
-        # The stylesheet must resolve; copy it beside the HTML if it isn't there.
-        css = base / "sugo-document.css"
-        if not css.exists():
-            shutil.copy(ASSETS / "sugo-document.css", css)
+        # Every stylesheet and image the templates reference must resolve
+        # beside the HTML. Copying only sugo-document.css leaves its
+        # @import of sugo-print-tokens.css dangling, which drops the tokens
+        # AND the font imports — the PDF silently renders in Times New Roman.
+        stage_assets(base)
     else:
         ctx = defaults()
         private = load_private()
@@ -180,7 +274,7 @@ def main() -> int:
         html_out.parent.mkdir(parents=True, exist_ok=True)
         html_out.write_text(html, encoding="utf-8")
         if base != html_out.parent:
-            shutil.copy(ASSETS / "sugo-document.css", html_out.parent / "sugo-document.css")
+            stage_assets(html_out.parent)
         print(f"  HTML -> {html_out}")
 
     to_pdf(html, base, args.out)

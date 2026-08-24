@@ -38,12 +38,26 @@ No stylesheet may declare a value. If one is needed that
 ## Dependencies
 
 ```bash
-pip install jinja2 weasyprint --break-system-packages
+pip install jinja2 weasyprint
+```
+
+Needs Python 3.10+ and the Pango/Cairo native libraries (`brew install python@3.13
+pango`). `pdftotext` from `poppler` is also required, or `cleanup/check-private.py`
+silently skips PDFs instead of scanning them.
+
+In this repo the interpreter lives in `.venv/`:
+
+```bash
+.venv/bin/python .claude/skills/sugo-document/scripts/build.py --help
 ```
 
 WeasyPrint fetches Red Hat Display and JetBrains Mono from Google Fonts and
-General Sans from Fontshare, then embeds them in the PDF. Network access is
-required at build time; the resulting PDF is self-contained.
+embeds them. General Sans is handled separately: `build.py` caches both weights
+under `.fontcache/` (gitignored — the family is ITF-licensed and must not be
+redistributed) and repairs the 400 face, whose `name` table Fontshare ships
+broken. Without that repair fontconfig discards the regular weight and sets
+every paragraph in 600. Network access is required on the first build; later
+builds reuse the cache. The resulting PDF is self-contained.
 
 ## Build
 

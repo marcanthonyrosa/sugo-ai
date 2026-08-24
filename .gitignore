@@ -53,3 +53,6 @@ output/
 # Private facts — client names, rates, home address, remittance details.
 .sugo-private.json
 .brand-staging/
+
+# Python virtualenv for the document toolchain
+.venv/
