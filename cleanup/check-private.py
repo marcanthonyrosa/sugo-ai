@@ -24,6 +24,8 @@ As a pre-commit hook, in .git/hooks/pre-commit:
   python3 cleanup/check-private.py --repo . --staged || exit 1
 """
 
+from __future__ import annotations   # `X | None` on Python 3.9
+
 import argparse
 import json
 import re
