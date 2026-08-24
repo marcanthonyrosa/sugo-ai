@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>{{ invoice_number }} — Sugo AI</title>
+<link rel="stylesheet" href="sugo-document.css">
+</head>
+<body class="setup-sheet">
+
+<span class="docfooter">Sugo AI · {{ invoice_number }}</span>
+
+<header class="masthead">
+  <div class="brand">
+    <div class="lockup">
+      <span class="wordmark">Sugo AI</span>
+      {% if mark_src %}<img src="{{ mark_src }}" alt="">{% endif %}
+    </div>
+    <span class="eyebrow">{{ from_entity }}</span>
+  </div>
+  <div class="doc-title">
+    <span class="eyebrow">Invoice</span>
+    <h1>{{ invoice_seq }}</h1>
+    <span class="ref">{{ invoice_number }}</span>
+  </div>
+</header>
+
+<section class="parties">
+  <div class="col">
+    <span class="eyebrow">From</span>
+    <div class="name">{{ from_name }}</div>
+    {% for line in from_lines %}<div class="line">{{ line }}</div>{% endfor %}
+  </div>
+  <div class="col">
+    <span class="eyebrow">Bill to</span>
+    <div class="name">{{ to_name }}</div>
+    {% for line in to_lines %}<div class="line">{{ line }}</div>{% endfor %}
+  </div>
+</section>
+
+<section class="meta">
+  <div class="cell"><span class="eyebrow">Issued</span><span class="value">{{ issue_date }}</span></div>
+  <div class="cell"><span class="eyebrow">Due</span><span class="value">{{ due_date }}</span></div>
+  <div class="cell"><span class="eyebrow">Terms</span><span class="value">{{ terms }}</span></div>
+  <div class="cell"><span class="eyebrow">Service period</span><span class="value">{{ service_period }}</span></div>
+</section>
+
+<table>
+  <thead>
+    <tr>
+      <th>Description</th>
+      <th class="r">Qty</th>
+      <th class="r">Rate</th>
+      <th class="r">Amount (USD)</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in items %}
+    <tr>
+      <td>
+        <div class="line-title">{{ item.title }}</div>
+        {% if item.meta %}<div class="line-meta">{{ item.meta }}</div>{% endif %}
+        {% if item.detail %}<p class="small">{{ item.detail }}</p>{% endif %}
+      </td>
+      <td class="r">{{ item.qty }}</td>
+      <td class="r">{{ item.rate }}</td>
+      <td class="r">{{ item.amount }}</td>
+    </tr>
+    {% endfor %}
+    <tr class="total">
+      <td colspan="3" class="r">Subtotal</td>
+      <td class="r">{{ subtotal }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="due">
+  <span class="lbl">Amount due</span>
+  <span class="val">{{ total_due }}</span>
+</div>
+
+<section class="footnotes">
+  <span class="eyebrow">Remittance</span>
+  <p>{{ remittance }}</p>
+  {% if enclosed %}<p>Enclosed: {{ enclosed }}</p>{% endif %}
+</section>
+
+<div class="legal">{{ legal_line }} · {{ contact_email }}</div>
+
+</body>
+</html>

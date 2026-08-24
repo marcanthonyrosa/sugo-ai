@@ -1,0 +1,3 @@
+# Private facts — client names, rates, home address, remittance details.
+# Never committed. See .sugo-private.example.json for the shape.
+.sugo-private.json

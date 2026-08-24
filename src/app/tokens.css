@@ -1,0 +1,126 @@
+/* ==========================================================================
+   Sugo AI · tokens.css
+   GENERATED from docs/brand/tokens/sugo.tokens.json — do not hand-edit.
+   Change the JSON, then run `npm run tokens`.
+   Token layer only. Chrome and sections live in site.css and pages-*.css.
+   ========================================================================== */
+
+
+:root {
+  /* ---------- Surface ---------- */
+  --color-paper:           oklch(96% 0.014 95); /* #F5F2E8 */
+  --color-paper-2:         oklch(94% 0.020 95); /* #EFEBDD */
+  --color-card:            oklch(98.5% 0.008 100); /* #FBFAF4 */
+
+  /* ---------- Ink ---------- */
+  --color-ink:             oklch(24% 0.065 265); /* #101D3E */
+  --color-ink-2:           oklch(34% 0.055 262); /* #283854 */
+  --color-muted:           oklch(46% 0.04 262); /* #4C586F */
+  --color-rule:            oklch(90% 0.012 258); /* #D9DEE6 */
+  --color-rule-flood:      oklch(46% 0.04 262); /* hairlines on a navy flood */
+
+  /* ---------- Viola ---------- */
+  --color-viola-50:        oklch(95.5% 0.015 310); /* #F3EEF8 */
+  --color-viola:           oklch(89% 0.04 310); /* #E3D4EF */
+  --color-flood:          var(--color-viola);
+  --color-flood-shade:     oklch(81% 0.055 310); /* #CCB8DC */
+  --color-viola-500:       oklch(72% 0.09 305); /* DECORATIVE ONLY — 2.29:1, never type */
+  --color-underline:       oklch(55% 0.12 308); /* #855CA7 */
+
+  /* ---------- Accents · one per composition ---------- */
+  --color-saffron:         oklch(83% 0.11 85); /* evidence */
+  --color-blush:           oklch(88% 0.035 40); /* human */
+  --color-sky:             oklch(86% 0.015 240); /* diagrams only */
+
+  /* ---------- Mark · never used outside the tomato ---------- */
+  --color-mark-coral:      #EC705B;
+  --color-mark-stem:       #264534;
+
+  /* ---------- Action ---------- */
+  --color-accent:         var(--color-ink);
+  --color-accent-hover:    oklch(30% 0.07 262); /* #1A2D51 */
+  --color-accent-ink:     var(--color-paper);
+
+  /* ---------- Focus ---------- */
+  --color-focus:           oklch(46% 0.13 310); /* #6E3F8D */
+  --color-focus-on-flood:  oklch(95% 0.032 95); /* #F5EFD7 */
+
+  /* ---------- Status · application UI only, never marketing ---------- */
+  --color-success:               #D0EED5;  --color-success-ink: #205335;
+  --color-warning:               #F9E6BF;  --color-warning-ink: #754B10;
+  --color-danger:                #FBDCD9;  --color-danger-ink: #9B1E22;
+  --color-info:                  #DCEAF4;  --color-info-ink: #385975;
+
+  /* ---------- Data visualisation · use in order ---------- */
+  --color-dv-1: #101D3E;  /* ink */
+  --color-dv-2: #9970C4;  /* viola-600 */
+  --color-dv-3: #B5820C;  /* saffron-700 */
+  --color-dv-4: #607F91;  /* slate */
+  --color-dv-5: #5C8E67;  /* basil */
+  --color-dv-6: #C0765D;  /* clay */
+
+  /* ---------- Type ---------- */
+  --font-display: var(--font-redhat), "Red Hat Display", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --font-body:    "General Sans", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --font-outlier: var(--font-jb-mono), "JetBrains Mono", Consolas, Menlo, "Courier New", monospace;
+
+  --display-tracking:  -0.015em;
+  --display-lh:        1.1;
+  --display-weight:    700;
+  --display-weight-md: 500;
+
+  --text-$description:  undefined;
+  --text-sm:            0.875rem;
+  --text-base:          1.0625rem;
+  --text-md:            1.25rem;
+  --text-lg:            1.5625rem;
+  --text-xl:            1.953rem;
+  --text-2xl:           2.441rem;
+  --text-3xl:           3.052rem;
+  --text-display-s:     clamp(2.4rem, 3.7vw + 1rem, 3.9rem);
+  --text-statement:     clamp(2rem, 3vw + 1rem, 3.25rem);
+  --text-stat:          clamp(3.5rem, 6vw + 1rem, 6rem);
+
+  /* ---------- Space · 4-pt base ---------- */
+  --space-2xs:   0.25rem;
+  --space-xs:    0.5rem;
+  --space-sm:    0.75rem;
+  --space-md:    1rem;
+  --space-lg:    1.5rem;
+  --space-xl:    2.5rem;
+  --space-2xl:   4rem;
+  --space-3xl:   6rem;
+
+  /* ---------- Geometry ---------- */
+  --border-panel: 2px solid var(--color-ink);
+  --border-hair:  1px solid var(--color-rule);
+  --border-stage: 3px solid var(--color-ink);
+  --radius-micro: 2px;
+  --radius-btn:   4px;
+  --radius-card:  8px;
+  --radius-panel: 10px;
+
+  --shadow-stack:             4px 4px 0 var(--color-ink);
+  --shadow-stack-lift:        5px 5px 0 var(--color-ink);
+  --shadow-stack-press:       2px 2px 0 var(--color-ink);
+  --shadow-stack-viola:       4px 4px 0 var(--color-viola-500);
+  --shadow-stack-viola-lift:  5px 5px 0 var(--color-viola-500);
+  --shadow-stack-viola-press: 2px 2px 0 var(--color-viola-500);
+
+  /* ---------- Motion ---------- */
+  --ease-out:      cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in:       cubic-bezier(0.7, 0, 0.84, 0);
+  --ease-in-out:   cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-micro:     120ms;
+  --dur-short:     220ms;
+  --dur-long:      420ms;
+  --dur-reduced:   150ms;
+
+  /* ---------- Layout ---------- */
+  --wrap-max:     74rem;
+  --measure-body: 62ch;
+  --measure-lede: 52ch;
+  --measure-head: 22ch;
+  --z-raised:     10;
+  --z-sticky-nav: 300;
+}

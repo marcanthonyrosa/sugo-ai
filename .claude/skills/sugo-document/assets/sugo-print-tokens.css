@@ -1,0 +1,43 @@
+/* ==========================================================================
+   Sugo AI · sugo-print-tokens.css
+   Fonts and token values for every print surface. Generated from
+   docs/brand/tokens/sugo.tokens.json — do not hand-edit values.
+   Imported by sugo-document.css and sugo-deck.css. Declares no layout.
+   v1.0.0 · 2026-08-24 · Viola Light
+   ========================================================================== */
+
+/* ---------- Fonts ----------
+   Red Hat Display + JetBrains Mono are OFL — embed freely.
+   General Sans is ITF-licensed: load from Fontshare, do not self-host or
+   redistribute the files. WeasyPrint fetches and embeds it into the PDF. */
+@import url("https://api.fontshare.com/v2/css?f[]=general-sans@400,600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@500;700&family=JetBrains+Mono:wght@400;700&display=swap");
+
+:root {
+  --paper:      #F5F2E8;
+  --paper-2:    #EFEBDD;
+  --card:       #FBFAF4;
+  --ink:        #101D3E;
+  --ink-2:      #283854;
+  --muted:      #4C586F;
+  --rule:       #D9DEE6;
+  --viola-50:   #F3EEF8;
+  --viola:      #E3D4EF;
+  --viola-500:  #B296D2;
+  --viola-900:  #855CA7;
+  --saffron:    #E8C270;
+  --blush:      #EDD0C6;
+  --sky:        #C9D3DA;
+  --danger-ink: #9B1E22;
+
+  --f-display: "Red Hat Display", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --f-body:    "General Sans", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --f-mono:    "JetBrains Mono", Consolas, Menlo, "Courier New", monospace;
+
+  --gap-2xs: 2pt;  --gap-xs: 4pt;  --gap-sm: 6pt;
+  --gap-md:  10pt; --gap-lg: 15pt; --gap-xl: 25pt; --gap-2xl: 40pt;
+
+  --carpentry: 1.5pt solid var(--ink);   /* 2px on screen = ~1.5pt at doc scale */
+  --hair:      0.5pt solid var(--rule);
+}
+

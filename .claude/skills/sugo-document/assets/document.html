@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>{{ title }} — Sugo AI</title>
+<link rel="stylesheet" href="sugo-document.css">
+</head>
+<body class="setup-document">
+
+<span class="docfooter">Sugo AI · {{ reference }}</span>
+
+<header class="masthead">
+  <div class="brand">
+    <div class="lockup">
+      <span class="wordmark">Sugo AI</span>
+      {% if mark_src %}<img src="{{ mark_src }}" alt="">{% endif %}
+    </div>
+    <span class="eyebrow">Sugo Product Company, LLC</span>
+  </div>
+  <div class="doc-title">
+    <span class="eyebrow">{{ doc_type }}</span>
+    <h1>{{ title }}</h1>
+    <span class="ref">{{ reference }}</span>
+  </div>
+</header>
+
+{% if parties %}
+<section class="parties">
+  {% for col in parties %}
+  <div class="col">
+    <span class="eyebrow">{{ col.label }}</span>
+    <div class="name">{{ col.name }}</div>
+    {% for line in col.lines %}<div class="line">{{ line }}</div>{% endfor %}
+  </div>
+  {% endfor %}
+</section>
+{% endif %}
+
+{{ body | safe }}
+
+{% if signatures %}
+<section class="signatures">
+  <div class="party">
+    <div class="entity">Sugo Product Company, LLC</div>
+    <div class="dba">d/b/a Sugo AI</div>
+    <div class="sigline">
+      <div class="who">Marc Rosa</div>
+      <div class="role">Managing Member</div>
+      <div class="date">Date: ______________</div>
+    </div>
+  </div>
+  <div class="party">
+    <div class="entity">{{ client_entity }}</div>
+    <div class="dba">&nbsp;</div>
+    <div class="sigline">
+      <div class="who">{{ client_signer | default('______________________') }}</div>
+      <div class="role">{{ client_title | default('______________________') }}</div>
+      <div class="date">Date: ______________</div>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<div class="legal">{{ legal_line }} · {{ contact_email }} · sugoai.com</div>
+
+</body>
+</html>
