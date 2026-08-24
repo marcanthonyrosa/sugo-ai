@@ -68,6 +68,9 @@ public/                 Static assets (icons, headshots, logos)
 
 ## Brand and design system
 
+Day-to-day usage — setup, making a document, changing a value — is walked
+through in [`docs/brand/USING_THE_BRAND_TOOLS.md`](docs/brand/USING_THE_BRAND_TOOLS.md).
+
 Sugo AI runs on a locked design system — **Viola Light**, 2026-08-13. The full
 system lives in [`docs/brand/`](docs/brand/README.md):
 

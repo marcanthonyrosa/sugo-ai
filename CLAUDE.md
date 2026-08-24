@@ -118,6 +118,7 @@ personally as an independent contractor is a per-client exception recorded in
 | A document, invoice, proposal, deck | Use the `sugo-document` skill — `.claude/skills/sugo-document/`. Never improvise a layout. |
 | Copy of any kind | Read `docs/brand/MESSAGING_AND_VOICE.md`. |
 | Anything with the entity or a claim in it | Read `docs/brand/04-BRAND_FACTS.md` first. |
+| Setting up or running the brand tooling | Read `docs/brand/USING_THE_BRAND_TOOLS.md`. |
 | Changing a brand decision | Amend `docs/brand/DECISIONS.md` first, then the JSON, then `npm run tokens`, then the rule, then the implementation. Never the implementation first. |
 
 ### Before you emit

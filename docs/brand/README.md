@@ -14,6 +14,7 @@ is preserved in §4 below.
 
 | I am… | Read |
 | --- | --- |
+| Just trying to *use* these tools day to day | [`USING_THE_BRAND_TOOLS.md`](USING_THE_BRAND_TOOLS.md) |
 | Deciding *what to say* or *who this is for* | [`BRAND_FOUNDATIONS.md`](BRAND_FOUNDATIONS.md) |
 | Writing copy, a post, a proposal narrative | [`MESSAGING_AND_VOICE.md`](MESSAGING_AND_VOICE.md) |
 | Making anything visual, anywhere | [`01-VISUAL_IDENTITY.md`](01-VISUAL_IDENTITY.md) |
