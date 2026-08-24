@@ -9,7 +9,7 @@ Marketing site for Sugo Product Company — an AI product and consulting practic
 - **Styling:** Tailwind CSS v4 with CSS custom-property design tokens in `globals.css`
 - **Components:** shadcn/ui (New York, neutral base) and Base UI primitives
 - **Content:** MDX articles via `next-mdx-remote` + `gray-matter` frontmatter
-- **Fonts:** Fraunces (display) and JetBrains Mono (labels) via `next/font`; Switzer (body) via Fontshare
+- **Fonts:** Red Hat Display (display) and JetBrains Mono (figures) self-hosted via `next/font`; General Sans (body) via Fontshare
 - **Package manager:** npm
 
 ## Local development
@@ -30,6 +30,8 @@ Open [http://localhost:3000](http://localhost:3000).
 | `npm start` | Serve production build |
 | `npm run lint` | ESLint |
 | `npm run type-check` | TypeScript type checking (`tsc --noEmit`) |
+| `npm run tokens` | Regenerate CSS from `docs/brand/tokens/sugo.tokens.json` |
+| `npm run tokens:check` | Fail if the generated token files have drifted |
 
 ## Routes
 
@@ -64,10 +66,43 @@ src/hooks/              useInView, useCountUp
 public/                 Static assets (icons, headshots, logos)
 ```
 
-## Product and brand references
+## Brand and design system
 
-Start with [`docs/README.md`](docs/README.md) for the brand wiki, reference
-hierarchy, and logo inventory used across development environments.
+Sugo AI runs on a locked design system — **Viola Light**, 2026-08-13. The full
+system lives in [`docs/brand/`](docs/brand/README.md):
+
+| | |
+| --- | --- |
+| [`docs/brand/README.md`](docs/brand/README.md) | Index, authority hierarchy, change control |
+| [`01-VISUAL_IDENTITY.md`](docs/brand/01-VISUAL_IDENTITY.md) | Mark, colour, type, geometry, motion, imagery — any medium |
+| [`02-WEB_UI_STANDARD.md`](docs/brand/02-WEB_UI_STANDARD.md) | Web and application implementation |
+| [`03-DOCUMENT_SYSTEM.md`](docs/brand/03-DOCUMENT_SYSTEM.md) | Documents, PDFs, decks |
+| [`04-BRAND_FACTS.md`](docs/brand/04-BRAND_FACTS.md) | Entity, boilerplate, approved claims |
+| [`DECISIONS.md`](docs/brand/DECISIONS.md) | Every decision, and what is still open |
+| [`tokens/`](docs/brand/tokens/) | The values — JSON, CSS, Tailwind, and Office/print |
+
+### Tokens are generated
+
+`docs/brand/tokens/sugo.tokens.json` is the single source of truth.
+
+```bash
+npm run tokens         # regenerate src/app/tokens.css and the published CSS
+npm run tokens:check   # fail if the generated files have drifted
+```
+
+Never hand-edit `src/app/tokens.css`, `sugo-tokens.css`, or `sugo-theme.css`.
+
+### Privacy
+
+This repository is public. Client names, fees, the business address, and contact
+details live in a gitignored `.sugo-private.json`; examples use
+`Example Client, LLC` and `$1.00`.
+
+```bash
+python3 cleanup/check-private.py --repo . --staged
+```
+
+Install it as a pre-commit hook — see [`cleanup/README.md`](cleanup/README.md).
 
 ## Adding an essay
 
