@@ -63,7 +63,7 @@
 
 .pg-about .origin { padding-block-end: var(--space-3xl); }
 .pg-about .origin__panel {
-  background: var(--color-blush); border: var(--border-panel); border-radius: var(--radius-panel);
+  background: var(--color-viola); border: var(--border-panel); border-radius: var(--radius-panel);
   padding: clamp(var(--space-xl), 4vw, var(--space-2xl));
   display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 200px);
   gap: var(--space-xl); align-items: center;
@@ -115,7 +115,7 @@
 .pg-contact .next__list span { color: var(--color-ink-2); }
 
 .pg-contact .bring { padding-block-end: var(--space-3xl); }
-.pg-contact .bring__card { background: var(--color-blush); border: var(--border-panel); border-radius: var(--radius-panel); padding: var(--space-xl); max-width: 44rem; }
+.pg-contact .bring__card { background: var(--color-viola); border: var(--border-panel); border-radius: var(--radius-panel); padding: var(--space-xl); max-width: 44rem; }
 .pg-contact .bring__card h2 { font-size: var(--text-xl); }
 .pg-contact .bring__card ul { margin: var(--space-lg) 0 0; padding: 0; list-style: none; display: grid; gap: var(--space-sm); }
 .pg-contact .bring__card li { padding-left: var(--space-lg); position: relative; }
@@ -169,7 +169,7 @@
 
 .pg-writing .terms { padding-block-end: var(--space-3xl); }
 .pg-writing .terms__card {
-  background: var(--color-blush); border: var(--border-panel); border-radius: var(--radius-panel);
+  background: var(--color-viola); border: var(--border-panel); border-radius: var(--radius-panel);
   padding: var(--space-xl); max-width: 46rem;
 }
 .pg-writing .terms__card h2 { font-size: var(--text-xl); }

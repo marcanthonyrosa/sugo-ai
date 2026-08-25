@@ -20,14 +20,11 @@
   --color-viola-500: oklch(72% 0.09 305);
   --color-viola-900: oklch(55% 0.12 308);
   --color-saffron:   oklch(83% 0.11 85);
-  --color-blush:     oklch(88% 0.035 40);
   --color-sky:       oklch(86% 0.015 240);
   --color-success:     #D0EED5;
   --color-success-ink: #205335;
   --color-warning:     #F9E6BF;
   --color-warning-ink: #754B10;
-  --color-danger:     #FBDCD9;
-  --color-danger-ink: #9B1E22;
   --color-info:     #DCEAF4;
   --color-info-ink: #385975;
   --color-dv-1: #101D3E;
@@ -79,7 +76,7 @@
   --muted-foreground:     oklch(46% 0.04 262);
   --accent:               oklch(89% 0.04 310);
   --accent-foreground:    oklch(24% 0.065 265);
-  --destructive:          #9B1E22;
+  --destructive:          oklch(24% 0.065 265);
   --border:               oklch(24% 0.065 265);  /* 2px carpentry: borders are ink, not grey */
   --input:                oklch(24% 0.065 265);
   --ring:                 oklch(46% 0.13 310);

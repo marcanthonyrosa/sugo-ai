@@ -14,14 +14,17 @@
 /* ---------- Page ---------- */
 @page {
   size: letter;
-  margin: 0.9in 0.75in 0.75in;
-  @bottom-left {
-    content: string(docfooter);
-    font-family: var(--f-mono); font-size: 8.5pt; color: var(--muted);
-  }
+  /* The side margin is the measure (DECISIONS B-46). Nothing caps its own
+     width, so 1.5in is what holds running copy to ~80 characters a line at
+     10.5pt. Widening these margins is a typographic decision, not a
+     whitespace one: it lengthens every line on every page. */
+  margin: 0.85in 1.5in 0.8in;
+  /* A page number and nothing else (DECISIONS B-44). The running reference
+     line was retired: it appeared on every sheet, nobody read it, and it made
+     the pages feel padded. The reference lives in the masthead. */
   @bottom-right {
-    content: "Page " counter(page) " of " counter(pages);
-    font-family: var(--f-mono); font-size: 8.5pt; color: var(--muted);
+    content: counter(page) " of " counter(pages);
+    font-family: var(--f-mono); font-size: 8pt; color: var(--muted);
   }
 }
 body.setup-sheet { }
@@ -31,7 +34,7 @@ body.setup-sheet { page: sheet; }
 html, body { margin: 0; padding: 0; }
 body {
   font-family: var(--f-body);
-  font-size: 10.5pt; font-weight: 400; line-height: 1.45;
+  font-size: 10.5pt; font-weight: 400; line-height: 1.5;
   color: var(--ink-2);
   background: #FFFFFF;
   -webkit-font-smoothing: antialiased;
@@ -40,13 +43,21 @@ body {
 
 /* ---------- Type ---------- */
 h1, h2, h3 { font-family: var(--f-display); color: var(--ink); margin: 0; }
-h1 { font-size: 28pt; font-weight: 700; line-height: 1.05; letter-spacing: -0.02em; }
-h2 { font-size: 17pt; font-weight: 700; line-height: 1.15; letter-spacing: -0.015em;
-     margin-top: var(--gap-xl); padding-top: var(--gap-md);
-     border-top: var(--hair); break-after: avoid; }
-h3 { font-size: 13pt; font-weight: 500; line-height: 1.25;
-     margin-top: var(--gap-lg); break-after: avoid; }
-p  { margin: 0 0 var(--gap-md); max-width: 68ch; }
+h1 { font-size: 16pt; font-weight: 700; line-height: 1.1; letter-spacing: -0.01em; }
+/* Levels separate by weight and space, not by size alone, and the space
+   above a head is roughly three times the space below it. No rule above a
+   section head: space is the convention, and the hairline was one of four
+   horizontals inside an inch and a half (DECISIONS B-49). */
+h2 { font-size: 13.5pt; font-weight: 700; line-height: 1.2; letter-spacing: -0.01em;
+     margin-top: 19pt; margin-bottom: 6pt; break-after: avoid; }
+h3 { font-size: 11.5pt; font-weight: 700; line-height: 1.3;
+     margin-top: 13pt; margin-bottom: 3pt; break-after: avoid; }
+
+/* One right edge (DECISIONS B-47). No element declares its own width: prose,
+   callouts, tables, panels and the folio all end at the page margin. A
+   `max-width` here puts a second edge on the page, and the eye loses the one
+   it returns to. */
+p  { margin: 0 0 var(--gap-md); }
 strong { font-weight: 600; color: var(--ink); }
 em { font-style: normal; font-weight: 600; color: var(--ink); }  /* no italics */
 a  { color: var(--ink); text-decoration: none; border-bottom: 0.5pt solid var(--viola-900); }
@@ -63,76 +74,120 @@ a  { color: var(--ink); text-decoration: none; border-bottom: 0.5pt solid var(--
 
 /* ---------- Masthead ---------- */
 .masthead {
-  display: flex; justify-content: space-between; align-items: flex-start;
+  display: flex; justify-content: space-between; align-items: flex-end;
   gap: var(--gap-xl);
-  padding-bottom: var(--gap-md); border-bottom: var(--carpentry);
-  margin-bottom: var(--gap-lg);
+  padding-bottom: var(--gap-sm); border-bottom: var(--carpentry);
+  margin-bottom: var(--gap-md);
 }
 .lockup { display: flex; align-items: center; gap: 8pt; white-space: nowrap; }
+/* The masthead identifies; it does not announce (DECISIONS B-42). */
 .lockup .wordmark {
-  font-family: var(--f-display); font-weight: 700; font-size: 24pt;
+  font-family: var(--f-display); font-weight: 700; font-size: 16pt;
   letter-spacing: 0.01em; color: var(--ink); line-height: 1;
 }
-.lockup img { height: 26pt; width: auto; display: block; transform: translateY(-1pt); }
+.lockup img { height: 17pt; width: auto; display: block; transform: translateY(-0.5pt); }
 .brand { flex: 0 0 auto; }
-.brand .eyebrow { margin-top: var(--gap-sm); margin-bottom: 0; white-space: nowrap; }
-.doc-title { text-align: right; max-width: 52%; }
+.brand .eyebrow { font-size: 7.5pt; margin-top: var(--gap-xs); margin-bottom: 0;
+                  white-space: nowrap; }
+.doc-title { text-align: right; max-width: 72%; }
 .doc-title h1 { margin-top: var(--gap-2xs); }
-.doc-title .ref { font-family: var(--f-mono); font-size: 9pt; color: var(--muted);
-                  margin-top: var(--gap-sm); display: block;
+.doc-title .eyebrow { font-size: 7.5pt; margin-bottom: var(--gap-2xs); }
+
+/* Two rows, not three (DECISIONS B-51). The title holds one line; the type of
+   document, its version and its date consolidate onto a single mono run
+   beneath it. A flex row here sizes to the title rather than to its own
+   content, so this is deliberately one run and not two spans. */
+.masthead-meta {
+  display: block; text-align: right; margin-top: 4pt;
+  font-family: var(--f-mono); font-size: 7.5pt; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--muted);
+  font-variant-numeric: tabular-nums; white-space: nowrap;
+}
+.doc-title h1 { white-space: nowrap; }
+.doc-title .ref { font-family: var(--f-mono); font-size: 8pt; color: var(--muted);
+                  margin-top: var(--gap-xs); display: block;
                   font-variant-numeric: tabular-nums; }
 
 /* ---------- Parties / meta band ---------- */
 .parties {
   display: flex; gap: var(--gap-2xl);
-  padding-bottom: var(--gap-md); border-bottom: var(--hair);
-  margin-bottom: var(--gap-lg);
+  padding-bottom: 7pt; border-bottom: var(--hair);
+  margin-bottom: var(--gap-md);
 }
+/* When a .docmeta run follows, the parties band hands its rule to it so the
+   pair reads as one block closed once. */
+.parties:has(+ .docmeta) { border-bottom: none; margin-bottom: 0; }
 .parties .col { flex: 1; }
-.parties .name { font-family: var(--f-display); font-weight: 500; font-size: 13pt;
+.parties .name { font-family: var(--f-display); font-weight: 500; font-size: 11pt;
                  color: var(--ink); line-height: 1.2; margin-bottom: var(--gap-2xs); }
-.parties .line { font-size: 10.5pt; color: var(--ink-2); line-height: 1.45; }
+.parties .line { font-size: 9.5pt; color: var(--ink-2); line-height: 1.4; }
+
+/* Short document facts — date, status, reference, cutoff — set as one
+   labelled run rather than a second banded row of their own. Four horizontal
+   rules inside an inch and a half is what a second band costs. A status is a
+   phrase and sets in the body face; only figures take the mono. */
+.docmeta {
+  display: flex; gap: var(--gap-2xl); align-items: baseline;
+  padding-bottom: 8pt; border-bottom: var(--hair); margin-bottom: 0;
+}
+.docmeta .pair { display: flex; gap: 7pt; align-items: baseline; white-space: nowrap; }
+.docmeta .lbl {
+  font-family: var(--f-mono); font-size: 7.5pt; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--muted);
+}
+.docmeta .val { font-size: 9.5pt; color: var(--ink-2); white-space: nowrap; }
+.docmeta .val.fig { font-family: var(--f-mono); color: var(--ink);
+                    font-variant-numeric: tabular-nums; }
+.parties .eyebrow, .meta .eyebrow { font-size: 7.5pt; margin-bottom: var(--gap-2xs); }
 
 .meta {
   display: flex; gap: var(--gap-2xl);
-  padding-bottom: var(--gap-md); border-bottom: var(--hair);
-  margin-bottom: var(--gap-lg);
+  padding-bottom: var(--gap-sm); border-bottom: var(--hair);
+  margin-bottom: var(--gap-md);
 }
 .meta .cell { flex: 1; }
-.meta .value { font-family: var(--f-mono); font-size: 11pt; color: var(--ink);
+.meta .value { font-family: var(--f-mono); font-size: 9.5pt; color: var(--ink);
                font-variant-numeric: tabular-nums; }
 
 /* ---------- Lists ---------- */
 ol.numbered { list-style: none; margin: 0 0 var(--gap-md); padding: 0; counter-reset: n; }
+/* `1.` in the body face at body size (DECISIONS B-48). A zero-padded mono
+   numeral sat at a different size from the copy beside it and so could never
+   share its baseline; the body face aligns by construction. */
 ol.numbered > li {
   counter-increment: n; position: relative;
-  padding-left: 28pt; margin-bottom: var(--gap-sm); max-width: 68ch;
+  padding-left: 18pt; margin-bottom: 6pt;
 }
 ol.numbered > li::before {
-  content: counter(n, decimal-leading-zero); position: absolute; left: 0;
-  font-family: var(--f-mono); font-size: 9pt; color: var(--muted);
-  font-variant-numeric: tabular-nums;
+  content: counter(n) "."; position: absolute; left: 0; top: 0;
+  font-family: var(--f-body); font-weight: 600; font-size: 10.5pt;
+  line-height: 1.5; color: var(--ink);
 }
 ul.squares { list-style: none; margin: 0 0 var(--gap-md); padding: 0; }
 ul.squares > li {
-  position: relative; padding-left: 16pt;
-  margin-bottom: var(--gap-sm); max-width: 68ch;
+  position: relative; padding-left: 14pt;
+  margin-bottom: 5pt;
 }
 ul.squares > li::before {
-  content: ""; position: absolute; left: 0; top: 6pt;
-  width: 5pt; height: 5pt; background: var(--ink);
+  content: ""; position: absolute; left: 0; top: 6.6pt;
+  width: 4pt; height: 4pt; background: var(--ink);
 }
 
 /* ---------- Callouts · three only ---------- */
 .callout {
   border: var(--carpentry); border-radius: 6pt;
-  padding: 14pt; margin: var(--gap-lg) 0;
+  padding: 10pt 12pt; margin: 12pt 0;
   break-inside: avoid;
 }
+/* A callout's ground and its 2px border carry the emphasis. Its copy sets at
+   body size; type that jumps a point and a half mid-page reads as a headline
+   dropped into a paragraph (DECISIONS B-50). */
+.callout p, .callout li { font-size: 10.5pt; }
+.callout .eyebrow { font-size: 7.5pt; margin-bottom: 5pt; }
 .callout .eyebrow { color: var(--ink); }
 .callout p:last-child { margin-bottom: 0; }
 .callout--evidence { background: var(--saffron); }
-.callout--plain    { background: var(--blush); }
+.callout--plain    { background: var(--viola); }   /* human · B-45 */
 .callout--note     { background: var(--viola-50); }
 .callout--evidence .figure-lead {
   font-family: var(--f-mono); font-weight: 700; font-size: 30pt;
@@ -142,14 +197,17 @@ ul.squares > li::before {
 
 /* ---------- Tables ---------- */
 table { width: 100%; border-collapse: collapse; margin: var(--gap-md) 0 var(--gap-lg); }
+/* Table copy sits a half point under running copy: cells are scanned rather
+   than read, and the smaller size is what buys column width back once the
+   margins have taken the measure in. */
 thead th {
-  font-family: var(--f-mono); font-size: 8.5pt; font-weight: 400;
-  letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted);
+  font-family: var(--f-mono); font-size: 7.5pt; font-weight: 400;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted);
   background: var(--viola-50); text-align: left;
-  padding: 7pt 8pt; border-bottom: var(--carpentry);
+  padding: 5pt 6pt; border-bottom: var(--carpentry);
 }
-tbody td { font-size: 10.5pt; color: var(--ink-2);
-           padding: 9pt 8pt; border-bottom: var(--hair); vertical-align: top; }
+tbody td { font-size: 10pt; color: var(--ink-2); line-height: 1.35;
+           padding: 6pt 6pt; border-bottom: var(--hair); vertical-align: top; }
 td.r, th.r { text-align: right; font-family: var(--f-mono);
              font-variant-numeric: tabular-nums; }
 tbody tr.total td { font-weight: 600; color: var(--ink); border-top: var(--hair);
@@ -208,6 +266,21 @@ figcaption { font-family: var(--f-mono); font-size: 8.5pt; color: var(--muted);
 .docfooter { string-set: docfooter content(); position: absolute;
              left: -9999pt; height: 0; overflow: hidden; }
 
-/* ---------- Breaks ---------- */
+/* ---------- Breaks ----------
+   WeasyPrint moves a `break-inside: avoid` box wholesale. A block taller than
+   roughly half the live area therefore strands most of a sheet rather than
+   filling it, and shaving a few points to make it fit is a knife-edge that
+   breaks again on the next edit. Any table over ~10 rows should opt back in to
+   breaking and repeat its header instead:
+
+     table.long            { break-inside: auto; }
+     table.long thead      { display: table-header-group; }
+     table.long tbody tr   { break-inside: avoid; }
+
+   Check every page of a built PDF before shipping it; a mid-document half-empty
+   sheet is the usual symptom. */
 .page-break { break-before: page; }
 h2, h3, .callout, table, figure, .signatures { break-inside: avoid; }
+table.long { break-inside: auto; }
+table.long thead { display: table-header-group; }
+table.long tbody tr { break-inside: avoid; }

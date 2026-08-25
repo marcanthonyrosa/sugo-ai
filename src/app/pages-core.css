@@ -165,7 +165,7 @@
 /* ---------- Plain terms ---------- */
 .terms { padding-block-end: var(--space-3xl); }
 .terms__card {
-  background: var(--color-blush); border: var(--border-panel); border-radius: var(--radius-panel);
+  background: var(--color-viola); border: var(--border-panel); border-radius: var(--radius-panel);
   padding: var(--space-xl); max-width: 46rem;
 }
 .terms__card h2 { font-size: var(--text-xl); font-weight: var(--display-weight); }
@@ -226,7 +226,7 @@
 .shape p { color: var(--color-ink-2); }
 .shape--first { background: var(--color-card); box-shadow: var(--shadow-stack); }
 .shape--embed { background: var(--color-viola-50); }
-.shape--pilot { background: var(--color-blush); }
+.shape--pilot { background: var(--color-viola); }
 @media (max-width: 59.99rem) { .shapes__grid { grid-template-columns: minmax(0, 1fr); } }
 
 /* ---------- What we ask of you ---------- */

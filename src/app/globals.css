@@ -91,7 +91,6 @@
   --color-sky: #CAD5DE;
   --color-sky-50: #EBEFF3;
   --color-sky-ink: #3b4c5a;
-  --color-blush: oklch(88% 0.035 40);
 
   /* Borders */
   --color-rule: oklch(90% 0.012 258);
@@ -121,7 +120,10 @@
   --muted-foreground: oklch(0.556 0 0);
   --accent: oklch(0.97 0 0);
   --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
+  /* No red in this system: red belongs to the mark alone (DECISIONS B-41).
+     A destructive action is navy like any other; its icon, its verb, and its
+     confirmation step are what mark it. */
+  --destructive: var(--color-ink, #101D3E);
   --border: oklch(0.922 0 0);
   --input: oklch(0.922 0 0);
   --ring: oklch(0.708 0 0);
@@ -174,7 +176,7 @@
   --muted-foreground: oklch(0.708 0 0);
   --accent: oklch(0.269 0 0);
   --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
+  --destructive: var(--color-ink, #101D3E);  /* no red — B-41 */
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
   --ring: oklch(0.556 0 0);

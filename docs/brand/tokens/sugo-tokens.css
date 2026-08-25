@@ -29,7 +29,6 @@
 
   /* ---------- Accents · one per composition ---------- */
   --color-saffron:         oklch(83% 0.11 85); /* evidence */
-  --color-blush:           oklch(88% 0.035 40); /* human */
   --color-sky:             oklch(86% 0.015 240); /* diagrams only */
 
   /* ---------- Mark · never used outside the tomato ---------- */
@@ -48,7 +47,6 @@
   /* ---------- Status · application UI only, never marketing ---------- */
   --color-success:               #D0EED5;  --color-success-ink: #205335;
   --color-warning:               #F9E6BF;  --color-warning-ink: #754B10;
-  --color-danger:                #FBDCD9;  --color-danger-ink: #9B1E22;
   --color-info:                  #DCEAF4;  --color-info-ink: #385975;
 
   /* ---------- Data visualisation · use in order ---------- */

@@ -30,9 +30,10 @@
   --viola-500:  #B296D2;
   --viola-900:  #855CA7;
   --saffron:    #E8C270;
-  --blush:      #EDD0C6;
+  /* Blush #EDD0C6 retired (DECISIONS B-45): it is the coral's own family and
+     reads as red. The human / plain-terms role is carried by --viola. */
   --sky:        #C9D3DA;
-  --danger-ink: #9B1E22;
+  /* No danger colour. Red belongs to the mark alone (DECISIONS B-41). */
 
   --f-display: "Red Hat Display", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
   --f-body:    "General Sans", "Segoe UI", "Helvetica Neue", Arial, sans-serif;

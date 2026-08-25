@@ -43,9 +43,10 @@ active nudges 1px down. No shadow. There is no third variant.
 switches colour to `--color-underline`.
 
 **Input** — 2px ink border, `radius-btn`, card background, 48px min height.
-Label above, never a placeholder-as-label. Errors get a message in
-`danger-ink`, a 16px Lucide `alert-circle`, `aria-invalid`, and
-`aria-describedby`. Colour never carries the error alone.
+Label above, never a placeholder-as-label. Errors get a message in `ink` at
+body 600, a 16px Lucide `alert-circle`, `aria-invalid`, and `aria-describedby`.
+**There is no danger colour** — red belongs to the mark alone (B-41), so the
+error is carried by the icon and the words, never by hue.
 
 **Panel** — `border: 2px solid ink`, `radius-panel`, `card` background,
 `overflow: hidden`. Adjacent panels share their seam: the child draws

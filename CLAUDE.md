@@ -62,10 +62,11 @@ needed value does not exist, add it to the JSON first.
    quiet tint. `#B296D2` is **decoration only** — 2.29:1 on paper, so never type,
    never a meaningful icon, never a sole state indicator.
 3. **One accent per composition, and accents mean things.** Saffron `#E8C270` =
-   evidence, a number or a citation. Blush `#EDD0C6` = human, plain language or
-   warmth. Never both in one section.
+   evidence, a number or a citation. Viola `#E3D4EF` = human, plain language or
+   warmth. Never both in one section. **There is no blush and no danger red:
+   red belongs to the mark alone** (B-41, B-45).
 4. **The mark is the only red.** The chunky pixel tomato, ≤3% of any composition.
-   Never recoloured, outlined, rotated, or placed on saffron, blush, or a photo.
+   Never recoloured, outlined, rotated, or placed on saffron or a photo.
    Clear space is 25% of its height.
 5. **2px navy carpentry.** Panels are drawn, not floated; adjacent panels share
    their seam. Radii 2/4/8/10px — nothing is a pill. The only shadow is a stacked

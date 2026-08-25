@@ -43,11 +43,13 @@ These are not preferences. Breaking one produces something that is not Sugo.
 
 3. **One accent per composition, and accents mean things.**
    Saffron `#E8C270` = **evidence** (a number, a citation).
-   Blush `#EDD0C6` = **human** (plain language, warmth, origin).
+   Viola `#E3D4EF` = **human** (plain language, warmth, origin). Blush
+   `#EDD0C6` is retired (B-45) — it reads as red. There is no danger red
+   either (B-41): red belongs to the mark alone.
    Never both in the same section.
 
 4. **The mark is the only red.** The chunky pixel tomato, ≤3% of any
-   composition. Never recoloured, outlined, rotated, or set on saffron, blush,
+   composition. Never recoloured, outlined, rotated, or set on saffron
    or a photo. Clear space = 25% of its height.
 
 5. **2 px navy carpentry.** Panels are drawn, not floated. Adjacent panels share

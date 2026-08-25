@@ -41,15 +41,21 @@ Sentence case headings. **No italics** — body 600 for emphasis. Body never bel
 
 ## Anatomy
 
-1. **Masthead** (page 1) — lockup left (`Sugo AI` 24pt display 700 + 26pt mark),
+0. **Measure first** — document setup is 1.5in side margins, body 10.5pt/1.5,
+   and **nothing caps its own width**: prose, tables, callouts and the folio
+   all end at the page margin (B-46, B-47). Measure the built PDF: 75–85
+   characters a line.
+1. **Masthead** (page 1) — two rows. Lockup left (`Sugo AI` 16pt display 700 + 17pt mark),
    mono eyebrow `SUGO PRODUCT COMPANY, LLC` beneath. Right: mono document-type
-   eyebrow, 28pt title, mono reference number. Closed by a 2px ink rule.
+   16pt title on one line, then one mono run: type · version · date.
+   Closed by a 2px ink rule.
+   The masthead identifies; it does not announce (B-42).
 2. **Parties / meta band** — `FROM` / `TO` / `DATE` / `REFERENCE`. Mono eyebrow
    labels, display 500 13pt names, body 10.5pt lines. Closed by a hairline.
 3. **Body** — section heads 17pt with a hairline above. Lists use a mono
    zero-padded numeral or a 2px ink square. Never a disc or chevron.
 4. **Callouts** — three only: **evidence** (saffron, always footnoted), **plain
-   terms** (blush), **note** (viola-50). All 2px ink, 8px radius, 0.2in padding.
+   terms** (`viola`), **note** (`viola-50`). No blush and no red: both retired (B-41, B-45). All 2px ink, 8px radius, 0.2in padding.
 5. **Tables** — header mono 8.5pt uppercase +16% on viola-50 with a 2px ink rule
    beneath; body 10.5pt separated by hairlines; no vertical rules; zebra
    (`paper-2`) only over 12 rows; numerics right-aligned mono tabular; totals

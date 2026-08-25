@@ -33,7 +33,7 @@ is available, read the JSON instead — it may be newer.
 | Token | Hex | Means |
 | --- | --- | --- |
 | `saffron` | `#E8C270` | Evidence — numbers, citations |
-| `blush` | `#EDD0C6` | Human — plain language, origin, warmth |
+| `viola` | `#E3D4EF` | Human — plain language, origin, warmth. Replaced blush, retired in B-45 |
 | `sky` | `#C9D3DA` | Diagram fill only. Not marketing. |
 
 ### Mark-only — never sample these
@@ -50,7 +50,6 @@ is available, read the JSON instead — it may be newer.
 | --- | --- | --- |
 | Success | `#D0EED5` | `#205335` |
 | Warning | `#F9E6BF` | `#754B10` |
-| Danger | `#FBDCD9` | `#9B1E22` |
 | Info | `#DCEAF4` | `#385975` |
 
 ### Data viz — use in order
@@ -66,7 +65,7 @@ Always pair hue with a shape, label, or pattern.
 | ink on card | 15.85 AAA |
 | ink on viola | 11.78 AAA |
 | ink on saffron | 9.77 AAA |
-| ink on blush | 11.39 AAA |
+| ink on viola | 12.55 AAA |
 | ink-2 on paper | 10.51 AAA |
 | muted on paper | 6.39 AA |
 | paper on ink | 14.79 AAA |
