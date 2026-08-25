@@ -37,8 +37,10 @@ warmth; form stays disciplined.
 ### 2.1 What it is
 
 A chunky pixel tomato. Coral body, dark green stem, two white specular pixels.
-It is the only red-family element anywhere in the system, and it is deliberately
-scarce — the red should never exceed roughly **3% of any composition**.
+It is the only red-family element anywhere in the system — **no exceptions, no
+functional carve-out, no error state, no past-due stamp** (see B-41). If
+something on a Sugo surface is red, it is the mark. The red is also deliberately
+scarce: it should never exceed roughly **3% of any composition**.
 
 Canonical file: `public/brand/sugo-mark-simple-transparent.png` — 372 × 398,
 RGBA, transparent.
@@ -94,7 +96,7 @@ not the mark alone.
 | Viola 50 `#F3EEF8` | Yes | |
 | Ink navy `#101D3E` | Yes | The coral reads well; wordmark flips to paper |
 | Saffron `#E8C270` | **No** | Warm-on-warm; the tomato disappears |
-| Blush `#EDD0C6` | **No** | Same family as the coral; the mark stops reading |
+| ~~Blush `#EDD0C6`~~ | **Retired** | Same family as the coral. The swatch is gone from the system entirely (B-45) |
 | Photography | **No** | Place the mark on a paper or viola plate instead |
 
 ### 2.5 Misuse
@@ -143,12 +145,14 @@ Every colour has one job. Colour is not decoration to be distributed evenly.
 | `viola-500` | `#B296D2` | Decoration only — stacked shadow, dividers, dots |
 | `viola-900` | `#855CA7` | Link underline, emphasis type, document accent |
 | `saffron` | `#E8C270` | **Evidence** |
-| `blush` | `#EDD0C6` | **Human** |
+| `viola` | `#E3D4EF` | **Human** |
 | `sky` | `#C9D3DA` | **Diagram fill** — reserved, not a marketing surface |
 
 ### 3.2 The two accents carry meaning
 
-Saffron and blush are not interchangeable swatches.
+Saffron and viola are not interchangeable swatches. Blush `#EDD0C6` used to
+carry the human role and was retired in B-45: it is the coral's own family, and
+a warm pink field reads as red at a glance.
 
 - **Saffron = evidence.** The stat panel. The cited figure. The number you want
   read before anything else. On the homepage it holds ≈5%; on `/how-we-work` it
@@ -157,7 +161,7 @@ Saffron and blush are not interchangeable swatches.
 - **Blush = human.** Plain-language explainers, the origin story, what to bring
   to a call. The warm moment where the brand stops being a vendor.
 
-**One accent per composition.** Never saffron and blush in the same section. A
+**One accent per composition.** Never saffron and viola-as-accent in the same section. A
 page may use both if they sit in different sections doing different jobs.
 
 ### 3.3 Ratio
@@ -191,7 +195,7 @@ Measured against WCAG 2.2. These are facts about the palette, not aspirations.
 | ink on card | 15.85 | AAA |
 | ink on viola | 11.78 | AAA |
 | ink on saffron | 9.77 | AAA |
-| ink on blush | 11.39 | AAA |
+| ink on viola | 12.55 | AAA |
 | ink-2 on paper | 10.51 | AAA |
 | muted on paper | 6.39 | AA |
 | muted on viola | 5.09 | AA |
@@ -214,11 +218,16 @@ exception is a past-due stamp on an invoice.
 | --- | --- | --- | --- |
 | Success | `#D0EED5` | `#205335` | 7.18 |
 | Warning | `#F9E6BF` | `#754B10` | 6.17 |
-| Danger | `#FBDCD9` | `#9B1E22` | 6.1 |
 | Info | `#DCEAF4` | `#385975` | 6.00 |
 
-Danger is a deep claret, deliberately unlike the tomato coral. The mark must stay
-the only red-family *brand* element; a validation error is not brand.
+**There is no danger colour.** Red belongs to the mark and to nothing else
+(B-41). An error state is a Lucide `alert-circle`, a 2 px `ink` border, and the
+message in body 600 — the same navy as every other line of type. This was
+already the accessible position, since colour was never allowed to carry an
+error alone; removing the hue makes it enforceable rather than aspirational.
+
+A destructive action is styled like any other primary action. What marks it as
+destructive is its icon, its verb, and its confirmation step.
 
 ### 3.7 Data visualisation
 
@@ -473,8 +482,8 @@ A fast checklist. Any of these means stop and fix, not ship.
 - Italics
 - A pill radius, or a soft blurred shadow
 - Two accents in one section
-- Red anywhere except the mark and a functional danger state
-- The mark on saffron, blush, or a photo
+- Red anywhere except the mark. There is no second red and no exception
+- The mark on saffron or a photo
 - A second dark flood on the same page
 - Stock photography
 - An invented metric, testimonial, client name, or date

@@ -31,7 +31,6 @@
     "accent": {
       "$description": "One accent per composition, never two in the same section. Each carries a fixed meaning.",
       "saffron": { "$value": "#E8C270", "$extensions": { "oklch": "oklch(83% 0.11 85)",  "role": "EVIDENCE. Numbers, stats, cited findings, the one figure you want read first." } },
-      "blush":   { "$value": "#EDD0C6", "$extensions": { "oklch": "oklch(88% 0.035 40)", "role": "HUMAN. Plain-language explainers, origin story, what-to-bring, warmth moments." } },
       "sky":     { "$value": "#C9D3DA", "$extensions": { "oklch": "oklch(86% 0.015 240)", "role": "NEUTRAL DIAGRAM FILL. Reserved for architecture diagrams and system drawings. Not a marketing surface." } }
     },
     "mark": {
@@ -51,10 +50,9 @@
       "on-flood": { "$value": "#F5EFD7", "$extensions": { "oklch": "oklch(95% 0.032 95)",  "role": "2px focus ring on navy or viola floods." } }
     },
     "status": {
-      "$description": "FUNCTIONAL APPLICATION UI ONLY. Never appears in marketing, website chrome, or documents — the sole document exception is a past-due invoice stamp (danger).",
+      "$description": "FUNCTIONAL APPLICATION UI ONLY. Never appears in marketing, website chrome, or documents. There is no danger colour: red belongs to the mark alone (B-41). An error state is an alert-circle icon, a 2px ink border, and body 600 copy.",
       "success": { "surface": { "$value": "#D0EED5" }, "ink": { "$value": "#205335" } },
       "warning": { "surface": { "$value": "#F9E6BF" }, "ink": { "$value": "#754B10" } },
-      "danger":  { "surface": { "$value": "#FBDCD9" }, "ink": { "$value": "#9B1E22" } },
       "info":    { "surface": { "$value": "#DCEAF4" }, "ink": { "$value": "#385975" } }
     },
     "dataviz": {

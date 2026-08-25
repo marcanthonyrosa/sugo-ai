@@ -72,7 +72,6 @@ const runtime = [
   "",
   "  /* ---------- Accents · one per composition ---------- */",
   pair("color-saffron", c.accent.saffron, "evidence"),
-  pair("color-blush", c.accent.blush, "human"),
   pair("color-sky", c.accent.sky, "diagrams only"),
   "",
   "  /* ---------- Mark · never used outside the tomato ---------- */",
@@ -89,9 +88,13 @@ const runtime = [
   pair("color-focus-on-flood", c.focus["on-flood"]),
   "",
   "  /* ---------- Status · application UI only, never marketing ---------- */",
-  ...["success", "warning", "danger", "info"].map(
-    (k) => `  --color-${k}:${" ".repeat(22 - k.length)}${c.status[k].surface.$value};  --color-${k}-ink: ${c.status[k].ink.$value};`
-  ),
+  // Derived from the token file, not a fixed list: the status palette is
+  // allowed to shrink. `danger` was removed by B-41 (red belongs to the mark).
+  ...Object.keys(c.status)
+    .filter((k) => !k.startsWith("$"))
+    .map(
+      (k) => `  --color-${k}:${" ".repeat(22 - k.length)}${c.status[k].surface.$value};  --color-${k}-ink: ${c.status[k].ink.$value};`
+    ),
   "",
   "  /* ---------- Data visualisation · use in order ---------- */",
   ...Object.keys(c.dataviz)
@@ -164,12 +167,13 @@ const theme = [
   `  --color-viola-500: ${authored(c.viola["500"])};`,
   `  --color-viola-900: ${authored(c.viola["900"])};`,
   `  --color-saffron:   ${authored(c.accent.saffron)};`,
-  `  --color-blush:     ${authored(c.accent.blush)};`,
   `  --color-sky:       ${authored(c.accent.sky)};`,
-  ...["success", "warning", "danger", "info"].flatMap((k) => [
-    `  --color-${k}:     ${c.status[k].surface.$value};`,
-    `  --color-${k}-ink: ${c.status[k].ink.$value};`,
-  ]),
+  ...Object.keys(c.status)
+    .filter((k) => !k.startsWith("$"))
+    .flatMap((k) => [
+      `  --color-${k}:     ${c.status[k].surface.$value};`,
+      `  --color-${k}-ink: ${c.status[k].ink.$value};`,
+    ]),
   ...Object.keys(c.dataviz)
     .filter((k) => !k.startsWith("$"))
     .map((k) => `  --color-dv-${k}: ${c.dataviz[k].$value};`),
@@ -209,7 +213,10 @@ const theme = [
   `  --muted-foreground:     ${authored(c.ink["500"])};`,
   `  --accent:               ${authored(c.viola["300"])};`,
   `  --accent-foreground:    ${authored(c.ink["900"])};`,
-  `  --destructive:          ${c.status.danger.ink.$value};`,
+  // shadcn requires --destructive to exist. There is no red in this system
+  // (B-41), so a destructive action is navy like every other action; it is
+  // distinguished by its icon, its label, and its confirmation step.
+  `  --destructive:          ${authored(c.ink["900"])};`,
   `  --border:               ${authored(c.ink["900"])};  /* 2px carpentry: borders are ink, not grey */`,
   `  --input:                ${authored(c.ink["900"])};`,
   `  --ring:                 ${authored(c.focus["on-paper"])};`,

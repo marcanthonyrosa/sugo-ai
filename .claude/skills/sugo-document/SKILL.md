@@ -29,6 +29,7 @@ assets/
   sugo-mark.png          the canonical mark
 scripts/
   build.py               Jinja2 → HTML → PDF via WeasyPrint
+  measure.py             line-length check on a built PDF (B-46)
 ```
 
 No stylesheet may declare a value. If one is needed that
@@ -196,7 +197,7 @@ Set `"signatures": false` for anything that isn't executed.
 | `ol.numbered` | Mono zero-padded numerals hanging left |
 | `ul.squares` | 2px ink square bullets |
 | `.callout.callout--evidence` | Saffron. A cited figure. Add `.figure-lead` for the number. **Always footnote it.** |
-| `.callout.callout--plain` | Blush. A definition or plain-language aside. |
+| `.callout.callout--plain` | Viola. A definition or plain-language aside. |
 | `.callout.callout--note` | Viola-50. A scope boundary, assumption, or caveat. |
 | `table` / `table.zebra` | Mono uppercase header on viola-50, hairline rows. `.r` on numeric cells. `tr.total` for totals. |
 | `.due` | The amount-due box |
@@ -204,8 +205,34 @@ Set `"signatures": false` for anything that isn't executed.
 | `.footnotes` | Mono citations block |
 | `.page-break` | Force a page break |
 
-One accent per document — at most one saffron **and** one blush block in the
-whole artifact, not one of each per page.
+One accent per document — at most one saffron **and** one viola plain-terms
+block in the whole artifact, not one of each per page.
+
+**No red, and no warm pink.** There is no danger colour, no error ink, and no
+blush: red belongs to the mark alone (DECISIONS B-41, B-45). Blush `#EDD0C6`
+was retired because it is the coral's own family and reads as red on the page.
+
+When a table row is the exception that matters, mark it with a `viola-50`
+ground, not a hue.
+
+**One right edge (B-47).** No element declares a `max-width`. Prose, callouts,
+tables, panels and the folio all end at the page margin.
+
+**The side margin is the measure (B-46).** Document setup is 1.5 in sides, body
+10.5 pt on 1.5. Since nothing caps its own width, the margin alone sets line
+length. **Measure the built PDF** — target 75–85 characters a line. Do not
+estimate it, and do not widen the margins casually: it lengthens every line on
+every page.
+
+**Lists use `1.` in the body face at body size** (B-48), hanging at the text
+edge with an 18 pt indent. A mono numeral at a different size cannot share the
+baseline of the copy beside it.
+
+**A callout's copy sets at body size** (B-50); its ground and border carry the
+emphasis. **No rule above a section head** (B-49) — space does that job.
+
+**Long tables break, they do not jump.** Anything over ~10 rows gets
+`class="long"` so it splits across sheets with its header repeating.
 
 ### Proposal section order
 
@@ -305,9 +332,14 @@ Filenames: `sugo-<client>-<doctype>-<YYYY-MM-DD>.pdf`, instruments
 - [ ] **Sugo Product Company, LLC d/b/a Sugo AI** on anything contractual;
       signatory **Marc Rosa, Managing Member**
 - [ ] `marc@sugoai.com` — `hello@` does not exist
-- [ ] One accent; no italics; no emoji
+- [ ] One accent; **no red anywhere but the mark**; no italics; no emoji
 - [ ] Every figure in mono, tabular, footnoted if cited
 - [ ] No invented metric, testimonial, client name, logo, or date
 - [ ] Sentence case headings
-- [ ] Rendered and eyeballed, not just built
+- [ ] Line length measured on the built PDF: 75–85 characters (B-46)
+      — `python3 scripts/measure.py out/<doc>.pdf`
+- [ ] One right edge — no element sets its own `max-width` (B-47)
+- [ ] Rendered and eyeballed **page by page** — a half-empty sheet mid-document
+      means a `break-inside: avoid` block is jumping; let that table break and
+      repeat its header (`table.long`) rather than shaving points to fit
 - [ ] Echo the key numbers back to Marc before he sends it

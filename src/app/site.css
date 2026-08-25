@@ -20,7 +20,6 @@
   --color-viola-500:  oklch(72% 0.09 305);
   --color-underline:  oklch(55% 0.12 308);
   --color-saffron:    oklch(83% 0.11 85);
-  --color-blush:      oklch(88% 0.035 40);
   --color-flood:      var(--color-viola);
   --color-flood-shade: oklch(81% 0.055 310);
   --color-sky:        oklch(86% 0.015 240);

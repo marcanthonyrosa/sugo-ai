@@ -25,12 +25,24 @@ Everything is US Letter, portrait, unless a client's counsel requires otherwise.
 
 | Setup | Margins | Use |
 | --- | --- | --- |
-| **Document** | 0.9 in top · 0.75 in sides · 0.75 in bottom | Multi-page: proposals, SOWs, contracts, reports, memos |
+| **Document** | 0.85 in top · **1.5 in sides** · 0.8 in bottom | Multi-page: proposals, SOWs, contracts, reports, memos |
 | **Sheet** | 0.5 in all round | Single-page instruments: invoices, one-pagers, covers |
 
-Grid: 12 columns across the live area, 0.167 in gutters. Body text sets on
-columns 1–8 (roughly 4.6 in, ~68 characters) unless the content is a table.
-Marginalia, footnotes, and figure labels sit on columns 9–12.
+**One right edge (B-47).** No content element declares a `max-width`. Prose,
+callouts, tables, panels and the folio all end at the page margin. A capped
+text column beside full-bleed exhibits puts three right edges on one page, and
+the eye loses the one it returns to.
+
+**The side margin is therefore the measure (B-46).** Since nothing caps its own
+width, line length is set by the margin alone. 1.5 in sides hold running copy
+to roughly 80 characters at 10.5 pt. **Widening these margins is a typographic
+decision, not a whitespace one** — it lengthens every line on every page.
+
+**Measure the built PDF; do not estimate it.** Target 75–85 characters. The
+first draft of the first long report ran a median of 98 with a p90 of 106, and
+every symptom that produced — strained paragraphs, the eye working to track,
+the impression that the body type was too large — traced back to that one
+number.
 
 Deck: 16:9, 13.333 × 7.5 in, 0.6 in margins, 12 columns.
 
@@ -52,11 +64,11 @@ One accent per document. A proposal is not a colour showcase.
 
 | Element | Font | Size | Weight | Leading |
 | --- | --- | --- | --- | --- |
-| Document title | Red Hat Display | 28 pt | 700 | 1.05 |
-| Section head | Red Hat Display | 17 pt | 700 | 1.15 |
-| Subsection | Red Hat Display | 13 pt | 500 | 1.25 |
-| Body | General Sans | 10.5 pt | 400 | 1.45 |
-| Body strong | General Sans | 10.5 pt | 600 | 1.45 |
+| Document title | Red Hat Display | 16 pt | 700 | 1.1 |
+| Section head | Red Hat Display | 13.5 pt | 700 | 1.2 |
+| Subsection | Red Hat Display | 11.5 pt | **700** | 1.3 |
+| Body | General Sans | 10.5 pt | 400 | 1.5 |
+| Body strong | General Sans | 10.5 pt | 600 | 1.5 |
 | Small / caption | General Sans | 9 pt | 400 | 1.4 |
 | Eyebrow | JetBrains Mono | 8.5 pt | 400 | uppercase, +14% tracking |
 | Figures, dates, amounts | JetBrains Mono | 8.5–14 pt | 400 | tabular |
@@ -65,7 +77,14 @@ One accent per document. A proposal is not a colour showcase.
 Rules:
 
 - Sentence case headings. No Title Case, no ALL CAPS headings.
+- Heading levels separate by **weight and space**, not by size alone. Space
+  above a head is roughly 3× the space below it, and **no rule sits above a
+  section head** — space is the convention (B-49).
 - **No italics.** Body 600 carries emphasis.
+- A callout's copy sets at **body size** (B-50). The ground and the border do
+  the emphasising.
+- List markers are **`1.` in the body face at body size** (B-48). A mono
+  numeral at a different size cannot share the baseline of the copy beside it.
 - Body never below 10 pt. General Sans has closed apertures; it degrades fast.
 - Every number, date, and amount is JetBrains Mono with tabular figures. This is
   what makes a Sugo invoice legible at a glance.
@@ -79,20 +98,39 @@ Every multi-page Sugo document has the same six parts, in this order.
 
 ### 4.1 Masthead (first page only)
 
-Left: the lockup — `Sugo AI` in Red Hat Display 700 at 24 pt with the mark at
-26 pt beside it. Beneath it, a mono eyebrow: `SUGO PRODUCT COMPANY, LLC`.
+**Two rows, not three (B-51).**
 
-Right: the document title block — mono eyebrow naming the document type
-(`PROPOSAL`, `STATEMENT OF WORK`, `INVOICE`), then the title at 28 pt display 700,
-then the reference number in mono 9 pt.
+Left: the lockup — `Sugo AI` in Red Hat Display 700 at 16 pt with the mark at
+17 pt beside it. Beneath it, a mono eyebrow at 7.5 pt:
+`SUGO PRODUCT COMPANY, LLC`.
+
+Right: the title at 16 pt display 700, **held to one line**, and beneath it a
+single right-aligned mono run at 7.5 pt consolidating the document type, the
+version and the date — `PHASE 1 LAUNCH PLAN · V1.0 · 24 AUG 2026`. The
+reference code moves to the closing block, where it is read once.
+
+Build that run as **one span, not a flex row**: a flex row here sizes to the
+title rather than to its own content, and `nowrap` then butts the two halves
+together.
+
+The masthead identifies; it does not announce (B-42). On a multi-page report the
+old 24/26/28 pt scale spent the top third of page one on a cover nobody asked
+for. Page one should be carrying content by roughly a third of the way down.
 
 A 2 px ink rule closes the masthead. Nothing else on the page touches it.
 
 ### 4.2 Parties / meta band
 
-Two to four columns beneath the masthead: `FROM` / `TO` / `DATE` / `REFERENCE`.
-Labels in mono eyebrow; values in display 500 at 13 pt for names and body 10.5 pt
-for address lines. Closed with a 1 px hairline.
+**Two columns**, `FROM` / `TO`. Labels in mono eyebrow at 7.5 pt; values in
+display 500 at 11 pt for names and body 9.5 pt for address lines.
+
+Short facts — date, status, reference, data cutoff — follow as a **single
+labelled run** (`.docmeta`), not a second banded row. A second band costs a
+second horizontal rule, and four rules inside an inch and a half is what made
+the front matter feel padded. The pair is closed once, by one hairline.
+
+A **status is a phrase and sets in the body face.** Only figures take the mono:
+a 37-character sentence letterspaced in JetBrains Mono is wide and slow.
 
 ### 4.3 Body
 
@@ -107,27 +145,37 @@ Three, and only three:
 | Callout | Ground | Use |
 | --- | --- | --- |
 | **Evidence** | `saffron` `#E8C270` | A cited figure. Always footnoted. |
-| **Plain terms** | `blush` `#EDD0C6` | A definition or a plain-language aside. |
+| **Plain terms** | `viola` `#E3D4EF` | A definition or a plain-language aside. |
 | **Note** | `viola-50` `#F3EEF8` | A scope boundary, assumption, or caveat. |
 
 All three: 2 px ink border, 8 px radius, 0.2 in padding. One accent per document
-means at most one saffron *and* one blush block per artifact, not one of each per
+means at most one saffron *and* one viola plain-terms block per artifact, not one of each per
 page.
 
 ### 4.5 Tables
 
-- Header row: mono 8.5 pt uppercase, `+16%` tracking, `ink-500`, on `viola-50`,
+- Header row: mono 7.5 pt uppercase, `+12%` tracking, `ink-500`, on `viola-50`,
   with a 2 px ink rule beneath.
-- Body rows: 10.5 pt, `ink-700`, separated by 1 px hairlines. No vertical rules.
+- Body rows: **10 pt** on 1.35, `ink-700`, separated by 1 px hairlines. No
+  vertical rules. Table copy sits a half point under running copy: cells are
+  scanned rather than read, and the smaller size is what buys column width
+  back once the margins have taken the measure in.
+- A table over ~10 rows opts back in to breaking (`table.long`) and repeats
+  its header, rather than jumping whole and stranding half a sheet.
 - Zebra striping only in tables over 12 rows, alternating `paper-2`.
 - Numeric columns right-aligned, mono, tabular.
 - Total rows: 1 px hairline above, body 600, mono figure.
 
 ### 4.6 Footer
 
-Every page: a 1 px hairline, then a single mono 8.5 pt line in `ink-500` —
-`Sugo AI · <document reference> · Page N of M`. On the last page, the legal line
-replaces the reference: `© <year> Sugo Product Company, LLC d/b/a Sugo AI`.
+Every page: a page number, bottom right, mono 8 pt in `ink-500` — `N of M`.
+Nothing else, no rule (B-44). The running `Sugo AI · <reference>` line was
+retired: it appeared on every sheet, nobody read it, and it made the pages feel
+padded. The reference lives in the masthead, where it is read once.
+
+The closing legal line — `© <year> Sugo Product Company, LLC d/b/a Sugo AI ·
+marc@sugoai.com · sugoai.com` — sits in the flow at the end of the last page,
+not in the page footer.
 
 The mark does not repeat in the footer of a document. It appears once, in the
 masthead.

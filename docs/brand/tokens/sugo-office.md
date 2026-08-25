@@ -67,7 +67,7 @@ Word, PowerPoint, and Google all take hex without the `#`.
 | Name | Hex | RGB | Means |
 | --- | --- | --- | --- |
 | Saffron | `E8C270` | 232, 194, 112 | Evidence. Numbers, cited findings, the figure you want read first |
-| Blush | `EDD0C6` | 237, 208, 198 | Human. Plain language, origin story, warmth |
+| Viola | `E3D4EF` | 227, 212, 239 | Human. Plain language, origin story, warmth. Replaced blush, retired in B-45 |
 | Sky | `C9D3DA` | 201, 211, 218 | Neutral fill in architecture diagrams. Not a marketing surface |
 
 ### Mark-only
@@ -124,4 +124,4 @@ never encode meaning by hue alone.
 - The detailed ("complex") mark needs **64 px / 0.6 in** minimum — it loses its
   pixels under that.
 - Approved backgrounds: paper, paper 2, card, white, viola, viola 50, ink.
-- Never on saffron, blush, or a photograph.
+- Never on saffron or a photograph.

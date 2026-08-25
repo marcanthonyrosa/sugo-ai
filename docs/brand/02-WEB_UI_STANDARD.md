@@ -116,10 +116,11 @@ underline appearing on hover and on `aria-current="page"` at 2 px / 6 px offset.
 - 2 px `ink` border, `radius-btn`, `card` background, `min-height: 48px`
 - Label above the field, body 600, `text-sm`. **Never a placeholder as a label.**
 - Helper text below in `muted`, `text-sm`
-- Error: border stays 2 px ink, an error message appears below in
-  `danger-ink` `#9B1E22` with a Lucide `alert-circle` at 16 px, and the field
-  gets `aria-invalid="true"` + `aria-describedby`
-- Success: same pattern in `success-ink` `#205335`
+- Error: border stays 2 px ink, an error message appears below in `ink` with a
+  Lucide `alert-circle` at 16 px and body 600, and the field gets
+  `aria-invalid="true"` + `aria-describedby`. **No red** — there is no danger
+  colour in this system (B-41)
+- Success: same pattern, message in `success-ink` `#205335`
 - Focus: 2 px `focus` ring, 2 px offset
 
 Colour never carries the error alone — the message does.
