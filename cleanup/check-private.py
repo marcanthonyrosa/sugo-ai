@@ -68,7 +68,7 @@ def collect_terms(data, out: set) -> set:
             return out
         if s.lower() in {"net 15", "biweekly", "sugo", "contractor", "sugo ai",
                          "independent contractor", "marc@sugoai.com",
-                         "sugo product company, llc", "d/b/a sugo ai"}:
+                         "sugo product company llc", "d/b/a sugo ai"}:
             return out
         if s.startswith("©") or "{year}" in s:
             return out

@@ -116,7 +116,7 @@ Every multi-page Sugo document has the same six parts, in this order.
 
 Left: the lockup — `Sugo AI` in Red Hat Display 700 at 16 pt with the mark at
 17 pt beside it. Beneath it, a mono eyebrow at 7.5 pt:
-`SUGO PRODUCT COMPANY, LLC`.
+`SUGO PRODUCT COMPANY LLC`.
 
 Right: the title at 16 pt display 700, **held to one line**, and beneath it a
 single right-aligned mono run at 7.5 pt consolidating the document type, the
@@ -139,7 +139,11 @@ A 2 px ink rule closes the masthead. Nothing else on the page touches it.
 display 500 at 11 pt for names and body 9.5 pt for address lines.
 
 Short facts — date, status, reference, data cutoff — follow as a **single
-labelled run** (`.docmeta`), not a second banded row. A second band costs a
+labelled run** (`.docmeta`), not a second banded row. **The run shares the
+parties band's column rhythm** — same gap, equal columns — so a fact sits
+under a party rather than wherever the previous label happened to end (B-53).
+That is one rule, and it degrades on its own: three facts distribute across
+three equal columns instead of needing a bespoke width. A second band costs a
 second horizontal rule, and four rules inside an inch and a half is what made
 the front matter feel padded. The pair is closed once, by one hairline.
 
@@ -187,7 +191,7 @@ Nothing else, no rule (B-44). The running `Sugo AI · <reference>` line was
 retired: it appeared on every sheet, nobody read it, and it made the pages feel
 padded. The reference lives in the masthead, where it is read once.
 
-The closing legal line — `© <year> Sugo Product Company, LLC d/b/a Sugo AI ·
+The closing legal line — `© <year> Sugo Product Company LLC d/b/a Sugo AI ·
 marc@sugoai.com · sugoai.com` — sits in the flow at the end of the last page,
 not in the page footer.
 
@@ -248,7 +252,7 @@ Sheet setup, one page, always.
 Layout, top to bottom:
 
 - Masthead: lockup left, `INVOICE` eyebrow + invoice number in mono right
-- Parties band: `FROM` (Sugo Product Company, LLC + address + email) /
+- Parties band: `FROM` (Sugo Product Company LLC + address + email) /
   `BILL TO` (client legal entity + contact)
 - Meta strip: `ISSUED` / `DUE` / `TERMS` / `SERVICE PERIOD`, mono values
 - Line items table: description (display 500 title + mono meta line + body
@@ -285,7 +289,7 @@ Fixed format. Both parties, side by side, 1 px hairline above each signature
 line.
 
 ```
-SUGO PRODUCT COMPANY, LLC          <CLIENT LEGAL ENTITY>
+SUGO PRODUCT COMPANY LLC          <CLIENT LEGAL ENTITY>
 d/b/a Sugo AI
 
 ________________________           ________________________
@@ -389,7 +393,7 @@ Before anything leaves the building:
 
 - [ ] Correct page setup (Document vs Sheet)
 - [ ] Masthead present once; mark appears once
-- [ ] Legal entity is **Sugo Product Company, LLC d/b/a Sugo AI** on anything
+- [ ] Legal entity is **Sugo Product Company LLC d/b/a Sugo AI** on anything
       contractual; signatory is **Marc Rosa, Managing Member**
 - [ ] `marc@sugoai.com`; no `hello@`
 - [ ] One accent, maximum; no italics; no emoji

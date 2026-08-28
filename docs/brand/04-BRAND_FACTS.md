@@ -19,20 +19,20 @@ instrument is a real problem, not a style problem.
 
 | Field | Value |
 | --- | --- |
-| Legal entity | **Sugo Product Company, LLC** |
+| Legal entity | **Sugo Product Company LLC** |
 | Trade name (DBA) | **Sugo AI** — registered Texas assumed name |
-| How to write it in full | Sugo Product Company, LLC d/b/a Sugo AI |
+| How to write it in full | Sugo Product Company LLC d/b/a Sugo AI |
 | Signatory | **Marc Rosa** |
 | Signatory title | **Managing Member** (confirmed via Texas entity lookup) |
 | Jurisdiction | Texas |
 | Canonical domain | `https://sugoai.com` — apex, no `www` |
 | Contact email | `marc@sugoai.com` |
-| Copyright line | `© <year> Sugo Product Company, LLC d/b/a Sugo AI` |
+| Copyright line | `© <year> Sugo Product Company LLC d/b/a Sugo AI` |
 
 **Rules:**
 
 - The **LLC signs**; the DBA does not. Any contract, SOW, W-9, or bank instrument
-  names *Sugo Product Company, LLC*. "Sugo AI" may appear as the trade name on the
+  names *Sugo Product Company LLC*. "Sugo AI" may appear as the trade name on the
   same line but never alone on a signature block.
 - Marketing, the website, social, and decks use **Sugo AI**.
 - Marc's title is **Founder** in marketing contexts and **Managing Member** on
@@ -41,7 +41,7 @@ instrument is a real problem, not a style problem.
 
 ## 1a. Who bills
 
-**Default: Sugo Product Company, LLC d/b/a Sugo AI.** This is the billing party
+**Default: Sugo Product Company LLC d/b/a Sugo AI.** This is the billing party
 for every client.
 
 **Exception: independent contractor.** A small number of engagements are
@@ -213,7 +213,7 @@ copy.
 | Correct | Not |
 | --- | --- |
 | Sugo AI | SUGO AI, sugo.ai, Sugo.ai, SugoAI |
-| Sugo Product Company, LLC | Sugo Product Company LLC (no comma), Sugo Products |
+| Sugo Product Company LLC | Sugo Product Company, LLC (with a comma), Sugo Products |
 | product studio | agency, consultancy, firm, shop |
 | traditional businesses | legacy businesses, non-tech companies, laggards |
 | companies that aren't software companies | non-software orgs |
