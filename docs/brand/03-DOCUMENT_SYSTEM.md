@@ -25,7 +25,7 @@ Everything is US Letter, portrait, unless a client's counsel requires otherwise.
 
 | Setup | Margins | Use |
 | --- | --- | --- |
-| **Document** | 0.85 in top · **1.5 in sides** · 0.8 in bottom | Multi-page: proposals, SOWs, contracts, reports, memos |
+| **Document** | 0.85 in top · **1 in sides** · 0.8 in bottom | Multi-page: proposals, SOWs, contracts, reports, memos |
 | **Sheet** | 0.5 in all round | Single-page instruments: invoices, one-pagers, covers |
 
 **One right edge (B-47).** No content element declares a `max-width`. Prose,
@@ -34,15 +34,25 @@ text column beside full-bleed exhibits puts three right edges on one page, and
 the eye loses the one it returns to.
 
 **The side margin is therefore the measure (B-46).** Since nothing caps its own
-width, line length is set by the margin alone. 1.5 in sides hold running copy
-to roughly 80 characters at 10.5 pt. **Widening these margins is a typographic
-decision, not a whitespace one** — it lengthens every line on every page.
+width, line length is set by the margin alone. **Widening or narrowing these
+margins is a typographic decision, not a whitespace one** — it changes every
+line on every page.
 
-**Measure the built PDF; do not estimate it.** Target 75–85 characters. The
-first draft of the first long report ran a median of 98 with a p90 of 106, and
-every symptom that produced — strained paragraphs, the eye working to track,
-the impression that the body type was too large — traced back to that one
-number.
+**1 in sides is the convention and this system follows it**, which puts running
+copy at roughly 87 characters at 10.5 pt. That is above the 75–85 ideal, and
+knowingly so: a Sugo report has to sit next to a state filing or an agency
+letter without reading as a book. For reference, a Texas SOS / IRS business
+letter on 1 in margins runs a median of 90 characters with a p90 of 99 — the
+convention is a long measure.
+
+**Measure the built PDF; do not estimate it** — `scripts/measure.py`. Ideal
+75–85, acceptable to 90, investigate past 100. A re-render is not a
+substitute: it can resolve a different font than the one `build.py` embeds,
+and General Sans is narrow enough that a fallback face shifts the count by
+several characters a line.
+
+Buying line length back means widening the margin, and it costs no pages —
+measured on a nine-page report, 1 in and 1.5 in sides both set in nine.
 
 Deck: 16:9, 13.333 × 7.5 in, 0.6 in margins, 12 columns.
 

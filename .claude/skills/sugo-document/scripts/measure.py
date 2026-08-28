@@ -9,8 +9,11 @@ face shifts the count by several characters a line.
 
     python3 scripts/measure.py out/proposal.pdf
 
-Target 75-85 characters. Over that, take the side margin in — the margin is the
-measure, since nothing in this system caps its own width (B-47).
+Ideal 75-85 characters, acceptable to 90, investigate past 100. 1in sides put
+a 10.5pt document at roughly 87, which is the convention rather than the
+optimum; a standard SOS / IRS business letter on the same margins runs 90.
+Buying line length back means widening the side margin, since nothing in this
+system caps its own width (B-47).
 """
 import statistics
 import subprocess
@@ -41,13 +44,20 @@ def measure(pdf: Path) -> int:
 
     med = statistics.median(body)
     p90 = sorted(body)[int(len(body) * 0.9)]
-    verdict = "ok" if med <= 85 else "TOO LONG — take the side margin in"
+    if med <= 85:
+        verdict, code = "ideal", 0
+    elif med <= 90:
+        verdict, code = "acceptable — the business-letter norm", 0
+    elif med <= 100:
+        verdict, code = "LONG — consider widening the side margin", 2
+    else:
+        verdict, code = "TOO LONG — widen the side margin", 2
     print(f"{pdf.name}")
     print(f"  pages            {pages}")
     print(f"  body lines       {len(body)}")
     print(f"  chars per line   median {med:.0f}   p90 {p90}   max {max(body)}")
-    print(f"  target 75-85     {verdict}")
-    return 0 if med <= 85 else 2
+    print(f"  ideal 75-85      {verdict}")
+    return code
 
 
 if __name__ == "__main__":
