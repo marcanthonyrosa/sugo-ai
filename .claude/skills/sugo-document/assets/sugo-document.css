@@ -14,11 +14,14 @@
 /* ---------- Page ---------- */
 @page {
   size: letter;
-  /* The side margin is the measure (DECISIONS B-46). Nothing caps its own
-     width, so 1.5in is what holds running copy to ~80 characters a line at
-     10.5pt. Widening these margins is a typographic decision, not a
-     whitespace one: it lengthens every line on every page. */
-  margin: 0.85in 1.5in 0.8in;
+  /* 1in sides is the business-document convention, and this system follows
+     it (DECISIONS B-46). It is not the readable optimum: at 10.5pt it sets
+     running copy at ~87 characters a line where 75-85 is the ideal. The
+     trade is deliberate — a Sugo report should sit next to a filing or an
+     agency letter without looking like a book. Widening these margins buys
+     line length back, but it is a typographic decision, not a whitespace
+     one: it changes every line on every page. */
+  margin: 0.85in 1in 0.8in;
   /* A page number and nothing else (DECISIONS B-44). The running reference
      line was retired: it appeared on every sheet, nobody read it, and it made
      the pages feel padded. The reference lives in the masthead. */
