@@ -218,17 +218,20 @@ ground, not a hue.
 **One right edge (B-47).** No element declares a `max-width`. Prose, callouts,
 tables, panels and the folio all end at the page margin.
 
-**The side margin is the measure (B-46).** Document setup is **1 in sides**,
-body 10.5 pt on 1.5. Since nothing caps its own width, the margin alone sets
-line length, and 1 in measures ~87 characters. That is above the 75–85 ideal
-and knowingly so: 1 in is the business convention, and a Sugo report has to
-sit beside a state filing without reading as a book. A standard SOS / IRS
-letter on the same margins runs 90.
+**Document setup is 0.75 in sides**, body 10.5 pt on 1.5, which measures
+~92 characters a line. That is above the 75–85 ideal: **Sugo documents run
+wide by choice.**
+
+**The margin is not the readability lever.** Measured on the same report, the
+old typography at 0.75 in ran 90 characters and the current typography at
+0.75 in runs 92 — yet one reads far better. The gains came from the rules
+above: one right edge, list markers on the baseline, a heading scale that
+ranks by weight, callout copy at body size. If a document reads badly, fix
+those before touching the margin. Margin also costs no pages: 0.75 in, 1 in
+and 1.5 in all set the same nine-page report in nine.
 
 **Measure the built PDF, never estimate** — `python3 scripts/measure.py
-out/<doc>.pdf`. Ideal 75–85, acceptable to 90, investigate past 100. Changing
-the margin changes every line on every page, so treat it as a typographic
-decision rather than a whitespace one.
+out/<doc>.pdf`.
 
 **Lists use `1.` in the body face at body size** (B-48), hanging at the text
 edge with an 18 pt indent. A mono numeral at a different size cannot share the
@@ -342,7 +345,8 @@ Filenames: `sugo-<client>-<doctype>-<YYYY-MM-DD>.pdf`, instruments
 - [ ] Every figure in mono, tabular, footnoted if cited
 - [ ] No invented metric, testimonial, client name, logo, or date
 - [ ] Sentence case headings
-- [ ] Line length measured on the built PDF: ≤90 characters (B-46)
+- [ ] Line length measured on the built PDF (B-46) — ~92 is this system's
+      standing figure; past 100 means something is wrong
       — `python3 scripts/measure.py out/<doc>.pdf`
 - [ ] One right edge — no element sets its own `max-width` (B-47)
 - [ ] Rendered and eyeballed **page by page** — a half-empty sheet mid-document

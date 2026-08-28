@@ -14,14 +14,17 @@
 /* ---------- Page ---------- */
 @page {
   size: letter;
-  /* 1in sides is the business-document convention, and this system follows
-     it (DECISIONS B-46). It is not the readable optimum: at 10.5pt it sets
-     running copy at ~87 characters a line where 75-85 is the ideal. The
-     trade is deliberate — a Sugo report should sit next to a filing or an
-     agency letter without looking like a book. Widening these margins buys
-     line length back, but it is a typographic decision, not a whitespace
-     one: it changes every line on every page. */
-  margin: 0.85in 1in 0.8in;
+  /* 0.75in sides (DECISIONS B-46). Above the readable optimum and
+     deliberately so: at 10.5pt this sets running copy at ~92 characters
+     where 75-85 is the ideal. Sugo documents run wide by choice.
+
+     The margin was never what made the first draft hard to read. Measured
+     on the same report: the original at 0.75in ran 90 characters and the
+     rebuilt typography at the same margin runs 92, yet one reads far better
+     than the other. The gains came from B-47 to B-51 — one right edge, list
+     markers on the baseline, a heading scale that ranks by weight, callout
+     copy at body size. Reach for those before reaching for the margin. */
+  margin: 0.9in 0.75in 0.75in;
   /* A page number and nothing else (DECISIONS B-44). The running reference
      line was retired: it appeared on every sheet, nobody read it, and it made
      the pages feel padded. The reference lives in the masthead. */

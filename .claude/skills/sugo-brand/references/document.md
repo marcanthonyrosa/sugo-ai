@@ -41,10 +41,12 @@ Sentence case headings. **No italics** — body 600 for emphasis. Body never bel
 
 ## Anatomy
 
-0. **Measure first** — document setup is **1in side margins**, body 10.5pt/1.5,
-   and **nothing caps its own width**: prose, tables, callouts and the folio
-   all end at the page margin (B-46, B-47). Measure the built PDF: ideal
-   75–85 characters, acceptable to 90.
+0. **Measure first** — document setup is **0.75in side margins**, body
+   10.5pt/1.5, and **nothing caps its own width**: prose, tables, callouts and
+   the folio all end at the page margin (B-46, B-47). That measures ~92
+   characters; Sugo documents run wide by choice. The margin is not the
+   readability lever — one right edge, baseline-aligned list markers and a
+   heading scale that ranks by weight are.
 1. **Masthead** (page 1) — two rows. Lockup left (`Sugo AI` 16pt display 700 + 17pt mark),
    mono eyebrow `SUGO PRODUCT COMPANY, LLC` beneath. Right: mono document-type
    16pt title on one line, then one mono run: type · version · date.
