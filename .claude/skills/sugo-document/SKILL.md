@@ -218,17 +218,22 @@ ground, not a hue.
 **One right edge (B-47).** No element declares a `max-width`. Prose, callouts,
 tables, panels and the folio all end at the page margin.
 
-**Document setup is 0.75 in sides**, body 10.5 pt on 1.5, which measures
-~92 characters a line. That is above the 75–85 ideal: **Sugo documents run
-wide by choice.**
+**Document setup is 0.9 in sides**, body 10.5 pt on 1.5, which measures
+~90 characters a line. That is above the 75–85 ideal: **Sugo documents run
+wide by choice**, and 90 is exactly the median of a standard SOS / IRS
+business letter. Sides match the 0.9 in head, and 0.9 in clears a three-hole
+punch.
 
 **The margin is not the readability lever.** Measured on the same report, the
 old typography at 0.75 in ran 90 characters and the current typography at
 0.75 in runs 92 — yet one reads far better. The gains came from the rules
 above: one right edge, list markers on the baseline, a heading scale that
 ranks by weight, callout copy at body size. If a document reads badly, fix
-those before touching the margin. Margin also costs no pages: 0.75 in, 1 in
-and 1.5 in all set the same nine-page report in nine.
+those before touching the margin.
+
+**Margin barely moves the measure and never moves the page count.** Across
+0.75 in to 1 in sides the count runs 92 down to 87, and every setting in that
+range sets the same nine-page report in nine.
 
 **Measure the built PDF, never estimate** — `python3 scripts/measure.py
 out/<doc>.pdf`.
@@ -345,7 +350,7 @@ Filenames: `sugo-<client>-<doctype>-<YYYY-MM-DD>.pdf`, instruments
 - [ ] Every figure in mono, tabular, footnoted if cited
 - [ ] No invented metric, testimonial, client name, logo, or date
 - [ ] Sentence case headings
-- [ ] Line length measured on the built PDF (B-46) — ~92 is this system's
+- [ ] Line length measured on the built PDF (B-46) — ~90 is this system's
       standing figure; past 100 means something is wrong
       — `python3 scripts/measure.py out/<doc>.pdf`
 - [ ] One right edge — no element sets its own `max-width` (B-47)
