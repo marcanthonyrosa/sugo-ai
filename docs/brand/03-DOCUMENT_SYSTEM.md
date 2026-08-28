@@ -25,7 +25,7 @@ Everything is US Letter, portrait, unless a client's counsel requires otherwise.
 
 | Setup | Margins | Use |
 | --- | --- | --- |
-| **Document** | 0.85 in top · **1.5 in sides** · 0.8 in bottom | Multi-page: proposals, SOWs, contracts, reports, memos |
+| **Document** | 0.9 in top · **0.75 in sides** · 0.75 in bottom | Multi-page: proposals, SOWs, contracts, reports, memos |
 | **Sheet** | 0.5 in all round | Single-page instruments: invoices, one-pagers, covers |
 
 **One right edge (B-47).** No content element declares a `max-width`. Prose,
@@ -34,15 +34,29 @@ text column beside full-bleed exhibits puts three right edges on one page, and
 the eye loses the one it returns to.
 
 **The side margin is therefore the measure (B-46).** Since nothing caps its own
-width, line length is set by the margin alone. 1.5 in sides hold running copy
-to roughly 80 characters at 10.5 pt. **Widening these margins is a typographic
-decision, not a whitespace one** — it lengthens every line on every page.
+width, line length is set by the margin alone. **Widening or narrowing these
+margins is a typographic decision, not a whitespace one** — it changes every
+line on every page.
 
-**Measure the built PDF; do not estimate it.** Target 75–85 characters. The
-first draft of the first long report ran a median of 98 with a p90 of 106, and
-every symptom that produced — strained paragraphs, the eye working to track,
-the impression that the body type was too large — traced back to that one
-number.
+**0.75 in sides puts running copy at roughly 92 characters** at 10.5 pt. That
+is above the 75–85 ideal and **Sugo documents run wide by choice.** For scale,
+a Texas SOS / IRS business letter on 1 in margins runs a median of 90 with a
+p90 of 99; the convention in business documents is a long measure.
+
+**The margin is not the readability lever, and this is the evidence.** On the
+same nine-page report, the original typography at 0.75 in ran 90 characters
+and the rebuilt typography at 0.75 in runs 92 — yet one reads far better than
+the other. What changed was §4: one right edge, list markers that share the
+baseline of their copy, a heading scale that ranks by weight, and callout copy
+at body size. **Reach for those before reaching for the margin.**
+
+Margin also costs no pages. Measured on that same report, 0.75 in, 1 in and
+1.5 in sides all set in nine.
+
+**Measure the built PDF; do not estimate it** — `scripts/measure.py`. A
+re-render is not a substitute: it can resolve a different font than the one
+`build.py` embeds, and General Sans is narrow enough that a fallback face
+shifts the count by several characters a line.
 
 Deck: 16:9, 13.333 × 7.5 in, 0.6 in margins, 12 columns.
 
