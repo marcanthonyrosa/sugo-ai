@@ -123,8 +123,14 @@ a  { color: var(--ink); text-decoration: none; border-bottom: 0.5pt solid var(--
                   font-variant-numeric: tabular-nums; }
 
 /* ---------- Parties / meta band ---------- */
+/* The header bands share one gap so their columns line up. This is an alias
+   for an existing token, not a new value: change it once and both bands move
+   together (DECISIONS B-53). Two rules in two files that merely happen to
+   agree is how STATUS ended up 7.5pt off FROM. */
+body { --band-gap: var(--gap-2xl); }
+
 .parties {
-  display: flex; gap: var(--gap-2xl);
+  display: flex; gap: var(--band-gap);
   padding-bottom: 7pt; border-bottom: var(--hair);
   margin-bottom: var(--gap-md);
 }
@@ -141,15 +147,21 @@ a  { color: var(--ink); text-decoration: none; border-bottom: 0.5pt solid var(--
    rules inside an inch and a half is what a second band costs. A status is a
    phrase and sets in the body face; only figures take the mono. */
 .docmeta {
-  display: flex; gap: var(--gap-2xl); align-items: baseline;
+  display: flex; gap: var(--band-gap); align-items: baseline;
   padding-bottom: 8pt; border-bottom: var(--hair); margin-bottom: 0;
 }
-.docmeta .pair { display: flex; gap: 7pt; align-items: baseline; white-space: nowrap; }
+/* The meta run inherits the parties band's column rhythm: same gap, equal
+   columns (DECISIONS B-53). That is the whole rule. With two facts under two
+   parties, DATE lands under FROM's neighbour and STATUS under FROM. With
+   three, they distribute evenly. Nothing is positioned by hand, and no
+   document needs a bespoke width. */
+.docmeta .pair { display: flex; gap: 7pt; align-items: baseline;
+                 flex: 1 1 0; min-width: 0; }
 .docmeta .lbl {
   font-family: var(--f-mono); font-size: 7.5pt; letter-spacing: 0.14em;
-  text-transform: uppercase; color: var(--muted);
+  text-transform: uppercase; color: var(--muted); white-space: nowrap;
 }
-.docmeta .val { font-size: 9.5pt; color: var(--ink-2); white-space: nowrap; }
+.docmeta .val { font-size: 9.5pt; color: var(--ink-2); }
 .docmeta .val.fig { font-family: var(--f-mono); color: var(--ink);
                     font-variant-numeric: tabular-nums; }
 .parties .eyebrow, .meta .eyebrow { font-size: 7.5pt; margin-bottom: var(--gap-2xs); }

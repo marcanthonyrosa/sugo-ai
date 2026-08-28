@@ -48,7 +48,7 @@ Sentence case headings. **No italics** — body 600 for emphasis. Body never bel
    readability lever — one right edge, baseline-aligned list markers and a
    heading scale that ranks by weight are.
 1. **Masthead** (page 1) — two rows. Lockup left (`Sugo AI` 16pt display 700 + 17pt mark),
-   mono eyebrow `SUGO PRODUCT COMPANY, LLC` beneath. Right: mono document-type
+   mono eyebrow `SUGO PRODUCT COMPANY LLC` beneath. Right: mono document-type
    16pt title on one line, then one mono run: type · version · date.
    Closed by a 2px ink rule.
    The masthead identifies; it does not announce (B-42).
@@ -111,7 +111,7 @@ marc@sugoai.com · sugoai.com
 ## Signature block
 
 ```
-SUGO PRODUCT COMPANY, LLC          <CLIENT LEGAL ENTITY>
+SUGO PRODUCT COMPANY LLC          <CLIENT LEGAL ENTITY>
 d/b/a Sugo AI
 
 ________________________           ________________________
@@ -145,7 +145,7 @@ Naming: `sugo-<client>-<doctype>-<YYYY-MM-DD>.pdf`; instruments `invoice-NNN.pdf
 ## Before sending
 
 - [ ] Correct page setup; masthead once; mark once
-- [ ] **Sugo Product Company, LLC d/b/a Sugo AI** on anything contractual;
+- [ ] **Sugo Product Company LLC d/b/a Sugo AI** on anything contractual;
       signatory **Marc Rosa, Managing Member**
 - [ ] `marc@sugoai.com`; no `hello@`
 - [ ] One accent; no italics; no emoji

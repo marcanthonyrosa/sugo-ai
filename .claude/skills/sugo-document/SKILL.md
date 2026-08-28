@@ -74,7 +74,7 @@ python3 scripts/build.py --html my-doc.html --out my-doc.pdf
 ```
 
 `build.py` fills in the constants that are the same on every Sugo document —
-year, `marc@sugoai.com`, `Sugo Product Company, LLC`, Net 15, the mark. Override
+year, `marc@sugoai.com`, `Sugo Product Company LLC`, Net 15, the mark. Override
 any of them in the context.
 
 ## Invoice
@@ -119,7 +119,7 @@ Rules:
 
 ## Who is billing
 
-**Default: Sugo Product Company, LLC d/b/a Sugo AI.** Every client, unless that
+**Default: Sugo Product Company LLC d/b/a Sugo AI.** Every client, unless that
 client has an explicit exception on file.
 
 **Exception: independent contractor.** A small number of engagements are
@@ -173,7 +173,7 @@ Document setup. Pass `body` as pre-built HTML using the classes below, plus:
   "title": "Buyer intelligence, version one",
   "reference": "SUGO-2026-004",
   "parties": [
-    {"label": "From", "name": "Sugo Product Company, LLC",
+    {"label": "From", "name": "Sugo Product Company LLC",
      "lines": ["d/b/a Sugo AI", "marc@sugoai.com"]},
     {"label": "Prepared for", "name": "Client Co.",
      "lines": ["Attn: Name, Title"]}
@@ -343,7 +343,7 @@ Filenames: `sugo-<client>-<doctype>-<YYYY-MM-DD>.pdf`, instruments
 
 - [ ] Correct setup — Sheet for invoices and one-pagers, Document for everything else
 - [ ] Masthead once; mark once; page numbers on every page
-- [ ] **Sugo Product Company, LLC d/b/a Sugo AI** on anything contractual;
+- [ ] **Sugo Product Company LLC d/b/a Sugo AI** on anything contractual;
       signatory **Marc Rosa, Managing Member**
 - [ ] `marc@sugoai.com` — `hello@` does not exist
 - [ ] One accent; **no red anywhere but the mark**; no italics; no emoji
