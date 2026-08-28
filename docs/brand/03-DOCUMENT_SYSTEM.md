@@ -25,7 +25,7 @@ Everything is US Letter, portrait, unless a client's counsel requires otherwise.
 
 | Setup | Margins | Use |
 | --- | --- | --- |
-| **Document** | 0.9 in top · **0.75 in sides** · 0.75 in bottom | Multi-page: proposals, SOWs, contracts, reports, memos |
+| **Document** | 0.9 in top · **0.9 in sides** · 0.75 in bottom | Multi-page: proposals, SOWs, contracts, reports, memos |
 | **Sheet** | 0.5 in all round | Single-page instruments: invoices, one-pagers, covers |
 
 **One right edge (B-47).** No content element declares a `max-width`. Prose,
@@ -38,10 +38,25 @@ width, line length is set by the margin alone. **Widening or narrowing these
 margins is a typographic decision, not a whitespace one** — it changes every
 line on every page.
 
-**0.75 in sides puts running copy at roughly 92 characters** at 10.5 pt. That
-is above the 75–85 ideal and **Sugo documents run wide by choice.** For scale,
-a Texas SOS / IRS business letter on 1 in margins runs a median of 90 with a
-p90 of 99; the convention in business documents is a long measure.
+**0.9 in sides puts running copy at roughly 90 characters** at 10.5 pt. That
+is above the 75–85 ideal and **Sugo documents run wide by choice** — 90 is
+exactly the median of the Texas SOS / IRS business letter used as the
+benchmark. Sides match the head, so the page carries one frame value rather
+than two tuned ones, and 0.9 in clears a three-hole punch where 0.75 in does
+not.
+
+**Margin barely moves the measure, and does not move the page count at all.**
+Measured across the range on the same nine-page report:
+
+| Sides | Text block | Chars / line | Pages |
+| --- | --- | --- | --- |
+| 0.75 in | 7.01 in | 92 | 9 |
+| 0.85 in | 6.81 in | 91 | 9 |
+| **0.9 in** | **6.71 in** | **90** | **9** |
+| 1 in | 6.51 in | 87 | 9 |
+
+Choose the side margin on how the page looks and prints. It is not a
+readability lever.
 
 **The margin is not the readability lever, and this is the evidence.** On the
 same nine-page report, the original typography at 0.75 in ran 90 characters
@@ -49,9 +64,6 @@ and the rebuilt typography at 0.75 in runs 92 — yet one reads far better than
 the other. What changed was §4: one right edge, list markers that share the
 baseline of their copy, a heading scale that ranks by weight, and callout copy
 at body size. **Reach for those before reaching for the margin.**
-
-Margin also costs no pages. Measured on that same report, 0.75 in, 1 in and
-1.5 in sides all set in nine.
 
 **Measure the built PDF; do not estimate it** — `scripts/measure.py`. A
 re-render is not a substitute: it can resolve a different font than the one

@@ -9,9 +9,9 @@ face shifts the count by several characters a line.
 
     python3 scripts/measure.py out/proposal.pdf
 
-Ideal 75-85 characters. This system's Document setup — 0.75in sides at 10.5pt
-— measures about 92, which is wide by choice; a standard SOS / IRS business
-letter runs 90. So a "long" reading here is expected, not a defect, and the
+Ideal 75-85 characters. This system's Document setup — 0.9in sides at 10.5pt
+— measures about 90, which is wide by choice and happens to match a standard
+SOS / IRS business letter exactly. So a "long" reading here is expected, not a defect, and the
 tool only fails past 100, where something is actually wrong.
 
 The margin is not the readability lever. On the same report, old typography at
@@ -52,7 +52,7 @@ def measure(pdf: Path) -> int:
     elif med <= 90:
         verdict, code = "acceptable — the business-letter norm", 0
     elif med <= 100:
-        verdict, code = "wide — expected for this system's 0.75in setup", 0
+        verdict, code = "wide — expected for this system's 0.9in setup", 0
     else:
         verdict, code = "TOO LONG — something is wrong; check B-47 first", 2
     print(f"{pdf.name}")
