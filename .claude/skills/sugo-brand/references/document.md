@@ -10,7 +10,7 @@ templates, and the HTML → PDF pipeline. This file is the specification behind 
 
 | Setup | Margins | Use |
 | --- | --- | --- |
-| **Document** | 0.9in top / 0.75in sides / 0.75in bottom | Proposals, SOWs, contracts, reports, memos |
+| **Document** | 0.9in top / 0.9in sides / 0.75in bottom | Proposals, SOWs, contracts, reports, memos, briefings |
 | **Sheet** | 0.5in all round | Invoices, one-pagers, covers |
 | **Deck** | 0.6in, 13.333 × 7.5in | 16:9 |
 
@@ -27,11 +27,11 @@ One accent per document.
 
 | Element | Font | Size | Weight | Leading |
 | --- | --- | --- | --- | --- |
-| Document title | Red Hat Display | 28 | 700 | 1.05 |
-| Section head | Red Hat Display | 17 | 700 | 1.15 |
-| Subsection | Red Hat Display | 13 | 500 | 1.25 |
-| Body | General Sans | 10.5 | 400 | 1.45 |
-| Body strong | General Sans | 10.5 | 600 | 1.45 |
+| Document title | Red Hat Display | 16 | 700 | 1.1 |
+| Section head | Red Hat Display | 13.5 | 700 | 1.2 |
+| Subsection | Red Hat Display | 11.5 | 700 | 1.3 |
+| Body | General Sans | 10.5 | 400 | 1.5 |
+| Body strong | General Sans | 10.5 | 600 | 1.5 |
 | Small | General Sans | 9 | 400 | 1.4 |
 | Eyebrow | JetBrains Mono | 8.5 | 400 | uppercase, +14% tracking |
 | Figures / dates / amounts | JetBrains Mono | 8.5–14 | 400 | tabular |
@@ -54,17 +54,17 @@ Sentence case headings. **No italics** — body 600 for emphasis. Body never bel
    The masthead identifies; it does not announce (B-42).
 2. **Parties / meta band** — `FROM` / `TO` / `DATE` / `REFERENCE`. Mono eyebrow
    labels, display 500 13pt names, body 10.5pt lines. Closed by a hairline.
-3. **Body** — section heads 17pt with a hairline above. Lists use a mono
-   zero-padded numeral or a 2px ink square. Never a disc or chevron.
+3. **Body** — section heads 13.5pt, no rule above (B-49). Lists use `1.` in
+   the body face (B-48) or a 2px ink square. Never a disc or chevron.
 4. **Callouts** — three only: **evidence** (saffron, always footnoted), **plain
    terms** (`viola`), **note** (`viola-50`). No blush and no red: both retired (B-41, B-45). All 2px ink, 8px radius, 0.2in padding.
-5. **Tables** — header mono 8.5pt uppercase +16% on viola-50 with a 2px ink rule
-   beneath; body 10.5pt separated by hairlines; no vertical rules; zebra
+5. **Tables** — header mono 7.5pt uppercase +12% on viola-50 with a 2px ink rule
+   beneath; body 10pt separated by hairlines; no vertical rules; zebra
    (`paper-2`) only over 12 rows; numerics right-aligned mono tabular; totals
    with a hairline above and a mono figure.
-6. **Footer** — hairline, then one mono 8.5pt line in `ink-500`:
-   `Sugo AI · <reference> · Page N of M`. Last page swaps the reference for the
-   legal line. The mark appears **once**, in the masthead.
+6. **Footer** — a page number and nothing else: mono 8pt `N of M`, bottom
+   right (B-44). The legal line closes the last page in the flow. The mark
+   appears **once**, in the masthead.
 
 ## Artifacts
 
@@ -95,6 +95,14 @@ that may carry a viola field across up to 40% of the sheet.
 **Report** — Document setup plus a contents page (mono numerals, hairlines, no
 dot leaders) and running section heads in the footer. Figures numbered
 `Figure 01` in mono with a 9pt caption.
+
+**Briefing** — Document setup, 2–8pp, for data-led readouts: tables,
+timelines, charts. Build on `sugo-briefing.css` + the `briefing` template.
+Two-line front matter (lockup + title, then one byline), labels in sentence
+case, **one frame per document**, a fill or a rule never both, table headers
+on viola-50 and group rows on paper-2, compact footnotes, one chart glyph
+set, and copy that states content, never the document. Full rules:
+03-DOCUMENT_SYSTEM §5.12 (B-54 to B-63).
 
 **Deck** — six slide types only: title (viola flood), statement (ink flood, max
 one per five slides), content (paper), evidence (paper + saffron block), diagram,
@@ -152,4 +160,5 @@ Naming: `sugo-<client>-<doctype>-<YYYY-MM-DD>.pdf`; instruments `invoice-NNN.pdf
 - [ ] Every figure mono, tabular, and footnoted if cited
 - [ ] No invented metric, testimonial, client name, logo, or date
 - [ ] Sentence case headings; page numbers on every page
+- [ ] Briefings follow 03 §5.12: one frame, one filled box, every page looked at
 - [ ] Delivered as PDF

@@ -1,6 +1,6 @@
 # Sugo AI document and collateral system
 
-Version 1.0.0 · Last reviewed 24 August 2026
+Version 1.1.0 · Last reviewed 11 September 2026
 
 How Sugo AI looks on paper and in PDF: proposals, statements of work, contracts,
 invoices, one-pagers, reports, decks, and email. The website is not the brand —
@@ -162,6 +162,9 @@ the front matter feel padded. The pair is closed once, by one hairline.
 A **status is a phrase and sets in the body face.** Only figures take the mono:
 a 37-character sentence letterspaced in JetBrains Mono is wide and slow.
 
+A **briefing** replaces the parties band and the meta run with a single byline
+beneath the masthead (§5.12, B-54).
+
 ### 4.3 Body
 
 Section heads at 17 pt with a 1 px hairline above, `--space-lg` clear beneath.
@@ -295,6 +298,9 @@ leaders) and running section heads in the footer. Diagrams follow
 [`01-VISUAL_IDENTITY.md`](01-VISUAL_IDENTITY.md) §7.3. Figures numbered
 `Figure 01` in mono with a body 9 pt caption beneath.
 
+A **data-led** report, one that leads with tables, timelines and charts rather
+than argument, is a briefing (§5.12), not this.
+
 ### 5.8 Signature block
 
 Fixed format. Both parties, side by side, 1 px hairline above each signature
@@ -351,6 +357,92 @@ renderer is the spec. Viola ground, 2 px navy rules inset 42 px left and right,
 mono eyebrow top, Red Hat Display 700 statement at 66–76 pt, mono service line at
 the bottom (`INTERNAL TOOLS · AI AGENTS · CUSTOMER PRODUCTS`). Social titles use
 brand language, not search titles.
+
+### 5.12 Briefing
+
+Document setup, 2–8 pages. A research readout, a buyer or market brief, or a
+findings document that leads with evidence (tables, timelines and charts)
+rather than argument. **Build it on `sugo-briefing.css` and the `briefing`
+template in the `sugo-document` skill.** The stylesheet reproduces this section
+exactly; do not restyle it per document. These rules were settled on the first
+long-form client briefing (11 Sep 2026), after counting its devices and a
+Hallmark audit (B-54 to B-63). The complaint they answer: the formatting was
+pulling attention from the information.
+
+**Front matter is two lines (B-54).** The lockup and the title share one row,
+closed by the 2 px ink rule. Beneath it, one body-face line at 9 pt in
+`ink-500`: `Prepared for <name>, <client> · Marc Rosa, Sugo AI · <date> ·
+research as of <date>`. No parties band, no `.docmeta` run, no brand eyebrow.
+Together they repeated the date twice and the company name three times, and
+took a fifth of page one before the first sentence. The legal entity appears
+once, in the closing legal block.
+
+**Labels are sentence case in the body face (B-55).** Eyebrows, step labels,
+status words and group labels set in General Sans 600 at 8.5 pt, `ink-500`.
+Tracked mono capitals survive in two places only, table column headers and
+chart axes, at **0.06 em** tracking. Wider tracking breaks copied text: at
+0.14 em a date copies out of the PDF as `1 1 SE P 20 2 6`. Mono is for record
+numbers, codes, figures and dates. Footnotes and the legal block set in the
+body face.
+
+**One frame per document (B-56).** The 2 px ink border is reserved for at most
+one object, and only for one that depicts a real artifact, such as the product
+card a reader will actually see. Nothing nests inside it but rows. Every other
+grouping (column rows, step rows, figure rows, two-way comparisons) sits open
+under a hairline, with no seams between cells.
+
+**A fill or a rule, never both (B-57).** At most one filled box per document:
+the plain-terms (`viola`) box, with no border. Notes and limitations are open
+text under a hairline top rule. No ink flood in a briefing; what it held
+becomes a heading and a short list.
+
+**Tables carry two tiers of fill (B-58).** Column headers on `viola-50`, mono
+7.5 pt at 0.06 em, with a hairline beneath. Group rows on `paper-2`, body face
+8.5 pt 600, sentence case, padded like any other row. Body rows are separated
+by hairlines. No column that repeats the same word down the page: state the
+exceptions in one line beneath the table. A tint means one thing per table;
+two opposite rows never share a ground.
+
+**Footnotes are a compact key (B-59).** Body face 7.5 pt on 1.35, 1.5 pt
+between notes, 6 pt above the block.
+
+**Headline figures sit in an open row (B-60)** under a hairline, in mono at
+17 pt, and never restate the lede above them.
+
+**Charts (B-61).** Positioned markup, not script, because WeasyPrint runs none.
+Navy and violet only: no red (B-41), no green. Saffron at most once, as the
+single highlight that matters. One glyph vocabulary across every briefing:
+
+| Glyph | Class | Default meaning |
+| --- | --- | --- |
+| Ink diamond | `g-diamond` | An entity or vehicle formed |
+| Violet square | `g-square` | A filing or registration |
+| Open violet square | `g-square-open` | The same kind of filing, after the event |
+| Ink dot | `g-dot` | The anchoring event (a deed, a close) |
+| Open ink ring | `g-ring` | A companion record on the same day |
+| Ink triangle | `g-tri` | Our appointment or contact |
+| Violet triangle | `g-tri-alt` | Another firm's |
+| Open grey circle | `g-circle-open` | Press or third-party activity |
+| Dashed grey square | `g-dashed` | Expected, or missing |
+
+Every chart carries `role="img"` and a one-sentence `aria-label`. Nothing sets
+below 7 pt. Marks hold 3:1 or better against paper; `viola-500` fails as a mark
+colour and is not used for one. Time not yet elapsed is shaded `paper-2` and
+labelled "not yet", so a recent row does not read as a quiet one.
+
+**Copy states content, not the document (B-62).** No roadmap sentences ("this
+walks through…"), no section summaries by number ("sections 1 and 4 are…"),
+no headings that describe the page ("What the timeline shows" becomes "What
+stands out"). The lede is a claim. Invented or illustrative data is labelled
+once, inline, as a bold lead-in ("**Illustrative buyer.** … are made up"),
+never as a box.
+
+**Check the rendered page, not the markup (B-63).** Render to PDF and look at
+every page. A half-empty sheet mid-document means a `break-inside: avoid`
+block is jumping: shorten the block rather than forcing a page break. Copy
+text out of the PDF (`pdftotext`) and read it: broken words mean tracking. For
+restraint, count the devices per document (tracked-cap labels, framed boxes,
+filled bands) and ask of each whether it carries information the words do not.
 
 ---
 
@@ -415,3 +507,5 @@ Before anything leaves the building:
 - [ ] Page numbers and footer on every page
 - [ ] Copy passes the review checklist in `MESSAGING_AND_VOICE.md`
 - [ ] Delivered as PDF unless there is a redlining reason not to
+- [ ] Briefings: one frame, at most one filled box, labels in sentence case,
+      every page rendered and looked at (§5.12)
