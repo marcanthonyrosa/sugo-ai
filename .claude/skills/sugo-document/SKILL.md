@@ -21,11 +21,13 @@ assets/
   sugo-print-tokens.css  fonts + token values. Every print surface imports this.
                          Declares no layout. Do not hand-edit values.
   sugo-document.css      Letter format — document and sheet setups
+  sugo-briefing.css      briefing layer — charts, tables, the quiet rules (§5.12)
   sugo-deck.css          16:9 format — the six slide types
   invoice.html           Jinja2 invoice (Sheet setup)
   document.html          Jinja2 generic (Document setup) — proposals, SOWs,
                          contracts, reports, memos
   deck.html              Jinja2 deck (16:9)
+  briefing.html          Jinja2 briefing (Document setup) — data-led readouts
   sugo-mark.png          the canonical mark
 scripts/
   build.py               Jinja2 → HTML → PDF via WeasyPrint
@@ -192,9 +194,9 @@ Set `"signatures": false` for anything that isn't executed.
 
 | Class | Renders |
 | --- | --- |
-| `h2` / `h3` | Section head (17pt, hairline above) / subsection (13pt) |
-| `p` | Body, capped at 68 characters |
-| `ol.numbered` | Mono zero-padded numerals hanging left |
+| `h2` / `h3` | Section head (13.5 pt, no rule above) / subsection (11.5 pt) |
+| `p` | Body, full measure — one right edge (B-47) |
+| `ol.numbered` | `1.` markers in the body face, hanging (B-48) |
 | `ul.squares` | 2px ink square bullets |
 | `.callout.callout--evidence` | Saffron. A cited figure. Add `.figure-lead` for the number. **Always footnote it.** |
 | `.callout.callout--plain` | Viola. A definition or plain-language aside. |
@@ -274,6 +276,66 @@ masthead. Legal documents get the typography and none of the atmosphere.
 
 The **LLC signs**; the DBA never signs. Signatory is **Marc Rosa, Managing
 Member** — not Founder, which is the marketing title.
+
+## Briefings (data-led readouts)
+
+A research readout, a buyer or market brief, a findings document: anything that
+leads with tables, timelines and charts rather than argument. Document setup,
+2–8 pages. **The spec is `03-DOCUMENT_SYSTEM.md` §5.12 (B-54 to B-63); the
+stylesheet reproduces it exactly. Do not restyle per document.**
+
+```bash
+python3 scripts/build.py --template briefing --context brief.json --out brief.pdf
+# or, for HTML you generated yourself (charts usually are):
+python3 scripts/build.py --html my-brief.html --out my-brief.pdf
+```
+
+```json
+{
+  "title": "Buyer activity, third quarter",
+  "prepared_for": "Name, Example Client, LLC",
+  "date": "11 Sep 2026",
+  "as_of": "10 Sep 2026",
+  "reference": "SUGO-2026-012 v1.0",
+  "confidential_for": "Example Client, LLC",
+  "body": "<p class=\"lede\">…</p><h2><span class=\"sec-no\">1</span>…</h2>"
+}
+```
+
+Self-composed HTML links **`sugo-briefing.css`** and nothing else. `build.py
+--html` stages the skill's assets beside the HTML and **overwrites any file with
+the same name**, so never fork a local `sugo-briefing.css`; put a genuine
+one-off in a separately named file and say why in it.
+
+| Class | Renders |
+| --- | --- |
+| `p.lede` | The opening claim, 11.5 pt ink. A claim, not a description of the document |
+| `h2 .sec-no` | Section number, only when the text refers to sections by number |
+| `p.sec-intro` / `p.subtle` | Section intro / small muted note beneath an exhibit |
+| `p.illus` | Illustrative-data label: `<strong>Illustrative buyer.</strong> … are made up` |
+| `table.sources` + `tr.stage` | Catalogue table: viola-50 header, paper-2 group rows |
+| `table.proof` (`tr.now`, `tr.alarm`) | Cases × steps with glyphs; `tr.now` on paper-2 |
+| `table.entities` (`td.code`) | Codes and record numbers in mono |
+| `.figs > .cell > .n` | Headline figures in an open row (B-60) |
+| `.tri > .cell` | Three open columns: eyebrow, `.lead`, `p` |
+| `.steps > .cell` (`.next`) | Step row; the expected step on viola-50 |
+| `.pcard` | **The one framed object** (B-56): `.top`, `.reason`, `.behind` + `table.qs` |
+| `.lanes > .lrow` | Lane chart: `.axis` / `.lane` / `.tall` / `.compact`; `.who`, `.oc`, `.plot`; `.tick`, `.gl`, `.cl` (pattern outline), `.hz` (not yet), `.mk.g-*` |
+| `.strip` | Calendar strip: `.track`, `.win`, `.today`, `.tk`, `.lab` |
+| `.hist` | Dot histogram: `.col`, `.dt.buy` / `.sell` / `.family` / `.trk`, `.axis`, `.yr` |
+| `.markets > .cell` | Two-way comparison, open under a hairline |
+| `.factsheet > .row` | Key–value rows (`.k`, `.v`) |
+| `.leadlist > .item` | Bold lead + body: the default for takeaways |
+| `.legend .it` | Chart key; reuses the `.mk.g-*` glyphs |
+| `.footnotes` | Compact key (B-59) |
+
+Charts are **generated markup**: compute positions when you build the HTML
+(x as a percentage of the plot, y in pt) because WeasyPrint runs no script.
+Every chart wrapper gets `role="img"` and a one-sentence `aria-label`.
+
+Before it goes: render to PDF, look at **every** page, run `pdftotext` on page
+one and read it back, and count the devices (tracked-cap labels, framed boxes,
+filled bands). Each must carry information the words do not.
 
 ## Decks
 
@@ -357,4 +419,6 @@ Filenames: `sugo-<client>-<doctype>-<YYYY-MM-DD>.pdf`, instruments
 - [ ] Rendered and eyeballed **page by page** — a half-empty sheet mid-document
       means a `break-inside: avoid` block is jumping; let that table break and
       repeat its header (`table.long`) rather than shaving points to fit
+- [ ] Briefings (03 §5.12): one frame, at most one filled box, sentence-case
+      labels, no meta narration, and `pdftotext` of page one reads back whole
 - [ ] Echo the key numbers back to Marc before he sends it

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>{{ title }} · Sugo AI</title>
+<link rel="stylesheet" href="sugo-briefing.css">
+</head>
+<body class="setup-document">
+
+{# Briefing front matter is two lines (DECISIONS B-54): lockup + title, then one
+   byline. No parties band, no meta run, no brand eyebrow. The legal entity
+   appears once, in the closing block. #}
+<header class="masthead">
+  <div class="brand">
+    <div class="lockup">
+      <span class="wordmark">Sugo AI</span>
+      {% if mark_src %}<img src="{{ mark_src }}" alt="">{% endif %}
+    </div>
+  </div>
+  <div class="doc-title">
+    <h1>{{ title }}</h1>
+  </div>
+</header>
+<p class="byline">Prepared for {{ prepared_for }} · {{ author | default('Marc Rosa, Sugo AI') }} · {{ date }}{% if as_of %} · research as of {{ as_of }}{% endif %}</p>
+
+{{ body | safe }}
+
+<div class="legal">
+  <div>Sugo AI · {{ contact_email }}{% if reference %} · {{ reference }}{% endif %}{% if confidential_for %} · Confidential, prepared for {{ confidential_for }}{% endif %}</div>
+  <div>{{ legal_line }} · sugoai.com</div>
+</div>
+
+</body>
+</html>
