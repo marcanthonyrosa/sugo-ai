@@ -11,11 +11,11 @@
   "billing_profiles": {
     "sugo": {
       "_use": "Default. Every client unless a profile below says otherwise.",
-      "from_entity": "Sugo Product Company, LLC",
-      "from_name": "Sugo Product Company, LLC",
+      "from_entity": "Sugo Product Company LLC",
+      "from_name": "Sugo Product Company LLC",
       "from_lines": ["d/b/a Sugo AI", "marc@sugoai.com"],
       "contact_email": "marc@sugoai.com",
-      "legal_line": "© {year} Sugo Product Company, LLC d/b/a Sugo AI"
+      "legal_line": "© {year} Sugo Product Company LLC d/b/a Sugo AI"
     },
     "contractor": {
       "_use": "Engagements where Marc is engaged personally as an independent contractor rather than through the LLC. Named per client in `clients` below — never assumed.",

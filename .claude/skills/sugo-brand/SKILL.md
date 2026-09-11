@@ -99,13 +99,13 @@ Full rules: [`references/voice.md`](references/voice.md).
 
 | Field | Value |
 | --- | --- |
-| Legal entity | Sugo Product Company, LLC |
+| Legal entity | Sugo Product Company LLC |
 | Trade name | Sugo AI (Texas DBA) |
-| Contractual form | Sugo Product Company, LLC d/b/a Sugo AI |
+| Contractual form | Sugo Product Company LLC d/b/a Sugo AI |
 | Signatory | Marc Rosa, **Managing Member** (marketing title: Founder) |
 | Email | `marc@sugoai.com` — `hello@` does not exist |
 | Domain | `https://sugoai.com` — apex, no `www` |
-| Copyright | `© <year> Sugo Product Company, LLC d/b/a Sugo AI` |
+| Copyright | `© <year> Sugo Product Company LLC d/b/a Sugo AI` |
 
 The **LLC signs**. The DBA never signs.
 

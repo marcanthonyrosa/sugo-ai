@@ -265,7 +265,7 @@ These are enforcement rules, not style preferences.
   P&L impact). It always ships with its footnote.
 - Client-specific routes (`/tmc`, `/tmc-example`) are `noindex`.
 - Contact address is `marc@sugoai.com` everywhere. `hello@` does not exist.
-- Legal line: `© <year> Sugo Product Company, LLC d/b/a Sugo AI`.
+- Legal line: `© <year> Sugo Product Company LLC d/b/a Sugo AI`.
 
 ---
 

@@ -188,17 +188,17 @@ def defaults() -> dict:
     """
     Facts that are the same on every Sugo document.
 
-    The default billing party is always Sugo Product Company, LLC. Invoicing
+    The default billing party is always Sugo Product Company LLC. Invoicing
     personally as an independent contractor is a per-client exception that must
     be named in .sugo-private.json — it is never inferred.
     """
     return {
         "year": date.today().year,
         "contact_email": "marc@sugoai.com",
-        "from_entity": "Sugo Product Company, LLC",
-        "from_name": "Sugo Product Company, LLC",
+        "from_entity": "Sugo Product Company LLC",
+        "from_name": "Sugo Product Company LLC",
         "from_lines": ["d/b/a Sugo AI", "marc@sugoai.com"],
-        "legal_line": f"© {date.today().year} Sugo Product Company, LLC d/b/a Sugo AI",
+        "legal_line": f"© {date.today().year} Sugo Product Company LLC d/b/a Sugo AI",
         "terms": "Net 15",
         "mark_src": "sugo-mark.png",   # the canonical mark, in assets/
         "signatures": False,

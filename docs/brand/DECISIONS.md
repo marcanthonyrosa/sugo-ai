@@ -84,7 +84,7 @@ preserving a fallback.
 | A-36 | Only citable figure: MIT NANDA, Aug 2025, ≈5%, always footnoted | `design.md` |
 | A-37 | No invented metrics, testimonials, client names, or dates | `design.md` |
 | A-38 | `marc@sugoai.com` everywhere; `hello@` does not exist | `design.md` |
-| A-39 | Legal line: `© 2026 Sugo Product Company, LLC d/b/a Sugo AI` | `design.md` |
+| A-39 | Legal line: `© 2026 Sugo Product Company LLC d/b/a Sugo AI` | `design.md` |
 | A-40 | Canonical domain is the apex `sugoai.com`; `www` permanently redirects | `SHARING_AND_DISCOVERY.md` |
 | A-41 | `/tmc` and `/tmc-example` are `noindex`; writing routes `noindex` while gated | `SHARING_AND_DISCOVERY.md` |
 | A-42 | Social cards: 1200 × 630, deterministic, viola ground, brand language not search titles | `SHARING_AND_DISCOVERY.md` |
@@ -140,7 +140,7 @@ somewhere.
 | **B-19** | **Two page setups:** Document (0.9 / 0.75 / 0.75 in) and Sheet (0.5 in) | Nothing defined page geometry |
 | **B-20** | **Six-part document anatomy:** masthead → parties band → body → callouts → tables → footer | |
 | **B-21** | **Three document callouts only:** evidence (saffron), plain terms (`viola`), note (`viola-50`) *(amended by B-45)* | |
-| **B-22** | **Signature block format**, with **Sugo Product Company, LLC** as the signing party and **Marc Rosa, Managing Member** as signatory. The DBA does not sign | The distinction was in memory, not in any template |
+| **B-22** | **Signature block format**, with **Sugo Product Company LLC** as the signing party and **Marc Rosa, Managing Member** as signatory. The DBA does not sign | The distinction was in memory, not in any template |
 | **B-23** | **Six deck slide types only**; no builds, no transitions, ≤40 words per slide | No deck system existed |
 | **B-24** | **Email signature is text-only** — no image logo, no banner, no social icons | |
 | **B-25** | **Production pipeline: HTML → PDF (WeasyPrint) → optional DOCX**; PDF is the artifact of record | Matches the invoice skill's proven path; now the standard |
@@ -163,7 +163,7 @@ somewhere.
 
 | # | Decision | Why it was needed |
 | --- | --- | --- |
-| **B-35** | **Default billing party is Sugo Product Company, LLC d/b/a Sugo AI.** Invoicing personally as *Marc Anthony Rosa, Independent Contractor* is a **per-client exception**, recorded per client and never inferred. Absent a record, bill as the LLC | Some engagements are contracted with Marc personally because of how benefits or worker classification are handled client-side. Without a stated default the wrong entity ends up on a sent invoice — a tax problem, not a formatting one |
+| **B-35** | **Default billing party is Sugo Product Company LLC d/b/a Sugo AI.** Invoicing personally as *Marc Anthony Rosa, Independent Contractor* is a **per-client exception**, recorded per client and never inferred. Absent a record, bill as the LLC | Some engagements are contracted with Marc personally because of how benefits or worker classification are handled client-side. Without a stated default the wrong entity ends up on a sent invoice — a tax problem, not a formatting one |
 | **B-36** | **The exception is billing only.** It changes the party on the instrument. It does not change the brand, the voice, the visual system, or anything Sugo signs | Prevents the exception spreading into a second visual or verbal identity |
 | **B-37** | **Private facts layer.** Business address (Marc's home address), tax identifiers, remittance detail, personal email, real client names, and real fees live in a gitignored `.sugo-private.json` — never in the repository. `build.py` loads it if present and produces a correct generic document if not | The repository is public. The pre-redesign invoice template carried a real client name, a real fee, and a personal email in committed source |
 | **B-38** | **Examples use `Example Client, LLC` and `$1.00`** — the convention, not a placeholder awaiting real values | |
@@ -180,6 +180,8 @@ somewhere.
 | **B-49** | **Heading scale: h1 16 pt, h2 13.5 pt, h3 11.5 pt, all 700.** Levels separate by weight and space, not by size alone. Space above a head is ~3× the space below. **No rule above a section head** | h3 at 13 pt/500 against 10.5 pt body barely read as a level. The hairline above every h2 was one of four horizontal rules inside an inch and a half |
 | **B-50** | **A callout's copy sets at body size.** The ground and the 2 px border carry the emphasis | A pull quote at 15 pt display against 10.5 pt body reads as a headline dropped into a paragraph |
 | **B-51** | **The masthead is two rows.** Title on one line; document type, version and date consolidate onto a single mono run beneath it. The reference code moves to the closing block | Three stacked elements pushed the title onto two lines and spent the top of page one on identification |
+| **B-52** | **The legal entity is written `Sugo Product Company LLC`, with no comma before LLC.** The DBA is unchanged: `Sugo AI`, and the full form is `Sugo Product Company LLC d/b/a Sugo AI`. **This reverses §7 of `04-BRAND_FACTS.md`**, which previously listed the comma-free form as the error; that row is inverted rather than left contradicting itself | Marc's call, 28 Aug 2026. Applied across the brand docs, both skills, the document templates, `build.py`'s defaults, the site footer and SEO metadata, and the gitignored billing profile — a legal name that is right in the standard and wrong in the generator is worse than one that is consistently wrong. Retired `prototypes/` were included too: they are out of the system as a design reference, but a wrong entity name lying in a footer is a fact someone will copy |
+| **B-53** | **Bands in the document header share one column rhythm.** The parties band and the `.docmeta` fact run use the same gap and equal columns, so a fact aligns with a party above it | Content-sized meta pairs put `STATUS` at an arbitrary x-position — it lined up with nothing else on the page. The fix is one declaration (`flex: 1 1 0` on the pair), not a set of per-document widths: hand-positioning a two-item run is exactly the kind of brittle rule this system should not accumulate. It also degrades by itself — three facts distribute evenly rather than needing a new rule |
 
 ---
 

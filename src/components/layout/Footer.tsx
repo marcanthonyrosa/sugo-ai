@@ -14,7 +14,7 @@ function MetaRow() {
       {/* <Link href="/writing">Writing</Link> — re-enable when essays are written */}
       <Link href="/about">About</Link>
       <Link href="/contact">Contact</Link>
-      <span>&copy; 2026 Sugo Product Company, LLC d/b/a Sugo AI</span>
+      <span>&copy; 2026 Sugo Product Company LLC d/b/a Sugo AI</span>
       <span className="foot__note">
         sugo (n.) — Italian for sauce. The good ones are made slowly, with real
         ingredients.

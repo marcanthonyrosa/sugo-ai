@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const SITE_NAME = "Sugo AI";
 export const SITE_URL = new URL("https://sugoai.com");
 export const SITE_EMAIL = "marc@sugoai.com";
-export const LEGAL_NAME = "Sugo Product Company, LLC";
+export const LEGAL_NAME = "Sugo Product Company LLC";
 
 export const DEFAULT_TITLE =
   "AI Product Development for Traditional Businesses | Sugo AI";
